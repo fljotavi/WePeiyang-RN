@@ -1,8 +1,8 @@
-# MyIgniteProject
+# We Peiyang React-Native
 
-[![CircleCI](https://circleci.com/gh/infinitered/ignite-bowser.svg?style=svg)](https://circleci.com/gh/infinitered/ignite-bowser)
+The project is currently in experimental stage.
 
-## The latest and greatest boilerplate for Infinite Red opinions
+# Ignite Configuration
 
 This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
 
