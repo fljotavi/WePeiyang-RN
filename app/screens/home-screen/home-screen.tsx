@@ -76,6 +76,37 @@ const ss = {
 // @inject("mobxstuff")
 @observer
 export class HomeScreen extends React.Component<HomeScreenProps, {}> {
+  state = {
+    gpaSemestral: {
+      status: "notReceived",
+      weighted: [],
+      gradePoints: []
+    },
+    gpaDetailed: {}
+  }
+
+  componentWillMount(): void {
+    setTimeout(() => {
+      this.setState({
+        gpaSemestral: {
+          status: "valid",
+          weighted: [
+            { x: 1, y: 75 + Math.random() * 25 },
+            { x: 2, y: 75 + Math.random() * 25 },
+            { x: 3, y: 75 + Math.random() * 25 },
+            { x: 4, y: 75 + Math.random() * 25 }
+          ],
+          gradePoints: [
+            { x: 1, y: 3 + Math.random() },
+            { x: 2, y: 3 + Math.random() },
+            { x: 3, y: 3 + Math.random() },
+            { x: 4, y: 3 + Math.random() }
+          ]
+        }
+      })
+    }, 4000)
+  }
+
   render () {
     return (
       <Screen preset="scroll">
@@ -121,7 +152,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <View style={ss.sectionHead}>
             <Text text="GPA Curve" preset="h5"/>
           </View>
-          <GpaCurve style={ss.curveView} />
+          <GpaCurve data={this.state.gpaSemestral.gradePoints} status={this.state.gpaSemestral.status} style={ss.curveView} />
           <GpaStat style={ss.stat}/>
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>

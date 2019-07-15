@@ -36,33 +36,29 @@ export function GpaTooltip(props: GpaTooltipProps) {
 
 export interface GpaCurveProps {
   style?: ViewStyle
+  data?: object
+  status: string
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
+
   state = {
-    data: [
-      { x: 1, y: 92 },
-      { x: 2, y: 81 },
-      { x: 3, y: 86 },
-      { x: 4, y: 93 }
-    ],
+    data: [],
+    status: "",
     selected: 1
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        data: [
-          { x: 1, y: 75 + Math.random() * 25 },
-          { x: 2, y: 75 + Math.random() * 25 },
-          { x: 3, y: 75 + Math.random() * 25 },
-          { x: 4, y: 75 + Math.random() * 25 }
-        ]
-      })
-    }, 10000)
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.data,
+      status: nextProps.status
+    })
   }
 
   render() {
+    if (this.state.status !== "valid" || this.state.data.length <= 0) {
+      return <View />
+    }
     const { style } = this.props
     const textStyle = { }
     const predefinedStyle: ViewStyle = {
