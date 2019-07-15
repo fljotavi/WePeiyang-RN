@@ -1,13 +1,14 @@
 import { createStackNavigator } from "react-navigation"
-import { WelcomeScreen } from "../screens/welcome-screen"
 import { DemoScreen } from "../screens/demo-screen"
+import { HomeScreen } from "../screens/home-screen"
 
 export const PrimaryNavigator = createStackNavigator(
   {
-    welcome: { screen: WelcomeScreen },
+    home: { screen: HomeScreen },
     demo: { screen: DemoScreen },
   },
   {
     headerMode: "none",
+    initialRouteName: "home"
   },
 )

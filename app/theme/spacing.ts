@@ -39,3 +39,17 @@
  * 8 = massive - an uncomfortable amount of whitespace
  */
 export const spacing = [0, 4, 8, 12, 16, 24, 32, 48, 64]
+export const spacingDict = {
+  tiny: 4,
+  small: 8,
+  medium: 12,
+  large: 24,
+  xlarge: 32,
+  xxlarge: 48,
+  xxxlarge: 64
+}
+export const layoutParam = {
+  paddingHorizontal: 24,
+  paddingVertical: 24,
+  footerHeight: 60
+}

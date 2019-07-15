@@ -2,26 +2,38 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Back"
+    "back": "Back",
+    "time": {
+      "remaining": "",
+      "daysLeft": " Days Left"
+    }
   },
   "errors": {
     "invalidEmail": "Invalid email address."
   },
-  "welcomeScreen": {
-    "poweredBy": "POWERED BY BOWSER",
-    "readyForLaunch": "Ready for launch.",
-    "continue": "CONTINUE"
+  "homeScreen": {
+    "header": "We Peiyang",
+    "more": "MORE >>"
   },
-  "demoScreen": {
-    "howTo": "HOW TO",
-    "title": "What’s In This Stack?",
-    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
-    "reactotron": "Demo Reactotron",
-    "androidReactotronHint": "If this doesn't work, ensure the Reactotron desktop app is running, run adb reverse tcp:9090 tcp:9090 from your terminal, and reload the app.",
-    "iosReactotronHint": "If this doesn't work, ensure the Reactotron desktop app is running and reload app."
+  "footer": {
+    "wpy": "WPY",
+    "news": "News",
+    "tju": "TJU"
   },
-  "storybook": {
-    "placeholder": "Placeholder",
-    "field": "Field"
+  "modules": {
+    "bike": "Bike",
+    "contact": "Contact",
+    "learning": "Learning",
+    "library": "Library",
+    "cards": "Cards",
+    "gpa": "GPA",
+    "classroom": "Classroom",
+    "news": "News",
+    "coffee": "Coffee",
+    "buses": "Buses"
+  },
+  "gpa": {
+    "totalWeighted": "Total Weighted",
+    "totalGpa": "Total GPA"
   }
 }

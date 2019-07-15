@@ -1,0 +1,51 @@
+{
+  "common": {
+    "ok": "OK!",
+    "cancel": "Cancel",
+    "back": "Back",
+    "time": {
+      "remaining": "",
+      "daysLeft": " Days Left"
+    }
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address."
+  },
+  "homeScreen": {
+    "header": "We Peiyang"
+  },
+  "footer": {
+    "wpy": "WPY",
+    "news": "News",
+    "tju": "TJU"
+  },
+  "modules": {
+    "bike": "自行车",
+    "contact": "黄页",
+    "learning": "刷题",
+    "library": "图书馆",
+    "cards": "一卡通",
+    "gpa": "GPA",
+    "classroom": "自习室",
+    "news": "新闻",
+    "coffee": "咖啡",
+    "buses": "公交车"
+  },
+  "welcomeScreen": {
+    "poweredBy": "POWERED BY BOWSER",
+    "readyForLaunch": "Ready for launddddch.",
+    "continue": "CONTINUE"
+  },
+  "demoScreen": {
+    "howTo": "HOW TO",
+    "title": "What’s In This Stack?",
+    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
+    "reactotron": "Demo Reactotron",
+    "androidReactotronHint": "If this doesn't work, ensure the Reactotron desktop app is running, run adb reverse tcp:9090 tcp:9090 from your terminal, and reload the app.",
+    "iosReactotronHint": "If this doesn't work, ensure the Reactotron desktop app is running and reload app."
+  },
+  "storybook": {
+    "placeholder": "Placeholder",
+    "field": "Field"
+  }
+}

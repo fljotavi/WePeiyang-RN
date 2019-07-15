@@ -23,15 +23,19 @@ export const color = {
   /**
    * The screen background.
    */
-  background: palette.white,
+  background: palette.offWhite,
+  card: palette.white,
   /**
    * The main tinting color.
    */
-  primary: palette.orange,
+  primary: palette.pale,
   /**
    * The main tinting color, but darker.
    */
   primaryDarker: palette.orangeDarker,
+  primaryLighter: palette.offPale,
+  lightGrey: palette.lightGrey,
+  washed: palette.washed,
   /**
    * A subtle color used for borders and lines.
    */
@@ -39,7 +43,7 @@ export const color = {
   /**
    * The default color of text in many components.
    */
-  text: palette.white,
+  text: palette.offBlack,
   /**
    * Secondary information.
    */
@@ -61,4 +65,7 @@ export const color = {
    * white background
    */
   storybookTextColor: palette.black,
+  gpa: [palette.pale, palette.offPale, palette.offBlack, palette.novaPale, palette.authenticPale],
+  bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
+  book: palette.white,
 }

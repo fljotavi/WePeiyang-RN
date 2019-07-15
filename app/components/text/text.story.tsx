@@ -14,7 +14,7 @@ const VIEWSTYLE = {
 }
 const viewStyleArray: ViewStyle[] = [VIEWSTYLE, { backgroundColor: "#7fff00" }]
 
-storiesOf("Text", module)
+storiesOf("Text")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
@@ -32,7 +32,7 @@ storiesOf("Text", module)
       </UseCase>
       <UseCase text="bold" usage="Used for bolded body text.">
         <View style={VIEWSTYLE}>
-          <Text preset="bold">Osnap! I'm puffy.</Text>
+          <Text>Osnap! I'm puffy.</Text>
         </View>
       </UseCase>
       <UseCase text="header" usage="Used for major section headers.">

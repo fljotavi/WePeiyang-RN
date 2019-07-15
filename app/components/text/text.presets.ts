@@ -5,9 +5,10 @@ import { color, typography } from "../../theme"
  * All text will start off looking like this.
  */
 const BASE: TextStyle = {
-  fontFamily: typography.primary,
   color: color.text,
   fontSize: 15,
+  letterSpacing: -0.1,
+  fontFamily: typography.primary,
 }
 
 /**
@@ -20,16 +21,24 @@ export const presets = {
    * The default text styles.
    */
   default: BASE,
+  bold: { ...BASE, fontWeight: "bold" } as TextStyle,
 
   /**
    * A bold version of the default text.
    */
-  bold: { ...BASE, fontWeight: "bold" } as TextStyle,
 
   /**
    * Large headers.
    */
-  header: { ...BASE, fontSize: 24, fontWeight: "bold" } as TextStyle,
+  header: { ...BASE, fontSize: 24 } as TextStyle,
+  h1: { ...BASE, fontSize: 48, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h2: { ...BASE, fontSize: 32, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h3: { ...BASE, fontSize: 24, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h4: { ...BASE, fontSize: 20, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h5: { ...BASE, fontSize: 18, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h6: { ...BASE, fontSize: 16, color: color.primary, fontWeight: "bold" } as TextStyle,
+  small: { ...BASE, fontSize: 12 } as TextStyle,
+  i: { fontFamily: typography.materialIcons } as TextStyle,
 
   /**
    * Field labels that appear on forms above the inputs.

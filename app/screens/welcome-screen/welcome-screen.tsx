@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView } from "react-native"
+import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView, StatusBar } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { Button } from "../../components/button"
@@ -115,6 +115,7 @@ export class WelcomeScreen extends React.Component<WelcomeScreenProps, {}> {
             />
           </View>
         </SafeAreaView>
+        <StatusBar backgroundColor='white' barStyle="dark-content" />
       </View>
     )
   }
