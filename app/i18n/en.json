@@ -15,7 +15,13 @@
     "header": "We Peiyang",
     "more": "MORE >>"
   },
-  "footer": {
+  "newsScreen": {
+    "header": "News"
+  },
+  "tjuScreen": {
+    "header": "TJU Network"
+  },
+  "tab": {
     "wpy": "WPY",
     "news": "News",
     "tju": "TJU"

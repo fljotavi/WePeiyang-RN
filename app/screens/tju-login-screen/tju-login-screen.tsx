@@ -6,7 +6,7 @@ import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 
-export interface NewsScreenProps extends NavigationScreenProps<{}> {
+export interface TjuLoginScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ss = {
@@ -18,13 +18,13 @@ const ss = {
 
 // @inject("mobxstuff")
 @observer
-export class NewsScreen extends React.Component<NewsScreenProps, {}> {
+export class TjuLoginScreen extends React.Component<TjuLoginScreen, {}> {
   render () {
     return (
       <Screen preset="scroll">
         <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
-          <Text tx="newsScreen.header" preset="h2" />
+          <Text tx="tjuScreen.header" preset="h2" />
         </View>
       </Screen>
     )
