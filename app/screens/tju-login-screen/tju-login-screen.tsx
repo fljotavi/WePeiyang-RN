@@ -1,5 +1,4 @@
 import * as React from "react"
-import { observer } from "mobx-react"
 import { StatusBar, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -16,8 +15,6 @@ const ss = {
   } as ViewStyle,
 }
 
-// @inject("mobxstuff")
-@observer
 export class TjuLoginScreen extends React.Component<TjuLoginScreen, {}> {
   render () {
     return (

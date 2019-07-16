@@ -6,6 +6,7 @@ import { TjuLoginScreen } from "../screens/tju-login-screen"
 import { Text } from "../components/text"
 import { TextStyle, ViewStyle } from "react-native"
 import { color, layoutParam } from "../theme"
+import Touchable from 'react-native-platform-touchable'
 
 const barStyle: ViewStyle = {
   height: layoutParam.footerHeight,
@@ -31,7 +32,9 @@ export const RootNavigator = createBottomTabNavigator(
       let genCustomTag = ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state
         let i18nKey = "tab." + routeName
-        return <Text tx={i18nKey} style={textStyle} preset="h5"/>
+        return <Touchable onPress={() => navigation.navigate(routeName)} background={Touchable.Ripple(color.lightGrey, true)}>
+          <Text tx={i18nKey} style={textStyle} preset="h5"/>
+        </Touchable>
       }
       return {
         tabBarLabel: genCustomTag

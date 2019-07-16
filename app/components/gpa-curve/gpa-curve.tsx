@@ -41,7 +41,6 @@ export interface GpaCurveProps {
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
-
   state = {
     data: [],
     status: "",

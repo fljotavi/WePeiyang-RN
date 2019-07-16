@@ -1,5 +1,4 @@
 import * as React from "react"
-import { observer } from "mobx-react"
 import { View, Image, StatusBar, ScrollView, ViewStyle, ImageStyle } from "react-native"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
@@ -73,8 +72,6 @@ const ss = {
   } as ViewStyle
 }
 
-// @inject("mobxstuff")
-@observer
 export class HomeScreen extends React.Component<HomeScreenProps, {}> {
   state = {
     gpaSemestral: {

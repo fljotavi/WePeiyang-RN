@@ -1,7 +1,8 @@
 import * as React from "react"
-import { TextStyle, View, ViewStyle } from "react-native"
+import { TextStyle, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color } from "../../theme"
+import Touchable from 'react-native-platform-touchable'
 
 export interface IanButtonProps {
   tx?: string,
@@ -24,8 +25,8 @@ export function IanButton(props: IanButtonProps) {
   }
 
   return (
-    <View style={[predefinedStyle, style]}>
+    <Touchable style={[predefinedStyle, style]} background={Touchable.Ripple(color.card)}>
       <Text tx={tx} style={textStyle} />
-    </View>
+    </Touchable>
   )
 }
