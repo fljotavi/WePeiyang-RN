@@ -1,7 +1,8 @@
 import * as React from "react"
-import {TextStyle, View, ViewStyle} from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color } from "../../theme"
+import Touchable from 'react-native-platform-touchable'
 
 export interface GpaStatProps {
   style?: ViewStyle
@@ -43,14 +44,19 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
     } as ViewStyle
     return (
       <View style={[predefinedStyle, style]}>
-        <View style={scoreFieldStyle}>
-          <Text tx="gpa.totalWeighted" style={textStyle}/>
-          <Text text={"85.87"} style={numStyle} preset="h3"/>
-        </View>
-        <View style={scoreFieldStyle}>
-          <Text tx="gpa.totalGpa" style={textStyle}/>
-          <Text text={"3.439"} style={numStyle} preset="h3"/>
-        </View>
+        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("weighted") }}>
+          <View style={scoreFieldStyle}>
+            <Text tx="gpa.totalWeighted" style={textStyle}/>
+            <Text text={"85.87"} style={numStyle} preset="h3"/>
+          </View>
+        </Touchable>
+        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("gradePoints") }}>
+          <View style={scoreFieldStyle}>
+            <Text tx="gpa.totalGpa" style={textStyle}/>
+            <Text text={"3.439"} style={numStyle} preset="h3"/>
+          </View>
+        </Touchable>
+
       </View>
     )
   }

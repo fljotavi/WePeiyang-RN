@@ -1,6 +1,6 @@
 import * as React from "react"
 import { createBottomTabNavigator } from "react-navigation"
-import { HomeScreen } from "../screens/home-screen"
+import HomeScreen from "../screens/home-screen"
 import { NewsScreen } from "../screens/news-screen"
 import { TjuLoginScreen } from "../screens/tju-login-screen"
 import { Text } from "../components/text"

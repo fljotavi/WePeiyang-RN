@@ -5,7 +5,8 @@ import * as React from "react"
 import { AppRegistry } from "react-native"
 import { RootNavigator } from "./navigation/root-navigator"
 import { createAppContainer } from "react-navigation"
-
+import { Provider } from 'react-redux'
+import { store } from "./reducers/rootReducer"
 const AppContainer = createAppContainer(RootNavigator)
 
 interface AppState {
@@ -17,7 +18,9 @@ interface AppState {
 export class App extends React.Component<{}, AppState> {
   render() {
     return (
-      <AppContainer />
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
     )
   }
 }

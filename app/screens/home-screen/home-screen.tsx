@@ -1,5 +1,6 @@
 import * as React from "react"
 import { View, Image, StatusBar, ScrollView, ViewStyle, ImageStyle } from "react-native"
+import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
@@ -83,7 +84,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   componentWillMount(): void {
-    setInterval(() => {
+    setTimeout(() => {
       this.setState({
         gpaSemestral: {
           status: "valid",
@@ -106,7 +107,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   render () {
     return (
-      <Screen preset="scroll">
+      <Screen preset="scroll" scoreType={this.props.scoreType.scoreType}>
         <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <View style={ss.headerBar}>
@@ -149,11 +150,30 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <View style={ss.sectionHead}>
             <Text text="GPA Curve" preset="h5"/>
           </View>
-          <GpaCurve data={this.state.gpaSemestral.gradePoints} status={this.state.gpaSemestral.status} style={ss.curveView} />
-          <GpaStat style={ss.stat}/>
+          <GpaCurve data={this.state.gpaSemestral[this.props.scoreType.scoreType]} status={this.state.gpaSemestral.status} style={ss.curveView} />
+          <GpaStat style={ss.stat} setScoreType={(scoreType) => this.props.setScoreType(scoreType)}/>
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>
       </Screen>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    scoreType: state.gpaTypeReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setScoreType: (newType) => {
+      dispatch({
+        type: "SET_SCORE_TYPE",
+        payload: newType
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
