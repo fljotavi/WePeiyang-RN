@@ -83,7 +83,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   componentWillMount(): void {
-    setTimeout(() => {
+    setInterval(() => {
       this.setState({
         gpaSemestral: {
           status: "valid",
