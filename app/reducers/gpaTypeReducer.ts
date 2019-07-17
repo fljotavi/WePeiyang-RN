@@ -1,11 +1,7 @@
-const gpaTypeReducer = (state = { scoreType: "weighted" }, action) => {
+const gpaTypeReducer = (state = "weighted", action) => {
   switch (action.type) {
     case "SET_SCORE_TYPE":
-      state = {
-        ...state,
-        scoreType: action.payload
-      }
-      break
+      state = action.payload
   }
   return state
 }

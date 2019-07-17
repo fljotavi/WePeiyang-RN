@@ -12,6 +12,7 @@ import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpaTypeActions"
+import { digitsFromScoreType } from "../../utils/common"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?: any
@@ -160,13 +161,19 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <Text text="GPA Curve" preset="h5"/>
           </View>
           <GpaCurve
-            data={this.state.gpaSemestral[this.props.scoreType.scoreType]}
+            data={this.state.gpaSemestral[this.props.scoreType]}
             status={this.state.gpaSemestral.status}
             style={ss.curveView}
+            scoreToFixed={digitsFromScoreType(this.props.scoreType)}
           />
           <GpaStat
             style={ss.stat}
             setScoreType={(scoreType) => this.props.setScoreType(scoreType)}
+            scores={{
+              weighted: 87.00.toFixed(digitsFromScoreType("weighted")),
+              gradePoints: 3.45.toFixed(digitsFromScoreType("gradePoints")),
+              credits: 96.5.toFixed(digitsFromScoreType("credits"))
+            }}
           />
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>

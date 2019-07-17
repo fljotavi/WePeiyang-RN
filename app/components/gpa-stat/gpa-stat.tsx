@@ -7,12 +7,13 @@ import Touchable from 'react-native-platform-touchable'
 export interface GpaStatProps {
   style?: ViewStyle
   setScoreType?: any
+  scores?: any
 }
 
 export class GpaStat extends React.Component<GpaStatProps, {}> {
 
   render() {
-    const { style } = this.props
+    const { style, setScoreType, scores } = this.props
     const textStyle = {
       color: color.lightGrey,
       fontWeight: "bold",
@@ -36,22 +37,22 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
     } as ViewStyle
     return (
       <View style={[predefinedStyle, style]}>
-        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("weighted") }}>
+        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { setScoreType("weighted") }}>
           <View style={scoreFieldStyle}>
             <Text tx="gpa.totalWeighted" style={textStyle}/>
-            <Text text={"85.87"} style={numStyle} preset="h3"/>
+            <Text text={scores.weighted} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
-        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("gradePoints") }}>
+        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { setScoreType("gradePoints") }}>
           <View style={scoreFieldStyle}>
             <Text tx="gpa.totalGpa" style={textStyle}/>
-            <Text text={"3.49"} style={numStyle} preset="h3"/>
+            <Text text={scores.gradePoints} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
-        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("credits") }}>
+        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { setScoreType("credits") }}>
           <View style={scoreFieldStyle}>
             <Text tx="gpa.creditsEarned" style={textStyle}/>
-            <Text text={"78.0"} style={numStyle} preset="h3"/>
+            <Text text={scores.credits} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
       </View>
