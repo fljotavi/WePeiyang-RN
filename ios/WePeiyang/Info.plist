@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>MyIgniteProject</string>
+	<string>WePeiyang</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -73,18 +73,15 @@
 		<string>Montserrat-SemiBoldItalic.ttf</string>
 		<string>Montserrat-Thin.ttf</string>
 		<string>Montserrat-ThinItalic.ttf</string>
-		<string>MaterialIcons-Regular.ttf</string>
-		<string>Montserrat_bold.ttf</string>
-		<string>Montserrat.ttf</string>
-		<string>AvenirNext_bold.ttf</string>
-		<string>AvenirNext.ttf</string>
 		<string>AvenirNext_bold.otf</string>
 		<string>AvenirNext.otf</string>
-		<string>MaterialIcons_bold.ttf</string>
-		<string>MaterialIcons.ttf</string>
 		<string>BlueSkyStandard_bold.ttf</string>
 		<string>BlueSkyStandard_light.ttf</string>
 		<string>BlueSkyStandard.ttf</string>
+		<string>MaterialIcons_bold.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Montserrat_bold.ttf</string>
+		<string>Montserrat.ttf</string>
 	</array>
 </dict>
 </plist>

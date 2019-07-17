@@ -1,4 +1,4 @@
-package com.myigniteproject;
+package com.wepeiyang;
 
 import android.app.Application;
 

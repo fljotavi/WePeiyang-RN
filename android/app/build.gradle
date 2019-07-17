@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.myigniteproject"
+        applicationId "com.wepeiyang"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -118,7 +118,6 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
-        <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <View style={ss.headerBar}>
             <Text text="Hello" preset="h2"/>
