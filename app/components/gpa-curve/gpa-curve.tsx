@@ -92,7 +92,6 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             />
             <VictoryScatter
               data={gpaData}
-              animate={{ duration: 400 }}
               color={color.lightGrey}
               size={7}
               events={[
@@ -110,7 +109,6 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             />
             <VictoryScatter
               data={[gpaData[selected]]}
-              animate={{ duration: 400 }}
               color={color.background}
               size={7.6}
               style={{ data: { stroke: color.primaryLighter, strokeWidth: 4.2 } }}

@@ -14,6 +14,8 @@ import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpaTypeActions"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
+  scoreType?: any
+  setScoreType?: any
 }
 
 const avatarPlaceholder = {
@@ -103,12 +105,12 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
           ]
         }
       })
-    }, 4000)
+    }, 1000)
   }
 
   render () {
     return (
-      <Screen preset="scroll" scoreType={this.props.scoreType.scoreType}>
+      <Screen preset="scroll">
         <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <View style={ss.headerBar}>

@@ -6,6 +6,7 @@ import Touchable from 'react-native-platform-touchable'
 
 export interface GpaStatProps {
   style?: ViewStyle
+  setScoreType?: any
 }
 
 export class GpaStat extends React.Component<GpaStatProps, {}> {
