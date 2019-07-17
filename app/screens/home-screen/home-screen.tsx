@@ -11,6 +11,7 @@ import { LibraryBlock } from "../../components/library-block"
 import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { IanButton } from "../../components/ian-button"
+import { setScoreType } from "../../actions/gpaTypeActions"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
 }
@@ -168,10 +169,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setScoreType: (newType) => {
-      dispatch({
-        type: "SET_SCORE_TYPE",
-        payload: newType
-      })
+      dispatch(setScoreType(newType))
     }
   }
 }

@@ -6,7 +6,7 @@ import { AppRegistry } from "react-native"
 import { RootNavigator } from "./navigation/root-navigator"
 import { createAppContainer } from "react-navigation"
 import { Provider } from 'react-redux'
-import { store } from "./reducers/rootReducer"
+import store from "./store"
 const AppContainer = createAppContainer(RootNavigator)
 
 interface AppState {
