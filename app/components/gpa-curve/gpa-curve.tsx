@@ -9,11 +9,12 @@ export interface GpaTooltipProps {
   x?: number
   y?: number
   score?: number
+  scoreToFixed?: number
 }
 
 export function GpaTooltip(props: GpaTooltipProps) {
   {
-    const { x, y, score } = props
+    const { x, y, score, scoreToFixed } = props
     let w = 70
     let h = 30
     return (
@@ -27,7 +28,7 @@ export function GpaTooltip(props: GpaTooltipProps) {
           textAnchor="middle"
           fontFamily={typography.primaryBold}
           fontWeight="bold">
-          {score.toFixed(2)}
+          {score.toFixed(scoreToFixed || 2)}
         </Svgtext>
       </G>
     )
@@ -38,6 +39,7 @@ export interface GpaCurveProps {
   style?: ViewStyle
   data?: any[]
   status: string
+  scoreToFixed?: number
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
@@ -46,7 +48,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
   }
 
   render() {
-    const { style, data, status } = this.props
+    const { style, data, status, scoreToFixed } = this.props
 
     if (status !== "valid" || data.length <= 0) {
       return <View />
@@ -108,7 +110,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             />
             <VictoryScatter
               data={[data[selected]]}
-              dataComponent={<GpaTooltip score={data[selected].y}/>}
+              dataComponent={<GpaTooltip score={data[selected].y} scoreToFixed={scoreToFixed || 2}/>}
             />
           </VictoryGroup>
         </Svg>

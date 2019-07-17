@@ -68,7 +68,7 @@ const ss = {
     marginTop: -30
   } as ViewStyle,
   stat: {
-    marginTop: 20
+    marginTop: 30
   } as ViewStyle,
   moreButton: {
     marginTop: 30,
@@ -102,6 +102,12 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
             { x: 2, y: 3 + Math.random() },
             { x: 3, y: 3 + Math.random() },
             { x: 4, y: 3 + Math.random() }
+          ],
+          credits: [
+            { x: 1, y: 12 },
+            { x: 2, y: 15 },
+            { x: 3, y: 34 },
+            { x: 4, y: 33 }
           ]
         }
       })
@@ -153,8 +159,15 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <View style={ss.sectionHead}>
             <Text text="GPA Curve" preset="h5"/>
           </View>
-          <GpaCurve data={this.state.gpaSemestral[this.props.scoreType.scoreType]} status={this.state.gpaSemestral.status} style={ss.curveView} />
-          <GpaStat style={ss.stat} setScoreType={(scoreType) => this.props.setScoreType(scoreType)}/>
+          <GpaCurve
+            data={this.state.gpaSemestral[this.props.scoreType.scoreType]}
+            status={this.state.gpaSemestral.status}
+            style={ss.curveView}
+          />
+          <GpaStat
+            style={ss.stat}
+            setScoreType={(scoreType) => this.props.setScoreType(scoreType)}
+          />
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>
       </Screen>

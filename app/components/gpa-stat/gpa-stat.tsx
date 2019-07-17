@@ -10,15 +10,6 @@ export interface GpaStatProps {
 }
 
 export class GpaStat extends React.Component<GpaStatProps, {}> {
-  state = {
-    data: [
-      { x: 1, y: 92 },
-      { x: 2, y: 81 },
-      { x: 3, y: 86 },
-      { x: 4, y: 93 }
-    ],
-    selected: 1
-  }
 
   render() {
     const { style } = this.props
@@ -35,7 +26,7 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
     const scoreFieldStyle = {
       alignItems: "center",
       justifyContent: "center",
-      marginHorizontal: 25
+      marginHorizontal: 10
     } as ViewStyle
     const predefinedStyle: ViewStyle = {
       flex: 1,
@@ -54,10 +45,15 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
         <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("gradePoints") }}>
           <View style={scoreFieldStyle}>
             <Text tx="gpa.totalGpa" style={textStyle}/>
-            <Text text={"3.439"} style={numStyle} preset="h3"/>
+            <Text text={"3.49"} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
-
+        <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { this.props.setScoreType("credits") }}>
+          <View style={scoreFieldStyle}>
+            <Text tx="gpa.creditsEarned" style={textStyle}/>
+            <Text text={"78.0"} style={numStyle} preset="h3"/>
+          </View>
+        </Touchable>
       </View>
     )
   }

@@ -40,6 +40,7 @@
   },
   "gpa": {
     "totalWeighted": "Total Weighted",
-    "totalGpa": "Total GPA"
+    "totalGpa": "Total GPA",
+    "creditsEarned": "Credits Earned"
   }
 }
