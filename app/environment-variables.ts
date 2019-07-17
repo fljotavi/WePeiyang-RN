@@ -23,8 +23,3 @@
 
 // tell typescript that there will be a the `node.js` process global variable used
 declare var process: any
-
-/**
- * An example importing an environment variable.
- */
-export const API: string | undefined = process.env.API

@@ -1,10 +1,10 @@
 import * as React from "react"
-import { View, Image, StatusBar, ScrollView, ViewStyle, ImageStyle } from "react-native"
+import { View, Image, ScrollView, ViewStyle, ImageStyle } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
-import { spacingDict, layoutParam, color } from "../../theme"
+import { spacingDict, layoutParam } from "../../theme"
 import { ModuleButton } from "../../components/module-button"
 import { CourseBlock } from "../../components/course-block"
 import { LibraryBlock } from "../../components/library-block"
@@ -13,6 +13,7 @@ import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpaTypeActions"
 import { digitsFromScoreType } from "../../utils/common"
+import { twtGet } from "../../services/twt-fetch"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?: any
@@ -89,6 +90,21 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   componentWillMount(): void {
     setTimeout(() => {
+      twtGet("v1/auth/token/get", { twtuname: 'Cyphexl', twtpasswd: '' }).then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson.data.token)
+          twtGet("v1/gpa", undefined, undefined, responseJson.data.token).then((response) => response.json())
+            .then((responseJson) => {
+              console.log(responseJson)
+            })
+            .catch((error) => {
+              console.error(error)
+            })
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
       this.setState({
         gpaSemestral: {
           status: "valid",
