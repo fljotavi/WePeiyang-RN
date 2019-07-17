@@ -36,42 +36,35 @@ export function GpaTooltip(props: GpaTooltipProps) {
 
 export interface GpaCurveProps {
   style?: ViewStyle
-  data?: object
+  data?: any[]
   status: string
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
   state = {
-    data: [],
-    status: "",
     selected: 1
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      data: nextProps.data,
-      status: nextProps.status
-    })
-  }
-
   render() {
-    if (this.state.status !== "valid" || this.state.data.length <= 0) {
+    const { style, data, status } = this.props
+
+    if (status !== "valid" || data.length <= 0) {
       return <View />
     }
-    const { style } = this.props
+
     const textStyle = { }
     const predefinedStyle: ViewStyle = {
       flex: 1,
       alignItems: "center",
       justifyContent: "center"
     }
-    let gpaData = this.state.data
+
     let selected = this.state.selected
-    let gpaArray = gpaData.map(dict => dict.y)
+    let gpaArray = data.map(dict => dict.y)
     let lowest = Math.min(...gpaArray)
     let highest = Math.max(...gpaArray)
     let domainPadding = (highest - lowest) / 4
-    let passedData = [{ x: 0, y: gpaData[0].y }, ...gpaData, { x: gpaData.length + 1, y: gpaData[gpaData.length - 1].y }]
+    let passedData = [{ x: 0, y: data[0].y }, ...data, { x: data.length + 1, y: data[data.length - 1].y }]
     let chartWidth = Dimensions.get('window').width
     let chartHeight = 100
     return (
@@ -91,7 +84,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
               domain={{ y: [lowest - domainPadding, highest + domainPadding * 5] }}
             />
             <VictoryScatter
-              data={gpaData}
+              data={data}
               color={color.lightGrey}
               size={7}
               events={[
@@ -108,15 +101,14 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
               ]}
             />
             <VictoryScatter
-              data={[gpaData[selected]]}
+              data={[data[selected]]}
               color={color.background}
               size={7.6}
               style={{ data: { stroke: color.primaryLighter, strokeWidth: 4.2 } }}
             />
             <VictoryScatter
-              data={[gpaData[selected]]}
-              animate={{ duration: 400 }}
-              dataComponent={<GpaTooltip score={gpaData[selected].y}/>}
+              data={[data[selected]]}
+              dataComponent={<GpaTooltip score={data[selected].y}/>}
             />
           </VictoryGroup>
         </Svg>
