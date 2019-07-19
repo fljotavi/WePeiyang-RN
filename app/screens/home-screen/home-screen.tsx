@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, Image, ScrollView, ViewStyle, ImageStyle } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
-import { NavigationScreenProps } from "react-navigation"
+import {NavigationEvents, NavigationScreenProps} from "react-navigation"
 import { Text } from "../../components/text"
 import { spacingDict, layoutParam } from "../../theme"
 import { ModuleButton } from "../../components/module-button"
@@ -13,7 +13,7 @@ import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpaTypeActions"
 import { digitsFromScoreType } from "../../utils/common"
-import { twtGet } from "../../services/twt-fetch"
+import { processAuthStatus, twtGet } from "../../services/twt-fetch"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?: any
@@ -78,7 +78,7 @@ const ss = {
   } as ViewStyle
 }
 
-export class HomeScreen extends React.Component<HomeScreenProps, {}> {
+class HomeScreen extends React.Component<HomeScreenProps, {}> {
   state = {
     gpaSemestral: {
       status: "notReceived",
@@ -88,23 +88,23 @@ export class HomeScreen extends React.Component<HomeScreenProps, {}> {
     gpaDetailed: {}
   }
 
-  componentWillMount(): void {
-    setTimeout(() => {
-      twtGet("v1/auth/token/get", { twtuname: 'Cyphexl', twtpasswd: '' }).then((response) => response.json())
-        .then((responseJson) => {
-          console.log(responseJson.data.token)
-          twtGet("v1/gpa", undefined, undefined, responseJson.data.token).then((response) => response.json())
-            .then((responseJson) => {
-              console.log(responseJson)
-            })
-            .catch((error) => {
-              console.error(error)
-            })
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+  prepareData = () => {
+    twtGet("v1/gpa")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+      })
+  }
 
+  componentWillMount(): void {
+    processAuthStatus().then((tokenExists) => {
+      if (!tokenExists) this.props.navigation.navigate("login")
+      else {
+        this.prepareData()
+      }
+    })
+
+    setTimeout(() => {
       this.setState({
         gpaSemestral: {
           status: "valid",
@@ -211,4 +211,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export const connectedHomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

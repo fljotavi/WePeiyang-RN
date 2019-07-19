@@ -1,6 +1,6 @@
 import * as React from "react"
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
-import { color, spacing, typography } from "../../theme"
+import { color, typography } from "../../theme"
 import { translate } from "../../i18n"
 import { Text } from "../text"
 import { TextFieldProps } from "./text-field.props"
@@ -8,11 +8,12 @@ import { mergeAll, flatten } from "ramda"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
+  paddingVertical: 0,
 }
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
+  paddingHorizontal: 10,
   fontFamily: typography.primary,
   color: color.text,
   minHeight: 44,
@@ -57,7 +58,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
         <Text preset="fieldLabel" tx={labelTx} text={label} />
         <TextInput
           placeholder={actualPlaceholder}
-          placeholderTextColor={color.palette.lighterGrey}
+          placeholderTextColor={color.lightGrey}
           underlineColorAndroid={color.transparent}
           {...rest}
           style={inputStyle}

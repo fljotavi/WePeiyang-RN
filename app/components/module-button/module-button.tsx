@@ -7,11 +7,12 @@ import Touchable from 'react-native-platform-touchable'
 export interface ModuleButtonProps {
   tx?: string,
   icon?: string,
-  style?: ViewStyle
+  style?: ViewStyle,
+  onPress?: any
 }
 
 export function ModuleButton(props: ModuleButtonProps) {
-  const { tx, icon, style } = props
+  const { tx, icon, style, onPress } = props
   const textStyle: TextStyle = {
     color: color.primaryLighter,
     fontSize: 14,
@@ -35,7 +36,7 @@ export function ModuleButton(props: ModuleButtonProps) {
   }
 
   return (
-    <Touchable style={[predefinedStyle, style]}>
+    <Touchable style={[predefinedStyle, style]} onPress={onPress}>
       <View style={containerStyle}>
         <Text text={icon} preset="i" style={iconStyle} />
         <Text tx={tx} style={textStyle} />

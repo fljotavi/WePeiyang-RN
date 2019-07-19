@@ -1,9 +1,10 @@
 import * as React from "react"
-import { TouchableOpacity } from "react-native"
 import { Text } from "../text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
+import Touchable from 'react-native-platform-touchable'
+import {View} from "react-native";
 
 /**
  * For your text displaying needs.
@@ -30,8 +31,10 @@ export function Button(props: ButtonProps) {
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 
   return (
-    <TouchableOpacity style={viewStyle} {...rest}>
-      {content}
-    </TouchableOpacity>
+    <Touchable style={viewStyle} {...rest}>
+      <View>
+        {content}
+      </View>
+    </Touchable>
   )
 }

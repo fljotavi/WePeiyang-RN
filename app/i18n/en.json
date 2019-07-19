@@ -6,10 +6,16 @@
     "time": {
       "remaining": "",
       "daysLeft": " Days Left"
-    }
+    },
+    "login": "Login"
   },
   "errors": {
     "invalidEmail": "Invalid email address."
+  },
+  "loginScreen": {
+    "greetings": "It's always nice to have you back.",
+    "username": "TWT Account Username",
+    "password": "Password"
   },
   "homeScreen": {
     "header": "We Peiyang",

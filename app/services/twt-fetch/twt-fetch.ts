@@ -1,15 +1,30 @@
 import sha1 from "./sha1.js"
 import { mergeDeepLeft } from "ramda"
+import AsyncStorage from "@react-native-community/async-storage"
+import store from "../../store"
 
 const TWT_BASE_URL = 'https://open.twtstudio.com/api/'
 const TWT_APP = { key: '8UuaoZs2TNLFfqnmyllp', secret: 'vOl62dPR2k8BeVTPxLrtuyDcx0AQhm' }
-const TWT_TOKEN = "token_placeholder"
 
 let query = params => Object.keys(params)
   .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
   .join('&')
 
-export const twtGet = (url, parameters: any = {}, options: any = {}, token?) => {
+export const processAuthStatus = async () => {
+  const token = await AsyncStorage.getItem('@WePeiyangRN_token')
+  console.log(token)
+  if (token !== null) {
+    store.dispatch({
+      type: "SET_TOKEN",
+      payload: token
+    })
+    return true
+  } else {
+    return false
+  }
+}
+
+export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded = true) => {
   let para = parameters
   para["t"] = String(Date.now())
   let keys = Object.keys(para).sort()
@@ -24,13 +39,9 @@ export const twtGet = (url, parameters: any = {}, options: any = {}, token?) => 
   para["app_key"] = TWT_APP.key
 
   let fullUrl = TWT_BASE_URL + url + "?" + query(para)
-  let tokenValue = "Bearer { " + (token || TWT_TOKEN) + " }"
 
+  let tokenValue = `Bearer { ${store.getState().authReducer.token} }`
   // Override token to passed object, do deep replacement
   options = mergeDeepLeft({ headers: { Authorization: tokenValue } }, options)
-
-  return fetch(fullUrl, {
-    ...options,
-    method: 'GET'
-  })
+  return fetch(fullUrl, { ...options, method: 'GET' })
 }
