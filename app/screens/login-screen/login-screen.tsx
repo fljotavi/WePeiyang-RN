@@ -1,14 +1,14 @@
 import * as React from "react"
 import { StatusBar, View, ViewStyle } from "react-native"
+import { connect } from 'react-redux'
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
-import { twtGet } from "../../services/twt-fetch"
+import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
-import store from "../../store"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
 }
@@ -33,14 +33,11 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   storeToken = async (token) => {
-    store.dispatch({
-      type: "SET_TOKEN",
-      payload: token
-    })
+    passTokenToStore(token)
     try {
       await AsyncStorage.setItem('@WePeiyangRN_token', token)
     } catch (e) {
-      console.log("Asnyc Storage Saving Error: ", e)
+      console.log("Async Storage Saving Error: ", e)
     }
   }
 
@@ -52,6 +49,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         this.storeToken(token)
           .then((response) => {
             console.log("Successfully saved token locally. ", response)
+            this.props.navigation.state.params.onGoBack()
             this.props.navigation.goBack()
           })
           .catch((e) => {
@@ -92,3 +90,21 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    scoreType: state.gpaTypeReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setNewLoginStatus: (newStatus) => {
+      dispatch({
+        action: "LOGIN_SUCCESS",
+        payload: newStatus
+      })
+    }
+  }
+}
+
+export const connectedLoginScreen = connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

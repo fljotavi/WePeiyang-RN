@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, Image, ScrollView, ViewStyle, ImageStyle } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
-import {NavigationEvents, NavigationScreenProps} from "react-navigation"
+import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { spacingDict, layoutParam } from "../../theme"
 import { ModuleButton } from "../../components/module-button"
@@ -98,8 +98,14 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   componentWillMount(): void {
     processAuthStatus().then((tokenExists) => {
-      if (!tokenExists) this.props.navigation.navigate("login")
-      else {
+      if (!tokenExists) {
+        this.props.navigation.navigate('login', {
+          onGoBack: () => {
+            console.log("Triggered onGoBack")
+            this.prepareData()
+          }
+        })
+      } else {
         this.prepareData()
       }
     })

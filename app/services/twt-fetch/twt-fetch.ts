@@ -10,14 +10,18 @@ let query = params => Object.keys(params)
   .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
   .join('&')
 
+export const passTokenToStore = (token) => {
+  store.dispatch({
+    type: "SET_TOKEN",
+    payload: token
+  })
+}
+
 export const processAuthStatus = async () => {
   const token = await AsyncStorage.getItem('@WePeiyangRN_token')
   console.log(token)
   if (token !== null) {
-    store.dispatch({
-      type: "SET_TOKEN",
-      payload: token
-    })
+    passTokenToStore(token)
     return true
   } else {
     return false
@@ -40,8 +44,11 @@ export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded
 
   let fullUrl = TWT_BASE_URL + url + "?" + query(para)
 
-  let tokenValue = `Bearer { ${store.getState().authReducer.token} }`
-  // Override token to passed object, do deep replacement
-  options = mergeDeepLeft({ headers: { Authorization: tokenValue } }, options)
+  if (tokenNeeded) {
+    let tokenValue = `Bearer { ${store.getState().authReducer.token} }`
+    // Override token to passed object, do deep replacement
+    options = mergeDeepLeft({ headers: { Authorization: tokenValue } }, options)
+  }
+
   return fetch(fullUrl, { ...options, method: 'GET' })
 }
