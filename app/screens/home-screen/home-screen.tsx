@@ -81,24 +81,34 @@ const ss = {
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
   state = {
     gpaSemestral: {
-      status: "notReceived",
-      weighted: [],
-      gradePoints: []
+      status: "notReceived"
     },
-    gpaDetailed: {}
+    gpaDetailed: {},
+    gpaOverall: {
+      status: "notReceived"
+    }
   }
 
   prepareData = () => {
     twtGet("v1/gpa")
       .then((response) => response.json())
       .then((responseJson) => {
-        const data = responseJson.data.data
+        const fullData = responseJson.data
+        console.log(fullData)
+        const semestralData = fullData.data
+        const statData = fullData.stat
         this.setState({
           gpaSemestral: {
             status: "valid",
-            weighted: data.map((raw, index) => { return { x: index + 1, y: raw.stat.score } }),
-            gradePoints: data.map((raw, index) => { return { x: index + 1, y: raw.stat.gpa } }),
-            credits: data.map((raw, index) => { return { x: index + 1, y: raw.stat.credit } }),
+            weighted: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.score } }),
+            gradePoints: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.gpa } }),
+            credits: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.credit } }),
+          },
+          gpaOverall: {
+            status: "valid",
+            weighted: statData.total.score.toFixed(digitsFromScoreType("weighted")),
+            gradePoints: statData.total.gpa.toFixed(digitsFromScoreType("gradePoints")),
+            credits: statData.total.credit.toFixed(digitsFromScoreType("credits")),
           }
         })
       })
@@ -172,11 +182,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <GpaStat
             style={ss.stat}
             setScoreType={(scoreType) => this.props.setScoreType(scoreType)}
-            scores={{
-              weighted: 87.00.toFixed(digitsFromScoreType("weighted")),
-              gradePoints: 3.45.toFixed(digitsFromScoreType("gradePoints")),
-              credits: 96.5.toFixed(digitsFromScoreType("credits"))
-            }}
+            scores={this.state.gpaOverall}
           />
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>

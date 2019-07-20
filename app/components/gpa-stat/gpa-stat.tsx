@@ -14,6 +14,9 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
 
   render() {
     const { style, setScoreType, scores } = this.props
+    if (scores.status !== "valid") {
+      return <View />
+    }
     const textStyle = {
       color: color.lightGrey,
       fontWeight: "bold",
