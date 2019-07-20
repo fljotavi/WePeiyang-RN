@@ -8,13 +8,14 @@ export interface GpaStatProps {
   style?: ViewStyle
   setScoreType?: any
   scores?: any
+  status
 }
 
 export class GpaStat extends React.Component<GpaStatProps, {}> {
 
   render() {
-    const { style, setScoreType, scores } = this.props
-    if (scores.status !== "VALID") {
+    const { style, setScoreType, scores, status } = this.props
+    if (status !== "VALID") {
       return <View />
     }
     const textStyle = {

@@ -6,7 +6,6 @@ import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { spacingDict, layoutParam } from "../../theme"
 import { ModuleButton } from "../../components/module-button"
-import { CourseBlock } from "../../components/course-block"
 import { LibraryBlock } from "../../components/library-block"
 import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
@@ -14,13 +13,16 @@ import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpa-type-actions"
 import { digitsFromScoreType } from "../../utils/common"
 import { processAuthStatus, twtGet } from "../../services/twt-fetch"
-import { setGpaData } from "../../actions/gpa-data-actions"
+import { setGpaData, setCourseData } from "../../actions/data-actions"
+import { CourseDailySchedule } from "../../components/course-daily-schedule"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
   setScoreType?
   setGpaData?
   gpaData?
+  setCourseData?
+  courseData?
 }
 
 const avatarPlaceholder = {
@@ -98,7 +100,9 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       .then((responseJson) => {
         const fullData = responseJson.data
         console.log("ClassTable Data Format", fullData)
+        this.props.setCourseData(fullData)
       })
+
   }
 
   componentWillMount(): void {
@@ -119,7 +123,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
     // Grab the props
     const {
-      scoreType, setScoreType, gpaData
+      scoreType, setScoreType, gpaData, courseData
     } = this.props
 
     return (
@@ -147,13 +151,11 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <View style={ss.sectionHead}>
             <Text text="Sept 7th, Wed." preset="h5"/>
           </View>
-          <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <CourseBlock style={ss.blockWithMarginRight} courseName={"Software Engineering"} timeSlot={"10:25-11:00"} location={"55-A205"}/>
-            <CourseBlock style={ss.blockWithMarginRight} courseName={"BrainFuck Programming"} timeSlot={"10:25-11:00"} location={"55-A205"}/>
-            <CourseBlock style={ss.blockWithMarginRight} courseName={"毛泽东思想与中国特色社会主义体系概论"} timeSlot={"10:25-11:00"} location={"55-A205"}/>
-            <CourseBlock style={ss.blockWithMarginRight} courseName={"Practical Physics"} timeSlot={"10:25-11:00"} location={"55-A205"}/>
-            <CourseBlock courseName={"Software Engineering"} timeSlot={"10:25-11:00"} location={"55-A205"}/>
-          </ScrollView>
+          <CourseDailySchedule
+            data={courseData.data}
+            status={courseData.status}
+            timestamp={new Date("2019-03-25").getTime()}
+          />
           <View style={ss.sectionHead}>
             <Text text="Library" preset="h5"/>
           </View>
@@ -166,15 +168,16 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <Text text="GPA Curve" preset="h5"/>
           </View>
           <GpaCurve
-            data={gpaData.gpaSemestral[scoreType]}
-            status={gpaData.gpaSemestral.status}
+            data={gpaData.data.gpaSemestral[scoreType]}
+            status={gpaData.status}
             style={ss.curveView}
             scoreToFixed={digitsFromScoreType(scoreType)}
           />
           <GpaStat
             style={ss.stat}
+            status={gpaData.status}
             setScoreType={(scoreType) => setScoreType(scoreType)}
-            scores={gpaData.gpaOverall}
+            scores={gpaData.data.gpaOverall}
           />
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>
@@ -186,7 +189,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 const mapStateToProps = (state) => {
   return {
     scoreType: state.gpaTypeReducer,
-    gpaData: state.gpaDataReducer.data
+    gpaData: state.gpaDataReducer,
+    courseData: state.courseDataReducer,
   }
 }
 
@@ -197,7 +201,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     setGpaData: (data) => {
       dispatch(setGpaData(data))
-    }
+    },
+    setCourseData: (data) => {
+      dispatch(setCourseData(data))
+    },
   }
 }
 

@@ -1,14 +1,7 @@
 import { combineReducers, createStore } from "redux"
-import { authReducer, gpaTypeReducer, gpaDataReducer } from "./reducers/general-reducer"
-
-// const saveAuthToken = store => next => action => {
-//   if (action.type === 'SAVE_TOKEN') {
-//     let token = action.payload
-//     setToken(token)
-//   }
-//   return next(action)
-// }
+import { authReducer, gpaTypeReducer } from "./reducers/general-reducer"
+import { courseDataReducer, gpaDataReducer } from "./reducers/data-reducer"
 
 export default createStore(
-  combineReducers({ gpaTypeReducer, authReducer, gpaDataReducer })
+  combineReducers({ gpaTypeReducer, authReducer, gpaDataReducer, courseDataReducer })
 )

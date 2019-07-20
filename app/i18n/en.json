@@ -48,5 +48,8 @@
     "totalWeighted": "Total Weighted",
     "totalGpa": "Total GPA",
     "creditsEarned": "Credits Earned"
+  },
+  "schedule": {
+    "noCourseToday": "No Course Today"
   }
 }
