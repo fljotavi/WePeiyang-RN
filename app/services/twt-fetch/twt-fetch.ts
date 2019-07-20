@@ -19,7 +19,6 @@ export const passTokenToStore = (token) => {
 
 export const processAuthStatus = async () => {
   const token = await AsyncStorage.getItem('@WePeiyangRN_token')
-  console.log(token)
   if (token !== null) {
     passTokenToStore(token)
     return true

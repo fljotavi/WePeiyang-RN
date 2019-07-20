@@ -92,7 +92,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     twtGet("v1/gpa")
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
+        const data = responseJson.data.data
+        this.setState({
+          gpaSemestral: {
+            status: "valid",
+            weighted: data.map((raw, index) => { return { x: index + 1, y: raw.stat.score } }),
+            gradePoints: data.map((raw, index) => { return { x: index + 1, y: raw.stat.gpa } }),
+            credits: data.map((raw, index) => { return { x: index + 1, y: raw.stat.credit } }),
+          }
+        })
       })
   }
 
@@ -109,32 +117,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         this.prepareData()
       }
     })
-
-    setTimeout(() => {
-      this.setState({
-        gpaSemestral: {
-          status: "valid",
-          weighted: [
-            { x: 1, y: 75 + Math.random() * 25 },
-            { x: 2, y: 75 + Math.random() * 25 },
-            { x: 3, y: 75 + Math.random() * 25 },
-            { x: 4, y: 75 + Math.random() * 25 }
-          ],
-          gradePoints: [
-            { x: 1, y: 3 + Math.random() },
-            { x: 2, y: 3 + Math.random() },
-            { x: 3, y: 3 + Math.random() },
-            { x: 4, y: 3 + Math.random() }
-          ],
-          credits: [
-            { x: 1, y: 12 },
-            { x: 2, y: 15 },
-            { x: 3, y: 34 },
-            { x: 4, y: 33 }
-          ]
-        }
-      })
-    }, 1000)
   }
 
   render () {

@@ -49,7 +49,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         this.storeToken(token)
           .then((response) => {
             console.log("Successfully saved token locally. ", response)
-            this.props.navigation.state.params.onGoBack()
+            const params = this.props.navigation.state.params as any
+            params.onGoBack()
             this.props.navigation.goBack()
           })
           .catch((e) => {
