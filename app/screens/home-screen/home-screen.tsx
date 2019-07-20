@@ -90,23 +90,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       .then((responseJson) => {
         const fullData = responseJson.data
         console.log("GPA Data Format", fullData)
-        const semestralData = fullData.data
-        const statData = fullData.stat
-        let extractedData = {
-          gpaSemestral: {
-            status: "VALID",
-            weighted: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.score } }),
-            gradePoints: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.gpa } }),
-            credits: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.credit } }),
-          },
-          gpaOverall: {
-            status: "VALID",
-            weighted: statData.total.score.toFixed(digitsFromScoreType("weighted")),
-            gradePoints: statData.total.gpa.toFixed(digitsFromScoreType("gradePoints")),
-            credits: statData.total.credit.toFixed(digitsFromScoreType("credits")),
-          }
-        }
-        this.props.setGpaData(extractedData)
+        this.props.setGpaData(fullData)
       })
 
     twtGet("v1/classtable")
