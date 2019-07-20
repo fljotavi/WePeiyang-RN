@@ -44,3 +44,12 @@ export function getScheduleTimeSlot(raw) {
 export function sanitizeLocation(raw: string) {
   return raw.replace('楼', '-')
 }
+
+export function colorHashByCredits(credits) {
+  if (typeof credits === 'string') credits = Number(credits)
+  if (credits >= 5) return 4
+  if (credits >= 3.5) return 3
+  if (credits >= 2.5) return 2
+  if (credits >= 1.5) return 1
+  else return 0
+}

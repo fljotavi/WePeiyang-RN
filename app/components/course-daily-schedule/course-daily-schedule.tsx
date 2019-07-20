@@ -53,6 +53,7 @@ const getCoursesByDay = (timestamp, data) => {
               courseName: course.coursename,
               timeSlot: `${getScheduleTimeSlot(arrangement.start)[0]} - ${getScheduleTimeSlot(arrangement.end)[1]}`,
               location: sanitizeLocation(arrangement.room),
+              credits: course.credit,
             })
           }
         }
@@ -82,7 +83,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           showsHorizontalScrollIndicator={false}
           data={getCoursesByDay(timestampOwl, data)}
           renderItem={({ item }) => (
-            <CourseBlock style={courseBlockStyle} courseName={item.courseName} timeSlot={item.timeSlot} location={item.location}/>
+            <CourseBlock style={courseBlockStyle} credits={item.credits} courseName={item.courseName} timeSlot={item.timeSlot} location={item.location}/>
           )}
           ListEmptyComponent={() => <Text tx="schedule.noCourseToday"/>}
         />

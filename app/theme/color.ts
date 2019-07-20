@@ -65,7 +65,7 @@ export const color = {
    * white background
    */
   storybookTextColor: palette.black,
-  gpa: [palette.pale, palette.offPale, palette.offBlack, palette.novaPale, palette.authenticPale],
+  gpa: [palette.offPale, palette.novaPale, palette.authenticPale, palette.pale, palette.offBlack],
   bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
   book: palette.white,
 }

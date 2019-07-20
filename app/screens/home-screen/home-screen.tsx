@@ -154,7 +154,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <CourseDailySchedule
             data={courseData.data}
             status={courseData.status}
-            timestamp={new Date("2019-03-25").getTime()}
+            timestamp={new Date("2019-04-18").getTime()}
           />
           <View style={ss.sectionHead}>
             <Text text="Library" preset="h5"/>
