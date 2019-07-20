@@ -1,5 +1,5 @@
 import * as React from "react"
-import { FlatList, TextStyle, View, ViewStyle } from "react-native"
+import { FlatList, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { CourseBlock } from "../course-block"
 import { getScheduleTimeSlot, sanitizeLocation } from "../../utils/common"

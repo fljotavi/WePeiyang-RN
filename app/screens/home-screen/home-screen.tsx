@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Image, ScrollView, ViewStyle, ImageStyle } from "react-native"
+import { View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
@@ -13,20 +13,18 @@ import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpa-type-actions"
 import { digitsFromScoreType } from "../../utils/common"
 import { processAuthStatus, twtGet } from "../../services/twt-fetch"
-import { setGpaData, setCourseData } from "../../actions/data-actions"
+import { setGpaData, setCourseData, setUserData } from "../../actions/data-actions"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
   setScoreType?
-  setGpaData?
   gpaData?
-  setCourseData?
+  setGpaData?
   courseData?
-}
-
-const avatarPlaceholder = {
-  uri: 'https://i.loli.net/2019/07/14/5d2a9a218363047989.png'
+  setCourseData?
+  userData?
+  setUserData?
 }
 
 const ss = {
@@ -39,6 +37,9 @@ const ss = {
     flexDirection: "row",
     alignItems: "center",
   } as ViewStyle,
+  userName: {
+    marginTop: 2
+  } as TextStyle,
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingVertical: layoutParam.paddingVertical
@@ -87,6 +88,14 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   prepareData = () => {
 
+    twtGet("v2/auth/self")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const fullData = responseJson
+        console.log("User Data Format", fullData)
+        this.props.setUserData(fullData)
+      })
+
     twtGet("v1/gpa")
       .then((response) => response.json())
       .then((responseJson) => {
@@ -123,8 +132,10 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
     // Grab the props
     const {
-      scoreType, setScoreType, gpaData, courseData
+      scoreType, setScoreType, gpaData, courseData, userData
     } = this.props
+
+    let dayToRender = "2019-04-18"
 
     return (
       <Screen preset="scroll">
@@ -132,9 +143,9 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <View style={ss.headerBar}>
             <Text text="Hello" preset="h2"/>
             <View style={ss.userInfo}>
-              <Text text="Owlling"/>
-              <Text text="    "/>
-              <Image source={avatarPlaceholder} style={ss.avatar}/>
+              <Text text={userData.data.twtuname} style={ss.userName}/>
+              <Text text="  "/>
+              <Image source={{ uri: userData.data.avatar }} style={ss.avatar}/>
             </View>
           </View>
           <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -154,15 +165,14 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <CourseDailySchedule
             data={courseData.data}
             status={courseData.status}
-            timestamp={new Date("2019-04-18").getTime()}
+            timestamp={new Date(dayToRender).getTime()}
           />
           <View style={ss.sectionHead}>
             <Text text="Library" preset="h5"/>
           </View>
           <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <LibraryBlock style={ss.blockWithMarginRight} bookName={"Design Philosophy"} borrowedTime={"2019-07-11"} daysLeft={5} />
-            <LibraryBlock style={ss.blockWithMarginRight} bookName={"中华人民共和国宪法"} borrowedTime={"2019-03-11"} daysLeft={16} />
-            <LibraryBlock bookName={"9 Comments on CCP"} borrowedTime={"2014-07-14"} daysLeft={41} />
+            <LibraryBlock style={ss.blockWithMarginRight} bookName={"Architecture Perspectives"} borrowedTime={"2019-05-15"} daysLeft={5} />
+            <LibraryBlock style={ss.blockWithMarginRight} bookName={"GRE Verbal 150"} borrowedTime={"2019-05-15"} daysLeft={5} />
           </ScrollView>
           <View style={ss.sectionHead}>
             <Text text="GPA Curve" preset="h5"/>
@@ -191,6 +201,7 @@ const mapStateToProps = (state) => {
     scoreType: state.gpaTypeReducer,
     gpaData: state.gpaDataReducer,
     courseData: state.courseDataReducer,
+    userData: state.userDataReducer,
   }
 }
 
@@ -205,6 +216,9 @@ const mapDispatchToProps = (dispatch) => {
     setCourseData: (data) => {
       dispatch(setCourseData(data))
     },
+    setUserData: (data) => {
+      dispatch(setUserData(data))
+    }
   }
 }
 

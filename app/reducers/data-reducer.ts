@@ -1,5 +1,22 @@
 import { digitsFromScoreType } from "../utils/common"
 
+const userDataReducerInitialState = {
+  status: "NOT_RECEIVED",
+  data: {}
+}
+
+export const userDataReducer = (state = userDataReducerInitialState, action) => {
+  switch (action.type) {
+    case "SET_USER_DATA":
+      state = {
+        ...state,
+        status: "VALID",
+        data: action.payload
+      }
+  }
+  return state
+}
+
 const gpaDataReducerInitialState = {
   status: "NOT_RECEIVED",
   data: {
@@ -59,3 +76,4 @@ export const courseDataReducer = (state = courseDataReducerInitialState, action)
   }
   return state
 }
+
