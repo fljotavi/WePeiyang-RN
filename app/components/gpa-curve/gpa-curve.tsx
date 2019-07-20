@@ -50,7 +50,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
   render() {
     const { style, data, status, scoreToFixed } = this.props
 
-    if (status !== "valid" || data.length <= 0) {
+    if (status !== "VALID" || data.length <= 0) {
       return <View />
     }
 

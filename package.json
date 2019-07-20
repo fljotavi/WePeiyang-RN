@@ -156,6 +156,8 @@
       "no-unused-vars": 0,
       "no-undef": 0,
       "quotes": 0,
+      "padded-blocks": "off",
+      "no-trailing-spaces": "off",
       "react/no-unescaped-entities": 0,
       "react-native/no-raw-text": 0,
       "space-before-function-paren": 0,

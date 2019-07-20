@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from "redux"
-import { authReducer, gpaTypeReducer } from "./reducers/generalReducer"
+import { authReducer, gpaTypeReducer, gpaDataReducer } from "./reducers/general-reducer"
 
 // const saveAuthToken = store => next => action => {
 //   if (action.type === 'SAVE_TOKEN') {
@@ -10,5 +10,5 @@ import { authReducer, gpaTypeReducer } from "./reducers/generalReducer"
 // }
 
 export default createStore(
-  combineReducers({ gpaTypeReducer, authReducer })
+  combineReducers({ gpaTypeReducer, authReducer, gpaDataReducer })
 )

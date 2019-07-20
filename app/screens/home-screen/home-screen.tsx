@@ -11,13 +11,16 @@ import { LibraryBlock } from "../../components/library-block"
 import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { IanButton } from "../../components/ian-button"
-import { setScoreType } from "../../actions/gpaTypeActions"
+import { setScoreType } from "../../actions/gpa-type-actions"
 import { digitsFromScoreType } from "../../utils/common"
 import { processAuthStatus, twtGet } from "../../services/twt-fetch"
+import { setGpaData } from "../../actions/gpa-data-actions"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
-  scoreType?: any
-  setScoreType?: any
+  scoreType?
+  setScoreType?
+  setGpaData?
+  gpaData?
 }
 
 const avatarPlaceholder = {
@@ -79,38 +82,38 @@ const ss = {
 }
 
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
-  state = {
-    gpaSemestral: {
-      status: "notReceived"
-    },
-    gpaDetailed: {},
-    gpaOverall: {
-      status: "notReceived"
-    }
-  }
 
   prepareData = () => {
+
     twtGet("v1/gpa")
       .then((response) => response.json())
       .then((responseJson) => {
         const fullData = responseJson.data
-        console.log(fullData)
+        console.log("GPA Data Format", fullData)
         const semestralData = fullData.data
         const statData = fullData.stat
-        this.setState({
+        let extractedData = {
           gpaSemestral: {
-            status: "valid",
+            status: "VALID",
             weighted: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.score } }),
             gradePoints: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.gpa } }),
             credits: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.credit } }),
           },
           gpaOverall: {
-            status: "valid",
+            status: "VALID",
             weighted: statData.total.score.toFixed(digitsFromScoreType("weighted")),
             gradePoints: statData.total.gpa.toFixed(digitsFromScoreType("gradePoints")),
             credits: statData.total.credit.toFixed(digitsFromScoreType("credits")),
           }
-        })
+        }
+        this.props.setGpaData(extractedData)
+      })
+
+    twtGet("v1/classtable")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const fullData = responseJson.data
+        console.log("ClassTable Data Format", fullData)
       })
   }
 
@@ -119,7 +122,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       if (!tokenExists) {
         this.props.navigation.navigate('login', {
           onGoBack: () => {
-            console.log("Triggered onGoBack")
             this.prepareData()
           }
         })
@@ -130,6 +132,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   render () {
+
+    // Grab the props
+    const {
+      scoreType, setScoreType, gpaData
+    } = this.props
+
     return (
       <Screen preset="scroll">
         <View style={ss.container}>
@@ -174,15 +182,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <Text text="GPA Curve" preset="h5"/>
           </View>
           <GpaCurve
-            data={this.state.gpaSemestral[this.props.scoreType]}
-            status={this.state.gpaSemestral.status}
+            data={gpaData.gpaSemestral[scoreType]}
+            status={gpaData.gpaSemestral.status}
             style={ss.curveView}
-            scoreToFixed={digitsFromScoreType(this.props.scoreType)}
+            scoreToFixed={digitsFromScoreType(scoreType)}
           />
           <GpaStat
             style={ss.stat}
-            setScoreType={(scoreType) => this.props.setScoreType(scoreType)}
-            scores={this.state.gpaOverall}
+            setScoreType={(scoreType) => setScoreType(scoreType)}
+            scores={gpaData.gpaOverall}
           />
           <IanButton style={ss.moreButton} tx="homeScreen.more"/>
         </View>
@@ -193,7 +201,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
 const mapStateToProps = (state) => {
   return {
-    scoreType: state.gpaTypeReducer
+    scoreType: state.gpaTypeReducer,
+    gpaData: state.gpaDataReducer.data
   }
 }
 
@@ -201,6 +210,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setScoreType: (newType) => {
       dispatch(setScoreType(newType))
+    },
+    setGpaData: (data) => {
+      dispatch(setGpaData(data))
     }
   }
 }
