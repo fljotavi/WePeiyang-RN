@@ -2,7 +2,7 @@ import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color } from "../../theme"
-import {colorHashByCredits} from "../../utils/common";
+import { colorHashByCredits } from "../../utils/common"
 
 export interface CourseBlockProps {
   style?: ViewStyle

@@ -71,8 +71,6 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
 
     if (status !== "VALID") {
       return <View />
-    } else {
-      console.log(data)
     }
 
     return (
