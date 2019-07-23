@@ -37,7 +37,7 @@ export const presets = {
   h4: { ...BASE, fontSize: 20, color: color.primary, fontWeight: "bold" } as TextStyle,
   h5: { ...BASE, fontSize: 18, color: color.primary, fontWeight: "bold" } as TextStyle,
   h6: { ...BASE, fontSize: 16, color: color.primary, fontWeight: "bold" } as TextStyle,
-  small: { ...BASE, fontSize: 12 } as TextStyle,
+  small: { ...BASE, fontSize: 13 } as TextStyle,
   i: { fontFamily: typography.materialIcons } as TextStyle,
 
   /**

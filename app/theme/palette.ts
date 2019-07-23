@@ -10,6 +10,7 @@ export const palette = {
   angry: "#dd3333",
   pale: "rgb(54, 60, 84)",
   offPale: "rgb(109, 105, 127)",
+  offPale2: "rgb(99, 103, 123)",
   novaPale: "rgb(103,111,150)",
   authenticPale: "rgb(70, 92, 117)",
   lighterPale: "rgb(230, 242, 250)",

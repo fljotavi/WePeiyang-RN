@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle } from "react-native"
+import {View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle, TouchableOpacity} from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
@@ -142,11 +142,13 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         <View style={ss.container}>
           <View style={ss.headerBar}>
             <Text text="Hello" preset="h2"/>
-            <View style={ss.userInfo}>
-              <Text text={userData.data.twtuname} style={ss.userName}/>
-              <Text text="  "/>
-              <Image source={{ uri: userData.data.avatar }} style={ss.avatar}/>
-            </View>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('user')}>
+              <View style={ss.userInfo}>
+                <Text text={userData.data.twtuname} style={ss.userName}/>
+                <Text text="  "/>
+                <Image source={{ uri: userData.data.avatar }} style={ss.avatar}/>
+              </View>
+            </TouchableOpacity>
           </View>
           <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
             <ModuleButton style={ss.blockWithMarginRight} tx="modules.bike" icon="directions_bike"/>

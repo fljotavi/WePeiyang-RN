@@ -1,7 +1,7 @@
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
-import { color } from "../../theme"
+import { color, layoutParam } from "../../theme"
 
 export interface LibraryBlockProps {
   style?: ViewStyle
@@ -19,7 +19,7 @@ export function LibraryBlock(props: LibraryBlockProps) {
   const predefinedStyle: ViewStyle = {
     width: 120,
     height: 170,
-    borderRadius: 10,
+    borderRadius: layoutParam.borderRadius,
     flexDirection: "row",
     overflow: "hidden"
   }

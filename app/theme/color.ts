@@ -34,6 +34,7 @@ export const color = {
    */
   primaryDarker: palette.orangeDarker,
   primaryLighter: palette.offPale,
+  primaryGreyer: palette.offPale2,
   lightGrey: palette.lightGrey,
   washed: palette.washed,
   /**

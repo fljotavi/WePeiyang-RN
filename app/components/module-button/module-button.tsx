@@ -1,7 +1,7 @@
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
-import { color } from "../../theme"
+import { color, layoutParam } from "../../theme"
 import Touchable from 'react-native-platform-touchable'
 
 export interface ModuleButtonProps {
@@ -21,7 +21,7 @@ export function ModuleButton(props: ModuleButtonProps) {
   }
   const predefinedStyle: ViewStyle = {
     backgroundColor: color.card,
-    borderRadius: 10,
+    borderRadius: layoutParam.borderRadius,
   }
   const containerStyle: ViewStyle = {
     width: 105,
