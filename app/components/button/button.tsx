@@ -4,7 +4,7 @@ import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
 import Touchable from 'react-native-platform-touchable'
-import {View} from "react-native";
+import { View } from "react-native"
 
 /**
  * For your text displaying needs.

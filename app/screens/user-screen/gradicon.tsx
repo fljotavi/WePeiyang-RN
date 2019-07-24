@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { color } from "../../theme"
 
@@ -7,10 +7,11 @@ export interface GradiconProps {
   source
   tx?
   style?
+  action?
 }
 
 export function Gradicon(props: GradiconProps) {
-  const { source, tx, style } = props
+  const { source, tx, style, action } = props
   const predefinedStyle: ViewStyle = {
     alignItems: "center",
     justifyContent: "center"
@@ -25,9 +26,11 @@ export function Gradicon(props: GradiconProps) {
     height: 50
   }
   return (
-    <View style={[predefinedStyle, style]}>
-      <Image source={source} style={iconStyle}/>
-      <Text tx={tx} style={textStyle}/>
-    </View>
+    <TouchableOpacity onPress={action}>
+      <View style={[predefinedStyle, style]}>
+        <Image source={source} style={iconStyle}/>
+        <Text tx={tx} style={textStyle}/>
+      </View>
+    </TouchableOpacity>
   )
 }
