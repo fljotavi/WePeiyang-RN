@@ -17,6 +17,13 @@ export const passTokenToStore = (token) => {
   })
 }
 
+export const deleteTokenFromStore = () => {
+  store.dispatch({
+    type: "SET_TOKEN",
+    payload: null
+  })
+}
+
 export const processAuthStatus = async () => {
   const token = await AsyncStorage.getItem('@WePeiyangRN_token')
   if (token !== null) {

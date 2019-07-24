@@ -8,6 +8,8 @@ import { Text } from "../../components/text"
 import { Gradicon } from "./gradicon"
 import { BindingBar } from "./binding-bar"
 import { Button } from "../../components/button"
+import { deleteTokenFromStore } from "../../services/twt-fetch"
+import AsyncStorage from "@react-native-community/async-storage"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
@@ -87,6 +89,21 @@ const ss = {
 
 export class UserScreen extends React.Component<UserScreenProps, {}> {
 
+  logout = () => {
+    this.deleteToken().then(() => {
+      this.props.navigation.navigate('authLoading')
+    })
+  }
+
+  deleteToken = async () => {
+    deleteTokenFromStore()
+    try {
+      await AsyncStorage.removeItem('@WePeiyangRN_token')
+    } catch (e) {
+      console.log("Async Storage Delete Error: ", e)
+    }
+  }
+
   render () {
 
     const { userData } = this.props
@@ -110,7 +127,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           <BindingBar style={ss.bindingBar} txTitle="accountBinding.ecardAccount" txSubtitle="accountBinding.bound" icon="credit_card"/>
           <BindingBar style={ss.bindingBar} txTitle="accountBinding.bicycleAccount" txSubtitle="accountBinding.bound" icon="directions_bike"/>
           <BindingBar style={ss.bindingBar} txTitle="accountBinding.libraryAccount" txSubtitle="accountBinding.bound" icon="book"/>
-          <Button style={ss.logoutButton} preset="greyer">
+          <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
             <View style={ss.logoutButtonContentWrapper}>
               <Text style={ss.logoutIcon} preset="i" text="exit_to_app"/>
               <Text style={ss.logoutText} tx="common.logout"/>

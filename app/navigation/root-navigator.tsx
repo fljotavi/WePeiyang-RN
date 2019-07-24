@@ -1,14 +1,14 @@
-import { createStackNavigator } from "react-navigation"
-import { HomeNavigator } from "./home-navigator"
-import { LoginScreen } from "../screens/login-screen"
-import { connectedUserScreen } from "../screens/user-screen"
+import { createSwitchNavigator } from "react-navigation"
+import { connectedLoginScreen } from "../screens/login-screen"
+import { AppNavigator } from "./app-navigator"
+import { AuthLoadingScreen } from "../screens/auth-loading-screen"
 
-export const RootNavigator = createStackNavigator(
+export const RootNavigator = createSwitchNavigator(
   {
-    home: HomeNavigator,
-    login: LoginScreen, // TODO: Connected would work fine?
-    user: connectedUserScreen
+    app: AppNavigator,
+    authLoading: AuthLoadingScreen,
+    login: connectedLoginScreen, // TODO: Connected would work fine?
   }, {
-    headerMode: 'none',
+    initialRouteName: 'authLoading'
   }
 )

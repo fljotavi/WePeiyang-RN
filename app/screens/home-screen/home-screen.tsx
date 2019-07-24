@@ -12,7 +12,7 @@ import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpa-type-actions"
 import { digitsFromScoreType } from "../../utils/common"
-import { processAuthStatus, twtGet } from "../../services/twt-fetch"
+import { twtGet } from "../../services/twt-fetch"
 import { setGpaData, setCourseData, setUserData } from "../../actions/data-actions"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
 
@@ -103,6 +103,9 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         console.log("GPA Data Format", fullData)
         this.props.setGpaData(fullData)
       })
+      .catch(error => {
+        console.log("GPA Fetch failed", error)
+      })
 
     twtGet("v1/classtable")
       .then((response) => response.json())
@@ -115,17 +118,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   componentWillMount(): void {
-    processAuthStatus().then((tokenExists) => {
-      if (!tokenExists) {
-        this.props.navigation.navigate('login', {
-          onGoBack: () => {
-            this.prepareData()
-          }
-        })
-      } else {
-        this.prepareData()
-      }
-    })
+    this.prepareData()
   }
 
   render () {

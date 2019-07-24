@@ -49,9 +49,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         this.storeToken(token)
           .then((response) => {
             console.log("Successfully saved token locally. ", response)
-            const params = this.props.navigation.state.params as any
-            params.onGoBack()
-            this.props.navigation.goBack()
+            this.props.navigation.navigate('app')
           })
           .catch((e) => {
             console.log("Failed to store token locally. Additional manual login may be need during the next start. ", e)

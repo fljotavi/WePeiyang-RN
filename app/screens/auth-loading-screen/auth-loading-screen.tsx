@@ -4,8 +4,9 @@ import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
+import { processAuthStatus } from "../../services/twt-fetch"
 
-export interface TjuLoginScreenProps extends NavigationScreenProps<{}> {
+export interface AuthLoadingScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ss = {
@@ -15,14 +16,25 @@ const ss = {
   } as ViewStyle,
 }
 
-export class TjuLoginScreen extends React.Component<TjuLoginScreen, {}> {
+export class AuthLoadingScreen extends React.Component<AuthLoadingScreenProps, {}> {
+
+  constructor(props) {
+    super(props)
+    this._bootstrapAuthStatus()
+  }
+
+  _bootstrapAuthStatus = async() => {
+    await processAuthStatus().then((tokenExists) => {
+      this.props.navigation.navigate(tokenExists ? 'app' : 'login')
+    })
+  }
 
   render () {
     return (
       <Screen preset="scroll">
         <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
-          <Text tx="tjuScreen.header" preset="h2" />
+          <Text text="Loading..." preset="h2" />
         </View>
       </Screen>
     )
