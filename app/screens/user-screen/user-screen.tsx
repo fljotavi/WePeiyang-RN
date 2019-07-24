@@ -6,6 +6,8 @@ import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { Gradicon } from "./gradicon"
+import { BindingBar } from "./binding-bar"
+import { Button } from "../../components/button"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
@@ -47,14 +49,40 @@ const ss = {
     borderRadius: layoutParam.borderRadius,
     backgroundColor: color.card,
     marginTop: 40,
+    marginBottom: 20,
     paddingVertical: 30,
     paddingHorizontal: 30,
-    elevation: 50,
     flexDirection: "row",
     justifyContent: "space-around",
     width: '100%',
     maxWidth: 500,
+    elevation: 99,
   } as ViewStyle,
+  bindingBar: {
+    marginTop: 10,
+    elevation: 99,
+  } as ViewStyle,
+  logoutButton: {
+    width: '100%',
+    maxWidth: 500,
+    marginVertical: 40,
+    elevation: 99,
+  } as ViewStyle,
+  logoutButtonContentWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
+  logoutIcon: {
+    color: color.washed,
+    marginRight: 10,
+    fontSize: 20,
+  } as TextStyle,
+  logoutText: {
+    color: color.washed,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  } as TextStyle,
 }
 
 export class UserScreen extends React.Component<UserScreenProps, {}> {
@@ -78,6 +106,16 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
             <Gradicon source={require("./gradicons/gradicon2.png")} tx="modules.library"/>
             <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.cards"/>
           </View>
+          <BindingBar style={ss.bindingBar} txTitle="accountBinding.portalAccount" txSubtitle="accountBinding.bound" icon="event_note"/>
+          <BindingBar style={ss.bindingBar} txTitle="accountBinding.ecardAccount" txSubtitle="accountBinding.bound" icon="credit_card"/>
+          <BindingBar style={ss.bindingBar} txTitle="accountBinding.bicycleAccount" txSubtitle="accountBinding.bound" icon="directions_bike"/>
+          <BindingBar style={ss.bindingBar} txTitle="accountBinding.libraryAccount" txSubtitle="accountBinding.bound" icon="book"/>
+          <Button style={ss.logoutButton} preset="greyer">
+            <View style={ss.logoutButtonContentWrapper}>
+              <Text style={ss.logoutIcon} preset="i" text="exit_to_app"/>
+              <Text style={ss.logoutText} tx="common.logout"/>
+            </View>
+          </Button>
         </View>
       </Screen>
     )

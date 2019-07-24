@@ -1,5 +1,5 @@
 import * as React from "react"
-import {View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle, TouchableOpacity} from "react-native"
+import { View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle, TouchableOpacity } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"

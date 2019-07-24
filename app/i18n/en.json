@@ -7,7 +7,9 @@
       "remaining": "",
       "daysLeft": " Days Left"
     },
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout",
+    "logoutSubtitle": "Logout current user"
   },
   "errors": {
     "invalidEmail": "Invalid email address."
@@ -26,6 +28,14 @@
   },
   "tjuScreen": {
     "header": "TJU Network"
+  },
+  "accountBinding": {
+    "bicycleAccount": "Bicycle account",
+    "libraryAccount": "Library account",
+    "ecardAccount": "E-card account",
+    "portalAccount": "Portal account",
+    "unbound": "Unbound",
+    "bound": "Bound"
   },
   "tab": {
     "wpy": "WPY",
