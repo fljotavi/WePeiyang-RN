@@ -12,8 +12,10 @@
     "login": "Log In",
     "logout": "Sign Me Out",
     "loginSuccess": "Login Success",
+    "loginFailure": "Login Failed...",
     "logoutSuccess": "Logout Success",
-    "tokenStoreFailure": "Failed to store token locally. Additional manual login may be need during the next start."
+    "tokenStoreFailure": "Failed to store token locally. Additional manual login may be need during the next start.",
+    "tokenDeleteFailure": "Failed to delete local token. If the problem persists, we recommend you to clear App storage in system settings to ensure account safety."
   },
   "errors": {
     "invalidEmail": "Invalid email address."

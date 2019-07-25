@@ -15,6 +15,8 @@ import { digitsFromScoreType } from "../../utils/common"
 import { twtGet } from "../../services/twt-fetch"
 import { setGpaData, setCourseData, setUserData } from "../../actions/data-actions"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
+import Toast from "react-native-root-toast";
+import toastOptions from "../../theme/toast";
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -95,6 +97,10 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         console.log("User Data Format", fullData)
         this.props.setUserData(fullData)
       })
+      .catch(error => {
+        Toast.show(<Text text="User Info Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+        console.log(error)
+      })
 
     twtGet("v1/gpa")
       .then((response) => response.json())
@@ -104,7 +110,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         this.props.setGpaData(fullData)
       })
       .catch(error => {
-        console.log("GPA Fetch failed", error)
+        Toast.show(<Text text="GPA Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+        console.log(error)
       })
 
     twtGet("v1/classtable")
@@ -113,6 +120,10 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         const fullData = responseJson.data
         console.log("ClassTable Data Format", fullData)
         this.props.setCourseData(fullData)
+      })
+      .catch(error => {
+        Toast.show(<Text text="Classtable Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+        console.log(error)
       })
 
   }

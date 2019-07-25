@@ -17,13 +17,14 @@ import { color } from "./color"
 
 const BASE = {
   shadow: false,
-  position: -70, // Need to be slightly higher for the sake of the bottom tab bar
+  opacity: 0.95,
+  position: -80, // Need to be slightly higher for the sake of the bottom tab bar
 }
 
 const primary = {
   ...BASE,
-  backgroundColor: color.card,
-  textColor: color.primary,
+  backgroundColor: color.primary,
+  textColor: color.background,
 }
 
 const err = {

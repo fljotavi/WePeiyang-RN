@@ -103,7 +103,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
     try {
       await AsyncStorage.removeItem('@WePeiyangRN_token')
     } catch (e) {
-      console.log("Async Storage Delete Error: ", e)
+      Toast.show(<Text tx="auth.tokenDeleteFailure" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
     }
   }
 

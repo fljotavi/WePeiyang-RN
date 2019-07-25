@@ -36,27 +36,30 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   storeToken = async (token) => {
     passTokenToStore(token)
-    try {
-      await AsyncStorage.setItem('@WePeiyangRN_token', token)
-    } catch (e) {
-      console.log("Async Storage Saving Error: ", e)
-    }
+    await AsyncStorage.setItem('@WePeiyangRN_token', token)
   }
 
   login = () => {
     twtGet("v1/auth/token/get", { twtuname: this.state.username, twtpasswd: this.state.password })
       .then((response) => response.json())
       .then((responseJson) => {
-        const token = responseJson.data.token
-        this.storeToken(token)
-          .then(() => {
-            Toast.show(<Text tx="auth.loginSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-            this.props.navigation.navigate('app')
-          })
-          .catch(() => {
-            Toast.show(<Text tx="auth.tokenStoreFailure" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-            this.props.navigation.navigate('app')
-          })
+
+        if (responseJson.error_code === -1) {
+          const token = responseJson.data.token
+          this.storeToken(token)
+            .then(() => {
+              Toast.show(<Text tx="auth.loginSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+              this.props.navigation.navigate('app')
+            })
+            .catch(() => {
+              Toast.show(<Text tx="auth.tokenStoreFailure" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+              this.props.navigation.navigate('app')
+            })
+        } else {
+          let errorMessage = responseJson.message || "Unknown error"
+          Toast.show(<Text text={errorMessage} style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+        }
+
       })
       .catch((error) => {
         console.error(error)
