@@ -61,8 +61,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         }
 
       })
-      .catch((error) => {
-        console.error(error)
+      .catch(error => {
+        Toast.show(<Text text="Login Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+        console.log(error)
       })
   }
 

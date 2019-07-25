@@ -9,14 +9,14 @@ import { ModuleButton } from "../../components/module-button"
 import { LibraryBlock } from "../../components/library-block"
 import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
-import { IanButton } from "../../components/ian-button"
 import { setScoreType } from "../../actions/gpa-type-actions"
 import { digitsFromScoreType } from "../../utils/common"
 import { twtGet } from "../../services/twt-fetch"
 import { setGpaData, setCourseData, setUserData } from "../../actions/data-actions"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
-import Toast from "react-native-root-toast";
-import toastOptions from "../../theme/toast";
+import Toast from "react-native-root-toast"
+import toastOptions from "../../theme/toast"
+import { Button } from "../../components/button"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -166,7 +166,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <ModuleButton tx="modules.buses" icon="directions_bus"/>
           </ScrollView>
           <View style={ss.sectionHead}>
-            <Text text="Sept 7th, Wed." preset="h5"/>
+            <Text text={dayToRender} preset="h5"/>
           </View>
           <CourseDailySchedule
             data={courseData.data}
@@ -195,7 +195,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             setScoreType={(scoreType) => setScoreType(scoreType)}
             scores={gpaData.data.gpaOverall}
           />
-          <IanButton style={ss.moreButton} tx="homeScreen.more"/>
+          <Button style={ss.moreButton} tx="homeScreen.more"/>
         </View>
       </Screen>
     )
