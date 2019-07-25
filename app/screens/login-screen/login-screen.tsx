@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
+import toastOptions from "../../theme/toast"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
+import Toast from 'react-native-root-toast'
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
 }
@@ -47,12 +49,13 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       .then((responseJson) => {
         const token = responseJson.data.token
         this.storeToken(token)
-          .then((response) => {
-            console.log("Successfully saved token locally. ", response)
+          .then(() => {
+            Toast.show(<Text tx="auth.loginSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
             this.props.navigation.navigate('app')
           })
-          .catch((e) => {
-            console.log("Failed to store token locally. Additional manual login may be need during the next start. ", e)
+          .catch(() => {
+            Toast.show(<Text tx="auth.tokenStoreFailure" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+            this.props.navigation.navigate('app')
           })
       })
       .catch((error) => {
@@ -81,7 +84,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               value={this.state.password}
               secureTextEntry={true}
               autoCorrect={false}/>
-            <Button style={ss.fieldWithMarginTop} tx="common.login" onPress={this.login} />
+            <Button style={ss.fieldWithMarginTop} tx="auth.login" onPress={this.login} />
           </View>
         </View>
       </Screen>

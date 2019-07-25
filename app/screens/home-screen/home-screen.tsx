@@ -128,7 +128,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       scoreType, setScoreType, gpaData, courseData, userData
     } = this.props
 
-    let dayToRender = "2019-04-18"
+    let dayToRender = "2019-09-01"
 
     return (
       <Screen preset="scroll">

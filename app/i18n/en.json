@@ -6,10 +6,14 @@
     "time": {
       "remaining": "",
       "daysLeft": " Days Left"
-    },
-    "login": "Login",
-    "logout": "Logout",
-    "logoutSubtitle": "Logout current user"
+    }
+  },
+  "auth": {
+    "login": "Log In",
+    "logout": "Sign Me Out",
+    "loginSuccess": "Login Success",
+    "logoutSuccess": "Logout Success",
+    "tokenStoreFailure": "Failed to store token locally. Additional manual login may be need during the next start."
   },
   "errors": {
     "invalidEmail": "Invalid email address."

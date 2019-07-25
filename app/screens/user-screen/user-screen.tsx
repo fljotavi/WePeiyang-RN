@@ -10,6 +10,8 @@ import { BindingBar } from "./binding-bar"
 import { Button } from "../../components/button"
 import { deleteTokenFromStore } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
+import Toast from "react-native-root-toast";
+import toastOptions from "../../theme/toast"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
@@ -91,6 +93,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
 
   logout = () => {
     this.deleteToken().then(() => {
+      Toast.show(<Text tx="auth.logoutSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
       this.props.navigation.navigate('authLoading')
     })
   }
@@ -130,7 +133,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
             <View style={ss.logoutButtonContentWrapper}>
               <Text style={ss.logoutIcon} preset="i" text="exit_to_app"/>
-              <Text style={ss.logoutText} tx="common.logout"/>
+              <Text style={ss.logoutText} tx="auth.logout"/>
             </View>
           </Button>
         </View>
