@@ -9,15 +9,15 @@ import { color } from "./color"
 // The keyword `as any` is required to suppress type checks, because currently the TypeScript type definition for this library is not correct.
 // You also need to pass a text color manually because the built-in `textColor` option does not support hacked <Text/> component.
 
-// It seems like the source of all problems here is the hacked <Text/> component.
-// Well, the reason that we hacked it in the first place is - there is currently no better approach to apply custom font family in Android apps globally.
+// Seemingly the source of all problems here is the hacked <Text/> component.
+// Well, the reason that we hacked it in the first place is - there is currently no better approach to apply a custom font family in Android apps globally.
 
-// I come from a web background, where a single CSS selector would solve all these problems.
-// I had to admit developing RN application feels like shit. (Mostly because Android is a piece of shit.)
+// I came from a web background, where a single CSS selector would solve all these problems.
+// I had to admit developing RN applications feels like shit. (Mostly because Android is a piece of shit.)
 
 const BASE = {
   shadow: false,
-  position: -70, // Need to be slightly higher for the sake of bottom tab bar
+  position: -70, // Need to be slightly higher for the sake of the bottom tab bar
 }
 
 const primary = {
