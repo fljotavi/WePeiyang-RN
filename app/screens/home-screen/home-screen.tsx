@@ -7,9 +7,9 @@ import { digitsFromScoreType } from "../../utils/common"
 import { twtGet } from "../../services/twt-fetch"
 
 import { NavigationScreenProps } from "react-navigation"
-import { spacingDict, layoutParam } from "../../theme"
+import ss from "./home-screen.style"
 
-import { View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle, TouchableOpacity } from "react-native"
+import { View, Image, ScrollView, TouchableOpacity } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { Button } from "../../components/button"
@@ -40,63 +40,6 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
   libraryData?
   setLibraryData?
 
-}
-
-const ss = {
-  avatar: {
-    borderRadius: 40,
-    height: 40,
-    width: 40,
-  } as ImageStyle,
-  userInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-  } as ViewStyle,
-  userName: {
-    marginTop: 2
-  } as TextStyle,
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical
-  } as ViewStyle,
-  headerBar: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: spacingDict.large,
-  } as ViewStyle,
-  moduleButton: {
-    marginRight: spacingDict.large,
-  } as ViewStyle,
-  horiScrollSelf: {
-    overflow: 'visible'
-  } as ViewStyle,
-  horiScroll: {
-    alignSelf: 'stretch',
-    flexDirection: "row",
-    justifyContent: 'space-between',
-    overflow: 'visible',
-  } as ViewStyle,
-  sectionHead: {
-    marginBottom: spacingDict.medium,
-    marginTop: spacingDict.large,
-  } as ViewStyle,
-  blockWithMarginRight: {
-    marginRight: spacingDict.medium,
-  } as ViewStyle,
-  mainView: {
-    flex: 1,
-  } as ViewStyle,
-  curveView: {
-    marginTop: -30
-  } as ViewStyle,
-  stat: {
-    marginTop: 30
-  } as ViewStyle,
-  moreButton: {
-    marginTop: 30,
-    alignSelf: "stretch"
-  } as ViewStyle
 }
 
 class HomeScreen extends React.Component<HomeScreenProps, {}> {

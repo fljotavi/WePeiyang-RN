@@ -1,8 +1,8 @@
 import * as React from "react"
-import { Image, ImageStyle, StatusBar, TextStyle, View, ViewStyle } from "react-native"
+import { Image, StatusBar, View } from "react-native"
 import { connect } from 'react-redux'
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { Gradicon } from "./gradicon"
@@ -10,83 +10,13 @@ import { BindingBar } from "./binding-bar"
 import { Button } from "../../components/button"
 import { deleteTokenFromStore } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
-import Toast from "react-native-root-toast";
+import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
+
+import ss from "./user-screen.style"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
-}
-
-const ss = {
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical,
-    alignItems: "center",
-  } as ViewStyle,
-  headPanel: {
-    backgroundColor: color.primaryGreyer,
-    height: 320,
-    left: 0,
-    right: 0,
-    position: "absolute"
-  } as ViewStyle,
-  userInfoPanel: {
-    alignItems: "center",
-    justifyContent: "center"
-  } as ViewStyle,
-  userName: {
-    color: color.washed,
-    marginTop: 14,
-  } as TextStyle,
-  userId: {
-    color: color.washed,
-    opacity: 0.6,
-    marginTop: 10
-  } as TextStyle,
-  avatar: {
-    borderRadius: 999,
-    height: 90,
-    width: 90,
-    marginTop: 40
-  } as ImageStyle,
-  shortcutModulePanel: {
-    borderRadius: layoutParam.borderRadius,
-    backgroundColor: color.card,
-    marginTop: 40,
-    marginBottom: 20,
-    paddingVertical: 30,
-    paddingHorizontal: 30,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: '100%',
-    maxWidth: 500,
-    elevation: 99,
-  } as ViewStyle,
-  bindingBar: {
-    marginTop: 10,
-    elevation: 99,
-  } as ViewStyle,
-  logoutButton: {
-    width: '100%',
-    maxWidth: 500,
-    marginVertical: 40,
-    elevation: 99,
-  } as ViewStyle,
-  logoutButtonContentWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  } as ViewStyle,
-  logoutIcon: {
-    color: color.washed,
-    marginRight: 10,
-    fontSize: 20,
-  } as TextStyle,
-  logoutText: {
-    color: color.washed,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-  } as TextStyle,
 }
 
 export class UserScreen extends React.Component<UserScreenProps, {}> {
