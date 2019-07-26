@@ -56,7 +56,7 @@ export class BookList extends React.Component<BookListProps, {}> {
             <LibraryBlock style={libraryBlockStyle} bookName={item['title']} local={item['local']} returnTime={item['returnTime']} />
           )}
           ListEmptyComponent={() => <View style={emptyBlockStyle}>
-            <Text style={emptyBlockText} tx="schedule.noCourseToday"/>
+            <Text style={emptyBlockText} tx="schedule.noBooks"/>
           </View>}
         />
       </View>

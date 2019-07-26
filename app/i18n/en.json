@@ -66,6 +66,9 @@
     "creditsEarned": "Credits Earned"
   },
   "schedule": {
-    "noCourseToday": "No Course Today"
+    "noCourseToday": "No course today"
+  },
+  "library": {
+    "noBooks": "You didn't borrow any books"
   }
 }
