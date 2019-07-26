@@ -8,13 +8,13 @@ import { Text } from "../../components/text"
 import { Gradicon } from "./gradicon"
 import { BindingBar } from "./binding-bar"
 import { Button } from "../../components/button"
-import { deleteTokenFromStore } from "../../services/twt-fetch"
-import AsyncStorage from "@react-native-community/async-storage"
-import Toast from "react-native-root-toast";
+import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
+import { deleteTokenFromStore } from "../../actions/auth-actions"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
+  deleteTokenFromStore
 }
 
 const ss = {
@@ -92,19 +92,13 @@ const ss = {
 export class UserScreen extends React.Component<UserScreenProps, {}> {
 
   logout = () => {
-    this.deleteToken().then(() => {
-      Toast.show(<Text tx="auth.logoutSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-      this.props.navigation.navigate('authLoading')
-    })
+    this.deleteToken()
+    Toast.show(<Text tx="auth.logoutSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+    this.props.navigation.navigate('authLoading')
   }
 
-  deleteToken = async () => {
-    deleteTokenFromStore()
-    try {
-      await AsyncStorage.removeItem('@WePeiyangRN_token')
-    } catch (e) {
-      Toast.show(<Text tx="auth.tokenDeleteFailure" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-    }
+  deleteToken = () => {
+    this.props.deleteTokenFromStore()
   }
 
   render () {
@@ -149,7 +143,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    deleteTokenFromStore: () => {
+      dispatch(deleteTokenFromStore())
+    }
+  }
 }
 
 export const connectedUserScreen = connect(mapStateToProps, mapDispatchToProps)(UserScreen)

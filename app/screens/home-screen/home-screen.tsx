@@ -23,6 +23,8 @@ import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
 import { format } from "date-fns"
 
+import configureStore from "../../store"
+
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
 
   scoreType?
@@ -102,6 +104,9 @@ const ss = {
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   prepareData = () => {
+
+    const { store } = configureStore()
+    console.log("Token before fetch at Homescreen", store.getState().authReducer.token)
 
     twtGet("v2/auth/self")
       .then((response) => response.json())

@@ -8,11 +8,13 @@ import toastOptions from "../../theme/toast"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
-import { passTokenToStore, twtGet } from "../../services/twt-fetch"
-import AsyncStorage from "@react-native-community/async-storage"
+import { twtGet } from "../../services/twt-fetch"
 import Toast from 'react-native-root-toast'
+import { passTokenToStore } from "../../actions/auth-actions"
+import configureStore from "../../store";
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
+  passTokenToStore
 }
 
 const ss = {
@@ -34,9 +36,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     password: ""
   }
 
-  storeToken = async (token) => {
-    passTokenToStore(token)
-    await AsyncStorage.setItem('@WePeiyangRN_token', token)
+  storeToken = (token) => {
+    this.props.passTokenToStore(token)
   }
 
   login = () => {
@@ -47,14 +48,12 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         if (responseJson.error_code === -1) {
           const token = responseJson.data.token
           this.storeToken(token)
-            .then(() => {
-              Toast.show(<Text tx="auth.loginSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-              this.props.navigation.navigate('app')
-            })
-            .catch(() => {
-              Toast.show(<Text tx="auth.tokenStoreFailure" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-              this.props.navigation.navigate('app')
-            })
+
+          const { store } = configureStore()
+          console.log("Token after store at Loginscreen", store.getState().authReducer.token)
+
+          Toast.show(<Text tx="auth.loginSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+          this.props.navigation.navigate('app')
         } else {
           let errorMessage = responseJson.message || "Unknown error"
           Toast.show(<Text text={errorMessage} style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
@@ -97,18 +96,13 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    scoreType: state.gpaTypeReducer
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setNewLoginStatus: (newStatus) => {
-      dispatch({
-        action: "LOGIN_SUCCESS",
-        payload: newStatus
-      })
+    passTokenToStore: (data) => {
+      dispatch(passTokenToStore(data))
     }
   }
 }

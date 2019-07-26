@@ -1,6 +1,5 @@
 import sha1 from "./sha1.js"
 import { mergeDeepLeft } from "ramda"
-import AsyncStorage from "@react-native-community/async-storage"
 import configureStore from "../../store"
 
 const TWT_BASE_URL = 'https://open.twtstudio.com/api/'
@@ -11,31 +10,8 @@ let query = params => Object.keys(params)
   .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
   .join('&')
 
-export const passTokenToStore = (token) => {
-  store.dispatch({
-    type: "SET_TOKEN",
-    payload: token
-  })
-}
-
-export const deleteTokenFromStore = () => {
-  store.dispatch({
-    type: "SET_TOKEN",
-    payload: null
-  })
-}
-
-export const processAuthStatus = async () => {
-  const token = await AsyncStorage.getItem('@WePeiyangRN_token')
-  if (token !== null) {
-    passTokenToStore(token)
-    return true
-  } else {
-    return false
-  }
-}
-
 export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded = true) => {
+
   let para = parameters
   para["t"] = String(Date.now())
   let keys = Object.keys(para).sort()
