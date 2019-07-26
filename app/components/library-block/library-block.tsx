@@ -2,16 +2,17 @@ import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
+import { differenceInCalendarDays } from "date-fns"
 
 export interface LibraryBlockProps {
   style?: ViewStyle
   bookName?: string
-  borrowedTime?: string
-  daysLeft: number
+  local?: string
+  returnTime?: string
 }
 
 export function LibraryBlock(props: LibraryBlockProps) {
-  const { style, bookName, borrowedTime, daysLeft } = props
+  const { style, bookName, local, returnTime } = props
   const colorHash = (str: string) => {
     return (str.length) % (color.bookStrip.length)
   }
@@ -44,10 +45,10 @@ export function LibraryBlock(props: LibraryBlockProps) {
       <View style={decoStripStyle} />
       <View style={mainContentStyle}>
         <Text numberOfLines={3} text={bookName} style={h1}/>
-        <Text text={borrowedTime} style={small}/>
+        <Text text={local} numberOfLines={1} style={small}/>
         <Text style={additionalInfo}>
           <Text tx={"common.time.remaining"} style={small} />
-          <Text text={String(daysLeft)} style={small} />
+          <Text text={String(differenceInCalendarDays(new Date(returnTime), Date.now()))} style={small} />
           <Text tx={"common.time.daysLeft"} style={small} />
         </Text>
       </View>

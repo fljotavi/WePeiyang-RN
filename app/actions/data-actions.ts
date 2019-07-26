@@ -18,3 +18,10 @@ export function setUserData(data) {
     payload: data
   }
 }
+
+export function setLibraryData(data) {
+  return {
+    type: "SET_LIBRARY_DATA",
+    payload: data
+  }
+}

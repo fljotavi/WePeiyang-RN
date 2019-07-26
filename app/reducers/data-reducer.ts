@@ -77,3 +77,19 @@ export const courseDataReducer = (state = courseDataReducerInitialState, action)
   return state
 }
 
+const libraryDataReducerInitialState = {
+  status: "NOT_RECEIVED",
+  data: {}
+}
+
+export const libraryDataReducer = (state = libraryDataReducerInitialState, action) => {
+  switch (action.type) {
+    case "SET_LIBRARY_DATA":
+      state = {
+        ...state,
+        status: "VALID",
+        data: action.payload
+      }
+  }
+  return state
+}

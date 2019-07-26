@@ -1,32 +1,45 @@
 import * as React from "react"
-import { View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle, TouchableOpacity } from "react-native"
+
 import { connect } from "react-redux"
-import { Screen } from "../../components/screen"
-import { NavigationScreenProps } from "react-navigation"
-import { Text } from "../../components/text"
-import { spacingDict, layoutParam } from "../../theme"
-import { ModuleButton } from "../../components/module-button"
-import { LibraryBlock } from "../../components/library-block"
-import { GpaCurve } from "../../components/gpa-curve"
-import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { setScoreType } from "../../actions/gpa-type-actions"
+import { setGpaData, setCourseData, setUserData, setLibraryData } from "../../actions/data-actions"
 import { digitsFromScoreType } from "../../utils/common"
 import { twtGet } from "../../services/twt-fetch"
-import { setGpaData, setCourseData, setUserData } from "../../actions/data-actions"
+
+import { NavigationScreenProps } from "react-navigation"
+import { spacingDict, layoutParam } from "../../theme"
+
+import { View, Image, ScrollView, ViewStyle, ImageStyle, TextStyle, TouchableOpacity } from "react-native"
+import { Text } from "../../components/text"
+import { Screen } from "../../components/screen"
+import { Button } from "../../components/button"
+import { ModuleButton } from "../../components/module-button"
+import { GpaCurve } from "../../components/gpa-curve"
+import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
+import { BookList } from "../../components/book-list"
+
 import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
-import { Button } from "../../components/button"
+import { format } from "date-fns"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
+
   scoreType?
   setScoreType?
+
   gpaData?
   setGpaData?
+
   courseData?
   setCourseData?
+
   userData?
   setUserData?
+
+  libraryData?
+  setLibraryData?
+
 }
 
 const ss = {
@@ -126,6 +139,18 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         console.log(error)
       })
 
+    twtGet("v1/library/user/info")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const fullData = responseJson.data
+        console.log("Library Data Format", fullData)
+        this.props.setLibraryData(fullData)
+      })
+      .catch(error => {
+        Toast.show(<Text text="Library Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+        console.log(error)
+      })
+
   }
 
   componentWillMount(): void {
@@ -136,10 +161,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
     // Grab the props
     const {
-      scoreType, setScoreType, gpaData, courseData, userData
+      scoreType, setScoreType, gpaData, courseData, userData, libraryData
     } = this.props
 
-    let dayToRender = "2019-09-01"
+    let dayToRender = Date.now()
+    let timestamp = new Date(dayToRender).getTime()
+    let formattedHead = format(
+      new Date(dayToRender),
+      'MMM Do, dddd'
+    )
 
     return (
       <Screen preset="scroll">
@@ -166,20 +196,17 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <ModuleButton tx="modules.buses" icon="directions_bus"/>
           </ScrollView>
           <View style={ss.sectionHead}>
-            <Text text={dayToRender} preset="h5"/>
+            <Text text={formattedHead} preset="h5"/>
           </View>
           <CourseDailySchedule
             data={courseData.data}
             status={courseData.status}
-            timestamp={new Date(dayToRender).getTime()}
+            timestamp={timestamp}
           />
           <View style={ss.sectionHead}>
             <Text text="Library" preset="h5"/>
           </View>
-          <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <LibraryBlock style={ss.blockWithMarginRight} bookName={"Architecture Perspectives"} borrowedTime={"2019-05-15"} daysLeft={5} />
-            <LibraryBlock style={ss.blockWithMarginRight} bookName={"GRE Verbal 150"} borrowedTime={"2019-05-15"} daysLeft={5} />
-          </ScrollView>
+          <BookList data={libraryData.data} status={libraryData.status} />
           <View style={ss.sectionHead}>
             <Text text="GPA Curve" preset="h5"/>
           </View>
@@ -208,6 +235,7 @@ const mapStateToProps = (state) => {
     gpaData: state.gpaDataReducer,
     courseData: state.courseDataReducer,
     userData: state.userDataReducer,
+    libraryData: state.libraryDataReducer,
   }
 }
 
@@ -224,6 +252,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setUserData: (data) => {
       dispatch(setUserData(data))
+    },
+    setLibraryData: (data) => {
+      dispatch(setLibraryData(data))
     }
   }
 }
