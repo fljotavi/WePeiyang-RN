@@ -7,9 +7,13 @@ import { AppRegistry, StatusBar } from "react-native"
 import { RootNavigator } from "./navigation/root-navigator"
 import { createAppContainer } from "react-navigation"
 
-import store from "./store"
+import configureStore from "./store"
 import { color } from "./theme"
+import { PersistGate } from 'redux-persist/integration/react'
+import { Text } from "./components/text"
+
 const AppContainer = createAppContainer(RootNavigator)
+const { persistor, store } = configureStore()
 
 interface AppState {
 }
@@ -21,8 +25,10 @@ export class App extends React.Component<{}, AppState> {
   render() {
     return (
       <Provider store={store}>
-        <StatusBar backgroundColor={color.background} barStyle="dark-content" />
-        <AppContainer />
+        <PersistGate loading={<Text text="loading"/>} persistor={persistor}>
+          <StatusBar backgroundColor={color.background} barStyle="dark-content" />
+          <AppContainer />
+        </PersistGate>
       </Provider>
     )
   }

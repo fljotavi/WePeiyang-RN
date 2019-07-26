@@ -1,10 +1,11 @@
 import sha1 from "./sha1.js"
 import { mergeDeepLeft } from "ramda"
 import AsyncStorage from "@react-native-community/async-storage"
-import store from "../../store"
+import configureStore from "../../store"
 
 const TWT_BASE_URL = 'https://open.twtstudio.com/api/'
 const TWT_APP = { key: '8UuaoZs2TNLFfqnmyllp', secret: 'vOl62dPR2k8BeVTPxLrtuyDcx0AQhm' }
+const { store } = configureStore()
 
 let query = params => Object.keys(params)
   .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
