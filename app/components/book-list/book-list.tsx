@@ -38,6 +38,8 @@ const emptyBlockText: TextStyle = {
 
 export class BookList extends React.Component<BookListProps, {}> {
 
+  _keyExtractor = (item, index) => String(item.id);
+
   render() {
     const { style, data, status } = this.props
 
@@ -52,8 +54,14 @@ export class BookList extends React.Component<BookListProps, {}> {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={data.books}
+          keyExtractor={this._keyExtractor}
           renderItem={({ item }) => (
-            <LibraryBlock style={libraryBlockStyle} bookName={item['title']} local={item['local']} returnTime={item['returnTime']} />
+            <LibraryBlock
+              style={libraryBlockStyle}
+              bookName={item['title']}
+              local={item['local']}
+              returnTime={item['returnTime']}
+            />
           )}
           ListEmptyComponent={() => <View style={emptyBlockStyle}>
             <Text style={emptyBlockText} tx="library.noBooks"/>
