@@ -43,6 +43,7 @@
     "reactotron-react-native": "^3.4.1",
     "redux": "^4.0.4",
     "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
     "validate.js": "0.12.0",
     "victory-native": "^32.0.2"
   },

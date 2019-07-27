@@ -2,14 +2,13 @@ import * as React from "react"
 
 import { connect } from "react-redux"
 import { setScoreType } from "../../actions/gpa-type-actions"
-import { setGpaData, setCourseData, setUserData, setLibraryData } from "../../actions/data-actions"
+import { fetchGpaData, fetchCourseData, fetchLibraryData, fetchUserData } from "../../actions/data-actions"
 import { digitsFromScoreType } from "../../utils/common"
-import { twtGet } from "../../services/twt-fetch"
 
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
 
-import { View, Image, ScrollView, TouchableOpacity } from "react-native"
+import { View, Image, ScrollView, TouchableOpacity, RefreshControl } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { Button } from "../../components/button"
@@ -19,8 +18,6 @@ import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
 import { BookList } from "../../components/book-list"
 
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 import { format } from "date-fns"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
@@ -29,71 +26,36 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
   setScoreType?
 
   gpaData?
-  setGpaData?
+  fetchGpaData?
 
   courseData?
-  setCourseData?
+  fetchCourseData?
 
   userData?
-  setUserData?
+  fetchUserData?
 
   libraryData?
-  setLibraryData?
+  fetchLibraryData?
 
 }
 
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
+  state = {
+    refreshing: false,
+  }
   prepareData = () => {
+    this.props.fetchUserData()
+    this.props.fetchCourseData()
+    this.props.fetchLibraryData()
+    this.props.fetchGpaData()
+  }
 
-    twtGet("v2/auth/self")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const fullData = responseJson
-        console.log("User Data Format", fullData)
-        this.props.setUserData(fullData)
-      })
-      .catch(error => {
-        Toast.show(<Text text="User Info Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
-      })
-
-    twtGet("v1/gpa")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const fullData = responseJson.data
-        console.log("GPA Data Format", fullData)
-        this.props.setGpaData(fullData)
-      })
-      .catch(error => {
-        Toast.show(<Text text="GPA Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
-      })
-
-    twtGet("v1/classtable")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const fullData = responseJson.data
-        console.log("ClassTable Data Format", fullData)
-        this.props.setCourseData(fullData)
-      })
-      .catch(error => {
-        Toast.show(<Text text="Classtable Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
-      })
-
-    twtGet("v1/library/user/info")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const fullData = responseJson.data
-        console.log("Library Data Format", fullData)
-        this.props.setLibraryData(fullData)
-      })
-      .catch(error => {
-        Toast.show(<Text text="Library Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
-      })
-
+  _onRefresh = () => {
+    this.setState({ refreshing: true })
+    this.props.fetchGpaData().then(() => {
+      this.setState({ refreshing: false })
+    })
   }
 
   componentWillMount(): void {
@@ -107,7 +69,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       scoreType, setScoreType, gpaData, courseData, userData, libraryData
     } = this.props
 
-    let dayToRender = Date.now()
+    let dayToRender = new Date("2019-09-24")
     let timestamp = new Date(dayToRender).getTime()
     let formattedHead = format(
       new Date(dayToRender),
@@ -115,7 +77,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     )
 
     return (
-      <Screen preset="scroll">
+      <ScrollView refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh}
+        />
+      } >
         <View style={ss.container}>
           <View style={ss.headerBar}>
             <Text text="Hello" preset="h2"/>
@@ -167,7 +134,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           />
           <Button style={ss.moreButton} tx="homeScreen.more"/>
         </View>
-      </Screen>
+      </ScrollView>
     )
   }
 }
@@ -187,17 +154,17 @@ const mapDispatchToProps = (dispatch) => {
     setScoreType: (newType) => {
       dispatch(setScoreType(newType))
     },
-    setGpaData: (data) => {
-      dispatch(setGpaData(data))
+    fetchGpaData: () => {
+      dispatch(fetchGpaData())
     },
-    setCourseData: (data) => {
-      dispatch(setCourseData(data))
+    fetchCourseData: () => {
+      dispatch(fetchCourseData())
     },
-    setUserData: (data) => {
-      dispatch(setUserData(data))
+    fetchUserData: () => {
+      dispatch(fetchUserData())
     },
-    setLibraryData: (data) => {
-      dispatch(setLibraryData(data))
+    fetchLibraryData: () => {
+      dispatch(fetchLibraryData())
     }
   }
 }

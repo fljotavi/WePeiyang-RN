@@ -1,7 +1,8 @@
-import { combineReducers, createStore } from "redux"
+import {applyMiddleware, combineReducers, createStore} from "redux"
 import { authReducer, gpaTypeReducer } from "./reducers/general-reducer"
 import { courseDataReducer, gpaDataReducer, userDataReducer, libraryDataReducer } from "./reducers/data-reducer"
 import { persistStore, persistReducer } from 'redux-persist'
+import thunk from "redux-thunk"
 import AsyncStorage from "@react-native-community/async-storage"
 
 const persistConfig = {
@@ -13,7 +14,7 @@ const topLevelReducer = combineReducers({ gpaTypeReducer, userDataReducer, authR
 const persistedReducer = persistReducer(persistConfig, topLevelReducer)
 
 export default () => {
-  let store = createStore(persistedReducer)
+  let store = createStore(persistedReducer, {}, applyMiddleware(thunk))
   let persistor = persistStore(store)
   return { store, persistor }
 }
