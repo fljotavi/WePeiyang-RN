@@ -154,17 +154,17 @@ const mapDispatchToProps = (dispatch) => {
     setScoreType: (newType) => {
       dispatch(setScoreType(newType))
     },
-    fetchGpaData: () => {
-      dispatch(fetchGpaData())
+    fetchGpaData: async () => {
+      await dispatch(fetchGpaData())
     },
-    fetchCourseData: () => {
-      dispatch(fetchCourseData())
+    fetchCourseData: async () => {
+      await dispatch(fetchCourseData())
     },
-    fetchUserData: () => {
-      dispatch(fetchUserData())
+    fetchUserData: async () => {
+      await dispatch(fetchUserData())
     },
-    fetchLibraryData: () => {
-      dispatch(fetchLibraryData())
+    fetchLibraryData: async () => {
+      await dispatch(fetchLibraryData())
     }
   }
 }
