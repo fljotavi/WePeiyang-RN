@@ -61,7 +61,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   componentWillMount(): void {
-    this.prepareData()
+    if (this.props.compData.status === "INIT") this.prepareData()
   }
 
   render () {

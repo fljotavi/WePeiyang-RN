@@ -14,14 +14,17 @@ import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
 
 import ss from "./user-screen.style"
+import { clearAllData } from "../../actions/data-actions"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
+  clearAllData
 }
 
 export class UserScreen extends React.Component<UserScreenProps, {}> {
 
   logout = () => {
+    this.props.clearAllData()
     this.deleteToken().then(() => {
       Toast.show(<Text tx="auth.logoutSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
       this.props.navigation.navigate('authLoading')
@@ -79,7 +82,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    clearAllData: () => {
+      dispatch(clearAllData())
+    },
+  }
 }
 
 export const connectedUserScreen = connect(mapStateToProps, mapDispatchToProps)(UserScreen)

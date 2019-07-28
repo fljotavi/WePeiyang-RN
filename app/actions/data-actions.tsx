@@ -4,6 +4,12 @@ import { Text } from "../components/text"
 import toastOptions from "../theme/toast"
 import * as React from "react"
 
+export function clearAllData() {
+  return {
+    type: "CLEAR_ALL_DATA"
+  }
+}
+
 export function fetchGpaData() {
   return dispatch => {
     return twtGet("v1/gpa")
