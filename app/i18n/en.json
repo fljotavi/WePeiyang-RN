@@ -28,7 +28,8 @@
   "homeScreen": {
     "header": "We Peiyang",
     "more": "MORE >>",
-    "prepareDataSuccess": "Successfully loaded newest data"
+    "prepareDataSuccess": "Successfully loaded newest data",
+    "partialData": "Part of the data wasn't properly delivered due to some errors in network fetching process."
   },
   "newsScreen": {
     "header": "News"

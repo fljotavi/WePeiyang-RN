@@ -1,8 +1,6 @@
 import { twtGet } from "../services/twt-fetch"
-import Toast from "react-native-root-toast"
-import { Text } from "../components/text"
-import toastOptions from "../theme/toast"
-import * as React from "react"
+
+const ERROR_PREFIX = "Error returned with success network request: "
 
 export function clearAllData() {
   return {
@@ -15,16 +13,13 @@ export function fetchGpaData() {
     return twtGet("v1/gpa")
       .then((response) => response.json())
       .then((responseJson) => {
-        dispatch({
-          type: "SET_GPA_DATA",
-          payload: responseJson.data
-        })
+        if (responseJson.error_code === -1) {
+          dispatch({
+            type: "SET_GPA_DATA",
+            payload: responseJson.data
+          })
+        } else throw new Error(ERROR_PREFIX + responseJson.message || "Unknown Error" + " in fetchGpaData")
       })
-      .catch(error => {
-        Toast.show(<Text text="fetchGpaData failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
-      })
-
   }
 }
 
@@ -33,14 +28,12 @@ export function fetchCourseData() {
     return twtGet("v1/classtable")
       .then((response) => response.json())
       .then((responseJson) => {
-        dispatch({
-          type: "SET_COURSE_DATA",
-          payload: responseJson.data
-        })
-      })
-      .catch(error => {
-        Toast.show(<Text text="fetchCourseData failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
+        if (responseJson.error_code === -1) {
+          dispatch({
+            type: "SET_COURSE_DATA",
+            payload: responseJson.data
+          })
+        } else throw new Error(ERROR_PREFIX + responseJson.message || "Unknown Error" + "in fetchCourseData")
       })
   }
 }
@@ -50,14 +43,13 @@ export function fetchUserData() {
     return twtGet("v2/auth/self")
       .then((response) => response.json())
       .then((responseJson) => {
-        dispatch({
-          type: "SET_USER_DATA",
-          payload: responseJson
-        })
-      })
-      .catch(error => {
-        Toast.show(<Text text="fetchUserData failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
+        // Inconsistent response formatting here, no error_code. Bad server-side api design, yet there's nothing I can do about it.
+        if (responseJson.twtuname) {
+          dispatch({
+            type: "SET_USER_DATA",
+            payload: responseJson
+          })
+        } else throw new Error(ERROR_PREFIX + responseJson.message || "Unknown Error" + "in fetchUserData")
       })
   }
 }
@@ -72,11 +64,7 @@ export function fetchLibraryData() {
             type: "SET_LIBRARY_DATA",
             payload: responseJson.data
           })
-        }
-      })
-      .catch(error => {
-        Toast.show(<Text text="fetchLibraryData failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
+        } else throw new Error(ERROR_PREFIX + responseJson.message || "Unknown Error" + "in fetchLibraryData")
       })
   }
 }
@@ -86,11 +74,9 @@ export function fetchEcardData() {
     return twtGet("v1/ecard/profile", { cardnum: '3016218162', password: '262144' })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log("Ecard Data Format", responseJson)
-      })
-      .catch(error => {
-        Toast.show(<Text text="Ecard Fetch failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-        console.log(error)
+        if (responseJson.error_code === -1) {
+          console.log("Ecard Data Format", responseJson)
+        } else throw new Error(ERROR_PREFIX + responseJson.message || "Unknown Error" + "in fetchEcardData")
       })
   }
 }

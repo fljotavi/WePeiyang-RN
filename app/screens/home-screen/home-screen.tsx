@@ -47,9 +47,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       this.props.fetchCourseData(),
       this.props.fetchLibraryData(),
       this.props.fetchGpaData()
-    ]).then(function(values) {
+    ]).then((values) => {
       Toast.show(<Text tx="homeScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
       console.log(values)
+    }).catch((err) => {
+      console.log(err)
+      Toast.show(<Text tx="homeScreen.partialData" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
     })
   }
 
