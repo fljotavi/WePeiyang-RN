@@ -74,7 +74,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.userDataReducer
+    userData: state.dataReducer.userInfo
   }
 }
 

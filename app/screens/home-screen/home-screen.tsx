@@ -19,26 +19,20 @@ import { CourseDailySchedule } from "../../components/course-daily-schedule"
 import { BookList } from "../../components/book-list"
 
 import { format } from "date-fns"
-import Toast from "react-native-root-toast";
-import toastOptions from "../../theme/toast";
+import Toast from "react-native-root-toast"
+import toastOptions from "../../theme/toast"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
 
   scoreType?
   setScoreType?
 
-  gpaData?
   fetchGpaData?
-
-  courseData?
   fetchCourseData?
-
-  userData?
   fetchUserData?
-
-  libraryData?
   fetchLibraryData?
 
+  compData?
 }
 
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
@@ -74,7 +68,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
     // Grab the props
     const {
-      scoreType, setScoreType, gpaData, courseData, userData, libraryData
+      scoreType, setScoreType, compData
     } = this.props
 
     let dayToRender = new Date("2019-09-24")
@@ -97,9 +91,9 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               <Text text="Hello" preset="h2"/>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('user')}>
                 <View style={ss.userInfo}>
-                  <Text text={userData.data.twtuname} style={ss.userName}/>
+                  <Text text={compData.userInfo.data.twtuname} style={ss.userName}/>
                   <Text text="  "/>
-                  <Image source={{ uri: userData.data.avatar }} style={ss.avatar}/>
+                  <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar}/>
                 </View>
               </TouchableOpacity>
             </View>
@@ -118,28 +112,28 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               <Text text={formattedHead} preset="h5"/>
             </View>
             <CourseDailySchedule
-              data={courseData.data}
-              status={courseData.status}
+              data={compData.course.data}
+              status={compData.course.status}
               timestamp={timestamp}
             />
             <View style={ss.sectionHead}>
               <Text text="Library" preset="h5"/>
             </View>
-            <BookList data={libraryData.data} status={libraryData.status} />
+            <BookList data={compData.library.data} status={compData.library.status} />
             <View style={ss.sectionHead}>
               <Text text="GPA Curve" preset="h5"/>
             </View>
             <GpaCurve
-              data={gpaData.data.gpaSemestral[scoreType]}
-              status={gpaData.status}
+              data={compData.gpa.data.gpaSemestral[scoreType]}
+              status={compData.gpa.status}
               style={ss.curveView}
               scoreToFixed={digitsFromScoreType(scoreType)}
             />
             <GpaStat
               style={ss.stat}
-              status={gpaData.status}
+              status={compData.gpa.status}
               setScoreType={(scoreType) => setScoreType(scoreType)}
-              scores={gpaData.data.gpaOverall}
+              scores={compData.gpa.data.gpaOverall}
             />
             <Button style={ss.moreButton} tx="homeScreen.more"/>
           </View>
@@ -152,10 +146,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 const mapStateToProps = (state) => {
   return {
     scoreType: state.gpaTypeReducer,
-    gpaData: state.gpaDataReducer,
-    courseData: state.courseDataReducer,
-    userData: state.userDataReducer,
-    libraryData: state.libraryDataReducer,
+    compData: state.dataReducer,
   }
 }
 
