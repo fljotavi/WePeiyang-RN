@@ -1,31 +1,42 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { StatusBar, View, ViewStyle } from "react-native"
-import { Text } from "../../components/text"
+import { StatusBar, View } from "react-native"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setScoreType } from "../../actions/gpa-type-actions"
 import { fetchGpaData } from "../../actions/data-actions"
+import { GpaCurve } from "../../components/gpa-curve"
+import { digitsFromScoreType } from "../../utils/common"
+import { GpaStat } from "../../components/gpa-stat/gpa-stat"
+import ss from "./gpa-screen.style"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
-}
-
-const ss = {
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical
-  } as ViewStyle,
+  setScoreType?
+  scoreType?
+  fetchGpaData?
+  gpa?
 }
 
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   render () {
+    const { gpa, scoreType, setScoreType } = this.props
     return (
       <Screen preset="scroll">
         <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
-          <Text text="GPA" preset="h2" />
+          <GpaStat
+            style={ss.stat}
+            status={gpa.status}
+            setScoreType={(scoreType) => setScoreType(scoreType)}
+            scores={gpa.data.gpaOverall}
+          />
+          <GpaCurve
+            data={gpa.data.gpaSemestral[scoreType]}
+            status={gpa.status}
+            scoreToFixed={digitsFromScoreType(scoreType)}
+          />
         </View>
       </Screen>
     )
