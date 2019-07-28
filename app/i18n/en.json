@@ -27,7 +27,8 @@
   },
   "homeScreen": {
     "header": "We Peiyang",
-    "more": "MORE >>"
+    "more": "MORE >>",
+    "prepareDataSuccess": "Successfully loaded newest data"
   },
   "newsScreen": {
     "header": "News"
