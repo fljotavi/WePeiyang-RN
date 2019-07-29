@@ -5,9 +5,9 @@ import { StatusBar, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { setScoreType } from "../../actions/gpa-type-actions"
+import { setScoreType, setSemesterIndex } from "../../actions/gpa-type-actions"
 import { fetchGpaData } from "../../actions/data-actions"
-import { GpaCurve } from "../../components/gpa-curve"
+import { connectedGpaCurve as GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import ss from "./gpa-screen.style"
@@ -18,12 +18,13 @@ export interface GpaScreenProps extends NavigationScreenProps<{}> {
   scoreType?
   fetchGpaData?
   gpa?
+  semesterIndex?
 }
 
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   render () {
 
-    const { gpa, scoreType, setScoreType } = this.props
+    const { gpa, scoreType, setScoreType, semesterIndex } = this.props
 
     return (
       <Screen preset="scroll">
@@ -31,7 +32,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         <View style={ss.container}>
           <GpaRadar
             status={gpa.status}
-            scores={gpa.data.gpaDetailed[0]} // TODO: Change index to currentSemester in store
+            scores={gpa.data.gpaDetailed[semesterIndex]} // TODO: Change index to currentSemester in store
           />
           <GpaStat
             style={ss.stat}
@@ -54,6 +55,7 @@ const mapStateToProps = (state) => {
   return {
     scoreType: state.gpaTypeReducer,
     gpa: state.dataReducer.gpa,
+    semesterIndex: state.semesterReducer
   }
 }
 
@@ -62,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
     setScoreType: (newType) => {
       dispatch(setScoreType(newType))
     },
+    setSemesterIndex: (newType) => {
+      dispatch(setSemesterIndex(newType))
+    },
     fetchGpaData: async () => {
       await dispatch(fetchGpaData())
     }
@@ -69,3 +74,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export const connectedGpaScreen = connect(mapStateToProps, mapDispatchToProps)(GpaScreen)
+export default connectedGpaScreen

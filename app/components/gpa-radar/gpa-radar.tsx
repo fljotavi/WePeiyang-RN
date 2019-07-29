@@ -130,8 +130,8 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
             style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
           >
             <VictoryArea
+              animate={{ duration: 1000 }}
               data={processed}
-              labels={(datum) => datum.x}
               labelComponent={
                 <View/>
               }
@@ -145,10 +145,9 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
                   dependentAxis
                   style={{
                     axis: { stroke: "none" },
-                    grid: { stroke: color.lightGrey, strokeWidth: 0.25, opacity: 0 }
+                    // grid: { stroke: color.lightGrey, strokeWidth: 0.25, opacity: 0 }
                   }}
-                  label="placeholder"
-                  labelPlacement="perpendicular"
+                  label="foo"
                   axisLabelComponent={
                     <GpaPolarLabel courseName={key.x}/>
                   }
@@ -163,7 +162,7 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
             tickFormat={() => ""}
             style={{
               axis: { stroke: "none" },
-              grid: { stroke: color.primary, opacity: 0.5 }
+              grid: { stroke: color.primary, opacity: 0.5, strokeWidth: 0.25 }
             }}
           />
         </VictoryChart>

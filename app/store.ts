@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux"
-import { authReducer, gpaTypeReducer } from "./reducers/general-reducer"
+import { authReducer, gpaTypeReducer, semesterReducer } from "./reducers/general-reducer"
 import { dataReducer } from "./reducers/data-reducer"
 import { persistStore, persistReducer } from 'redux-persist'
 import thunk from "redux-thunk"
@@ -10,7 +10,7 @@ const persistConfig = {
   storage: AsyncStorage,
 }
 
-const topLevelReducer = combineReducers({ gpaTypeReducer, dataReducer, authReducer })
+const topLevelReducer = combineReducers({ gpaTypeReducer, semesterReducer, dataReducer, authReducer })
 const persistedReducer = persistReducer(persistConfig, topLevelReducer)
 
 export default () => {

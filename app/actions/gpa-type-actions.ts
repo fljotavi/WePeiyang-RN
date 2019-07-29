@@ -4,3 +4,10 @@ export function setScoreType(newType) {
     payload: newType
   }
 }
+
+export function setSemesterIndex(newIndex) {
+  return {
+    type: "SET_SEMESTER_INDEX",
+    payload: newIndex
+  }
+}

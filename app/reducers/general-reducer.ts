@@ -6,6 +6,14 @@ export const gpaTypeReducer = (state = "weighted", action) => {
   return state
 }
 
+export const semesterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case "SET_SEMESTER_INDEX":
+      state = action.payload
+  }
+  return state
+}
+
 export const authReducer = (state = { token: null, logged: false }, action) => {
   switch (action.type) {
     case "SET_TOKEN":

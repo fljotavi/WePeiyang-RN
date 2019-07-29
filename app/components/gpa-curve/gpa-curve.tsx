@@ -4,6 +4,8 @@ import { Text } from "../text"
 import { VictoryLine, VictoryGroup, VictoryScatter } from "victory-native"
 import { color, typography } from "../../theme"
 import Svg, { G, Rect, Text as Svgtext } from "react-native-svg"
+import { setSemesterIndex } from "../../actions/gpa-type-actions"
+import { connect } from "react-redux"
 
 export interface GpaTooltipProps {
   x?: number
@@ -40,15 +42,14 @@ export interface GpaCurveProps {
   data?: any[]
   status: string
   scoreToFixed?: number
+  semesterIndex?
+  setSemesterIndex?
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
-  state = {
-    selected: 1
-  }
 
   render() {
-    const { style, data, status, scoreToFixed } = this.props
+    const { style, data, status, semesterIndex, scoreToFixed } = this.props
 
     if (status !== "VALID" || data.length <= 0) {
       return <View />
@@ -61,7 +62,9 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
       justifyContent: "center"
     }
 
-    let selected = this.state.selected
+    console.log(semesterIndex)
+
+    let selected = semesterIndex
     let gpaArray = data.map(dict => dict.y)
     let lowest = Math.min(...gpaArray)
     let highest = Math.max(...gpaArray)
@@ -95,9 +98,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
                   target: "data",
                   eventHandlers: {
                     onPress: (a, i) => {
-                      this.setState({
-                        selected: i.index
-                      })
+                      this.props.setSemesterIndex(i.index)
                     }
                   }
                 }
@@ -121,3 +122,19 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    semesterIndex: state.semesterReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSemesterIndex: (newType) => {
+      dispatch(setSemesterIndex(newType))
+    },
+  }
+}
+
+export const connectedGpaCurve = connect(mapStateToProps, mapDispatchToProps)(GpaCurve)
