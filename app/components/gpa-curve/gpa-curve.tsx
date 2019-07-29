@@ -93,6 +93,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
               color={color.lightGrey}
               animate={{ duration: 700 }}
               size={7}
+              style={{ data: { stroke: "rgba(0,0,0,0)", strokeWidth: 29 } }}
               events={[
                 {
                   target: "data",
