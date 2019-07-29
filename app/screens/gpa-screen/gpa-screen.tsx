@@ -32,10 +32,10 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         <View style={ss.container}>
           <GpaRadar
             status={gpa.status}
+            style={ss.radar}
             scores={gpa.data.gpaDetailed[semesterIndex]} // TODO: Change index to currentSemester in store
           />
           <GpaStat
-            style={ss.stat}
             status={gpa.status}
             setScoreType={(scoreType) => setScoreType(scoreType)}
             scores={gpa.data.gpaOverall}

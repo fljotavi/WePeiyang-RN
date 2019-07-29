@@ -6,7 +6,8 @@ export default {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingVertical: layoutParam.paddingVertical
   } as ViewStyle,
-  stat: {
-    marginTop: 40
+  radar: {
+    marginTop: 20,
+    marginBottom: 20
   } as ViewStyle,
 }
