@@ -76,14 +76,15 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
       <View style={[predefinedStyle, style]}>
         <Text style={textStyle} />
         <Svg height={chartHeight} width={chartWidth}>
-          <VictoryGroup standalone={false}
+          <VictoryGroup
+            standalone={false}
+            animate={{ duration: 500 }}
             height={chartHeight}
             width={chartWidth}
             padding={0}
             color={color.washed} >
             <VictoryLine
               data={passedData}
-              animate={{ duration: 1000 }}
               interpolation="cardinal"
               style={{ data: { stroke: color.washed, strokeWidth: 4 } }}
               domain={{ y: [lowest - domainPadding, highest + domainPadding * 5] }}
@@ -91,7 +92,6 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             <VictoryScatter
               data={data}
               color={color.lightGrey}
-              animate={{ duration: 700 }}
               size={7}
               style={{ data: { stroke: "rgba(0,0,0,0)", strokeWidth: 29 } }}
               events={[
@@ -107,13 +107,11 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             />
             <VictoryScatter
               data={[data[selected]]}
-              animate={{ duration: 700 }}
               color={color.background}
               size={7.6}
               style={{ data: { stroke: color.primaryLighter, strokeWidth: 4.2 } }}
             />
             <VictoryScatter
-              animate={{ duration: 1000 }}
               data={[data[selected]]}
               dataComponent={<GpaTooltip score={data[selected].y} scoreToFixed={scoreToFixed || 2}/>}
             />
