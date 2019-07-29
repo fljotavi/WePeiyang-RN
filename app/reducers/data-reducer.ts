@@ -60,8 +60,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
           gradePoints: statData.total.gpa.toFixed(digitsFromScoreType("gradePoints")),
           credits: statData.total.credit.toFixed(digitsFromScoreType("credits")),
         },
-        gpaDetailed: {
-        }
+        gpaDetailed: semestralData // SemestralData here actually contains all courses in detail, correcting semantics here.
       }
       state = {
         ...state,

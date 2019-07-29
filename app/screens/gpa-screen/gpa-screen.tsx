@@ -11,6 +11,7 @@ import { GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import ss from "./gpa-screen.style"
+import { GpaRadar } from "../../components/gpa-radar"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   setScoreType?
@@ -21,11 +22,17 @@ export interface GpaScreenProps extends NavigationScreenProps<{}> {
 
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   render () {
+
     const { gpa, scoreType, setScoreType } = this.props
+
     return (
       <Screen preset="scroll">
         <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
+          <GpaRadar
+            status={gpa.status}
+            scores={gpa.data.gpaDetailed[0]} // TODO: Change index to currentSemester in store
+          />
           <GpaStat
             style={ss.stat}
             status={gpa.status}
