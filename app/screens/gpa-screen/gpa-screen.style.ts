@@ -2,10 +2,13 @@ import { color, layoutParam } from "../../theme"
 import { TextStyle, ViewStyle } from "react-native"
 
 export default {
+  screen: {
+    backgroundColor: color.primaryDarker
+  },
   topBar: {
   },
   topBarIcon: {
-    color: color.primaryLighter,
+    color: color.background,
   },
 
   container: {
@@ -13,7 +16,6 @@ export default {
     paddingVertical: layoutParam.paddingVertical,
     alignItems: "center",
   } as ViewStyle,
-
   radar: {
 
   } as ViewStyle,
@@ -30,7 +32,7 @@ export default {
     justifyContent: "space-between",
   } as ViewStyle,
   orderTouchable: {
-    backgroundColor: color.washed,
+    backgroundColor: 'rgba(255,255,255,0)',
     borderRadius: 3,
   },
   orderTexts: {

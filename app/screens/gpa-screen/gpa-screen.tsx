@@ -94,14 +94,14 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     })
 
     return (
-      <Screen>
+      <Screen style={ss.screen}>
         <ScrollView refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this._onRefresh}
           />
         } >
-          <StatusBar backgroundColor={color.background} barStyle="dark-content" />
+          <StatusBar backgroundColor={color.primaryDarker} barStyle="light-content" />
           <View style={[ssGlobal.topBar.container, ss.topBar]}>
             <View style={ssGlobal.topBar.side}>
               <Touchable
@@ -136,6 +136,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               setScoreType={(scoreType) => setScoreType(scoreType)}
               scores={semestralStat}
               txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
+              palette={['rgba(255,255,255,0.15)', color.background]}
             />
             <GpaCurve
               style={ss.curve}
@@ -143,6 +144,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               status={gpa.status}
               scoreToFixed={digitsFromScoreType(scoreType)}
               animated={false}
+              palette={['rgba(255,255,255,0.05)', color.background, 'rgba(255,255,255,0.05)', color.background, color.primaryDarker]}
             />
 
             <View style={ss.orderTab}>
