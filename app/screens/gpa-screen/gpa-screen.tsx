@@ -85,11 +85,11 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         case "credits":
           return courseA.credit < courseB.credit ? 1 : -1
         case "name":
-          return courseA.name < courseB.name ? 1 : -1
+          return courseA.name.localeCompare(courseB.name, "zh")
         case "score":
           return courseA.score < courseB.score ? 1 : -1
       }
-      Toast.show(<Text text="Sort failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+      Toast.show(<Text text="Sort failed: Unknown sorting key. Please check your code spelling." style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
       return 1
     })
 
