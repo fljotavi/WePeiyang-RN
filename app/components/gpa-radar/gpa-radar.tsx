@@ -1,7 +1,7 @@
 import * as React from "react"
 import { TouchableOpacity, View, ViewStyle } from "react-native"
 import { color, typography } from "../../theme"
-import { VictoryChart, VictoryGroup, VictoryArea, VictoryPolarAxis } from "victory-native"
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryArea, VictoryPolarAxis } from "victory-native"
 import Svg, { G, Text as Svgtext, TSpan } from "react-native-svg"
 import { shuffleData } from "../../utils/common"
 import { connect } from "react-redux"
@@ -111,7 +111,8 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
   render() {
     const { style, gpa } = this.props
     let shuffled = shuffleData([...this.props.gpa.data.gpaDetailed[this.props.semesterIndex].data])
-    let processed = shuffled.map(course => ({ x: course.name, y: course.score }))
+    let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
+    let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
 
     if (gpa.status !== "VALID") {
       return <View />
@@ -126,15 +127,24 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
         <View style={[predefinedStyle, style]}>
           <Svg>
             <VictoryChart
+              domain={{ y: [ 0, 100 ] }}
               polar
-              domain={{ y: [ 50, 100 ] }}
             >
               <VictoryGroup
                 colorScale={[color.primaryLighter]}
-                style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
               >
                 <VictoryArea
+                  style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
                   data={processed}
+                  labelComponent={
+                    <G/>
+                  }
+                />
+                <VictoryBar
+                  style={{ data: {
+                    fill: color.primaryLighter, fillOpacity: 0.07
+                  } }}
+                  data={processedCredits}
                   labelComponent={
                     <G/>
                   }
