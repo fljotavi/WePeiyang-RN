@@ -99,6 +99,16 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
                   eventHandlers: {
                     onPress: (a, i) => {
                       this.props.setSemesterIndex(i.index)
+                    },
+                    onPressIn: () => {
+                      return [{
+                        mutation: () => { return { size: 10 } }
+                      }]
+                    },
+                    onPressOut: () => {
+                      return [{
+                        mutation: () => { return { size: 7 } }
+                      }]
                     }
                   }
                 }
