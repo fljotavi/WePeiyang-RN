@@ -30,6 +30,12 @@ const primary = {
   textColor: color.background,
 }
 
+const gpa = {
+  ...BASE,
+  backgroundColor: color.background,
+  textColor: color.primaryDarker
+}
+
 const err = {
   ...BASE,
   backgroundColor: color.error,
@@ -37,5 +43,5 @@ const err = {
 }
 
 export default {
-  primary, err
+  primary, err, gpa
 }

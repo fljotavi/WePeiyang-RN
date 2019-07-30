@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 import { FlatList, RefreshControl, ScrollView, StatusBar, TouchableOpacity, View } from "react-native"
 import { Screen } from "../../components/screen"
-import { color, ssGlobal } from "../../theme"
+import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setGpaOrderBy, setScoreType, setSemesterIndex } from "../../actions/preference-actions"
 import { fetchGpaData } from "../../actions/data-actions"
@@ -12,20 +12,26 @@ import { digitsFromScoreType } from "../../utils/common"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import ss from "./gpa-screen.style"
 import { connectedGpaRadar as GpaRadar } from "../../components/gpa-radar"
-import { GpaSnack } from "../../components/gpa-radar/gpa-snack"
-import Touchable from 'react-native-platform-touchable'
+import { GpaSnack } from "./gpa-snack"
+
 import { Text } from "../../components/text"
 import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
+import { TopBar } from "./top-bar"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
-  setScoreType?
+
   scoreType?
-  fetchGpaData?
+  setScoreType?
+
   gpa?
+  fetchGpaData?
+
   semesterIndex?
+
   gpaOrderBy?
   setGpaOrderBy?
+
 }
 
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
@@ -38,7 +44,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     await Promise.all([
       this.props.fetchGpaData()
     ]).then((values) => {
-      Toast.show(<Text tx="gpaScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+      Toast.show(<Text tx="gpaScreen.prepareDataSuccess" style={{ color: toastOptions.gpa.textColor }}/> as any, toastOptions.gpa)
       console.log(values)
     }).catch((err) => {
       console.log(err)
@@ -101,35 +107,19 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             onRefresh={this._onRefresh}
           />
         } >
+
           <StatusBar backgroundColor={color.primaryDarker} barStyle="light-content" />
-          <View style={[ssGlobal.topBar.container, ss.topBar]}>
-            <View style={ssGlobal.topBar.side}>
-              <Touchable
-                background={Touchable.Ripple(color.lightGrey, true)}
-                onPress={() => this.props.navigation.goBack()}
-              >
-                <Text style={[ssGlobal.topBar.icon, ss.topBarIcon]} text="arrow_back" preset="i"/>
-              </Touchable>
-            </View>
-            <View style={ssGlobal.topBar.side}>
-              <Touchable
-                background={Touchable.Ripple(color.lightGrey, true)}
-                onPress={() => Toast.show(<Text text="Secondary classes currently unusable" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)}
-              >
-                <Text style={[ssGlobal.topBar.icon, ss.topBarIcon]} text="visibility_off" preset="i"/>
-              </Touchable>
-              <Touchable
-                background={Touchable.Ripple(color.lightGrey, true)}
-                onPress={this._onRefresh}
-              >
-                <Text style={[ssGlobal.topBar.icon, ss.topBarIcon]} text="sync" preset="i"/>
-              </Touchable>
-            </View>
-          </View>
+          <TopBar style={ss.topBar} actions={[
+            () => this.props.navigation.goBack(),
+            this._onRefresh
+          ]}/>
+
           <GpaRadar
             style={ss.radar}
           />
+
           <View style={ss.container}>
+
             <GpaStat
               style={ss.stat}
               status={gpa.status}
@@ -138,6 +128,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
               palette={['rgba(255,255,255,0.15)', color.background]}
             />
+
             <GpaCurve
               style={ss.curve}
               data={gpa.data.gpaSemestral[scoreType]}
