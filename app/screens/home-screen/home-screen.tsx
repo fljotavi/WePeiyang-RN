@@ -131,6 +131,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               status={compData.gpa.status}
               style={ss.curveView}
               scoreToFixed={digitsFromScoreType(scoreType)}
+              animated={true}
             />
             <GpaStat
               style={ss.stat}

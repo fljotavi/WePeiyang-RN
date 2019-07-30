@@ -41,6 +41,14 @@ export function getScheduleTimeSlot(raw) {
   return ["Indefinite Time", "Indefinite Time"]
 }
 
+export function shuffleData(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
 export function sanitizeLocation(raw: string) {
   return raw.replace('楼', '-')
 }

@@ -29,7 +29,11 @@
     "header": "We Peiyang",
     "more": "MORE >>",
     "prepareDataSuccess": "Successfully loaded newest data",
-    "partialData": "Part of the data wasn't properly delivered due to some errors in network fetching process."
+    "partialData": "Part of the data wasn't properly delivered due to some errors in the network fetching process."
+  },
+  "gpaScreen": {
+    "prepareDataSuccess": "Successfully refreshed GPA data",
+    "prepareDataFailed": "Failed to refresh GPA data due to some errors in the network fetching process."
   },
   "newsScreen": {
     "header": "News"

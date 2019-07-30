@@ -1,4 +1,4 @@
-import { layoutParam } from "../../theme"
+import { color, layoutParam } from "../../theme"
 import { ViewStyle } from "react-native"
 
 export default {
@@ -7,8 +7,8 @@ export default {
     paddingVertical: layoutParam.paddingVertical
   } as ViewStyle,
   radar: {
-    marginTop: 20,
-    marginBottom: 20
+    marginTop: -10,
+    marginBottom: 24
   } as ViewStyle,
   list: {
     marginHorizontal: 15,
@@ -16,5 +16,10 @@ export default {
   } as ViewStyle,
   snackStyle: {
     marginBottom: 10,
-  } as ViewStyle
+  } as ViewStyle,
+  topBar: {
+  },
+  topBarIcon: {
+    color: color.primaryLighter,
+  }
 }

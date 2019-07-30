@@ -44,12 +44,13 @@ export interface GpaCurveProps {
   scoreToFixed?: number
   semesterIndex?
   setSemesterIndex?
+  animated?: boolean
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
 
   render() {
-    const { style, data, status, semesterIndex, scoreToFixed } = this.props
+    const { style, data, status, semesterIndex, scoreToFixed, animated } = this.props
 
     if (status !== "VALID" || data.length <= 0) {
       return <View />
@@ -61,8 +62,6 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
       alignItems: "center",
       justifyContent: "center"
     }
-
-    console.log(semesterIndex)
 
     let selected = semesterIndex
     let gpaArray = data.map(dict => dict.y)
@@ -78,7 +77,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
         <Svg height={chartHeight} width={chartWidth}>
           <VictoryGroup
             standalone={false}
-            animate={{ duration: 500 }}
+            animate={animated ? { duration: 500 } : false}
             height={chartHeight}
             width={chartWidth}
             padding={0}
