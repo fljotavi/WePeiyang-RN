@@ -1,15 +1,28 @@
-export const gpaTypeReducer = (state = "weighted", action) => {
+export const semesterReducer = (state = 0, action) => {
   switch (action.type) {
-    case "SET_SCORE_TYPE":
+    case "SET_SEMESTER_INDEX":
       state = action.payload
   }
   return state
 }
 
-export const semesterReducer = (state = 0, action) => {
+export const preferenceReducer = (state = {
+  scoreType: "weighted",
+  gpaOrderBy: "credits"
+}, action) => {
   switch (action.type) {
-    case "SET_SEMESTER_INDEX":
-      state = action.payload
+    case "SET_SCORE_TYPE":
+      state = {
+        ...state,
+        scoreType: action.payload
+      }
+      break
+    case "SET_GPA_ORDER_BY":
+      state = {
+        ...state,
+        gpaOrderBy: action.payload
+      }
+      break
   }
   return state
 }

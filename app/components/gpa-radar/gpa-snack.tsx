@@ -27,7 +27,6 @@ export function GpaSnack(props: GpaSnackProps) {
       paddingHorizontal: 20,
       paddingVertical: 16,
       width: '100%',
-      maxWidth: 500,
       flexDirection: "row",
       justifyContent: "space-between",
     } as ViewStyle,

@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { connect } from "react-redux"
-import { setScoreType } from "../../actions/gpa-type-actions"
+import { setScoreType } from "../../actions/preference-actions"
 import { fetchGpaData, fetchCourseData, fetchLibraryData, fetchUserData } from "../../actions/data-actions"
 import { digitsFromScoreType } from "../../utils/common"
 
@@ -81,7 +81,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       'MMM Do, dddd'
     )
 
-
     return (
       <Screen>
         <ScrollView refreshControl={
@@ -103,11 +102,11 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             </View>
             <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.bike" icon="directions_bike"/>
+              <ModuleButton style={ss.blockWithMarginRight} tx="modules.gpa" icon="timeline" onPress={() => this.props.navigation.navigate('gpa')}/>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.contact" icon="call"/>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.learning" icon="assignment_turned_in"/>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.library" icon="local_library"/>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.cards" icon="credit_card"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.gpa" icon="timeline" onPress={() => this.props.navigation.navigate('gpa')}/>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.classroom" icon="room"/>
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.coffee" icon="free_breakfast"/>
               <ModuleButton tx="modules.buses" icon="directions_bus"/>
@@ -151,7 +150,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
 const mapStateToProps = (state) => {
   return {
-    scoreType: state.gpaTypeReducer,
+    scoreType: state.preferenceReducer.scoreType,
     compData: state.dataReducer,
   }
 }

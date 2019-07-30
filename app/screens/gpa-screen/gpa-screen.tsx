@@ -1,11 +1,11 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {FlatList, RefreshControl, ScrollView, StatusBar, View} from "react-native"
+import { FlatList, RefreshControl, ScrollView, StatusBar, TouchableOpacity, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { setScoreType, setSemesterIndex } from "../../actions/gpa-type-actions"
+import { setGpaOrderBy, setScoreType, setSemesterIndex } from "../../actions/preference-actions"
 import { fetchGpaData } from "../../actions/data-actions"
 import { connectedGpaCurve as GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
@@ -15,8 +15,8 @@ import { connectedGpaRadar as GpaRadar } from "../../components/gpa-radar"
 import { GpaSnack } from "../../components/gpa-radar/gpa-snack"
 import Touchable from 'react-native-platform-touchable'
 import { Text } from "../../components/text"
-import Toast from "react-native-root-toast";
-import toastOptions from "../../theme/toast";
+import Toast from "react-native-root-toast"
+import toastOptions from "../../theme/toast"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   setScoreType?
@@ -24,6 +24,8 @@ export interface GpaScreenProps extends NavigationScreenProps<{}> {
   fetchGpaData?
   gpa?
   semesterIndex?
+  gpaOrderBy?
+  setGpaOrderBy?
 }
 
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
@@ -44,6 +46,21 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     })
   }
 
+  toggleOrderType = () => {
+    let current = this.props.gpaOrderBy
+    switch (current) {
+      case "credits":
+        this.props.setGpaOrderBy("name")
+        break
+      case "name":
+        this.props.setGpaOrderBy("score")
+        break
+      case "score":
+        this.props.setGpaOrderBy("credits")
+        break
+    }
+  }
+
   _onRefresh = () => {
     this.setState({ refreshing: true })
     this.prepareData().then(() => {
@@ -62,6 +79,19 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     for (let key in gpa.data.gpaSemestral) {
       semestralStat[key] = gpa.data.gpaSemestral[key][semesterIndex].y.toFixed(digitsFromScoreType(key))
     }
+
+    let sortedScores = [...gpa.data.gpaDetailed[semesterIndex].data].sort((courseA, courseB) => {
+      switch (this.props.gpaOrderBy) {
+        case "credits":
+          return courseA.credit < courseB.credit ? 1 : -1
+        case "name":
+          return courseA.name < courseB.name ? 1 : -1
+        case "score":
+          return courseA.score < courseB.score ? 1 : -1
+      }
+      Toast.show(<Text text="Sort failed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+      return 1
+    })
 
     return (
       <Screen>
@@ -96,25 +126,39 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               </Touchable>
             </View>
           </View>
+          <GpaRadar
+            style={ss.radar}
+          />
           <View style={ss.container}>
-            <GpaRadar
-              style={ss.radar}
-            />
             <GpaStat
+              style={ss.stat}
               status={gpa.status}
               setScoreType={(scoreType) => setScoreType(scoreType)}
               scores={semestralStat}
-              txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.creditsEarned"]}
+              txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
             />
             <GpaCurve
+              style={ss.curve}
               data={gpa.data.gpaSemestral[scoreType]}
               status={gpa.status}
               scoreToFixed={digitsFromScoreType(scoreType)}
               animated={false}
             />
+
+            <View style={ss.orderTab}>
+              <TouchableOpacity style={ss.orderTouchable} onPress={this.toggleOrderType}>
+                <View style={ss.orderTexts}>
+                  <Text text="shuffle" preset="i" style={ss.orderIcon}/>
+                  <Text text="ORDERED BY" style={ss.orderTextPrefix}/>
+                  <Text text={this.props.gpaOrderBy} style={ss.orderTextSuffix}/>
+                </View>
+              </TouchableOpacity>
+            </View>
+
             <FlatList
               style={ss.list}
-              data={gpa.data.gpaDetailed[semesterIndex].data}
+              contentContainerStyle={ss.listContainer}
+              data={sortedScores}
               keyExtractor={this._keyExtractor}
               renderItem={({ item }) => (
                 <GpaSnack
@@ -126,6 +170,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
                 />
               )}
             />
+
           </View>
         </ScrollView>
       </Screen>
@@ -135,7 +180,8 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
 const mapStateToProps = (state) => {
   return {
-    scoreType: state.gpaTypeReducer,
+    scoreType: state.preferenceReducer.scoreType,
+    gpaOrderBy: state.preferenceReducer.gpaOrderBy,
     gpa: state.dataReducer.gpa,
     semesterIndex: state.semesterReducer
   }
@@ -151,6 +197,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchGpaData: async () => {
       await dispatch(fetchGpaData())
+    },
+    setGpaOrderBy: (newType) => {
+      dispatch(setGpaOrderBy(newType))
     }
   }
 }

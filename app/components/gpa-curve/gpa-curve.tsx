@@ -4,7 +4,7 @@ import { Text } from "../text"
 import { VictoryLine, VictoryGroup, VictoryScatter } from "victory-native"
 import { color, typography } from "../../theme"
 import Svg, { G, Rect, Text as Svgtext } from "react-native-svg"
-import { setSemesterIndex } from "../../actions/gpa-type-actions"
+import { setSemesterIndex } from "../../actions/preference-actions"
 import { connect } from "react-redux"
 
 export interface GpaTooltipProps {

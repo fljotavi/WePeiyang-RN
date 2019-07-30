@@ -96,10 +96,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    scoreType: state.gpaTypeReducer
-  }
+const mapStateToProps = () => {
+  return {}
 }
 
 const mapDispatchToProps = (dispatch) => {

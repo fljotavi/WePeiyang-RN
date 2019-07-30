@@ -70,8 +70,11 @@
     "totalWeighted": "Total Weighted",
     "totalGpa": "Total GPA",
     "creditsEarned": "Credits Earned",
-    "semestralWeighted": "Semestral Wt",
-    "semestralGpa": "Semestral GPA"
+    "semestralWeighted": "Weighted",
+    "semestralGpa": "GPA",
+    "semestralCredits": "Credits",
+    "orderByCredits": "Order by Credits",
+    "orderByScore": "Order by Score"
   },
   "schedule": {
     "noCourseToday": "No course today"
