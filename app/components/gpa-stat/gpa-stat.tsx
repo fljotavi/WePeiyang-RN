@@ -9,12 +9,13 @@ export interface GpaStatProps {
   setScoreType?: any
   scores?: any
   status
+  txs?
 }
 
 export class GpaStat extends React.Component<GpaStatProps, {}> {
 
   render() {
-    const { style, setScoreType, scores, status } = this.props
+    const { style, setScoreType, scores, status, txs } = this.props
     if (status !== "VALID") {
       return <View />
     }
@@ -43,19 +44,19 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
       <View style={[predefinedStyle, style]}>
         <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { setScoreType("weighted") }}>
           <View style={scoreFieldStyle}>
-            <Text tx="gpa.totalWeighted" style={textStyle}/>
+            <Text tx={txs[0]} style={textStyle}/>
             <Text text={scores.weighted} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
         <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { setScoreType("gradePoints") }}>
           <View style={scoreFieldStyle}>
-            <Text tx="gpa.totalGpa" style={textStyle}/>
+            <Text tx={txs[1]} style={textStyle}/>
             <Text text={scores.gradePoints} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
         <Touchable background={Touchable.Ripple(color.lightGrey, true)} onPress={() => { setScoreType("credits") }}>
           <View style={scoreFieldStyle}>
-            <Text tx="gpa.creditsEarned" style={textStyle}/>
+            <Text tx={txs[2]} style={textStyle}/>
             <Text text={scores.credits} style={numStyle} preset="h3"/>
           </View>
         </Touchable>

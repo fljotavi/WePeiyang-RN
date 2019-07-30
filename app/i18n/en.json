@@ -69,7 +69,9 @@
   "gpa": {
     "totalWeighted": "Total Weighted",
     "totalGpa": "Total GPA",
-    "creditsEarned": "Credits Earned"
+    "creditsEarned": "Credits Earned",
+    "semestralWeighted": "Semestral Wt",
+    "semestralGpa": "Semestral GPA"
   },
   "schedule": {
     "noCourseToday": "No course today"

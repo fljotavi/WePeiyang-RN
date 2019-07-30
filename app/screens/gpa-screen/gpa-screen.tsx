@@ -57,6 +57,12 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
     const { gpa, scoreType, setScoreType, semesterIndex } = this.props
 
+    // data for GpaStat component
+    let semestralStat = {}
+    for (let key in gpa.data.gpaSemestral) {
+      semestralStat[key] = gpa.data.gpaSemestral[key][semesterIndex].y.toFixed(digitsFromScoreType(key))
+    }
+
     return (
       <Screen>
         <ScrollView refreshControl={
@@ -97,7 +103,8 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             <GpaStat
               status={gpa.status}
               setScoreType={(scoreType) => setScoreType(scoreType)}
-              scores={gpa.data.gpaOverall}
+              scores={semestralStat}
+              txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.creditsEarned"]}
             />
             <GpaCurve
               data={gpa.data.gpaSemestral[scoreType]}

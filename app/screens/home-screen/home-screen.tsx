@@ -81,6 +81,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       'MMM Do, dddd'
     )
 
+
     return (
       <Screen>
         <ScrollView refreshControl={
@@ -138,6 +139,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               status={compData.gpa.status}
               setScoreType={(scoreType) => setScoreType(scoreType)}
               scores={compData.gpa.data.gpaOverall}
+              txs={["gpa.totalWeighted", "gpa.totalGpa", "gpa.creditsEarned"]}
             />
             <Button style={ss.moreButton} tx="homeScreen.more"/>
           </View>

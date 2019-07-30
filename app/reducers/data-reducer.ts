@@ -62,6 +62,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         },
         gpaDetailed: semestralData // SemestralData here actually contains all courses in detail, correcting semantics here.
       }
+      console.log(extractedData)
       state = {
         ...state,
         status: "MODIFIED",
