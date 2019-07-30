@@ -55,7 +55,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
             <Text text={`${userData.data.studentid} / ${userData.data.realname}`} style={ss.userId} preset="small"/>
           </View>
           <View style={ss.shortcutModulePanel}>
-            <Gradicon source={require("./gradicons/gradicon1.png")} tx="modules.gpa"/>
+            <Gradicon onPress={() => this.props.navigation.navigate('gpa')} source={require("./gradicons/gradicon1.png")} tx="modules.gpa"/>
             <Gradicon source={require("./gradicons/gradicon2.png")} tx="modules.library"/>
             <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.cards"/>
           </View>

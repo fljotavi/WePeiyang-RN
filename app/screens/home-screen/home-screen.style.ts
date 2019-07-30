@@ -1,5 +1,5 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native"
-import { layoutParam, spacingDict } from "../../theme"
+import { layoutParam } from "../../theme"
 
 export default {
   avatar: {
@@ -22,10 +22,10 @@ export default {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: spacingDict.large,
+    marginBottom: 24,
   } as ViewStyle,
   moduleButton: {
-    marginRight: spacingDict.large,
+    marginRight: 24,
   } as ViewStyle,
   horiScrollSelf: {
     overflow: 'visible'
@@ -37,11 +37,11 @@ export default {
     overflow: 'visible',
   } as ViewStyle,
   sectionHead: {
-    marginBottom: spacingDict.medium,
-    marginTop: spacingDict.large,
+    marginBottom: 12,
+    marginTop: 24,
   } as ViewStyle,
   blockWithMarginRight: {
-    marginRight: spacingDict.medium,
+    marginRight: 12,
   } as ViewStyle,
   mainView: {
     flex: 1,

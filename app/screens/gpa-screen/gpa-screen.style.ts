@@ -10,4 +10,11 @@ export default {
     marginTop: 20,
     marginBottom: 20
   } as ViewStyle,
+  list: {
+    marginHorizontal: 15,
+    marginTop: 50,
+  } as ViewStyle,
+  snackStyle: {
+    marginBottom: 10,
+  } as ViewStyle
 }

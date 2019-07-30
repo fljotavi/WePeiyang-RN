@@ -7,11 +7,11 @@ export interface GradiconProps {
   source
   tx?
   style?
-  action?
+  onPress?
 }
 
 export function Gradicon(props: GradiconProps) {
-  const { source, tx, style, action } = props
+  const { source, tx, style, onPress } = props
   const predefinedStyle: ViewStyle = {
     alignItems: "center",
     justifyContent: "center"
@@ -26,7 +26,7 @@ export function Gradicon(props: GradiconProps) {
     height: 50
   }
   return (
-    <TouchableOpacity onPress={action}>
+    <TouchableOpacity onPress={onPress}>
       <View style={[predefinedStyle, style]}>
         <Image source={source} style={iconStyle}/>
         <Text tx={tx} style={textStyle}/>

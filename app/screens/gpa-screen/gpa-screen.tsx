@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { StatusBar, View } from "react-native"
+import { FlatList, StatusBar, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -12,6 +12,7 @@ import { digitsFromScoreType } from "../../utils/common"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import ss from "./gpa-screen.style"
 import { GpaRadar } from "../../components/gpa-radar"
+import { GpaSnack } from "../../components/gpa-radar/gpa-snack"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   setScoreType?
@@ -44,6 +45,19 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             data={gpa.data.gpaSemestral[scoreType]}
             status={gpa.status}
             scoreToFixed={digitsFromScoreType(scoreType)}
+          />
+          <FlatList
+            style={ss.list}
+            data={gpa.data.gpaDetailed[semesterIndex].data}
+            renderItem={({ item }) => (
+              <GpaSnack
+                style={ss.snackStyle}
+                score={item['score']}
+                courseName={item['name']}
+                courseType={item['classType']}
+                credits={item['credit']}
+              />
+            )}
           />
         </View>
       </Screen>
