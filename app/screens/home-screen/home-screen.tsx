@@ -159,7 +159,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             </View>
             <EcardBlock/>
 
-            <Button style={ss.moreButton} tx="homeScreen.more"/>
           </View>
         </ScrollView>
       </Screen>
