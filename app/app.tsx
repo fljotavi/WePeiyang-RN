@@ -8,7 +8,6 @@ import { RootNavigator } from "./navigation/root-navigator"
 import { createAppContainer } from "react-navigation"
 
 import configureStore from "./store"
-import { color } from "./theme"
 import { PersistGate } from 'redux-persist/integration/react'
 import { Text } from "./components/text"
 
@@ -26,7 +25,11 @@ export class App extends React.Component<{}, AppState> {
     return (
       <Provider store={store}>
         <PersistGate loading={<Text text="loading"/>} persistor={persistor}>
-          <StatusBar backgroundColor={color.background} barStyle="dark-content" />
+          <StatusBar
+            translucent
+            backgroundColor="transparent"
+            barStyle='dark-content'
+          />
           <AppContainer />
         </PersistGate>
       </Provider>

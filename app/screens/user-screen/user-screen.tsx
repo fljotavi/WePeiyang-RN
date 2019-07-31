@@ -2,7 +2,6 @@ import * as React from "react"
 import { Image, StatusBar, View } from "react-native"
 import { connect } from 'react-redux'
 import { Screen } from "../../components/screen"
-import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { Gradicon } from "./gradicon"
@@ -46,7 +45,11 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
 
     return (
       <Screen preset="scroll">
-        <StatusBar backgroundColor={color.primaryGreyer} barStyle="light-content" />
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle='light-content'
+        />
         <View style={ss.headPanel} />
         <View style={ss.container}>
           <View style={ss.userInfoPanel}>

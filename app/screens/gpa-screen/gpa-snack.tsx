@@ -1,6 +1,6 @@
 import { TextStyle, View, ViewStyle } from "react-native"
 import { color, layoutParam } from "../../theme"
-import { Text } from "../text"
+import { Text } from "../../components/text"
 import * as React from "react"
 import Touchable from 'react-native-platform-touchable'
 import { digitsFromScoreType } from "../../utils/common"

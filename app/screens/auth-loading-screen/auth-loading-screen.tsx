@@ -1,8 +1,8 @@
 import * as React from "react"
-import { StatusBar, View, ViewStyle } from "react-native"
+import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { processAuthStatus } from "../../services/twt-fetch"
 
@@ -32,7 +32,6 @@ export class AuthLoadingScreen extends React.Component<AuthLoadingScreenProps, {
   render () {
     return (
       <Screen preset="scroll">
-        <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <Text text="Loading..." preset="h2" />
         </View>

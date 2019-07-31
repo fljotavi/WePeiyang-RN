@@ -108,7 +108,12 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           />
         } >
 
-          <StatusBar backgroundColor={color.primaryDarker} barStyle="light-content" />
+          <StatusBar
+            translucent
+            backgroundColor="transparent"
+            barStyle='light-content'
+          />
+
           <TopBar style={ss.topBar} actions={[
             () => this.props.navigation.goBack(),
             this._onRefresh

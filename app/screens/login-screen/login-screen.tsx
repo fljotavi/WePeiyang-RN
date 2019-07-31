@@ -70,7 +70,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
-        <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <View style={ss.headerBar}>
             <Text tx="loginScreen.greetings" preset="h2"/>

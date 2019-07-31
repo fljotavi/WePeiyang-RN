@@ -20,7 +20,6 @@ export class TjuLoginScreen extends React.Component<TjuLoginScreen, {}> {
   render () {
     return (
       <Screen preset="scroll">
-        <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <Text tx="tjuScreen.header" preset="h2" />
         </View>

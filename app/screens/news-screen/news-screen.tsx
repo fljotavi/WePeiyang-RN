@@ -19,7 +19,6 @@ export class NewsScreen extends React.Component<NewsScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
-        <StatusBar backgroundColor={color.background} barStyle="dark-content" />
         <View style={ss.container}>
           <Text tx="newsScreen.header" preset="h2" />
         </View>

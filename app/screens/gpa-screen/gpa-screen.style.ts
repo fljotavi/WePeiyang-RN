@@ -3,7 +3,8 @@ import { TextStyle, ViewStyle } from "react-native"
 
 export default {
   screen: {
-    backgroundColor: color.primaryDarker
+    backgroundColor: color.primaryDarker,
+    paddingTop: layoutParam.statusBarHeight,
   },
   topBar: {
   },

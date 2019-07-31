@@ -6,6 +6,7 @@ export const layoutParam = {
   footerHeight: 60,
   borderRadius: 10,
   fixedMobileWidth: 400,
+  statusBarHeight: 26, // TODO: Change to device-specific calculations
 }
 
 export const ssGlobal = {

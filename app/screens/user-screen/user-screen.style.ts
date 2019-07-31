@@ -16,7 +16,8 @@ export default {
   } as ViewStyle,
   userInfoPanel: {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingTop: layoutParam.statusBarHeight,
   } as ViewStyle,
   userName: {
     color: color.washed,
