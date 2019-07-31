@@ -14,6 +14,8 @@ export interface ScreenProps {
 
   /**
    * One of the different types of presets.
+   * Please notice that setting 'scroll' on this will make the transparent status bar content overlap with possible page content when scrolling down.
+   * If this attribute is not set, then the status bar would display as colored & opaque, with the color equal to screen.backgroundColor.
    */
   preset?: ScreenPresets
 

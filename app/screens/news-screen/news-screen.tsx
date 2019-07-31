@@ -1,14 +1,17 @@
 import * as React from "react"
-import { StatusBar, View, ViewStyle } from "react-native"
+import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 
 export interface NewsScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ss = {
+  screen: {
+    paddingTop: layoutParam.statusBarHeight
+  } as ViewStyle,
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingVertical: layoutParam.paddingVertical

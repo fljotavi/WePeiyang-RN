@@ -1,6 +1,6 @@
 import { ViewStyle } from "react-native"
 import { isNil } from "ramda"
-import { color } from "../../theme"
+import {color, layoutParam} from "../../theme"
 
 /**
  * All screen keyboard offsets.
@@ -33,6 +33,7 @@ export const presets = {
       alignItems: "stretch",
       height: "100%",
       width: "100%",
+      paddingTop: layoutParam.statusBarHeight,
     } as ViewStyle,
   },
 
@@ -47,7 +48,11 @@ export const presets = {
       flex: 1,
       height: "100%",
     } as ViewStyle,
-    inner: { justifyContent: "flex-start", alignItems: "stretch" } as ViewStyle,
+    inner: {
+      justifyContent: "flex-start",
+      alignItems: "stretch",
+      paddingTop: layoutParam.statusBarHeight,
+    } as ViewStyle,
   },
 }
 

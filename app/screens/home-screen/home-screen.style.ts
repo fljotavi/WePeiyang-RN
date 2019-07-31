@@ -2,6 +2,9 @@ import { ImageStyle, TextStyle, ViewStyle } from "react-native"
 import { layoutParam } from "../../theme"
 
 export default {
+  screen: {
+    paddingTop: layoutParam.statusBarHeight
+  } as ViewStyle,
   avatar: {
     borderRadius: 40,
     height: 40,
