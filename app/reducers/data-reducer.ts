@@ -25,6 +25,15 @@ const dataReducerInitialState = {
   course: {
     status: "NOT_RECEIVED",
     data: {}
+  },
+  ecard: {
+    status: "NOT_RECEIVED",
+    auth: {
+      status: "NOT_BOUND",
+      cardId: "",
+      password: "",
+    },
+    data: {}
   }
 }
 
@@ -95,6 +104,34 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
           data: action.payload
         }
       }
+      break
+
+    case "SET_ECARD_AUTH":
+      state = {
+        ...state,
+        status: "MODIFIED",
+        ecard: {
+          ...state.ecard,
+          auth: {
+            status: "BOUND",
+            cardId: action.payload.cardId,
+            password: action.payload.password,
+          }
+        }
+      }
+      break
+
+    case "SET_ECARD_DATA":
+      state = {
+        ...state,
+        status: "MODIFIED",
+        ecard: {
+          ...state.ecard,
+          status: "VALID",
+          data: action.payload
+        }
+      }
+      break
 
   }
   return state

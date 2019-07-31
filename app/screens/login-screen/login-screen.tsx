@@ -1,9 +1,9 @@
 import * as React from "react"
-import { StatusBar, View, ViewStyle } from "react-native"
+import { View, ViewStyle } from "react-native"
 import { connect } from 'react-redux'
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { layoutParam } from "../../theme"
 import toastOptions from "../../theme/toast"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"

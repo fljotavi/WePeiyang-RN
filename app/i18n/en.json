@@ -47,7 +47,12 @@
     "ecardAccount": "E-card account",
     "portalAccount": "Portal account",
     "unbound": "Unbound",
-    "bound": "Bound"
+    "bound": "Bound",
+    "greetings": "Be together",
+    "ecardId": "Your Student ID",
+    "ecardPassword": "Your e-card password (Used on E-card POS machines)",
+    "bind": "Bind",
+    "bindSuccess": "Account bound"
   },
   "tab": {
     "wpy": "WPY",

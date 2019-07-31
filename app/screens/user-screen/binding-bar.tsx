@@ -8,13 +8,13 @@ export interface BindingBarProps {
   txTitle?
   txSubtitle?
   icon?
-  action?
   arrowVisible?
   style?
+  onPress?
 }
 
 export function BindingBar(props: BindingBarProps) {
-  const { txTitle, txSubtitle, icon, action, arrowVisible = true, style } = props
+  const { txTitle, txSubtitle, icon, onPress, arrowVisible = true, style } = props
   const ss = {
     bindingBar: {
       flexDirection: "row",
@@ -53,7 +53,7 @@ export function BindingBar(props: BindingBarProps) {
     }
   }
   return (
-    <Touchable style={[ss.bindingBarContainer, style]} onPress={action}>
+    <Touchable style={[ss.bindingBarContainer, style]} onPress={onPress}>
       <View style={ss.bindingBar}>
         <View style={ss.left}>
           <Text text={icon} style={ss.icon} preset="i"/>

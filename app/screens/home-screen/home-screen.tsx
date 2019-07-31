@@ -1,8 +1,13 @@
 import * as React from "react"
-
 import { connect } from "react-redux"
 import { setScoreType } from "../../actions/preference-actions"
-import { fetchGpaData, fetchCourseData, fetchLibraryData, fetchUserData } from "../../actions/data-actions"
+import {
+  fetchGpaData,
+  fetchCourseData,
+  fetchLibraryData,
+  fetchUserData,
+  fetchEcardData
+} from "../../actions/data-actions"
 import { digitsFromScoreType } from "../../utils/common"
 
 import { NavigationScreenProps } from "react-navigation"
@@ -21,6 +26,7 @@ import { BookList } from "../../components/book-list"
 import { format } from "date-fns"
 import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
+import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
 
@@ -31,6 +37,7 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
   fetchCourseData?
   fetchUserData?
   fetchLibraryData?
+  fetchEcardData?
 
   compData?
 }
@@ -42,12 +49,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   prepareData = async () => {
-    await Promise.all([
+    let toFetch = [
       this.props.fetchUserData(),
       this.props.fetchCourseData(),
       this.props.fetchLibraryData(),
-      this.props.fetchGpaData()
-    ]).then((values) => {
+      this.props.fetchGpaData(),
+    ]
+    console.log(this.props.compData.ecard)
+    if (this.props.compData.ecard.auth.status === 'BOUND') toFetch.push(this.props.fetchEcardData(this.props.compData.ecard.auth.cardId, this.props.compData.ecard.auth.password))
+    await Promise.all(toFetch).then((values) => {
       Toast.show(<Text tx="homeScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
       console.log(values)
     }).catch((err) => {
@@ -111,6 +121,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.coffee" icon="free_breakfast"/>
               <ModuleButton tx="modules.buses" icon="directions_bus"/>
             </ScrollView>
+
             <View style={ss.sectionHead}>
               <Text text={formattedHead} preset="h5"/>
             </View>
@@ -119,10 +130,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               status={compData.course.status}
               timestamp={timestamp}
             />
+
             <View style={ss.sectionHead}>
               <Text text="Library" preset="h5"/>
             </View>
             <BookList data={compData.library.data} status={compData.library.status} />
+
             <View style={ss.sectionHead}>
               <Text text="GPA Curve" preset="h5"/>
             </View>
@@ -140,6 +153,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               scores={compData.gpa.data.gpaOverall}
               txs={["gpa.totalWeighted", "gpa.totalGpa", "gpa.creditsEarned"]}
             />
+
+            <View style={ss.sectionHead}>
+              <Text text="E-card" preset="h5"/>
+            </View>
+            <EcardBlock/>
+
             <Button style={ss.moreButton} tx="homeScreen.more"/>
           </View>
         </ScrollView>
@@ -171,7 +190,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchLibraryData: async () => {
       await dispatch(fetchLibraryData())
-    }
+    },
+    fetchEcardData: async (cardId, password) => {
+      await dispatch(fetchEcardData(cardId, password))
+    },
   }
 }
 

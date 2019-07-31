@@ -69,14 +69,25 @@ export function fetchLibraryData() {
   }
 }
 
-export function fetchEcardData() {
+export function fetchEcardData(cardId, password) {
   return dispatch => {
-    return twtGet("v1/ecard/profile", { cardnum: '3016218162', password: '262144' })
+    return twtGet("v1/ecard/profile", { cardnum: cardId, password: password })
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log("Ecard Data Format", responseJson)
         if (responseJson.error_code === -1) {
-          console.log("Ecard Data Format", responseJson)
-        } else throw new Error(ERROR_PREFIX + responseJson.message || "Unknown Error" + "in fetchEcardData")
+          dispatch({
+            type: "SET_ECARD_DATA",
+            payload: responseJson.data
+          })
+        } else throw responseJson
       })
+  }
+}
+
+export function setEcardAuth(cardId, password) {
+  return {
+    type: "SET_ECARD_AUTH",
+    payload: { cardId, password }
   }
 }

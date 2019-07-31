@@ -68,7 +68,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
             <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.cards"/>
           </View>
           <BindingBar style={ss.bindingBar} txTitle="accountBinding.portalAccount" txSubtitle="accountBinding.bound" icon="event_note"/>
-          <BindingBar style={ss.bindingBar} txTitle="accountBinding.ecardAccount" txSubtitle="accountBinding.bound" icon="credit_card"/>
+          <BindingBar onPress={() => this.props.navigation.navigate('bind')} style={ss.bindingBar} txTitle="accountBinding.ecardAccount" txSubtitle="accountBinding.bound" icon="credit_card"/>
           <BindingBar style={ss.bindingBar} txTitle="accountBinding.bicycleAccount" txSubtitle="accountBinding.bound" icon="directions_bike"/>
           <BindingBar style={ss.bindingBar} txTitle="accountBinding.libraryAccount" txSubtitle="accountBinding.bound" icon="book"/>
           <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
