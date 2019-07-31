@@ -116,6 +116,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
           <TopBar actions={[
             () => this.props.navigation.goBack(),
+            () => Toast.show(<Text text="Secondary classes currently not supported" style={{ color: toastOptions.gpa.textColor }}/> as any, toastOptions.gpa),
             this._onRefresh
           ]}/>
 

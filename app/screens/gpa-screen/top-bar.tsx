@@ -2,8 +2,6 @@ import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { color, ssGlobal } from "../../theme"
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 import Touchable from 'react-native-platform-touchable'
 
 export interface TopBarProps {
@@ -31,13 +29,13 @@ export function TopBar(props: TopBarProps) {
       <View style={ssGlobal.topBar.side}>
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}
-          onPress={() => Toast.show(<Text text="Secondary classes currently unusable" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)}
+          onPress={actions[1]}
         >
           <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="visibility_off" preset="i"/>
         </Touchable>
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}
-          onPress={actions[1]}
+          onPress={actions[2]}
         >
           <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="sync" preset="i"/>
         </Touchable>
