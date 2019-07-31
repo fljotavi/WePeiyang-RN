@@ -1,9 +1,8 @@
 import * as React from "react"
-import { FlatList, TextStyle, View, ViewStyle } from "react-native"
-import { Text } from "../text"
+import { FlatList, View, ViewStyle } from "react-native"
 import { CourseBlock } from "../course-block"
 import { getScheduleTimeSlot, sanitizeLocation } from "../../utils/common"
-import { color, layoutParam } from "../../theme"
+import { Ian } from "../ian"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle
@@ -22,20 +21,6 @@ const listStyle: ViewStyle = {
 
 const courseBlockStyle: ViewStyle = {
   marginRight: 12
-}
-
-const emptyBlockStyle: ViewStyle = {
-  backgroundColor: color.washed,
-  borderRadius: layoutParam.borderRadius,
-  alignItems: "center",
-  justifyContent: "center",
-  padding: 20,
-}
-
-const emptyBlockText: TextStyle = {
-  color: color.lightGrey,
-  fontWeight: "bold",
-  textTransform: "uppercase",
 }
 
 const OWL_CONSTANT = 21
@@ -98,9 +83,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           renderItem={({ item }) => (
             <CourseBlock style={courseBlockStyle} credits={item.credits} courseName={item.courseName} timeSlot={item.timeSlot} location={item.location}/>
           )}
-          ListEmptyComponent={() => <View style={emptyBlockStyle}>
-            <Text style={emptyBlockText} tx="schedule.noCourseToday"/>
-          </View>}
+          ListEmptyComponent={() => <Ian tx="schedule.noCourseToday"/>}
         />
       </View>
     )

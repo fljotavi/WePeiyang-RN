@@ -1,8 +1,7 @@
 import * as React from "react"
-import { FlatList, TextStyle, View, ViewStyle } from "react-native"
-import { Text } from "../text"
+import { FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"
-import { color, layoutParam } from "../../theme"
+import { Ian } from "../ian"
 
 export interface BookListProps {
   style?: ViewStyle
@@ -20,20 +19,6 @@ const listStyle: ViewStyle = {
 
 const libraryBlockStyle: ViewStyle = {
   marginRight: 12
-}
-
-const emptyBlockStyle: ViewStyle = {
-  backgroundColor: color.washed,
-  borderRadius: layoutParam.borderRadius,
-  alignItems: "center",
-  justifyContent: "center",
-  padding: 20,
-}
-
-const emptyBlockText: TextStyle = {
-  color: color.lightGrey,
-  fontWeight: "bold",
-  textTransform: "uppercase",
 }
 
 export class BookList extends React.Component<BookListProps, {}> {
@@ -63,9 +48,7 @@ export class BookList extends React.Component<BookListProps, {}> {
               returnTime={item['returnTime']}
             />
           )}
-          ListEmptyComponent={() => <View style={emptyBlockStyle}>
-            <Text style={emptyBlockText} tx="library.noBooks"/>
-          </View>}
+          ListEmptyComponent={() => <Ian tx="library.noBooks"/>}
         />
       </View>
     )
