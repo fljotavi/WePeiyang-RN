@@ -13,6 +13,7 @@ export const ssGlobal = {
   topBar: {
     container: {
       padding: 18,
+      alignSelf: 'stretch',
       flexDirection: "row",
       justifyContent: "space-between",
     } as ViewStyle,

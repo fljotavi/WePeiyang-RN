@@ -114,7 +114,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             barStyle='light-content'
           />
 
-          <TopBar style={ss.topBar} actions={[
+          <TopBar actions={[
             () => this.props.navigation.goBack(),
             this._onRefresh
           ]}/>

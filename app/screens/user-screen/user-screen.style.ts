@@ -9,7 +9,7 @@ export default {
   } as ViewStyle,
   headPanel: {
     backgroundColor: color.primaryGreyer,
-    height: 320,
+    height: 400,
     left: 0,
     right: 0,
     position: "absolute"
@@ -17,7 +17,6 @@ export default {
   userInfoPanel: {
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: layoutParam.statusBarHeight,
   } as ViewStyle,
   userName: {
     color: color.washed,
@@ -32,7 +31,6 @@ export default {
     borderRadius: 999,
     height: 90,
     width: 90,
-    marginTop: 40
   } as ImageStyle,
   shortcutModulePanel: {
     borderRadius: layoutParam.borderRadius,

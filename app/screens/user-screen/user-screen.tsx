@@ -14,6 +14,7 @@ import toastOptions from "../../theme/toast"
 
 import ss from "./user-screen.style"
 import { clearAllData } from "../../actions/data-actions"
+import { TopBar } from "./top-bar"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   userData
@@ -51,6 +52,10 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           barStyle='light-content'
         />
         <View style={ss.headPanel} />
+        <TopBar actions={[
+          () => this.props.navigation.goBack(),
+          () => this.props.navigation.navigate("settings"),
+        ]}/>
         <View style={ss.container}>
           <View style={ss.userInfoPanel}>
             <Image source={{ uri: userData.data.avatar }} style={ss.avatar}/>

@@ -5,12 +5,6 @@ export default {
   screen: {
     backgroundColor: color.primaryDarker,
   },
-  topBar: {
-  },
-  topBarIcon: {
-    color: color.background,
-  },
-
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingVertical: layoutParam.paddingVertical,
