@@ -3,7 +3,7 @@ import { TextStyle, ViewStyle } from "react-native"
 
 export default {
   screen: {
-    backgroundColor: color.primaryDarker,
+    backgroundColor: color.primary,
   },
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,

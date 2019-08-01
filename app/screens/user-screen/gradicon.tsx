@@ -17,7 +17,7 @@ export function Gradicon(props: GradiconProps) {
     justifyContent: "center"
   }
   const textStyle: TextStyle = {
-    color: color.primaryLighter,
+    color: color.primary,
     marginTop: 5,
     fontWeight: "bold",
   }

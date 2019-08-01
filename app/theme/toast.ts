@@ -33,7 +33,7 @@ const primary = {
 const gpa = {
   ...BASE,
   backgroundColor: color.background,
-  textColor: color.primaryDarker
+  textColor: color.primary
 }
 
 const err = {

@@ -17,7 +17,7 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
 
   render() {
     let { style, setScoreType, scores, status, txs, palette } = this.props
-    palette = palette || [color.lightGrey, color.primaryLighter]
+    palette = palette || [color.lightGrey, color.primary]
     if (status !== "VALID") {
       return <View />
     }

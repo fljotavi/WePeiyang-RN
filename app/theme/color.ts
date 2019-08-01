@@ -28,13 +28,11 @@ export const color = {
   /**
    * The main tinting color.
    */
-  primary: palette.pale,
+  primary: palette.offPale2,
   /**
    * The main tinting color, but darker.
    */
-  primaryDarker: palette.paleDarker,
-  primaryLighter: palette.offPale,
-  primaryGreyer: palette.offPale2,
+
   lightGrey: palette.lightGrey,
   washed: palette.washed,
   /**

@@ -14,7 +14,7 @@ export interface ModuleButtonProps {
 export function ModuleButton(props: ModuleButtonProps) {
   const { tx, icon, style, onPress } = props
   const textStyle: TextStyle = {
-    color: color.primaryLighter,
+    color: color.primary,
     fontSize: 14,
     fontWeight: "bold",
     marginTop: 3

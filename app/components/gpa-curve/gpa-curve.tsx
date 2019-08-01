@@ -53,7 +53,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
 
   render() {
     let { style, data, status, semesterIndex, scoreToFixed, animated, palette } = this.props
-    palette = palette || [color.card, color.primaryLighter, color.washed, color.lightGrey, color.background]
+    palette = palette || [color.card, color.primary, color.washed, color.lightGrey, color.background]
 
     if (status !== "VALID" || data.length <= 0) {
       return <View />

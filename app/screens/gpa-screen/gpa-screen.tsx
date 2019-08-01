@@ -141,7 +141,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               status={gpa.status}
               scoreToFixed={digitsFromScoreType(scoreType)}
               animated={false}
-              palette={['rgba(255,255,255,0.05)', color.background, 'rgba(255,255,255,0.05)', color.background, color.primaryDarker]}
+              palette={['rgba(255,255,255,0.05)', color.background, 'rgba(255,255,255,0.05)', color.background, color.primary]}
             />
 
             <View style={ss.orderTab}>

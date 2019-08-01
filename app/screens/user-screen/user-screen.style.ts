@@ -8,7 +8,7 @@ export default {
     alignItems: "center",
   } as ViewStyle,
   headPanel: {
-    backgroundColor: color.primaryGreyer,
+    backgroundColor: color.primary,
     height: 400,
     left: 0,
     right: 0,
