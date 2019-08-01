@@ -31,8 +31,8 @@ export function Button(props: ButtonProps) {
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 
   return (
-    <Touchable style={viewStyle} {...rest}>
-      <View>
+    <Touchable style={viewStyle} {...rest} delayPressIn={0}>
+      <View pointerEvents='box-only'>
         {content}
       </View>
     </Touchable>

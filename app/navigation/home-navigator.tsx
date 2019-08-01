@@ -32,8 +32,8 @@ export const HomeNavigator = createBottomTabNavigator(
       let genCustomTag = ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state
         let i18nKey = "tab." + routeName
-        return <Touchable onPress={() => navigation.navigate(routeName)} background={Touchable.Ripple(color.lightGrey, true)}>
-          <Text tx={i18nKey} style={textStyle} preset="h5"/>
+        return <Touchable onPress={() => navigation.navigate(routeName)} background={Touchable.Ripple(color.lightGrey, true)} delayPressIn={0}>
+          <Text tx={i18nKey} style={textStyle} preset="h5" pointerEvents='box-only'/>
         </Touchable>
       }
       return {

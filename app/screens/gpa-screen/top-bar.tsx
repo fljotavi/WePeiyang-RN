@@ -22,6 +22,7 @@ export function TopBar(props: TopBarProps) {
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}
           onPress={actions[0]}
+          delayPressIn={0}
         >
           <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="arrow_back" preset="i"/>
         </Touchable>
@@ -30,12 +31,14 @@ export function TopBar(props: TopBarProps) {
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}
           onPress={actions[1]}
+          delayPressIn={0}
         >
           <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="visibility_off" preset="i"/>
         </Touchable>
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}
           onPress={actions[2]}
+          delayPressIn={0}
         >
           <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="sync" preset="i"/>
         </Touchable>

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { ImageBackground, TextStyle, View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
 import Touchable from "react-native-platform-touchable"
@@ -88,8 +88,8 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
     }
 
     return (
-      <Touchable foreground={Touchable.Ripple(colors[1])} style={[ss.predefinedStyle, style]}>
-        <View style={ss.containerStyle}>
+      <Touchable foreground={Touchable.Ripple(colors[1])} style={[ss.predefinedStyle, style]} delayPressIn={0}>
+        <View style={ss.containerStyle} pointerEvents='box-only'>
           <View style={ss.left}>
             <View style={ss.bar}>
               <Text>

@@ -53,8 +53,8 @@ export function BindingBar(props: BindingBarProps) {
     }
   }
   return (
-    <Touchable style={[ss.bindingBarContainer, style]} onPress={onPress}>
-      <View style={ss.bindingBar}>
+    <Touchable style={[ss.bindingBarContainer, style]} onPress={onPress} delayPressIn={0}>
+      <View style={ss.bindingBar} pointerEvents='box-only'>
         <View style={ss.left}>
           <Text text={icon} style={ss.icon} preset="i"/>
           <View style={ss.text}>

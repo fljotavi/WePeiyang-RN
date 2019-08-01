@@ -57,8 +57,8 @@ export function GpaSnack(props: GpaSnackProps) {
   if (score > 99) iconText = 'flash_auto'
   if (score < 60) iconText = 'hourglass_full'
   return (
-    <Touchable style={[ss.snack, style]}>
-      <View style={ss.snackContainer}>
+    <Touchable style={[ss.snack, style]} delayPressIn={0}>
+      <View style={ss.snackContainer} pointerEvents='box-only'>
         <View style={ss.left}>
           <Text text={iconText} style={ss.icon} preset="i"/>
           <View style={ss.text}>

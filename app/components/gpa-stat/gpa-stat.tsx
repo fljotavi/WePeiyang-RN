@@ -44,19 +44,19 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
     } as ViewStyle
     return (
       <View style={[predefinedStyle, style]}>
-        <Touchable background={Touchable.Ripple(palette[0], true)} onPress={() => { setScoreType("weighted") }}>
+        <Touchable background={Touchable.Ripple(palette[0], true)} onPress={() => { setScoreType("weighted") }} delayPressIn={0}>
           <View style={scoreFieldStyle}>
             <Text tx={txs[0]} style={textStyle}/>
             <Text text={scores.weighted} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
-        <Touchable background={Touchable.Ripple(palette[0], true)} onPress={() => { setScoreType("gradePoints") }}>
+        <Touchable background={Touchable.Ripple(palette[0], true)} onPress={() => { setScoreType("gradePoints") }} delayPressIn={0}>
           <View style={scoreFieldStyle}>
             <Text tx={txs[1]} style={textStyle}/>
             <Text text={scores.gradePoints} style={numStyle} preset="h3"/>
           </View>
         </Touchable>
-        <Touchable background={Touchable.Ripple(palette[0], true)} onPress={() => { setScoreType("credits") }}>
+        <Touchable background={Touchable.Ripple(palette[0], true)} onPress={() => { setScoreType("credits") }} delayPressIn={0}>
           <View style={scoreFieldStyle}>
             <Text tx={txs[2]} style={textStyle}/>
             <Text text={scores.credits} style={numStyle} preset="h3"/>

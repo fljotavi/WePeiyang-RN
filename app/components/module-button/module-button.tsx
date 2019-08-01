@@ -36,8 +36,8 @@ export function ModuleButton(props: ModuleButtonProps) {
   }
 
   return (
-    <Touchable style={[predefinedStyle, style]} onPress={onPress}>
-      <View style={containerStyle}>
+    <Touchable style={[predefinedStyle, style]} onPress={onPress} delayPressIn={0}>
+      <View style={containerStyle} pointerEvents='box-only'>
         <Text text={icon} preset="i" style={iconStyle}/>
         <Text tx={tx} style={textStyle} />
       </View>
