@@ -6,7 +6,8 @@
     "time": {
       "remaining": "",
       "daysLeft": " Days Left"
-    }
+    },
+    "unknown": "Unknown"
   },
   "auth": {
     "login": "Log In",

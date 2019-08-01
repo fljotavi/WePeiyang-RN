@@ -16,7 +16,6 @@ import ss from "./home-screen.style"
 import { View, Image, ScrollView, TouchableOpacity, RefreshControl } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { Button } from "../../components/button"
 import { ModuleButton } from "../../components/module-button"
 import { connectedGpaCurve as GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
@@ -55,7 +54,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       this.props.fetchLibraryData(),
       this.props.fetchGpaData(),
     ]
-    console.log(this.props.compData.ecard)
     if (this.props.compData.ecard.auth.status === 'BOUND') toFetch.push(this.props.fetchEcardData(this.props.compData.ecard.auth.cardId, this.props.compData.ecard.auth.password))
     await Promise.all(toFetch).then((values) => {
       Toast.show(<Text tx="homeScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)

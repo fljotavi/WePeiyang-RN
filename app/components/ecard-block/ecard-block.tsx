@@ -18,8 +18,9 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
 
   render() {
     let { ecard, style, colors } = this.props
-    colors = colors || [color.washed, color.lightGrey, color.lightGrey]
+    colors = colors || [color.primary, color.background, color.background]
 
+    // The current balance api returns "XX.XX元", which is ugly, and of course is going to, and must be fixed in the future. So let's try to be robust here:
     let displayBalance = String(ecard.data.balance).replace('元', '')
 
     if (ecard.auth.status !== "BOUND") {
