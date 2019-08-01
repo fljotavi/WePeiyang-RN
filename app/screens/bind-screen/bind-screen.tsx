@@ -1,16 +1,16 @@
 import * as React from "react"
 import { connect } from 'react-redux'
 
-import { View, ViewStyle } from "react-native"
+import { StatusBar, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
-import {fetchEcardData, setEcardAuth} from "../../actions/data-actions"
-import Toast from "react-native-root-toast";
-import toastOptions from "../../theme/toast";
+import { fetchEcardData, setEcardAuth } from "../../actions/data-actions"
+import Toast from "react-native-root-toast"
+import toastOptions from "../../theme/toast"
 
 export interface BindScreenProps extends NavigationScreenProps<{}> {
   fetchEcardData?
@@ -51,6 +51,11 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle='dark-content'
+        />
         <View style={ss.container}>
           <View style={ss.headerBar}>
             <Text tx="accountBinding.greetings" preset="h2"/>

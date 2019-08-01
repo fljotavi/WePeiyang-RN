@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, ViewStyle } from "react-native"
+import {StatusBar, View, ViewStyle} from "react-native"
 import { connect } from 'react-redux'
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -70,6 +70,11 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle='dark-content'
+        />
         <View style={ss.container}>
           <View style={ss.headerBar}>
             <Text tx="loginScreen.greetings" preset="h2"/>

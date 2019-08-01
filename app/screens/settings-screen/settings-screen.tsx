@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from 'react-redux'
 
-import { View, ViewStyle } from "react-native"
+import {StatusBar, View, ViewStyle} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
@@ -21,6 +21,11 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle='dark-content'
+        />
         <View style={ss.container}>
           <Text text="Settings" preset="h2" />
         </View>

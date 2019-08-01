@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, ViewStyle } from "react-native"
+import {StatusBar, View, ViewStyle} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
@@ -22,6 +22,11 @@ export class NewsScreen extends React.Component<NewsScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle='dark-content'
+        />
         <View style={ss.container}>
           <Text tx="newsScreen.header" preset="h2" />
         </View>
