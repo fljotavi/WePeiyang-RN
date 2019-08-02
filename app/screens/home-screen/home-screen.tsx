@@ -13,7 +13,7 @@ import { digitsFromScoreType } from "../../utils/common"
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
 
-import {View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar} from "react-native"
+import { View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { ModuleButton } from "../../components/module-button"
@@ -57,7 +57,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     if (this.props.compData.ecard.auth.status === 'BOUND') toFetch.push(this.props.fetchEcardData(this.props.compData.ecard.auth.cardId, this.props.compData.ecard.auth.password))
     await Promise.all(toFetch).then((values) => {
       Toast.show(<Text tx="homeScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-      console.log(values)
     }).catch((err) => {
       console.log(err)
       Toast.show(<Text tx="homeScreen.partialData" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)

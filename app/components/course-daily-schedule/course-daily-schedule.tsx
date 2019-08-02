@@ -63,8 +63,9 @@ const getCoursesByDay = (timestamp, data) => {
   return res
 }
 
+console.log(getCoursesByDay)
+
 const genDummyCourses = (a, b) => {
-  console.log(getCoursesByDay)
   return [
     {
       courseName: "计算机产业新技术与发展",
