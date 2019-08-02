@@ -13,7 +13,7 @@ import { digitsFromScoreType } from "../../utils/common"
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
 
-import {View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar} from "react-native"
+import { View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { ModuleButton } from "../../components/module-button"
@@ -134,10 +134,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               timestamp={timestamp}
             />
 
-            <View style={ss.sectionHead}>
-              <Text text="Library" preset="h5"/>
-            </View>
-            <BookList data={compData.library.data} status={compData.library.status} />
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('library')}>
+              <View style={ss.sectionHead}>
+                <Text text="Library" preset="h5"/>
+              </View>
+              <BookList data={compData.library.data} status={compData.library.status} />
+            </TouchableOpacity>
 
             <View style={ss.sectionHead}>
               <Text text="GPA Curve" preset="h5"/>

@@ -111,6 +111,12 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     return (
       <Screen style={ss.screen}>
 
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle='light-content'
+        />
+
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
@@ -134,12 +140,6 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             onRefresh={this._onRefresh}
           />
         } >
-
-          <StatusBar
-            translucent
-            backgroundColor="transparent"
-            barStyle='light-content'
-          />
 
           <TopBar actions={[
             () => this.props.navigation.goBack(),
