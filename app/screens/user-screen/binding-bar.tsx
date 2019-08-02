@@ -24,7 +24,8 @@ export function BindingBar(props: BindingBarProps) {
     bindingBarContainer: {
       borderRadius: layoutParam.borderRadius,
       backgroundColor: color.card,
-      paddingHorizontal: 20,
+      paddingLeft: 20,
+      paddingRight: 10,
       paddingVertical: 16,
       width: '100%',
       maxWidth: 500,
@@ -62,7 +63,7 @@ export function BindingBar(props: BindingBarProps) {
             <Text tx={txSubtitle} preset="small" style={ss.subtitle}/>
           </View>
         </View>
-        <Text text="keyboard_arrow_right" style={ss.backArrow} preset="i"/>
+        <Text text="navigate_next" style={ss.backArrow} preset="i"/>
       </View>
     </Touchable>
   )
