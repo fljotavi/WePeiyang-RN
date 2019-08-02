@@ -3,40 +3,19 @@ import { FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"
 import { Ian } from "../ian"
 import Touchable from "react-native-platform-touchable"
-import { color, layoutParam } from "../../theme"
+import { color } from "../../theme"
 import Modal from "react-native-modal"
 import { Text } from "../text"
 import { Button } from "../button"
+import ss from "./book-list.style"
+import {twtGet} from "../../services/twt-fetch";
+import Toast from "react-native-root-toast";
+import toastOptions from "../../theme/toast";
 
 export interface BookListProps {
   style?: ViewStyle
   data
   status
-}
-
-const ss = {
-  predefinedStyle: {
-    overflow: "visible"
-  } as ViewStyle,
-  listStyle: {
-    overflow: "visible"
-  } as ViewStyle,
-  libraryBlockStyle: {
-    marginRight: 12,
-    borderRadius: layoutParam.borderRadius,
-    overflow: "hidden",
-  } as ViewStyle,
-  screen: {
-    backgroundColor: color.background,
-  },
-  modal: {
-    padding: 20,
-    backgroundColor: color.card,
-    borderRadius: layoutParam.borderRadius,
-    width: 280,
-    height: 460,
-    alignSelf: "center",
-  } as ViewStyle,
 }
 
 export class BookList extends React.Component<BookListProps, {}> {
@@ -69,14 +48,57 @@ export class BookList extends React.Component<BookListProps, {}> {
           backdropColor={ss.screen.backgroundColor}
           animationIn={"flipInY"}
           animationOut={"flipOutY"}
+          animationInTiming={400}
+          animationOutTiming={300}
           onBackdropPress={this.toggleModal}
           useNativeDriver={true}
         >
           <View
             style={ss.modal}
           >
-            <Text text={chosenBook['title']} preset="h2" />
-            <Button text="Close" onPress={this.toggleModal} />
+
+            <View>
+              <Text text={chosenBook['title']} style={ss.bookTitle}/>
+              <Text text={chosenBook['author']} style={ss.bookAuthor}/>
+              <View style={ss.hr}/>
+            </View>
+
+            <View>
+              <View style={ss.bookAttrs}>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Call No."} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['callno']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Type"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['type']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Location"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['local']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Borrowed At"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['loanTime']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Return By"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['returnTime']} style={ss.bookAttrValue}/>
+                </View>
+              </View>
+
+              <Button preset="link" onPress={() => {
+                twtGet(`v1/library/renew${chosenBook['barcode']}`)
+                  .then((response) => response.json())
+                  .then((responseJson) => {
+                    Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+                    console.log(responseJson)
+                  })
+              }}>
+                <Text text="RENEW"/>
+              </Button>
+            </View>
+
           </View>
         </Modal>
 
