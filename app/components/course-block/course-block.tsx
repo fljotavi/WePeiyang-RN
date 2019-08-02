@@ -9,7 +9,7 @@ export interface CourseBlockProps {
   courseName?: string
   timeSlot?: string
   location?: string
-  credits?: number
+  credits?
 }
 
 export function CourseBlock(props: CourseBlockProps) {

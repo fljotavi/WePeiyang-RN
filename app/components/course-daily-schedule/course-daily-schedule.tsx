@@ -26,7 +26,7 @@ const courseBlockStyle: ViewStyle = {
 const OWL_CONSTANT = 21
 
 const getWeek = (timestamp, semesterStart) => {
-  return (timestamp - semesterStart) / (1000 * 60 * 60 * 24 * 7) + 1 // TODO: Check time-padding necessity
+  return (timestamp - semesterStart) / (1000 * 60 * 60 * 24 * 7) + 1
 }
 
 const getCoursesByDay = (timestamp, data) => {
@@ -63,7 +63,39 @@ const getCoursesByDay = (timestamp, data) => {
   return res
 }
 
+const genDummyCourses = (a, b) => {
+  console.log(getCoursesByDay)
+  return [
+    {
+      courseName: "计算机产业新技术与发展",
+      timeSlot: `${getScheduleTimeSlot(3)[0]} - ${getScheduleTimeSlot(4)[1]}`,
+      location: sanitizeLocation("55-A117"),
+      credits: "1.0",
+    },
+    {
+      courseName: "高等数学",
+      timeSlot: `${getScheduleTimeSlot(5)[0]} - ${getScheduleTimeSlot(6)[1]}`,
+      location: sanitizeLocation("46-B118"),
+      credits: "5.0",
+    },
+    {
+      courseName: "绿色建筑概论",
+      timeSlot: `${getScheduleTimeSlot(9)[0]} - ${getScheduleTimeSlot(11)[1]}`,
+      location: sanitizeLocation("游泳馆"),
+      credits: "2.5",
+    },
+    {
+      courseName: "体育3A",
+      timeSlot: `${getScheduleTimeSlot(1)[0]} - ${getScheduleTimeSlot(2)[1]}`,
+      location: sanitizeLocation("46-B138"),
+      credits: "0.5",
+    },
+  ]
+}
+
 export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
+
+  _keyExtractor = (item, index) => String(item.courseName) // TODO: Change attr to sth else
 
   render() {
     const { style, data, timestamp, status } = this.props
@@ -79,7 +111,8 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           style={listStyle}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={getCoursesByDay(timestampOwl, data)}
+          keyExtractor={this._keyExtractor}
+          data={genDummyCourses(timestampOwl, data)} // TODO: Return authentic data
           renderItem={({ item }) => (
             <CourseBlock style={courseBlockStyle} credits={item.credits} courseName={item.courseName} timeSlot={item.timeSlot} location={item.location}/>
           )}

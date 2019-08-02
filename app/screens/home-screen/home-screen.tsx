@@ -96,7 +96,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           backgroundColor="transparent"
           barStyle='dark-content'
         />
-        <ScrollView refreshControl={
+        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this._onRefresh}

@@ -101,7 +101,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
     return (
       <Screen style={ss.screen}>
-        <ScrollView refreshControl={
+        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this._onRefresh}
