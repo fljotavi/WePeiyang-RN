@@ -1,0 +1,15 @@
+# filter everything...
+*
+
+# ... except the .gitignore...
+!.gitignore
+
+# ... and all text files.
+!*.txt
+
+# ... and the proper licensed fonts.
+!Montserrat.ttf
+!Montserrat_bold.ttf
+!MaterialIcons.ttf
+!MaterialIcons_bold.ttf
+
