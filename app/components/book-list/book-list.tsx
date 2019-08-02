@@ -18,7 +18,7 @@ const listStyle: ViewStyle = {
 }
 
 const libraryBlockStyle: ViewStyle = {
-  marginRight: 12
+  marginRight: 12,
 }
 
 export class BookList extends React.Component<BookListProps, {}> {

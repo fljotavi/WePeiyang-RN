@@ -24,7 +24,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
     let displayBalance = String(ecard.data.balance).replace('元', '')
 
     if (ecard.auth.status !== "BOUND") {
-      return <Ian text="No cards bound, you cheap fuck"/>
+      return <Ian text="No cards bound"/>
     }
     const ss = {
       predefinedStyle: {
@@ -37,7 +37,6 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
         height: 220,
         flexDirection: "row",
         justifyContent: "space-between",
-        borderRadius: layoutParam.borderRadius,
       } as ViewStyle,
       left: {
         flex: 5,
@@ -79,12 +78,12 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
         color: colors[2],
         fontSize: 8,
         letterSpacing: 3,
-        fontWeight: "bold",
       } as TextStyle,
       attrValue: {
         color: colors[1],
         fontSize: 12,
         marginBottom: 5,
+        fontWeight: "bold",
       } as TextStyle,
     }
 
