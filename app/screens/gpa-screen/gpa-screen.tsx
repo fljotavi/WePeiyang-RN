@@ -19,6 +19,10 @@ import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
 import { TopBar } from "./top-bar"
 
+import Modal from "react-native-modal"
+import { Button } from "../../components/button"
+import { GpaInfo } from "./gpa-info"
+
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
 
   scoreType?
@@ -38,6 +42,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
   state = {
     refreshing: false,
+    isModalVisible: false,
   }
 
   prepareData = async () => {
@@ -65,6 +70,10 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         this.props.setGpaOrderBy("credits")
         break
     }
+  }
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   _onRefresh = () => {
@@ -101,6 +110,24 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
     return (
       <Screen style={ss.screen}>
+
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.screen.backgroundColor}
+          onBackButtonPress={this.toggleModal}
+          onBackdropPress={this.toggleModal}
+          useNativeDriver={true}
+        >
+          <ScrollView
+            style={ss.modal}
+            contentContainerStyle={ss.gpaInfoContent}
+            showsVerticalScrollIndicator={false}
+          >
+            <GpaInfo/>
+            <Button text="Close" onPress={this.toggleModal} />
+          </ScrollView>
+        </Modal>
+
         <ScrollView showsVerticalScrollIndicator={false} refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
@@ -116,7 +143,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
           <TopBar actions={[
             () => this.props.navigation.goBack(),
-            () => Toast.show(<Text text="Secondary classes currently not supported" style={{ color: toastOptions.gpa.textColor }}/> as any, toastOptions.gpa),
+            this.toggleModal,
             this._onRefresh
           ]}/>
 

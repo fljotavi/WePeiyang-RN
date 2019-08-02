@@ -33,7 +33,7 @@ export function TopBar(props: TopBarProps) {
           onPress={actions[1]}
           delayPressIn={0}
         >
-          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="visibility_off" preset="i"/>
+          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="error_outline" preset="i"/>
         </Touchable>
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}

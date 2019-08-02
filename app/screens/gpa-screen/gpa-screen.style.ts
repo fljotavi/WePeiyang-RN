@@ -19,7 +19,18 @@ export default {
   curve: {
     marginBottom: 50,
   },
-
+  modal: {
+    backgroundColor: color.background,
+    borderRadius: layoutParam.borderRadius,
+    marginHorizontal: 20,
+    marginVertical: 50,
+  } as ViewStyle,
+  gpaInfoContent: {
+    padding: 20,
+  } as ViewStyle,
+  modalText: {
+    color: color.primary,
+  } as TextStyle,
   orderTab: {
     marginBottom: 15,
     flexDirection: "row",
@@ -62,5 +73,16 @@ export default {
   } as ViewStyle,
   snackStyle: {
     marginBottom: 10,
+  } as ViewStyle,
+
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(50,0,0,0.4)',
+    alignItems: 'center',
+    justifyContent: 'center',
   } as ViewStyle,
 }

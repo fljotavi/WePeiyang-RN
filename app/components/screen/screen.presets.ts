@@ -1,6 +1,6 @@
 import { ViewStyle } from "react-native"
 import { isNil } from "ramda"
-import {color, layoutParam} from "../../theme"
+import { color, layoutParam } from "../../theme"
 
 /**
  * All screen keyboard offsets.
