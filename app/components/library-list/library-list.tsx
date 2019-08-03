@@ -7,7 +7,7 @@ import { color } from "../../theme"
 import Modal from "react-native-modal"
 import { Text } from "../text"
 import { Button } from "../button"
-import ss from "./book-list.style"
+import ss from "./library-list.style"
 import { twtGet } from "../../services/twt-fetch"
 import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
@@ -18,7 +18,7 @@ export interface BookListProps {
   status
 }
 
-export class BookList extends React.Component<BookListProps, {}> {
+export class LibraryList extends React.Component<BookListProps, {}> {
 
   state = {
     isModalVisible: false,
@@ -37,7 +37,6 @@ export class BookList extends React.Component<BookListProps, {}> {
 
   render() {
     const { style, data, status } = this.props
-    console.log("Lib", data)
     let chosenBook = data.books[this.state.bookIndex]
 
     if (status !== "VALID") {
@@ -95,7 +94,6 @@ export class BookList extends React.Component<BookListProps, {}> {
                   <Text text={chosenBook['returnTime']} style={ss.bookAttrValue}/>
                 </View>
               </View>
-
             </View>
 
           </View>
@@ -106,9 +104,7 @@ export class BookList extends React.Component<BookListProps, {}> {
                 <Text style={ss.renewCaveat} text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"/>
               </View>
             )}
-
             <Button preset="lite" onPress={() => {
-
               if (this.state.userInformed) {
                 twtGet(`v1/library/renew${chosenBook['barcode']}`)
                   .then((response) => response.json())
@@ -119,15 +115,12 @@ export class BookList extends React.Component<BookListProps, {}> {
               } else {
                 this.setState({ userInformed: true })
               }
-
             }}>
-
               <View style={ss.modalButtonContent}>
                 <Text text={ this.state.userInformed ? "check" : "update"} preset="i" style={ss.modalButtonIcon}/>
                 <Text text=" " preset="h6"/>
                 <Text text={ this.state.userInformed ? "CONFIRM" : "RENEW"} preset="h6"/>
               </View>
-
             </Button>
           </View>
 
@@ -158,6 +151,7 @@ export class BookList extends React.Component<BookListProps, {}> {
           )}
           ListEmptyComponent={() => <Ian tx="library.noBooks"/>}
         />
+
       </View>
     )
   }

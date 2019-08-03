@@ -20,7 +20,7 @@ import { ModuleButton } from "../../components/module-button"
 import { connectedGpaCurve as GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
-import { BookList } from "../../components/book-list"
+import { LibraryList } from "../../components/library-list"
 
 import { format } from "date-fns"
 import Toast from "react-native-root-toast"
@@ -136,7 +136,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <View style={ss.sectionHead}>
               <Text text="Library" preset="h5"/>
             </View>
-            <BookList data={compData.library.data} status={compData.library.status} />
+            <LibraryList data={compData.library.data} status={compData.library.status} />
 
             <View style={ss.sectionHead}>
               <Text text="GPA Curve" preset="h5"/>
