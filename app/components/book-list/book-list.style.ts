@@ -10,21 +10,27 @@ export default {
   } as ViewStyle,
   libraryBlockStyle: {
     marginRight: 12,
-    borderRadius: layoutParam.borderRadius,
+    borderTopRightRadius: layoutParam.borderRadius,
+    borderBottomRightRadius: layoutParam.borderRadius,
     overflow: "hidden",
   } as ViewStyle,
   screen: {
     backgroundColor: color.background,
   },
   modal: {
-    padding: 32,
-    backgroundColor: color.card,
-    borderRadius: layoutParam.borderRadius,
-    width: 290,
-    height: 420,
+    width: 280,
     alignSelf: "center",
+    elevation: 90,
+  } as ViewStyle,
+  modalCard: {
+    padding: 32,
+    height: 444,
+    backgroundColor: color.card,
+    borderTopRightRadius: layoutParam.borderRadius,
+    borderBottomRightRadius: layoutParam.borderRadius,
     justifyContent: "space-between",
     elevation: 90,
+    overflow: "hidden",
   } as ViewStyle,
   bookTitle: {
     fontSize: 30,
@@ -38,9 +44,9 @@ export default {
     color: color.primary,
   } as TextStyle,
   hr: {
-    height: 1,
+    height: 0.5,
     alignSelf: "stretch",
-    backgroundColor: color.primary,
+    backgroundColor: color.lightGrey,
     marginVertical: 14,
   } as ViewStyle,
   bookAttrs: {
@@ -55,17 +61,29 @@ export default {
   bookAttrKey: {
     fontSize: 9,
     letterSpacing: 3,
-    fontWeight: "bold",
     textTransform: "uppercase",
-    color: color.washed,
+    color: color.lightGrey,
   } as TextStyle,
   bookAttrValue: {
-    color: color.primary,
     fontSize: 12,
+    color: color.lightGrey,
+    fontWeight: "bold",
   } as TextStyle,
 
   renewButton: {
-    alignSelf: "baseline",
-  }
+    marginTop: 20,
+  } as ViewStyle,
+  renewButtonContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  } as ViewStyle,
+  renewIcon: {
+    fontSize: 20,
+  },
+  tjuBadge: {
+    position: "absolute",
+    right: -50,
+    bottom: -50,
+  } as ViewStyle,
 
 }

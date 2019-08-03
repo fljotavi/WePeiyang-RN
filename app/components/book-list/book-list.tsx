@@ -8,10 +8,10 @@ import Modal from "react-native-modal"
 import { Text } from "../text"
 import { Button } from "../button"
 import ss from "./book-list.style"
-import {twtGet} from "../../services/twt-fetch";
-import Toast from "react-native-root-toast";
-import toastOptions from "../../theme/toast";
-
+import { twtGet } from "../../services/twt-fetch"
+import Toast from "react-native-root-toast"
+import toastOptions from "../../theme/toast"
+import { TjuBadge } from "../tju-badge"
 export interface BookListProps {
   style?: ViewStyle
   data
@@ -46,21 +46,25 @@ export class BookList extends React.Component<BookListProps, {}> {
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
+          backdropOpacity={0.7}
           animationIn={"flipInY"}
           animationOut={"flipOutY"}
           animationInTiming={400}
           animationOutTiming={300}
+          onBackButtonPress={this.toggleModal}
           onBackdropPress={this.toggleModal}
           useNativeDriver={true}
+          style={ss.modal}
         >
           <View
-            style={ss.modal}
+            style={ss.modalCard}
           >
 
+            <TjuBadge style={ss.tjuBadge} fill={color.lucDark} height={310} width={270}/>
+
             <View>
-              <Text text={chosenBook['title']} style={ss.bookTitle}/>
-              <Text text={chosenBook['author']} style={ss.bookAuthor}/>
-              <View style={ss.hr}/>
+              <Text text={chosenBook['title']} style={ss.bookTitle} selectable={true}/>
+              <Text text={chosenBook['author']} style={ss.bookAuthor} selectable={true}/>
             </View>
 
             <View>
@@ -78,7 +82,7 @@ export class BookList extends React.Component<BookListProps, {}> {
                   <Text text={chosenBook['local']} style={ss.bookAttrValue}/>
                 </View>
                 <View style={ss.bookAttrPair}>
-                  <Text text={"Borrowed At"} style={ss.bookAttrKey}/>
+                  <Text text={"Borrowed"} style={ss.bookAttrKey}/>
                   <Text text={chosenBook['loanTime']} style={ss.bookAttrValue}/>
                 </View>
                 <View style={ss.bookAttrPair}>
@@ -87,19 +91,24 @@ export class BookList extends React.Component<BookListProps, {}> {
                 </View>
               </View>
 
-              <Button preset="link" onPress={() => {
-                twtGet(`v1/library/renew${chosenBook['barcode']}`)
-                  .then((response) => response.json())
-                  .then((responseJson) => {
-                    Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-                    console.log(responseJson)
-                  })
-              }}>
-                <Text text="RENEW"/>
-              </Button>
             </View>
 
           </View>
+
+          <Button preset="lite" style={ss.renewButton} onPress={() => {
+            twtGet(`v1/library/renew${chosenBook['barcode']}`)
+              .then((response) => response.json())
+              .then((responseJson) => {
+                Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+                console.log(responseJson)
+              })
+          }}>
+            <View style={ss.renewButtonContent}>
+              <Text text="update" preset="i" style={ss.renewIcon}/>
+              <Text text=" RENEW" preset="h6"/>
+            </View>
+          </Button>
+
         </Modal>
 
         <FlatList
