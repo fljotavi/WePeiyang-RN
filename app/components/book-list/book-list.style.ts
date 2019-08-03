@@ -24,7 +24,7 @@ export default {
   } as ViewStyle,
   modalCard: {
     padding: 32,
-    height: 444,
+    height: 433,
     backgroundColor: color.card,
     borderTopRightRadius: layoutParam.borderRadius,
     borderBottomRightRadius: layoutParam.borderRadius,
@@ -70,16 +70,22 @@ export default {
     fontWeight: "bold",
   } as TextStyle,
 
-  renewButton: {
-    marginTop: 20,
+  renewArea: {
+    marginTop: 15,
   } as ViewStyle,
-  renewButtonContent: {
+  modalButtonContent: {
     flexDirection: "row",
     alignItems: "center",
   } as ViewStyle,
-  renewIcon: {
+  modalButtonIcon: {
     fontSize: 20,
   },
+  renewCaveat: {
+    fontSize: 14,
+    color: color.primary,
+    height: 60,
+  } as TextStyle,
+
   tjuBadge: {
     position: "absolute",
     right: -50,

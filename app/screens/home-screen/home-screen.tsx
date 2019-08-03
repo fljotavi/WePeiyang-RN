@@ -133,12 +133,10 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               timestamp={timestamp}
             />
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('library')}>
-              <View style={ss.sectionHead}>
-                <Text text="Library" preset="h5"/>
-              </View>
-              <BookList data={compData.library.data} status={compData.library.status} />
-            </TouchableOpacity>
+            <View style={ss.sectionHead}>
+              <Text text="Library" preset="h5"/>
+            </View>
+            <BookList data={compData.library.data} status={compData.library.status} />
 
             <View style={ss.sectionHead}>
               <Text text="GPA Curve" preset="h5"/>

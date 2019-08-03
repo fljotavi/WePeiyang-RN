@@ -22,11 +22,15 @@ export class BookList extends React.Component<BookListProps, {}> {
 
   state = {
     isModalVisible: false,
+    userInformed: false,
     bookIndex: 1,
   }
 
-  toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible })
+  openModal = () => {
+    this.setState({ isModalVisible: true })
+  }
+  closeModal = () => {
+    this.setState({ isModalVisible: false, userInformed: false })
   }
 
   _keyExtractor = (item) => String(item.id);
@@ -46,16 +50,17 @@ export class BookList extends React.Component<BookListProps, {}> {
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
-          backdropOpacity={0.7}
+          backdropOpacity={0.9}
           animationIn={"flipInY"}
           animationOut={"flipOutY"}
           animationInTiming={400}
           animationOutTiming={300}
-          onBackButtonPress={this.toggleModal}
-          onBackdropPress={this.toggleModal}
+          onBackButtonPress={this.closeModal}
+          onBackdropPress={this.closeModal}
           useNativeDriver={true}
           style={ss.modal}
         >
+
           <View
             style={ss.modalCard}
           >
@@ -95,19 +100,36 @@ export class BookList extends React.Component<BookListProps, {}> {
 
           </View>
 
-          <Button preset="lite" style={ss.renewButton} onPress={() => {
-            twtGet(`v1/library/renew${chosenBook['barcode']}`)
-              .then((response) => response.json())
-              .then((responseJson) => {
-                Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-                console.log(responseJson)
-              })
-          }}>
-            <View style={ss.renewButtonContent}>
-              <Text text="update" preset="i" style={ss.renewIcon}/>
-              <Text text=" RENEW" preset="h6"/>
-            </View>
-          </Button>
+          <View style={ss.renewArea}>
+            {this.state.userInformed && (
+              <View>
+                <Text style={ss.renewCaveat} text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"/>
+              </View>
+            )}
+
+            <Button preset="lite" onPress={() => {
+
+              if (this.state.userInformed) {
+                twtGet(`v1/library/renew${chosenBook['barcode']}`)
+                  .then((response) => response.json())
+                  .then((responseJson) => {
+                    Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+                    console.log(responseJson)
+                  })
+              } else {
+                this.setState({ userInformed: true })
+              }
+
+            }}>
+
+              <View style={ss.modalButtonContent}>
+                <Text text={ this.state.userInformed ? "check" : "update"} preset="i" style={ss.modalButtonIcon}/>
+                <Text text=" " preset="h6"/>
+                <Text text={ this.state.userInformed ? "CONFIRM" : "RENEW"} preset="h6"/>
+              </View>
+
+            </Button>
+          </View>
 
         </Modal>
 
@@ -123,7 +145,7 @@ export class BookList extends React.Component<BookListProps, {}> {
               style={ss.libraryBlockStyle}
               delayPressIn={0}
               onPress={() => {
-                this.toggleModal()
+                this.openModal()
                 this.setState({ bookIndex: index })
               }}
             >
