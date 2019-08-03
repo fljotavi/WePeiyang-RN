@@ -29,7 +29,7 @@ export function CourseBlock(props: CourseBlockProps) {
   const small: TextStyle = { ...BASE, fontSize: 11, height: 20 }
   const p: TextStyle = { ...BASE, fontSize: 13, height: 30, fontWeight: "bold" }
   return (
-    <View style={[predefinedStyle, style]}>
+    <View style={[predefinedStyle, style]} pointerEvents="box-only">
       <Text numberOfLines={3} text={courseName} style={h1}/>
       <Text text={timeSlot} style={small} />
       <Text text={location} style={p}/>

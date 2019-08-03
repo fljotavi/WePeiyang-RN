@@ -109,6 +109,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
                 twtGet(`v1/library/renew${chosenBook['barcode']}`)
                   .then((response) => response.json())
                   .then((responseJson) => {
+                    this.closeModal()
                     Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
                     console.log(responseJson)
                   })
