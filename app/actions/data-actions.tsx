@@ -69,6 +69,16 @@ export function fetchLibraryData() {
   }
 }
 
+export function renewBook(barcode) {
+  return dispatch => {
+    return twtGet(`v1/library/renew${barcode}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+      })
+  }
+}
+
 export function fetchEcardData(cardId, password) {
   return dispatch => {
     return twtGet("v1/ecard/profile", { cardnum: cardId, password: password })

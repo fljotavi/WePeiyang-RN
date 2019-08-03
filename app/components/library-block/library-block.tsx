@@ -20,7 +20,8 @@ export function LibraryBlock(props: LibraryBlockProps) {
   const predefinedStyle: ViewStyle = {
     width: 120,
     height: 170,
-    borderRadius: layoutParam.borderRadius,
+    borderTopRightRadius: layoutParam.borderRadius,
+    borderBottomRightRadius: layoutParam.borderRadius,
     flexDirection: "row",
     overflow: "hidden"
   }
@@ -41,7 +42,7 @@ export function LibraryBlock(props: LibraryBlockProps) {
   const small: TextStyle = { ...BASE, fontSize: 11, }
   const additionalInfo: TextStyle = { height: 20 }
   return (
-    <View style={[predefinedStyle, style]}>
+    <View style={[predefinedStyle, style]} pointerEvents="box-only">
       <View style={decoStripStyle} />
       <View style={mainContentStyle}>
         <Text numberOfLines={3} text={bookName} style={h1}/>

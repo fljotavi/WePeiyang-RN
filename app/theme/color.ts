@@ -67,4 +67,7 @@ export const color = {
   gpa: [palette.offPale, palette.novaPale, palette.authenticPale, palette.pale, palette.offBlack],
   bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
   book: palette.white,
+
+  lucLight: 'rgba(255,255,255,0.05)',
+  lucDark: 'rgba(0,0,0,0.02)',
 }

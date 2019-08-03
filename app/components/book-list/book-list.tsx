@@ -2,51 +2,137 @@ import * as React from "react"
 import { FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"
 import { Ian } from "../ian"
-
+import Touchable from "react-native-platform-touchable"
+import { color } from "../../theme"
+import Modal from "react-native-modal"
+import { Text } from "../text"
+import { Button } from "../button"
+import ss from "./book-list.style"
+import { twtGet } from "../../services/twt-fetch"
+import Toast from "react-native-root-toast"
+import toastOptions from "../../theme/toast"
+import { TjuBadge } from "../tju-badge"
 export interface BookListProps {
   style?: ViewStyle
   data
   status
 }
 
-const predefinedStyle: ViewStyle = {
-  overflow: "visible"
-}
-
-const listStyle: ViewStyle = {
-  overflow: "visible"
-}
-
-const libraryBlockStyle: ViewStyle = {
-  marginRight: 12,
-}
-
 export class BookList extends React.Component<BookListProps, {}> {
 
-  _keyExtractor = (item, index) => String(item.id);
+  state = {
+    isModalVisible: false,
+    bookIndex: 1,
+  }
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
+  }
+
+  _keyExtractor = (item) => String(item.id);
 
   render() {
     const { style, data, status } = this.props
+    console.log("Lib", data)
+    let chosenBook = data.books[this.state.bookIndex]
 
     if (status !== "VALID") {
       return <View />
     }
 
     return (
-      <View style={[predefinedStyle, style]}>
+      <View style={[ss.predefinedStyle, style]}>
+
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.screen.backgroundColor}
+          backdropOpacity={0.7}
+          animationIn={"flipInY"}
+          animationOut={"flipOutY"}
+          animationInTiming={400}
+          animationOutTiming={300}
+          onBackButtonPress={this.toggleModal}
+          onBackdropPress={this.toggleModal}
+          useNativeDriver={true}
+          style={ss.modal}
+        >
+          <View
+            style={ss.modalCard}
+          >
+
+            <TjuBadge style={ss.tjuBadge} fill={color.lucDark} height={310} width={270}/>
+
+            <View>
+              <Text text={chosenBook['title']} style={ss.bookTitle} selectable={true}/>
+              <Text text={chosenBook['author']} style={ss.bookAuthor} selectable={true}/>
+            </View>
+
+            <View>
+              <View style={ss.bookAttrs}>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Call No."} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['callno']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Type"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['type']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Location"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['local']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Borrowed"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['loanTime']} style={ss.bookAttrValue}/>
+                </View>
+                <View style={ss.bookAttrPair}>
+                  <Text text={"Return By"} style={ss.bookAttrKey}/>
+                  <Text text={chosenBook['returnTime']} style={ss.bookAttrValue}/>
+                </View>
+              </View>
+
+            </View>
+
+          </View>
+
+          <Button preset="lite" style={ss.renewButton} onPress={() => {
+            twtGet(`v1/library/renew${chosenBook['barcode']}`)
+              .then((response) => response.json())
+              .then((responseJson) => {
+                Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
+                console.log(responseJson)
+              })
+          }}>
+            <View style={ss.renewButtonContent}>
+              <Text text="update" preset="i" style={ss.renewIcon}/>
+              <Text text=" RENEW" preset="h6"/>
+            </View>
+          </Button>
+
+        </Modal>
+
         <FlatList
-          style={listStyle}
+          style={ss.listStyle}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={data.books}
           keyExtractor={this._keyExtractor}
-          renderItem={({ item }) => (
-            <LibraryBlock
-              style={libraryBlockStyle}
-              bookName={item['title']}
-              local={item['local']}
-              returnTime={item['returnTime']}
-            />
+          renderItem={({ item, index }) => (
+            <Touchable
+              foreground={Touchable.Ripple(color.background)}
+              style={ss.libraryBlockStyle}
+              delayPressIn={0}
+              onPress={() => {
+                this.toggleModal()
+                this.setState({ bookIndex: index })
+              }}
+            >
+              <LibraryBlock
+                bookName={item['title']}
+                local={item['local']}
+                returnTime={item['returnTime']}
+              />
+            </Touchable>
           )}
           ListEmptyComponent={() => <Ian tx="library.noBooks"/>}
         />
