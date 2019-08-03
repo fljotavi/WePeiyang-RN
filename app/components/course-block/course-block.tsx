@@ -2,7 +2,6 @@ import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
-import { colorHashByCredits } from "../../utils/common"
 
 export interface CourseBlockProps {
   style?: ViewStyle
@@ -10,15 +9,15 @@ export interface CourseBlockProps {
   timeSlot?: string
   location?: string
   credits?
+  backgroundColor?
 }
 
 export function CourseBlock(props: CourseBlockProps) {
-  const { style, courseName, timeSlot, location, credits } = props
-  const courseColor: number = colorHashByCredits(credits)
+  const { style, courseName, timeSlot, location, backgroundColor } = props
   const predefinedStyle: ViewStyle = {
     width: 120,
     height: 170,
-    backgroundColor: color.gpa[courseColor],
+    backgroundColor: backgroundColor,
     borderRadius: layoutParam.borderRadius,
     paddingHorizontal: 14,
     paddingVertical: 28

@@ -23,7 +23,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
   state = {
     isModalVisible: false,
     userInformed: false,
-    bookIndex: 1,
+    bookIndex: 0,
   }
 
   openModal = () => {

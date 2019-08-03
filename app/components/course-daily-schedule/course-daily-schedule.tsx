@@ -1,26 +1,19 @@
 import * as React from "react"
 import { FlatList, View, ViewStyle } from "react-native"
 import { CourseBlock } from "../course-block"
-import { getScheduleTimeSlot, sanitizeLocation } from "../../utils/common"
+import { colorHashByCredits, getScheduleTimeSlot, sanitizeLocation } from "../../utils/common"
 import { Ian } from "../ian"
+import ss from "./course-daily-schedule.style"
+import { color } from "../../theme"
+import Modal from "react-native-modal"
+import Touchable from "react-native-platform-touchable"
+import { Text } from "../text"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle
   data
   timestamp
   status
-}
-
-const predefinedStyle: ViewStyle = {
-  overflow: "visible"
-}
-
-const listStyle: ViewStyle = {
-  overflow: "visible"
-}
-
-const courseBlockStyle: ViewStyle = {
-  marginRight: 12
 }
 
 const OWL_CONSTANT = 21
@@ -96,26 +89,85 @@ const genDummyCourses = (a, b) => {
 
 export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
 
+  state = {
+    isModalVisible: false,
+    userInformed: false,
+    courseIndex: 1,
+  }
+
+  openModal = () => {
+    this.setState({ isModalVisible: true })
+  }
+  closeModal = () => {
+    this.setState({ isModalVisible: false, userInformed: false })
+  }
+
   _keyExtractor = (item, index) => String(item.courseName) // TODO: Change attr to sth else
 
   render() {
     const { style, data, timestamp, status } = this.props
     const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
+    let courseDaily = genDummyCourses(timestampOwl, data)
+    let chosenCourse = courseDaily[this.state.courseIndex]
+    let backgroundStyle = { backgroundColor: color.gpa[colorHashByCredits(chosenCourse.credits)] }
 
     if (status !== "VALID") {
       return <View />
     }
 
     return (
-      <View style={[predefinedStyle, style]}>
+      <View style={[ss.predefinedStyle, style]}>
+
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.screen.backgroundColor}
+          animationIn={"flipInY"}
+          animationOut={"flipOutY"}
+          animationInTiming={400}
+          animationOutTiming={300}
+          onBackButtonPress={this.closeModal}
+          onBackdropPress={this.closeModal}
+          useNativeDriver={true}
+          style={ss.modal}
+        >
+
+          <View
+            style={[ss.modalCard, backgroundStyle]}
+          >
+
+            <View>
+              <Text text={chosenCourse['courseName']} style={ss.courseTitle} selectable={true}/>
+              <Text text={chosenCourse['location']} style={ss.courseTutor} selectable={true}/>
+            </View>
+
+          </View>
+
+        </Modal>
+
         <FlatList
-          style={listStyle}
+          style={ss.listStyle}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           keyExtractor={this._keyExtractor}
-          data={genDummyCourses(timestampOwl, data)} // TODO: Return authentic data
-          renderItem={({ item }) => (
-            <CourseBlock style={courseBlockStyle} credits={item.credits} courseName={item.courseName} timeSlot={item.timeSlot} location={item.location}/>
+          data={courseDaily} // TODO: Return authentic data
+          renderItem={({ item, index }) => (
+            <Touchable
+              foreground={Touchable.Ripple(color.background)}
+              style={ss.courseBlockStyle}
+              delayPressIn={0}
+              onPress={() => {
+                this.openModal()
+                this.setState({ courseIndex: index })
+              }}
+            >
+              <CourseBlock
+                backgroundColor={color.gpa[colorHashByCredits(item.credits)]}
+                courseName={item.courseName}
+                timeSlot={item.timeSlot}
+                location={item.location}
+              />
+            </Touchable>
+
           )}
           ListEmptyComponent={() => <Ian tx="schedule.noCourseToday"/>}
         />
