@@ -109,7 +109,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
     const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
     let courseDaily = genDummyCourses(timestampOwl, data)
     let chosenCourse = courseDaily[this.state.courseIndex]
-    let backgroundStyle = { backgroundColor: color.gpa[colorHashByCredits(chosenCourse.credits)] }
+    let backgroundStyle = { backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credits)] }
 
     if (status !== "VALID") {
       return <View />
@@ -161,7 +161,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
               }}
             >
               <CourseBlock
-                backgroundColor={color.gpa[colorHashByCredits(item.credits)]}
+                backgroundColor={color.hash.course[colorHashByCredits(item.credits)]}
                 courseName={item.courseName}
                 timeSlot={item.timeSlot}
                 location={item.location}

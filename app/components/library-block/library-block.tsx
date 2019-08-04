@@ -14,7 +14,7 @@ export interface LibraryBlockProps {
 export function LibraryBlock(props: LibraryBlockProps) {
   const { style, bookName, local, returnTime } = props
   const colorHash = (str: string) => {
-    return (str.length) % (color.bookStrip.length)
+    return (str.length) % (color.hash.bookStrip.length)
   }
   const bookColor: number = colorHash(bookName)
   const predefinedStyle: ViewStyle = {
@@ -27,13 +27,13 @@ export function LibraryBlock(props: LibraryBlockProps) {
   }
   const decoStripStyle: ViewStyle = {
     width: 5,
-    backgroundColor: color.bookStrip[bookColor],
+    backgroundColor: color.hash.bookStrip[bookColor],
   }
   const mainContentStyle: ViewStyle = {
     paddingHorizontal: 11,
     paddingVertical: 30,
     width: 115,
-    backgroundColor: color.book
+    backgroundColor: color.card
   }
   const BASE: TextStyle = {
     color: color.primary,

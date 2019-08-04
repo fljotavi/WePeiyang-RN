@@ -3,7 +3,7 @@ import { TextStyle, ViewStyle } from "react-native"
 
 export default {
   screen: {
-    backgroundColor: color.primary,
+    backgroundColor: color.module.gpa,
   },
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
@@ -29,7 +29,7 @@ export default {
     padding: 20,
   } as ViewStyle,
   modalText: {
-    color: color.primary,
+    color: color.module.gpa,
   } as TextStyle,
   orderTab: {
     marginBottom: 15,

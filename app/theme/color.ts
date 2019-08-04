@@ -53,21 +53,22 @@ export const color = {
   error: palette.angry,
 
   /**
-   * Storybook background for Text stories, or any stories where
-   * the text color is color.text, which is white by default, and does not show
-   * in Stories against the default white background
+   * ColorHashes palette for books & course blocks.
    */
-  storybookDarkBg: palette.black,
+  hash: {
+    course: [palette.offPale, palette.novaPale, palette.authenticPale, palette.pale, palette.offBlack],
+    bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
+  },
 
   /**
-   * Storybook text color for stories that display Text components against the
-   * white background
+   * Module-specific colors.
    */
-  storybookTextColor: palette.black,
-  gpa: [palette.offPale, palette.novaPale, palette.authenticPale, palette.pale, palette.offBlack],
-  bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
-  book: palette.white,
+  module: {
+    gpa: palette.offBlack,
+    ecard: palette.angry,
+  },
 
   lucLight: 'rgba(255,255,255,0.05)',
   lucDark: 'rgba(0,0,0,0.02)',
+
 }

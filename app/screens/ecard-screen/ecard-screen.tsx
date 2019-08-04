@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 import { StatusBar, View, ViewStyle } from "react-native"
-import { Text } from "../../components/text"
+// import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"

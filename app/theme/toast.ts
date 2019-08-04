@@ -33,7 +33,13 @@ const primary = {
 const gpa = {
   ...BASE,
   backgroundColor: color.background,
-  textColor: color.primary
+  textColor: color.module.gpa,
+}
+
+const ecard = {
+  ...BASE,
+  backgroundColor: color.background,
+  textColor: color.module.ecard,
 }
 
 const err = {
@@ -43,5 +49,5 @@ const err = {
 }
 
 export default {
-  primary, err, gpa
+  primary, err, gpa, ecard
 }
