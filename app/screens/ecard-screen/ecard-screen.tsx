@@ -19,13 +19,17 @@ import { TopBar } from "./top-bar"
 import Toast from "react-native-root-toast"
 import { Text } from "../../components/text"
 import toastOptions from "../../theme/toast"
-import { fetchEcardProfile, fetchEcardTurnover } from "../../actions/data-actions"
+import { fetchEcardLineChart, fetchEcardProfile, fetchEcardTotal, fetchEcardTurnover } from "../../actions/data-actions"
 import { EcardSnack } from "./ecard-snack"
+import { EcardBar } from "./ecard-bar"
+import { Button } from "../../components/button"
 
 export interface EcardScreenProps extends NavigationScreenProps<{}> {
   ecard?
   fetchEcardProfile?
   fetchEcardTurnover?
+  fetchEcardTotal?
+  fetchEcardLineChart?
 }
 
 const ss = {
@@ -36,7 +40,30 @@ const ss = {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingBottom: layoutParam.paddingVertical
   } as ViewStyle,
+
+  stat: {
+    marginBottom: 32,
+    flexDirection: "row",
+    justifyContent: "center",
+  } as ViewStyle,
+  statPair: {
+    marginHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
+  statKey: {
+    color: color.white(0.35),
+    fontWeight: "bold",
+  } as TextStyle,
+  statVal: {
+    color: color.white(0.95),
+  } as TextStyle,
+  yen: {
+    marginRight: 10,
+  } as TextStyle,
+
   list: {
+    marginTop: 18,
   } as ViewStyle,
   listContainer: {
     alignItems: "center",
@@ -45,16 +72,31 @@ const ss = {
 
   } as ViewStyle,
 
+  ecardBar: {
+    marginTop: 32,
+    marginBottom: 18
+  } as ViewStyle,
+  caption: {
+    color: color.white(0.35),
+    textAlign: "center",
+    alignItems: "center",
+  } as TextStyle,
+
   loadMoreTouchable: {
-    marginTop: 10,
-    flexDirection: "row",
+    marginVertical: 30,
     justifyContent: "center",
+    backgroundColor: color.white(0.95),
+    alignSelf: "center",
+    width: 250,
   } as ViewStyle,
   loadMoreText: {
-    color: color.white(1),
+    color: color.module.ecard,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 14,
   } as TextStyle,
   loadMoreIcon: {
-    color: color.white(1),
+    color: color.module.ecard,
     marginRight: 10,
   } as TextStyle,
 
@@ -70,7 +112,9 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   prepareData = async () => {
     await Promise.all([
       this.props.fetchEcardProfile(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
-      this.props.fetchEcardTurnover(this.props.ecard.auth.cardId, this.props.ecard.auth.password, this.state.daysToLoad)
+      this.props.fetchEcardTurnover(this.props.ecard.auth.cardId, this.props.ecard.auth.password, this.state.daysToLoad),
+      this.props.fetchEcardLineChart(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
+      this.props.fetchEcardTotal(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
     ]).then((values) => {
       Toast.show(<Text tx="ecardScreen.prepareDataSuccess" style={{ color: toastOptions.ecard.textColor }}/> as any, toastOptions.ecard)
       console.log(values)
@@ -106,7 +150,6 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   render () {
 
     const { ecard } = this.props
-    console.log(ecard)
 
     return (
 
@@ -131,7 +174,43 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
           ]}/>
 
           <View style={ss.container}>
-            <EcardBlock palette={[Color(color.module.ecard).lighten(0.1).string(), color.background, color.background]}/>
+
+            <EcardBlock
+              palette={[Color(color.module.ecard).lighten(0.1).string(), color.background, color.background]}
+            />
+
+            {
+              ecard.lineChart && (
+                <View style={ss.ecardBar}>
+                  <EcardBar data={ecard.lineChart}/>
+                </View>
+              )
+            }
+
+            {
+              ecard.total && (
+                <View style={ss.stat}>
+                  <View style={ss.statPair}>
+                    <Text text="Daily Expense" style={ss.statKey}/>
+                    <Text style={ss.statVal} preset="h3">
+                      <Text text="¥" style={ss.yen}/>
+                      <Text text={Number(ecard.total.total_day).toFixed(2)}/>
+                    </Text>
+                  </View>
+                  <View style={ss.statPair}>
+                    <Text text="Monthly Expense" style={ss.statKey}/>
+                    <Text style={ss.statVal} preset="h3">
+                      <Text text="¥" style={ss.yen}/>
+                      <Text text={Number(ecard.total.total_30_days).toFixed(2)}/>
+                    </Text>
+                  </View>
+                </View>
+              )
+            }
+
+            <Text style={ss.caption}>
+              <Text text="▼ billing details" preset="lausanne"/>
+            </Text>
 
             <FlatList
               style={ss.list}
@@ -151,13 +230,12 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
               )}
             />
 
-            <TouchableOpacity
+            <Button
               style={ss.loadMoreTouchable}
               onPress={this._loadMore}
             >
-              <Text text="more_horiz" preset="i" style={ss.loadMoreIcon}/>
-              <Text text="Load One More Day" style={ss.loadMoreText} preset="lausanne"/>
-            </TouchableOpacity>
+              <Text text="Load One More Day" style={ss.loadMoreText}/>
+            </Button>
 
           </View>
 
@@ -182,6 +260,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchEcardTurnover: async (cardId, password, days) => {
       await dispatch(fetchEcardTurnover(cardId, password, days))
+    },
+    fetchEcardTotal: async (cardId, password) => {
+      await dispatch(fetchEcardTotal(cardId, password))
+    },
+    fetchEcardLineChart: async (cardId, password) => {
+      await dispatch(fetchEcardLineChart(cardId, password))
     },
   }
 }

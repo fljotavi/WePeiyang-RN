@@ -33,8 +33,10 @@ const dataReducerInitialState = {
       cardId: "",
       password: "",
     },
-    profile: {},
-    turnover: {},
+    profile: undefined,
+    turnover: undefined,
+    lineChart: undefined,
+    total: undefined
   }
 }
 
@@ -141,6 +143,28 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         ecard: {
           ...state.ecard,
           turnover: action.payload
+        }
+      }
+      break
+
+    case "SET_ECARD_TOTAL":
+      state = {
+        ...state,
+        status: "MODIFIED",
+        ecard: {
+          ...state.ecard,
+          total: action.payload
+        }
+      }
+      break
+
+    case "SET_ECARD_LINE_CHART":
+      state = {
+        ...state,
+        status: "MODIFIED",
+        ecard: {
+          ...state.ecard,
+          lineChart: action.payload
         }
       }
       break

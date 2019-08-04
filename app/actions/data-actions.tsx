@@ -97,10 +97,41 @@ export function fetchEcardTurnover(cardId, password, days) {
     return twtGet("v1/ecard/turnover", { cardnum: cardId, password: password, term: days })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log("Ecard Turnover Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_TURNOVER",
+            payload: responseJson.data
+          })
+        } else throw responseJson
+      })
+  }
+}
+
+export function fetchEcardTotal(cardId, password) {
+  return dispatch => {
+    return twtGet("v1/ecard/total", { cardnum: cardId, password: password })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log("Ecard Total Format", responseJson)
+        if (responseJson.error_code === -1) {
+          dispatch({
+            type: "SET_ECARD_TOTAL",
+            payload: responseJson.data
+          })
+        } else throw responseJson
+      })
+  }
+}
+
+export function fetchEcardLineChart(cardId, password) {
+  return dispatch => {
+    return twtGet("v1/ecard/lineChart", { cardnum: cardId, password: password })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log("Ecard LineChart Format", responseJson)
+        if (responseJson.error_code === -1) {
+          dispatch({
+            type: "SET_ECARD_LINE_CHART",
             payload: responseJson.data
           })
         } else throw responseJson

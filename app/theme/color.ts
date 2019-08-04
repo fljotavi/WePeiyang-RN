@@ -65,7 +65,7 @@ export const color = {
    */
   module: {
     gpa: palette.offBlack,
-    ecard: palette.angry,
+    ecard: palette.pale,
   },
 
   white: (alpha) => `rgba(255,255,255,${alpha})`,

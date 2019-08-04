@@ -39,11 +39,11 @@ export function EcardSnack(props: EcardSnackProps) {
       color: color.background
     },
     icon: {
-      color: color.white(0.43),
+      color: color.white(0.35),
       fontSize: 25,
     },
     score: {
-      color: color.white(0.43),
+      color: color.white(0.35),
       fontSize: 30,
     },
     text: {
@@ -52,7 +52,7 @@ export function EcardSnack(props: EcardSnackProps) {
     } as TextStyle,
     subtitle: {
       fontSize: 12,
-      color: color.white(0.43),
+      color: color.white(0.35),
     }
   }
 
