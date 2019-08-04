@@ -45,7 +45,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
         position: "absolute",
         right: -400,
         top: -100,
-        backgroundColor: 'rgba(255,255,255,0.1)',
+        backgroundColor: color.white(0.1),
         transform: [{ rotate: '22 deg' }]
       } as ViewStyle,
       top: {

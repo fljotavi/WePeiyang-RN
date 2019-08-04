@@ -23,7 +23,7 @@ export function GpaSnack(props: GpaSnackProps) {
     } as ViewStyle,
     snackContainer: {
       borderRadius: layoutParam.borderRadius,
-      backgroundColor: 'rgba(255,255,255,0.03)',
+      backgroundColor: color.white(0.03),
       paddingHorizontal: 20,
       paddingVertical: 16,
       width: '100%',

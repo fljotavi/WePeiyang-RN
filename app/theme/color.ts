@@ -68,7 +68,7 @@ export const color = {
     ecard: palette.angry,
   },
 
-  lucLight: 'rgba(255,255,255,0.05)',
-  lucDark: 'rgba(0,0,0,0.02)',
+  white: (alpha) => `rgba(255,255,255,${alpha})`,
+  black: (alpha) => `rgba(0,0,0,${alpha})`,
 
 }

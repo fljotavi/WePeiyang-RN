@@ -38,6 +38,8 @@ export const presets = {
   small: { ...BASE, fontSize: 13 } as TextStyle,
   i: { fontFamily: typography.materialIcons } as TextStyle,
 
+  lausanne: { ...BASE, fontSize: 10, textTransform: "uppercase", letterSpacing: 3 },
+
   /**
    * Field labels that appear on forms above the inputs.
    */

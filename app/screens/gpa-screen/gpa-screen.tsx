@@ -159,7 +159,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               setScoreType={(scoreType) => setScoreType(scoreType)}
               scores={semestralStat}
               txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
-              palette={['rgba(255,255,255,0.15)', color.background]}
+              palette={[color.white(0.15), color.background]}
             />
 
             <GpaCurve
@@ -168,15 +168,15 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               status={gpa.status}
               scoreToFixed={digitsFromScoreType(scoreType)}
               animated={false}
-              palette={['rgba(255,255,255,0.05)', color.background, 'rgba(255,255,255,0.05)', color.background, color.module.gpa]}
+              palette={[color.white(0.05), color.background, color.white(0.05), color.background, color.module.gpa]}
             />
 
             <View style={ss.orderTab}>
               <TouchableOpacity style={ss.orderTouchable} onPress={this.toggleOrderType}>
                 <View style={ss.orderTexts}>
                   <Text text="shuffle" preset="i" style={ss.orderIcon}/>
-                  <Text text="ORDERED BY" style={ss.orderTextPrefix}/>
-                  <Text text={this.props.gpaOrderBy} style={ss.orderTextSuffix}/>
+                  <Text text="ORDERED BY" preset="lausanne" style={ss.orderTextPrefix}/>
+                  <Text text={this.props.gpaOrderBy} preset="lausanne" style={ss.orderTextSuffix}/>
                 </View>
               </TouchableOpacity>
             </View>

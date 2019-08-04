@@ -65,7 +65,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
             style={ss.modalCard}
           >
 
-            <TjuBadge style={ss.tjuBadge} fill={color.lucDark} height={310} width={270}/>
+            <TjuBadge style={ss.tjuBadge} fill={color.black(0.02)} height={310} width={270}/>
 
             <View>
               <Text text={chosenBook['title']} style={ss.bookTitle} selectable={true}/>

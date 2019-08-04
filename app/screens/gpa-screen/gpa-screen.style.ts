@@ -37,7 +37,7 @@ export default {
     justifyContent: "space-between",
   } as ViewStyle,
   orderTouchable: {
-    backgroundColor: 'rgba(255,255,255,0)',
+    backgroundColor: color.white(0),
     borderRadius: 3,
   },
   orderTexts: {
@@ -52,17 +52,11 @@ export default {
   } as TextStyle,
   orderTextPrefix: {
     color: color.lightGrey,
-    fontSize: 10,
-    letterSpacing: 3,
     marginRight: 4,
-    textTransform: "uppercase",
   } as TextStyle,
   orderTextSuffix: {
     color: color.lightGrey,
-    fontSize: 10,
-    letterSpacing: 3,
     fontWeight: "bold",
-    textTransform: "uppercase",
   } as TextStyle,
 
   list: {

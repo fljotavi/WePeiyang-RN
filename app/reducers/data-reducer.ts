@@ -33,7 +33,8 @@ const dataReducerInitialState = {
       cardId: "",
       password: "",
     },
-    profile: {}
+    profile: {},
+    turnover: {},
   }
 }
 
@@ -129,6 +130,17 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
           ...state.ecard,
           status: "VALID",
           profile: action.payload
+        }
+      }
+      break
+
+    case "SET_ECARD_TURNOVER":
+      state = {
+        ...state,
+        status: "MODIFIED",
+        ecard: {
+          ...state.ecard,
+          turnover: action.payload
         }
       }
       break

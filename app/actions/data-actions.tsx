@@ -82,7 +82,6 @@ export function fetchEcardProfile(cardId, password) {
     return twtGet("v1/ecard/profile", { cardnum: cardId, password: password })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log("Ecard Data Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_PROFILE",
@@ -93,22 +92,21 @@ export function fetchEcardProfile(cardId, password) {
   }
 }
 
-export function fetchEcardTurnover(cardId, password) {
+export function fetchEcardTurnover(cardId, password, days) {
   return dispatch => {
-    return twtGet("v1/ecard/profile", { cardnum: cardId, password: password })
+    return twtGet("v1/ecard/turnover", { cardnum: cardId, password: password, term: days })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log("Ecard Data Format", responseJson)
+        console.log("Ecard Turnover Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
-            type: "SET_ECARD_PROFILE",
+            type: "SET_ECARD_TURNOVER",
             payload: responseJson.data
           })
         } else throw responseJson
       })
   }
 }
-
 
 export function setEcardAuth(cardId, password) {
   return {
