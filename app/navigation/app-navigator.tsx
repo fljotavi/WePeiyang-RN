@@ -5,6 +5,7 @@ import { connectedGpaScreen as GpaScreen } from "../screens/gpa-screen"
 import { connectedSettingsScreen as SettingsScreen } from "../screens/settings-screen"
 import { connectedBindScreen as BindScreen } from "../screens/bind-screen"
 import { connectedLibraryScreen as LibraryScreen } from "../screens/library-screen"
+import { connectedEcardScreen as EcardScreen } from "../screens/ecard-screen"
 
 export const AppNavigator = createStackNavigator(
   {
@@ -13,7 +14,8 @@ export const AppNavigator = createStackNavigator(
     gpa: GpaScreen,
     settings: SettingsScreen,
     bind: BindScreen,
-    library: LibraryScreen
+    library: LibraryScreen,
+    ecard: EcardScreen,
   }, {
     initialRouteName: 'home',
     headerMode: 'none',

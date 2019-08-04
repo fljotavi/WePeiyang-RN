@@ -159,7 +159,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <View style={ss.sectionHead}>
               <Text text="E-card" preset="h5"/>
             </View>
-            <EcardBlock/>
+            <EcardBlock onPress={() => this.props.navigation.navigate('ecard')}/>
 
           </View>
         </ScrollView>

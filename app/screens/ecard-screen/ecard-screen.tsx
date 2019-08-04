@@ -1,11 +1,13 @@
 import * as React from "react"
+import { connect } from "react-redux"
 import { StatusBar, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
+import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 
-export interface NewsScreenProps extends NavigationScreenProps<{}> {
+export interface EcardScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ss = {
@@ -18,7 +20,7 @@ const ss = {
   } as ViewStyle,
 }
 
-export class NewsScreen extends React.Component<NewsScreenProps, {}> {
+export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   render () {
     return (
       <Screen preset="scroll">
@@ -28,9 +30,19 @@ export class NewsScreen extends React.Component<NewsScreenProps, {}> {
           barStyle='dark-content'
         />
         <View style={ss.container}>
-          <Text tx="newsScreen.header" preset="h2" />
+          <EcardBlock/>
         </View>
       </Screen>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export const connectedEcardScreen = connect(mapStateToProps, mapDispatchToProps)(EcardScreen)

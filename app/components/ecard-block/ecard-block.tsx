@@ -12,12 +12,13 @@ export interface EcardBlockProps extends NavigationScreenProps<{}> {
   style?: ViewStyle
   ecard?
   colors?
+  onPress?
 }
 
 class EcardBlock extends React.Component<EcardBlockProps, {}> {
 
   render() {
-    let { ecard, style, colors } = this.props
+    let { ecard, style, colors, onPress } = this.props
     colors = colors || [color.lightGrey, color.background, color.background]
 
     // The current balance api returns "XX.XX元", which is ugly, and of course is going to, and must be fixed in the future. So let's try to be robust here:
@@ -103,7 +104,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
     }
 
     return (
-      <Touchable foreground={Touchable.Ripple(colors[1])} style={[ss.predefinedStyle, style]} delayPressIn={0}>
+      <Touchable foreground={Touchable.Ripple(colors[1])} style={[ss.predefinedStyle, style]} delayPressIn={0} onPress={onPress}>
         <View style={ss.containerStyle} pointerEvents='box-only'>
           <View style={ss.ambient}/>
           <View style={ss.top}>
