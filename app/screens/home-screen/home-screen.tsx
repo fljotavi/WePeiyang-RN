@@ -6,7 +6,7 @@ import {
   fetchCourseData,
   fetchLibraryData,
   fetchUserData,
-  fetchEcardData
+  fetchEcardProfile
 } from "../../actions/data-actions"
 import { digitsFromScoreType } from "../../utils/common"
 
@@ -36,7 +36,7 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
   fetchCourseData?
   fetchUserData?
   fetchLibraryData?
-  fetchEcardData?
+  fetchEcardProfile?
 
   compData?
 }
@@ -54,7 +54,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       this.props.fetchLibraryData(),
       this.props.fetchGpaData(),
     ]
-    if (this.props.compData.ecard.auth.status === 'BOUND') toFetch.push(this.props.fetchEcardData(this.props.compData.ecard.auth.cardId, this.props.compData.ecard.auth.password))
+    if (this.props.compData.ecard.auth.status === 'BOUND') toFetch.push(this.props.fetchEcardProfile(this.props.compData.ecard.auth.cardId, this.props.compData.ecard.auth.password))
     await Promise.all(toFetch).then((values) => {
       Toast.show(<Text tx="homeScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
     }).catch((err) => {
@@ -192,8 +192,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchLibraryData: async () => {
       await dispatch(fetchLibraryData())
     },
-    fetchEcardData: async (cardId, password) => {
-      await dispatch(fetchEcardData(cardId, password))
+    fetchEcardProfile: async (cardId, password) => {
+      await dispatch(fetchEcardProfile(cardId, password))
     },
   }
 }

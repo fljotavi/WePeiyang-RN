@@ -8,12 +8,12 @@ import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
-import { fetchEcardData, setEcardAuth } from "../../actions/data-actions"
+import { fetchEcardProfile, setEcardAuth } from "../../actions/data-actions"
 import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
 
 export interface BindScreenProps extends NavigationScreenProps<{}> {
-  fetchEcardData?
+  fetchEcardProfile?
   setEcardAuth?
 }
 
@@ -37,7 +37,7 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
   }
 
   attemptToBind = () => {
-    this.props.fetchEcardData(this.state.cardId, this.state.password)
+    this.props.fetchEcardProfile(this.state.cardId, this.state.password)
       .then((resp) => {
         Toast.show(<Text tx="accountBinding.bindSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
         this.props.setEcardAuth(this.state.cardId, this.state.password)
@@ -90,8 +90,8 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchEcardData: async (cardId, password) => {
-      await dispatch(fetchEcardData(cardId, password))
+    fetchEcardProfile: async (cardId, password) => {
+      await dispatch(fetchEcardProfile(cardId, password))
     },
     setEcardAuth: (cardId, password) => {
       dispatch(setEcardAuth(cardId, password))

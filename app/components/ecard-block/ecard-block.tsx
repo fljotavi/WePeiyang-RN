@@ -11,18 +11,18 @@ import { Ian } from "../ian"
 export interface EcardBlockProps extends NavigationScreenProps<{}> {
   style?: ViewStyle
   ecard?
-  colors?
+  palette?
   onPress?
 }
 
 class EcardBlock extends React.Component<EcardBlockProps, {}> {
 
   render() {
-    let { ecard, style, colors, onPress } = this.props
-    colors = colors || [color.lightGrey, color.background, color.background]
+    let { ecard, style, palette, onPress } = this.props
+    palette = palette || [color.lightGrey, color.background, color.background]
 
     // The current balance api returns "XX.XX元", which is ugly, and of course is going to, and must be fixed in the future. So let's try to be robust here:
-    let displayBalance = String(ecard.data.balance).replace('元', '')
+    let displayBalance = String(ecard.profile.balance).replace('元', '')
 
     if (ecard.auth.status !== "BOUND") {
       return <Ian text="No cards bound"/>
@@ -31,7 +31,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
       predefinedStyle: {
         borderRadius: layoutParam.borderRadius,
         overflow: "hidden",
-        backgroundColor: colors[0],
+        backgroundColor: palette[0],
       } as ViewStyle,
       containerStyle: {
         paddingHorizontal: 28,
@@ -58,11 +58,11 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
       } as ViewStyle,
       balance: {
         fontSize: 60,
-        color: colors[1],
+        color: palette[1],
       },
       yen: {
         fontSize: 60,
-        color: colors[1],
+        color: palette[1],
         fontWeight: "bold"
       } as TextStyle,
       bar: {
@@ -71,18 +71,18 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
         paddingVertical: 3,
         borderRadius: 3,
         flexDirection: "row",
-        backgroundColor: colors[2],
+        backgroundColor: palette[2],
         alignSelf: "flex-start",
       } as ViewStyle,
       barTextPre: {
         fontSize: 11,
-        color: colors[0],
+        color: palette[0],
         fontWeight: "bold",
         letterSpacing: 2,
       } as TextStyle,
       barTextSub: {
         fontSize: 11,
-        color: colors[0],
+        color: palette[0],
         letterSpacing: 2,
       },
       pair: {
@@ -90,13 +90,13 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
         alignItems: 'flex-end',
       } as ViewStyle,
       attrKey: {
-        color: colors[2],
+        color: palette[2],
         fontSize: 8,
         letterSpacing: 3,
         marginRight: -1,
       } as TextStyle,
       attrValue: {
-        color: colors[1],
+        color: palette[1],
         fontSize: 12,
         marginBottom: 5,
         fontWeight: "bold",
@@ -104,14 +104,14 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
     }
 
     return (
-      <Touchable foreground={Touchable.Ripple(colors[1])} style={[ss.predefinedStyle, style]} delayPressIn={0} onPress={onPress}>
+      <Touchable foreground={Touchable.Ripple(palette[1])} style={[ss.predefinedStyle, style]} delayPressIn={0} onPress={onPress}>
         <View style={ss.containerStyle} pointerEvents='box-only'>
           <View style={ss.ambient}/>
           <View style={ss.top}>
             <View style={ss.bar}>
               <Text>
                 <Text text="CARD " style={ss.barTextPre}/>
-                <Text text={"NO." + ecard.data.cardnum} style={ss.barTextSub}/>
+                <Text text={"NO." + ecard.profile.cardnum} style={ss.barTextSub}/>
               </Text>
             </View>
             <Text>
@@ -122,11 +122,11 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
           <View style={ss.bottom}>
             <View style={ss.pair}>
               <Text text="HOLDER" style={ss.attrKey}/>
-              <Text text={ecard.data.name} style={ss.attrValue}/>
+              <Text text={ecard.profile.name} style={ss.attrValue}/>
             </View>
             <View style={ss.pair}>
               <Text text="EXPIRES BY" style={ss.attrKey}/>
-              <Text text={ecard.data.expiry} style={ss.attrValue}/>
+              <Text text={ecard.profile.expiry} style={ss.attrValue}/>
             </View>
           </View>
         </View>

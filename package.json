@@ -23,6 +23,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.5.1",
     "apisauce": "0.16.0",
+    "color": "^3.1.2",
     "date-fns": "^1.30.1",
     "i18n-js": "^3.0.11",
     "lodash.throttle": "4.1.1",

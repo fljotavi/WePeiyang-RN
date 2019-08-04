@@ -42,6 +42,10 @@
     "prepareDataSuccess": "Successfully refreshed GPA data",
     "prepareDataFailed": "Failed to refresh GPA data due to some errors in the network fetching process."
   },
+  "ecardScreen": {
+    "prepareDataSuccess": "Successfully refreshed E-card data",
+    "prepareDataFailed": "Failed to refresh E-card data due to some errors in the network fetching process."
+  },
   "newsScreen": {
     "header": "News"
   },

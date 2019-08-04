@@ -33,7 +33,7 @@ const dataReducerInitialState = {
       cardId: "",
       password: "",
     },
-    data: {}
+    profile: {}
   }
 }
 
@@ -121,14 +121,14 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       }
       break
 
-    case "SET_ECARD_DATA":
+    case "SET_ECARD_PROFILE":
       state = {
         ...state,
         status: "MODIFIED",
         ecard: {
           ...state.ecard,
           status: "VALID",
-          data: action.payload
+          profile: action.payload
         }
       }
       break

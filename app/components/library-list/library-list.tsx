@@ -37,11 +37,12 @@ export class LibraryList extends React.Component<BookListProps, {}> {
 
   render() {
     const { style, data, status } = this.props
-    let chosenBook = data.books[this.state.bookIndex]
 
     if (status !== "VALID") {
       return <View />
     }
+
+    let chosenBook = data.books[this.state.bookIndex]
 
     return (
       <View style={[ss.predefinedStyle, style]}>
