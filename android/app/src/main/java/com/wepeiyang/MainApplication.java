@@ -3,8 +3,7 @@ package com.wepeiyang;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.horcrux.svg.SvgPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.horcrux.svg.SvgPackage;
 import com.reactcommunity.rnlocalize.RNLocalizePackage;
 import com.oblador.keychain.KeychainPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;

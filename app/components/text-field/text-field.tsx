@@ -1,6 +1,6 @@
 import * as React from "react"
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
-import { color, typography } from "../../theme"
+import { color, layoutParam, typography } from "../../theme"
 import { translate } from "../../i18n"
 import { Text } from "../text"
 import { TextFieldProps } from "./text-field.props"
@@ -16,10 +16,10 @@ const INPUT: TextStyle = {
   paddingHorizontal: 15,
   fontFamily: typography.primary,
   color: color.text,
-  minHeight: 44,
+  minHeight: 28,
   fontSize: 16,
   backgroundColor: color.washed,
-  borderRadius: 22,
+  borderRadius: layoutParam.borderRadius,
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
