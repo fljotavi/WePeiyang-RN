@@ -42,6 +42,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   }
 
   componentDidMount() {
+    this._onRefresh()
     setTimeout(() => {
       this.setState({ renderChart: true })
       Animated.timing(
@@ -186,7 +187,6 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
         </ScrollView>
 
       </Screen>
-
     )
   }
 }

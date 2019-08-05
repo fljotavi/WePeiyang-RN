@@ -13,14 +13,14 @@ export function TopBar(props: TopBarProps) {
   const { style, actions } = props
 
   const topBarIcon = {
-    color: color.background,
+    color: color.module.gpa[1],
   } as ViewStyle
 
   return (
     <View style={[ssGlobal.topBar.container, style]}>
       <View style={ssGlobal.topBar.side}>
         <Touchable
-          background={Touchable.Ripple(color.lightGrey, true)}
+          background={Touchable.Ripple(color.module.gpa[2], true)}
           onPress={actions[0]}
           delayPressIn={0}
         >
@@ -29,14 +29,14 @@ export function TopBar(props: TopBarProps) {
       </View>
       <View style={ssGlobal.topBar.side}>
         <Touchable
-          background={Touchable.Ripple(color.lightGrey, true)}
+          background={Touchable.Ripple(color.module.gpa[2], true)}
           onPress={actions[1]}
           delayPressIn={0}
         >
           <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="error_outline" preset="i"/>
         </Touchable>
         <Touchable
-          background={Touchable.Ripple(color.lightGrey, true)}
+          background={Touchable.Ripple(color.module.gpa[2], true)}
           onPress={actions[2]}
           delayPressIn={0}
         >

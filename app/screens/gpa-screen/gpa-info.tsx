@@ -10,7 +10,7 @@ export interface GpaInfoProps {
 export function GpaInfo(props: GpaInfoProps) {
 
   const textStyle: TextStyle = {
-    color: color.module.gpa,
+    color: color.module.gpa[0],
     fontSize: 14,
     marginVertical: 10,
   }

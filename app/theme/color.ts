@@ -58,7 +58,7 @@ export const color = {
    * Module-specific colors.
    */
   module: {
-    gpa: palette.offBlack,
+    gpa: [palette.offPale, white(0.95), white(0.35), white(0.08)],
     ecard: [palette.offBlack, palette.silver, palette.gold]
   },
 

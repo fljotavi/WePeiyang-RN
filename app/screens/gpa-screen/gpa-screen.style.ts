@@ -3,7 +3,7 @@ import { TextStyle, ViewStyle } from "react-native"
 
 export default {
   screen: {
-    backgroundColor: color.module.gpa,
+    backgroundColor: color.module.gpa[0],
   },
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
@@ -21,7 +21,7 @@ export default {
     marginBottom: 50,
   },
   modal: {
-    backgroundColor: color.background,
+    backgroundColor: color.module.gpa[1],
     borderRadius: layoutParam.borderRadius,
     marginHorizontal: 20,
     marginVertical: 50,
@@ -30,7 +30,7 @@ export default {
     padding: 20,
   } as ViewStyle,
   modalText: {
-    color: color.module.gpa,
+    color: color.module.gpa[0],
   } as TextStyle,
   orderTab: {
     marginBottom: 15,
@@ -38,7 +38,6 @@ export default {
     justifyContent: "space-between",
   } as ViewStyle,
   orderTouchable: {
-    backgroundColor: color.white(0),
     borderRadius: 3,
   },
   orderTexts: {
@@ -48,15 +47,15 @@ export default {
     alignItems: 'center',
   } as ViewStyle,
   orderIcon: {
-    color: color.lightGrey,
+    color: color.module.gpa[2],
     marginRight: 5,
   } as TextStyle,
   orderTextPrefix: {
-    color: color.lightGrey,
+    color: color.module.gpa[2],
     marginRight: 4,
   } as TextStyle,
   orderTextSuffix: {
-    color: color.lightGrey,
+    color: color.module.gpa[2],
     fontWeight: "bold",
   } as TextStyle,
 
@@ -70,14 +69,4 @@ export default {
     marginBottom: 10,
   } as ViewStyle,
 
-  backdrop: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(50,0,0,0.4)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  } as ViewStyle,
 }

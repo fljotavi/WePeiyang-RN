@@ -33,7 +33,7 @@ const primary = {
 const gpa = {
   ...BASE,
   backgroundColor: color.background,
-  textColor: color.module.gpa,
+  textColor: color.module.gpa[0],
 }
 
 const ecard = {

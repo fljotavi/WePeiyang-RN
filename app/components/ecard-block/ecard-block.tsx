@@ -21,13 +21,18 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
     let { ecard, style, palette, onPress } = this.props
     palette = palette || [color.lightGrey, color.background, color.background]
 
+    if (ecard.auth.status !== "BOUND") {
+      return <Ian text="No cards bound"/>
+    }
+
+    if (ecard.status !== "VALID") {
+      return <Ian text="No available data"/>
+    }
+
     // The current balance api returns "XX.XX元", which is ugly, and of course is going to,
     // and must be fixed in the future. So let's try to be robust here:
     let displayBalance = String(ecard.profile.balance).replace('元', '')
 
-    if (ecard.auth.status !== "BOUND") {
-      return <Ian text="No cards bound"/>
-    }
     const ss = {
       predefinedStyle: {
         borderRadius: layoutParam.borderRadius,

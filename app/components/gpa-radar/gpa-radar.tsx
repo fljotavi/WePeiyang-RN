@@ -90,7 +90,7 @@ export function GpaPolarLabel(props: GpaPolarLabelProps) {
         <Svgtext
           textAnchor="middle"
           fontSize={7}
-          fill={color.background}
+          fill={color.module.gpa[1]}
           fontFamily={typography.primary}
         >
           {tgroup}
@@ -131,7 +131,7 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
             polar
           >
             <VictoryGroup
-              colorScale={[color.background]}
+              colorScale={[color.module.gpa[1]]}
             >
               <VictoryArea
                 style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
@@ -142,7 +142,7 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
               />
               <VictoryBar
                 style={{ data: {
-                  fill: color.background, fillOpacity: 0.07
+                  fill: color.module.gpa[1], fillOpacity: 0.07
                 } }}
                 data={processedCredits}
                 labelComponent={
@@ -174,7 +174,7 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
               tickFormat={() => ""}
               style={{
                 axis: { stroke: "none" },
-                grid: { stroke: color.background, opacity: 0.5, strokeWidth: 0.25 }
+                grid: { stroke: color.module.gpa[1], opacity: 0.5, strokeWidth: 0.25 }
               }}
             />
           </VictoryChart>

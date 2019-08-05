@@ -20,10 +20,11 @@ export function GpaSnack(props: GpaSnackProps) {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
+      borderRadius: layoutParam.borderRadius,
+      overflow: "hidden",
     } as ViewStyle,
     snackContainer: {
-      borderRadius: layoutParam.borderRadius,
-      backgroundColor: color.white(0.03),
+      backgroundColor: color.module.gpa[3],
       paddingHorizontal: 20,
       paddingVertical: 16,
       width: '100%',
@@ -35,14 +36,14 @@ export function GpaSnack(props: GpaSnackProps) {
       alignItems: "center"
     } as ViewStyle,
     title: {
-      color: color.background
+      color: color.module.gpa[1]
     },
     icon: {
-      color: color.lightGrey,
+      color: color.module.gpa[2],
       fontSize: 25,
     },
     score: {
-      color: color.lightGrey,
+      color: color.module.gpa[1],
       fontSize: 30,
     },
     text: {
@@ -50,14 +51,14 @@ export function GpaSnack(props: GpaSnackProps) {
       width: 190,
     } as TextStyle,
     subtitle: {
-      color: color.lightGrey
+      color: color.module.gpa[2]
     }
   }
   let iconText = 'assignment_turned_in'
   if (score > 99) iconText = 'flash_auto'
   if (score < 60) iconText = 'hourglass_full'
   return (
-    <Touchable style={[ss.snack, style]} delayPressIn={0}>
+    <Touchable background={Touchable.Ripple(color.module.gpa[2])} style={[ss.snack, style]} delayPressIn={0}>
       <View style={ss.snackContainer} pointerEvents='box-only'>
         <View style={ss.left}>
           <Text text={iconText} style={ss.icon} preset="i"/>

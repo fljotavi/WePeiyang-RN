@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {Animated, FlatList, RefreshControl, ScrollView, StatusBar, TouchableOpacity, View} from "react-native"
+import { Animated, FlatList, RefreshControl, ScrollView, StatusBar, TouchableOpacity, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -22,7 +22,6 @@ import { TopBar } from "./top-bar"
 import Modal from "react-native-modal"
 import { Button } from "../../components/button"
 import { GpaInfo } from "./gpa-info"
-import {EcardBar} from "../ecard-screen/ecard-bar";
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
 
@@ -177,7 +176,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               setScoreType={(scoreType) => setScoreType(scoreType)}
               scores={semestralStat}
               txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
-              palette={[color.white(0.15), color.background]}
+              palette={[ color.module.gpa[2], color.module.gpa[1]]}
             />
 
             <GpaCurve
@@ -186,7 +185,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               status={gpa.status}
               scoreToFixed={digitsFromScoreType(scoreType)}
               animated={false}
-              palette={[color.white(0.05), color.background, color.white(0.05), color.background, color.module.gpa]}
+              palette={[color.module.gpa[3], color.module.gpa[1], color.module.gpa[3], color.module.gpa[1], color.module.gpa[0]]}
             />
 
             <View style={ss.orderTab}>

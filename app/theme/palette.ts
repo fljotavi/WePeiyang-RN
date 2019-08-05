@@ -13,6 +13,8 @@ export const palette = {
   orange: "#FBA928",
   angry: "#dd3333",
 
+  twt: "#1c94dd",
+
   paleDarker: "rgb(59, 50, 69)",
   pale: "rgb(54, 60, 84)",
   offPale: "rgb(109, 105, 127)",

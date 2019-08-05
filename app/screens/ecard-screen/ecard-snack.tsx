@@ -84,7 +84,7 @@ export function EcardSnack(props: EcardSnackProps) {
   if (type === 2) amountText = "-" + amountText
   if (type === 1) amountText = "+" + amountText
   return (
-    <Touchable background={Touchable.Ripple(color.module.ecard[2])} style={[ss.snack, style]} delayPressIn={0}>
+    <Touchable background={Touchable.Ripple(type === 1 ? color.module.ecard[2] : color.white(0.05))} style={[ss.snack, style]} delayPressIn={0}>
       <View style={ss.snackContainer} pointerEvents='box-only'>
         <View style={ss.left}>
           <Text text={iconText} style={ss.icon} preset="i"/>
