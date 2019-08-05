@@ -5,14 +5,11 @@ import {
   RefreshControl,
   ScrollView,
   StatusBar,
-  TextStyle,
-  TouchableOpacity,
   View,
-  ViewStyle
 } from "react-native"
 import Color from 'color'
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { TopBar } from "./top-bar"
@@ -24,82 +21,14 @@ import { EcardSnack } from "./ecard-snack"
 import { EcardBar } from "./ecard-bar"
 import { Button } from "../../components/button"
 
+import ss from "./ecard-screen-style"
+
 export interface EcardScreenProps extends NavigationScreenProps<{}> {
   ecard?
   fetchEcardProfile?
   fetchEcardTurnover?
   fetchEcardTotal?
   fetchEcardLineChart?
-}
-
-const ss = {
-  screen: {
-    backgroundColor: color.module.ecard,
-  } as ViewStyle,
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingBottom: layoutParam.paddingVertical
-  } as ViewStyle,
-
-  stat: {
-    marginBottom: 32,
-    flexDirection: "row",
-    justifyContent: "center",
-  } as ViewStyle,
-  statPair: {
-    marginHorizontal: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  } as ViewStyle,
-  statKey: {
-    color: color.white(0.35),
-    fontWeight: "bold",
-  } as TextStyle,
-  statVal: {
-    color: color.white(0.95),
-  } as TextStyle,
-  yen: {
-    marginRight: 10,
-  } as TextStyle,
-
-  list: {
-    marginTop: 18,
-  } as ViewStyle,
-  listContainer: {
-    alignItems: "center",
-  } as ViewStyle,
-  snackStyle: {
-
-  } as ViewStyle,
-
-  ecardBar: {
-    marginTop: 32,
-    marginBottom: 18
-  } as ViewStyle,
-  caption: {
-    color: color.white(0.35),
-    textAlign: "center",
-    alignItems: "center",
-  } as TextStyle,
-
-  loadMoreTouchable: {
-    marginVertical: 30,
-    justifyContent: "center",
-    backgroundColor: color.white(0.95),
-    alignSelf: "center",
-    width: 250,
-  } as ViewStyle,
-  loadMoreText: {
-    color: color.module.ecard,
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    fontSize: 14,
-  } as TextStyle,
-  loadMoreIcon: {
-    color: color.module.ecard,
-    marginRight: 10,
-  } as TextStyle,
-
 }
 
 export class EcardScreen extends React.Component<EcardScreenProps, {}> {
@@ -134,16 +63,17 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   _keyExtractor = (item, index) => String(index);
 
   _loadMore = async () => {
-    this.setState({ daysToLoad: this.state.daysToLoad + 1 })
-    this.setState({ refreshing: true })
-    await Promise.all([
-      this.props.fetchEcardTurnover(this.props.ecard.auth.cardId, this.props.ecard.auth.password, this.state.daysToLoad)
-    ]).then(() => {
-      this.setState({ refreshing: false })
-    }).catch((err) => {
-      this.setState({ refreshing: false })
-      console.log(err)
-      Toast.show(<Text tx="ecardScreen.prepareDataFailed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+    this.setState({ daysToLoad: this.state.daysToLoad + 1 }, async () => {
+      this.setState({ refreshing: true })
+      await Promise.all([
+        this.props.fetchEcardTurnover(this.props.ecard.auth.cardId, this.props.ecard.auth.password, this.state.daysToLoad)
+      ]).then(() => {
+        this.setState({ refreshing: false })
+      }).catch((err) => {
+        this.setState({ refreshing: false })
+        console.log(err)
+        Toast.show(<Text tx="ecardScreen.prepareDataFailed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
+      })
     })
   }
 
