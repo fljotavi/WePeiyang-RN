@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { FlatList, RefreshControl, ScrollView, StatusBar, TouchableOpacity, View } from "react-native"
+import {Animated, FlatList, RefreshControl, ScrollView, StatusBar, TouchableOpacity, View} from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -22,6 +22,7 @@ import { TopBar } from "./top-bar"
 import Modal from "react-native-modal"
 import { Button } from "../../components/button"
 import { GpaInfo } from "./gpa-info"
+import {EcardBar} from "../ecard-screen/ecard-bar";
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
 
@@ -43,6 +44,21 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   state = {
     refreshing: false,
     isModalVisible: false,
+    renderChart: false, // Defer chart render for better entry performance
+    fadeAnim: new Animated.Value(0),
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ renderChart: true })
+      Animated.timing(
+        this.state.fadeAnim,
+        {
+          toValue: 1, // Animate to opacity: 1 (opaque)
+          duration: 1000, // Make it take a while
+        }
+      ).start()
+    }, 1)
   }
 
   prepareData = async () => {
@@ -147,9 +163,11 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             this._onRefresh
           ]}/>
 
-          <GpaRadar
-            style={ss.radar}
-          />
+          <Animated.View style={{ ...ss.radarContainer, opacity: this.state.fadeAnim }}>
+            {(this.state.renderChart) && (
+              <GpaRadar />
+            )}
+          </Animated.View>
 
           <View style={ss.container}>
 

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 import {
+  Animated,
   FlatList,
   RefreshControl,
   ScrollView,
@@ -36,6 +37,21 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   state = {
     refreshing: false,
     daysToLoad: 2,
+    renderChart: false, // Defer chart render for better entry performance
+    fadeAnim: new Animated.Value(0),
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ renderChart: true })
+      Animated.timing(
+        this.state.fadeAnim,
+        {
+          toValue: 1, // Animate to opacity: 1 (opaque)
+          duration: 1000, // Make it take a while
+        }
+      ).start()
+    }, 1)
   }
 
   prepareData = async () => {
@@ -105,18 +121,15 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
 
           <View style={ss.container}>
 
-
             <EcardBlock
               palette={[Color(color.module.ecard[0]).mix(Color("white"), 0.02), color.module.ecard[1], color.module.ecard[1]]}
             />
 
-            {
-              ecard.lineChart && (
-                <View style={ss.ecardBar}>
-                  <EcardBar data={ecard.lineChart}/>
-                </View>
-              )
-            }
+            <Animated.View style={{ ...ss.ecardBar, opacity: this.state.fadeAnim }}>
+              {(ecard.lineChart && this.state.renderChart) && (
+                <EcardBar data={ecard.lineChart}/>
+              )}
+            </Animated.View>
 
             {
               ecard.total && (

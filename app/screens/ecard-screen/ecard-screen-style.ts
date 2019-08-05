@@ -43,7 +43,8 @@ export default {
 
   ecardBar: {
     marginTop: 32,
-    marginBottom: 18
+    marginBottom: 18,
+    height: 100,
   } as ViewStyle,
   caption: {
     color: color.module.ecard[2],

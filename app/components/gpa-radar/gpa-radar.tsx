@@ -121,65 +121,64 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
+      height: 300,
     } as ViewStyle
     return (
-      <TouchableOpacity onPress={() => this.forceUpdate()}>
-        <View style={[predefinedStyle, style]}>
-          <Svg>
-            <VictoryChart
-              domain={{ y: [ 0, 100 ] }}
-              polar
+      <TouchableOpacity style={[predefinedStyle, style]} onPress={() => this.forceUpdate()}>
+        <Svg>
+          <VictoryChart
+            domain={{ y: [ 0, 100 ] }}
+            polar
+          >
+            <VictoryGroup
+              colorScale={[color.background]}
             >
-              <VictoryGroup
-                colorScale={[color.background]}
-              >
-                <VictoryArea
-                  style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
-                  data={processed}
-                  labelComponent={
-                    <G/>
-                  }
-                />
-                <VictoryBar
-                  style={{ data: {
-                    fill: color.background, fillOpacity: 0.07
-                  } }}
-                  data={processedCredits}
-                  labelComponent={
-                    <G/>
-                  }
-                />
-              </VictoryGroup>
-              {
-                processed.map((key, i) => {
-                  return (
-                    <VictoryPolarAxis
-                      key={i}
-                      dependentAxis
-                      style={{
-                        axis: { stroke: "none" },
-                      }}
-                      label="foo"
-                      axisLabelComponent={
-                        <GpaPolarLabel courseName={key.x}/>
-                      }
-                      tickLabelComponent={<G/>}
-                      axisValue={i + 1}
-                    />
-                  )
-                })
-              }
-              <VictoryPolarAxis
-                labelPlacement="parallel"
-                tickFormat={() => ""}
-                style={{
-                  axis: { stroke: "none" },
-                  grid: { stroke: color.background, opacity: 0.5, strokeWidth: 0.25 }
-                }}
+              <VictoryArea
+                style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
+                data={processed}
+                labelComponent={
+                  <G/>
+                }
               />
-            </VictoryChart>
-          </Svg>
-        </View>
+              <VictoryBar
+                style={{ data: {
+                  fill: color.background, fillOpacity: 0.07
+                } }}
+                data={processedCredits}
+                labelComponent={
+                  <G/>
+                }
+              />
+            </VictoryGroup>
+            {
+              processed.map((key, i) => {
+                return (
+                  <VictoryPolarAxis
+                    key={i}
+                    dependentAxis
+                    style={{
+                      axis: { stroke: "none" },
+                    }}
+                    label="foo"
+                    axisLabelComponent={
+                      <GpaPolarLabel courseName={key.x}/>
+                    }
+                    tickLabelComponent={<G/>}
+                    axisValue={i + 1}
+                  />
+                )
+              })
+            }
+            <VictoryPolarAxis
+              labelPlacement="parallel"
+              tickFormat={() => ""}
+              style={{
+                axis: { stroke: "none" },
+                grid: { stroke: color.background, opacity: 0.5, strokeWidth: 0.25 }
+              }}
+            />
+          </VictoryChart>
+        </Svg>
       </TouchableOpacity>
     )
   }

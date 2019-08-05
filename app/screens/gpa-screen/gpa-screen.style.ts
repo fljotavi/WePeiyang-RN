@@ -10,8 +10,9 @@ export default {
     paddingVertical: layoutParam.paddingVertical,
     alignItems: "center",
   } as ViewStyle,
-  radar: {
-
+  radarContainer: {
+    height: 300,
+    backgroundColor: "transparent",
   } as ViewStyle,
   stat: {
     marginBottom: -10,

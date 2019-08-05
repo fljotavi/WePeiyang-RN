@@ -1,36 +1,8 @@
 import * as React from "react"
 import { Dimensions, View, ViewStyle } from "react-native"
 import { VictoryBar, VictoryGroup } from "victory-native"
-import { color, typography } from "../../theme"
-import Svg, { G, Text as Svgtext } from "react-native-svg"
-
-export interface EcardTooltipProps {
-  x?
-  y?
-  datum?
-}
-
-export function EcardTooltip(props: EcardTooltipProps) {
-  {
-    const { x, y, datum } = props
-    let w = 70
-    let h = 30
-    return (
-      <G x={x - w / 2} y={y - h - 17}>
-        <Svgtext
-          x={w / 2}
-          y={20}
-          fontSize={10}
-          fill={color.module.ecard[2]}
-          textAnchor="middle"
-          fontFamily={typography.primaryBold}
-          fontWeight="bold">
-          {datum.y}
-        </Svgtext>
-      </G>
-    )
-  }
-}
+import { color } from "../../theme"
+import Svg from "react-native-svg"
 
 export interface EcardBarProps {
   data?
