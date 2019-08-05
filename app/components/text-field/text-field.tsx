@@ -13,12 +13,13 @@ const CONTAINER: ViewStyle = {
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
-  paddingHorizontal: 10,
+  paddingHorizontal: 15,
   fontFamily: typography.primary,
   color: color.text,
   minHeight: 44,
-  fontSize: 18,
-  backgroundColor: color.palette.white,
+  fontSize: 16,
+  backgroundColor: color.washed,
+  borderRadius: 22,
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
@@ -60,6 +61,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
           placeholder={actualPlaceholder}
           placeholderTextColor={color.lightGrey}
           underlineColorAndroid={color.transparent}
+          selectionColor={color.black(0.12)}
           {...rest}
           style={inputStyle}
           ref={forwardedRef}

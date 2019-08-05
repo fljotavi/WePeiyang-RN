@@ -59,9 +59,9 @@
     "portalAccount": "Portal account",
     "unbound": "Unbound",
     "bound": "Bound",
-    "greetings": "Be together",
+    "greetings": "Your accounts are stronger together.",
     "ecardId": "Your Student ID",
-    "ecardPassword": "Your e-card password (Used on E-card POS machines)",
+    "ecardPassword": "E-card password (Used on POS machines)",
     "bind": "Bind",
     "bindSuccess": "Account bound"
   },

@@ -12,7 +12,8 @@ export const layoutParam = {
 export const ssGlobal = {
   topBar: {
     container: {
-      padding: 18,
+      paddingHorizontal: 15,
+      paddingVertical: 17,
       alignSelf: 'stretch',
       flexDirection: "row",
       justifyContent: "space-between",
