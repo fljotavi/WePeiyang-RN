@@ -6,6 +6,10 @@ export const palette = {
   offBlack: "#262626",
   black: "#000000",
 
+  gold: "rgba(215, 181, 118, 0.7)",
+  silver: "#cccccc",
+  bark: "rgb(33, 33, 35)",
+
   orange: "#FBA928",
   angry: "#dd3333",
 

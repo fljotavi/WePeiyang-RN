@@ -36,14 +36,18 @@ export function EcardSnack(props: EcardSnackProps) {
       alignItems: "center"
     } as ViewStyle,
     title: {
-      color: color.background
+      color: color.module.ecard[1],
     },
     icon: {
-      color: color.white(0.35),
+      color: color.module.ecard[2],
       fontSize: 25,
     },
     score: {
-      color: color.white(0.35),
+      color: color.module.ecard[1],
+      fontSize: 30,
+    },
+    scoreGolden: {
+      color: color.module.ecard[2],
       fontSize: 30,
     },
     text: {
@@ -52,7 +56,7 @@ export function EcardSnack(props: EcardSnackProps) {
     } as TextStyle,
     subtitle: {
       fontSize: 12,
-      color: color.white(0.35),
+      color: color.module.ecard[1],
     }
   }
 
@@ -73,12 +77,14 @@ export function EcardSnack(props: EcardSnackProps) {
   }
 
   // I have to say man, thanks to the truly fucked-up API design, I can do my funny ugly coding works here
-  let humanReadableDateTime = `${date.substr(0, 4)}/${date.substr(4, 2)}/${date.substr(6, 2)} ${time.substr(0, 2)}:${date.substr(2, 2)}`
+  let humanReadableDateTime =
+    `${date.substr(0, 4)}/${date.substr(4, 2)}/${date.substr(6, 2)} ${time.substr(0, 2)}:${time.substr(2, 2)}`
 
   let amountText = String(amount)
   if (type === 2) amountText = "-" + amountText
+  if (type === 1) amountText = "+" + amountText
   return (
-    <Touchable background={Touchable.Ripple(color.white(0.2))} style={[ss.snack, style]} delayPressIn={0}>
+    <Touchable background={Touchable.Ripple(color.module.ecard[2])} style={[ss.snack, style]} delayPressIn={0}>
       <View style={ss.snackContainer} pointerEvents='box-only'>
         <View style={ss.left}>
           <Text text={iconText} style={ss.icon} preset="i"/>
@@ -89,7 +95,7 @@ export function EcardSnack(props: EcardSnackProps) {
             </Text>
           </View>
         </View>
-        <Text text={amountText} style={ss.score}/>
+        <Text text={amountText} style={type === 2 ? ss.score : ss.scoreGolden}/>
       </View>
     </Touchable>
   )

@@ -83,7 +83,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     })
   }
 
-  _keyExtractor = (item, index) => String(item.no);
+  _keyExtractor = (item) => String(item.no);
 
   render () {
 

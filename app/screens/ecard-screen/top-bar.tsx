@@ -13,7 +13,7 @@ export function TopBar(props: TopBarProps) {
   const { style, actions } = props
 
   const topBarIcon = {
-    color: color.background,
+    color: color.module.ecard[1],
   } as ViewStyle
 
   return (

@@ -3,7 +3,7 @@ import { TextStyle, ViewStyle } from "react-native"
 
 export default {
   screen: {
-    backgroundColor: color.module.ecard,
+    backgroundColor: color.module.ecard[0],
   } as ViewStyle,
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
@@ -21,11 +21,11 @@ export default {
     justifyContent: "center",
   } as ViewStyle,
   statKey: {
-    color: color.white(0.35),
+    color: color.module.ecard[1],
     fontWeight: "bold",
   } as TextStyle,
   statVal: {
-    color: color.white(0.95),
+    color: color.module.ecard[1],
   } as TextStyle,
   yen: {
     marginRight: 10,
@@ -46,7 +46,7 @@ export default {
     marginBottom: 18
   } as ViewStyle,
   caption: {
-    color: color.white(0.35),
+    color: color.module.ecard[2],
     textAlign: "center",
     alignItems: "center",
   } as TextStyle,
@@ -54,18 +54,18 @@ export default {
   loadMoreTouchable: {
     marginVertical: 30,
     justifyContent: "center",
-    backgroundColor: color.white(0.95),
+    backgroundColor: color.module.ecard[2],
     alignSelf: "center",
     width: 250,
   } as ViewStyle,
   loadMoreText: {
-    color: color.module.ecard,
+    color: color.module.ecard[0],
     textTransform: "uppercase",
     fontWeight: "bold",
     fontSize: 14,
   } as TextStyle,
   loadMoreIcon: {
-    color: color.module.ecard,
+    color: color.module.ecard[0],
     marginRight: 10,
   } as TextStyle,
 

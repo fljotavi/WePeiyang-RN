@@ -1,14 +1,8 @@
 import { palette } from "./palette"
 
-/**
- * Roles for colors.  Prefer using these over the palette.  It makes it easier
- * to change things.
- *
- * The only roles we need to place in here are the ones that span through the app.
- *
- * If you have a specific use-case, like a spinner color.  It makes more sense to
- * put that in the <Spinner /> component.
- */
+const white = (alpha) => `rgba(255,255,255,${alpha})`
+const black = (alpha) => `rgba(0,0,0,${alpha})`
+
 export const color = {
   /**
    * The palette is available to use, but prefer using the name.
@@ -65,10 +59,13 @@ export const color = {
    */
   module: {
     gpa: palette.offBlack,
-    ecard: palette.pale,
+    ecard: [palette.offBlack, palette.silver, palette.gold]
   },
 
-  white: (alpha) => `rgba(255,255,255,${alpha})`,
-  black: (alpha) => `rgba(0,0,0,${alpha})`,
+  /**
+   * Translucent color generate helpers.
+   */
+  white: white,
+  black: black,
 
 }

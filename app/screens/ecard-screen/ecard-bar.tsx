@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Dimensions, View, ViewStyle } from "react-native"
-import { VictoryBar, VictoryGroup, VictoryScatter, VictoryChart, VictoryAxis, VictoryContainer, VictoryLine, VictoryArea } from "victory-native"
+import { VictoryBar, VictoryGroup } from "victory-native"
 import { color, typography } from "../../theme"
-import Svg, { G, Rect, Text as Svgtext } from "react-native-svg"
+import Svg, { G, Text as Svgtext } from "react-native-svg"
 
 export interface EcardTooltipProps {
   x?
@@ -21,7 +21,7 @@ export function EcardTooltip(props: EcardTooltipProps) {
           x={w / 2}
           y={20}
           fontSize={10}
-          fill={color.white(0.24)}
+          fill={color.module.ecard[2]}
           textAnchor="middle"
           fontFamily={typography.primaryBold}
           fontWeight="bold">
@@ -66,7 +66,7 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
               x: i,
               y: 2,
               y0: -1
-            })
+            }) // Push a small amount of (yet visible) data
           }
         }
       }
@@ -101,7 +101,7 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
 
             <VictoryBar
               name="bar"
-              style={{ data: { fill: color.white(0.24) } }}
+              style={{ data: { fill: color.module.ecard[2] } }}
               data={barData}
             />
 

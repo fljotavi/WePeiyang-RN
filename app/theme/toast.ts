@@ -38,8 +38,8 @@ const gpa = {
 
 const ecard = {
   ...BASE,
-  backgroundColor: color.background,
-  textColor: color.module.ecard,
+  backgroundColor: color.module.ecard[1],
+  textColor: color.module.ecard[0],
 }
 
 const err = {

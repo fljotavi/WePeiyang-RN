@@ -105,8 +105,9 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
 
           <View style={ss.container}>
 
+
             <EcardBlock
-              palette={[Color(color.module.ecard).lighten(0.1).string(), color.background, color.background]}
+              palette={[Color(color.module.ecard[0]).mix(Color("white"), 0.02), color.module.ecard[1], color.module.ecard[1]]}
             />
 
             {
@@ -153,7 +154,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                   location={item['location']}
                   amount={item['amount']}
                   date={item['date']}
-                  time={item['date']}
+                  time={item['time']}
                   type={item['type']}
                   subType={item['sub_type']}
                 />
