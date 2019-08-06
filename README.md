@@ -2,6 +2,8 @@
 
 The project is currently in experimental stage.
 
+![Modules.PNG](https://i.loli.net/2019/08/06/1wguWQRlea4r9tY.png)
+
 # Ignite Configuration
 
 This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
