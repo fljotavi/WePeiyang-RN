@@ -5,6 +5,7 @@ import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { processAuthStatus } from "../../services/twt-fetch"
+import SplashScreen from 'react-native-splash-screen'
 
 export interface AuthLoadingScreenProps extends NavigationScreenProps<{}> {
 }
@@ -21,6 +22,12 @@ export class AuthLoadingScreen extends React.Component<AuthLoadingScreenProps, {
   constructor(props) {
     super(props)
     this._bootstrapAuthStatus()
+  }
+
+  componentDidMount() {
+    // do stuff while splash screen is shown
+    // After having done stuff (such as async tasks) hide the splash screen
+    SplashScreen.hide()
   }
 
   _bootstrapAuthStatus = async() => {
