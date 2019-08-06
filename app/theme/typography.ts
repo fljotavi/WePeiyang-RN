@@ -11,7 +11,7 @@ export const typography = {
    */
   primary: Platform.select({ ios: "Montserrat", android: "Montserrat" }),
   primaryBold: Platform.select({ ios: "Montserrat", android: "Montserrat_bold" }),
-  materialIcons: Platform.select({ ios: "MaterialIcons", android: "MaterialIcons" }),
+  materialIcons: Platform.select({ ios: "Material Icons", android: "MaterialIcons" }),
 
   /**
    * An alternate font used for perhaps titles and stuff.
