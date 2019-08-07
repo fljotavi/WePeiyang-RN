@@ -18,8 +18,8 @@ export function LibraryBlock(props: LibraryBlockProps) {
   }
   const bookColor: number = colorHash(bookName)
   const predefinedStyle: ViewStyle = {
-    width: 120,
-    height: 170,
+    width: 110,
+    height: 158,
     borderTopRightRadius: layoutParam.borderRadius,
     borderBottomRightRadius: layoutParam.borderRadius,
     flexDirection: "row",
@@ -30,17 +30,18 @@ export function LibraryBlock(props: LibraryBlockProps) {
     backgroundColor: color.hash.bookStrip[bookColor],
   }
   const mainContentStyle: ViewStyle = {
-    paddingHorizontal: 11,
-    paddingVertical: 30,
-    width: 115,
+    paddingHorizontal: 10,
+    paddingVertical: 26,
+    width: 105,
     backgroundColor: color.card
   }
   const BASE: TextStyle = {
     color: color.primary,
   }
-  const h1: TextStyle = { ...BASE, fontSize: 15, height: 85, fontWeight: "bold" }
-  const small: TextStyle = { ...BASE, fontSize: 11, }
-  const additionalInfo: TextStyle = { height: 20 }
+
+  const h1: TextStyle = { ...BASE, fontSize: 14, height: 77, fontWeight: "bold" }
+  const small: TextStyle = { ...BASE, fontSize: 10, }
+  const additionalInfo: TextStyle = { height: 16 }
   return (
     <View style={[predefinedStyle, style]} pointerEvents="box-only">
       <View style={decoStripStyle} />

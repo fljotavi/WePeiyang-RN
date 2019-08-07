@@ -107,7 +107,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               <TouchableOpacity onPress={() => this.props.navigation.navigate('user')}>
                 <View style={ss.userInfo}>
                   <Text text={compData.userInfo.data.twtuname} style={ss.userName}/>
-                  <Text text="  "/>
                   <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar}/>
                 </View>
               </TouchableOpacity>

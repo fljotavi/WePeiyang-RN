@@ -2,19 +2,18 @@ import { TextStyle, ViewStyle, Platform } from "react-native"
 import { color } from "./color"
 
 export const layoutParam = {
-  paddingHorizontal: 24,
-  paddingVertical: 24,
-  footerHeight: 60,
-  borderRadius: 10,
-  fixedMobileWidth: 400,
+  paddingHorizontal: 22,
+  paddingVertical: 22,
+  footerHeight: 55,
+  borderRadius: 9,
   statusBarHeight: Platform.select({ ios: 0, android: 26 }), // TODO: Change to device-specific calculations
 }
 
 export const ssGlobal = {
   topBar: {
     container: {
-      paddingHorizontal: 15,
-      paddingVertical: 17,
+      paddingHorizontal: 14,
+      paddingVertical: 16,
       alignSelf: 'stretch',
       flexDirection: "row",
       justifyContent: "space-between",
@@ -23,8 +22,8 @@ export const ssGlobal = {
       flexDirection: "row",
     } as ViewStyle,
     icon: {
-      fontSize: 30,
-      marginHorizontal: 8,
+      fontSize: 26,
+      marginHorizontal: 6,
     } as TextStyle,
   },
   login: {
@@ -38,33 +37,33 @@ export const ssGlobal = {
       justifyContent: "space-between",
     } as ViewStyle,
     headerBar: {
-      marginBottom: 15,
+      marginBottom: 13,
     } as ViewStyle,
     button: {
-      paddingHorizontal: 40,
+      paddingHorizontal: 34,
     } as ViewStyle,
     heading: {
       marginTop: 8,
       fontWeight: "normal",
     } as TextStyle,
     subhead: {
-      marginLeft: 5,
+      marginLeft: 4,
       color: color.lightGrey,
     } as TextStyle,
     input: {
-      marginBottom: 4,
+      marginBottom: 3,
     } as ViewStyle,
     byText: {
       fontWeight: "bold",
       letterSpacing: -1,
-      fontSize: 15,
+      fontSize: 13,
     } as TextStyle,
     by: {
-      marginTop: 20,
-      marginBottom: 10,
+      marginTop: 17,
+      marginBottom: 7,
     } as ViewStyle,
     buttonRow: {
-      marginTop: 20,
+      marginTop: 17,
       flexDirection: "row",
       justifyContent: "flex-start",
       alignItems: "center",

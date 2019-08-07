@@ -25,15 +25,17 @@ export function GpaSnack(props: GpaSnackProps) {
     } as ViewStyle,
     snackContainer: {
       backgroundColor: color.module.gpa[3],
-      paddingHorizontal: 20,
-      paddingVertical: 16,
+      paddingHorizontal: 18,
+      paddingVertical: 14,
       width: '100%',
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
     } as ViewStyle,
     left: {
       flexDirection: "row",
-      alignItems: "center"
+      alignItems: "center",
+      flex: 1,
     } as ViewStyle,
     title: {
       color: color.module.gpa[1]
@@ -44,11 +46,12 @@ export function GpaSnack(props: GpaSnackProps) {
     },
     score: {
       color: color.module.gpa[1],
-      fontSize: 30,
-    },
+      fontSize: 26,
+      width: 60,
+      textAlign: "right",
+    } as ViewStyle,
     text: {
       marginLeft: 10,
-      width: 190,
     } as TextStyle,
     subtitle: {
       color: color.module.gpa[2]

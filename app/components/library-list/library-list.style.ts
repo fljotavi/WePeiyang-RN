@@ -9,7 +9,7 @@ export default {
     overflow: "visible"
   } as ViewStyle,
   libraryBlockStyle: {
-    marginRight: 12,
+    marginRight: 13,
     borderTopRightRadius: layoutParam.borderRadius,
     borderBottomRightRadius: layoutParam.borderRadius,
     overflow: "hidden",
@@ -18,23 +18,21 @@ export default {
     backgroundColor: color.background,
   },
   modal: {
-    width: 280,
+    width: 250,
     alignSelf: "center",
-    elevation: 90,
   } as ViewStyle,
   modalCard: {
-    padding: 32,
-    height: 433,
+    padding: 28,
+    height: 390,
     backgroundColor: color.card,
-    borderTopRightRadius: layoutParam.borderRadius,
-    borderBottomRightRadius: layoutParam.borderRadius,
+    borderTopRightRadius: layoutParam.borderRadius * 2,
+    borderBottomRightRadius: layoutParam.borderRadius * 2,
     justifyContent: "space-between",
-    elevation: 90,
     overflow: "hidden",
   } as ViewStyle,
   bookTitle: {
-    fontSize: 30,
-    lineHeight: 40,
+    fontSize: 27,
+    lineHeight: 36,
     fontWeight: "bold",
     marginTop: 5,
     marginBottom: 10,
@@ -50,28 +48,31 @@ export default {
     marginVertical: 14,
   } as ViewStyle,
   bookAttrs: {
-    marginTop: 40,
+    marginTop: 0,
     flexWrap: "wrap",
     flexDirection: "row",
   } as ViewStyle,
   bookAttrPair: {
-    marginBottom: 8,
-    marginRight: 15,
+    marginBottom: 7,
+    marginRight: 14,
   } as ViewStyle,
   bookAttrKey: {
     fontSize: 9,
-    letterSpacing: 3,
+    letterSpacing: 2.5,
     textTransform: "uppercase",
     color: color.lightGrey,
   } as TextStyle,
   bookAttrValue: {
-    fontSize: 12,
+    fontSize: 11,
     color: color.lightGrey,
     fontWeight: "bold",
   } as TextStyle,
 
   renewArea: {
-    marginTop: 15,
+    marginTop: 13,
+  } as ViewStyle,
+  modalButton: {
+    alignSelf: "center",
   } as ViewStyle,
   modalButtonContent: {
     flexDirection: "row",
@@ -79,11 +80,12 @@ export default {
   } as ViewStyle,
   modalButtonIcon: {
     fontSize: 20,
+    color: color.primary,
   },
   renewCaveat: {
-    fontSize: 14,
+    fontSize: 12,
+    textAlign: "center",
     color: color.primary,
-    height: 60,
   } as TextStyle,
 
   tjuBadge: {

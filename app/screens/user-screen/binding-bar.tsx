@@ -35,7 +35,7 @@ export function BindingBar(props: BindingBarProps) {
       alignItems: "center"
     } as ViewStyle,
     title: {
-      color: color.primary
+      color: color.primary,
     },
     icon: {
       color: color.lightGrey,
@@ -50,7 +50,8 @@ export function BindingBar(props: BindingBarProps) {
       marginLeft: 10
     },
     subtitle: {
-      color: color.lightGrey
+      color: color.lightGrey,
+      fontSize: 10,
     }
   }
   return (

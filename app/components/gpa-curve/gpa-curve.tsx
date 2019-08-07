@@ -18,15 +18,15 @@ export interface GpaTooltipProps {
 export function GpaTooltip(props: GpaTooltipProps) {
   {
     const { x, y, score, scoreToFixed, palette } = props
-    let w = 70
-    let h = 30
+    let w = 64
+    let h = 28
     return (
       <G x={x - w / 2} y={y - h - 17}>
         <Rect width={w} height={h} rx="5" fill={palette[0]} />
         <Svgtext
           x={w / 2}
           y={20}
-          fontSize={17}
+          fontSize={15}
           fill={palette[1]}
           textAnchor="middle"
           fontFamily={typography.primaryBold}
@@ -88,14 +88,14 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             <VictoryLine
               data={passedData}
               interpolation="cardinal"
-              style={{ data: { stroke: palette[2], strokeWidth: 4 } }}
+              style={{ data: { stroke: palette[2], strokeWidth: 3.3 } }}
               domain={{ y: [lowest - domainPadding, highest + domainPadding * 5] }}
             />
             <VictoryScatter
               data={data}
               color={palette[3]}
-              size={7}
-              style={{ data: { stroke: "rgba(0,0,0,0)", strokeWidth: 29 } }}
+              size={6.6}
+              style={{ data: { stroke: "rgba(0,0,0,0)", strokeWidth: 24 } }}
               events={[
                 {
                   target: "data",
@@ -105,12 +105,12 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
                     },
                     onPressIn: () => {
                       return [{
-                        mutation: () => { return { size: 10 } }
+                        mutation: () => { return { size: 9 } }
                       }]
                     },
                     onPressOut: () => {
                       return [{
-                        mutation: () => { return { size: 7 } }
+                        mutation: () => { return { size: 6.6 } }
                       }]
                     }
                   }
@@ -120,8 +120,8 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             <VictoryScatter
               data={[data[selected]]}
               color={palette[4]}
-              size={7.6}
-              style={{ data: { stroke: palette[1], strokeWidth: 4.2 } }}
+              size={7.1}
+              style={{ data: { stroke: palette[1], strokeWidth: 4 } }}
             />
             <VictoryScatter
               data={[data[selected]]}

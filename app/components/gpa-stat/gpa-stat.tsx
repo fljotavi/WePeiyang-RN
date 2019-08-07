@@ -24,8 +24,8 @@ export class GpaStat extends React.Component<GpaStatProps, {}> {
     const textStyle = {
       color: palette[0],
       fontWeight: "bold",
-      marginBottom: 5,
-      fontSize: 12,
+      marginBottom: 4,
+      fontSize: 11,
     } as TextStyle
     const numStyle = {
       color: palette[1],

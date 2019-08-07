@@ -29,13 +29,13 @@ export const presets = {
    * Large headers.
    */
   header: { ...BASE, fontSize: 24 } as TextStyle,
-  h1: { ...BASE, fontSize: 48, color: color.primary, fontWeight: "bold" } as TextStyle,
-  h2: { ...BASE, fontSize: 32, color: color.primary, fontWeight: "bold" } as TextStyle,
-  h3: { ...BASE, fontSize: 24, color: color.primary, fontWeight: "bold" } as TextStyle,
-  h4: { ...BASE, fontSize: 20, color: color.primary, fontWeight: "bold" } as TextStyle,
-  h5: { ...BASE, fontSize: 18, color: color.primary, fontWeight: "bold" } as TextStyle,
-  h6: { ...BASE, fontSize: 16, color: color.primary, fontWeight: "bold" } as TextStyle,
-  small: { ...BASE, fontSize: 13 } as TextStyle,
+  h1: { ...BASE, fontSize: 42, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h2: { ...BASE, fontSize: 26, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h3: { ...BASE, fontSize: 22, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h4: { ...BASE, fontSize: 19, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h5: { ...BASE, fontSize: 16, color: color.primary, fontWeight: "bold" } as TextStyle,
+  h6: { ...BASE, fontSize: 14, color: color.primary, fontWeight: "bold" } as TextStyle,
+  small: { ...BASE, fontSize: 11 } as TextStyle,
   i: { fontFamily: typography.materialIcons } as TextStyle,
 
   lausanne: { ...BASE, fontSize: 10, textTransform: "uppercase", letterSpacing: 3 },

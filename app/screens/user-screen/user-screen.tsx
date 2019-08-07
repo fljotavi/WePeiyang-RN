@@ -51,15 +51,18 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           backgroundColor="transparent"
           barStyle='light-content'
         />
+
         <View style={ss.headPanel}>
           <View style={ss.ambient1} />
           <View style={ss.ambient2} />
         </View>
-        <TopBar actions={[
-          () => this.props.navigation.goBack(),
-          () => this.props.navigation.navigate("settings"),
-        ]}/>
+
         <ScrollView>
+
+          <TopBar actions={[
+            () => this.props.navigation.goBack(),
+            () => this.props.navigation.navigate("settings"),
+          ]}/>
 
           <View style={ss.container}>
             <View style={ss.userInfoPanel}>

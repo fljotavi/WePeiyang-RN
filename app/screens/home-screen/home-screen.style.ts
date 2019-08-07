@@ -1,5 +1,5 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native"
-import { layoutParam } from "../../theme"
+import { color, layoutParam } from "../../theme"
 
 export default {
   screen: {
@@ -9,14 +9,15 @@ export default {
     borderRadius: 20,
     height: 40,
     width: 40,
-    marginLeft: 10,
+    marginLeft: 6,
   } as ImageStyle,
   userInfo: {
     flexDirection: "row",
     alignItems: "center",
   } as ViewStyle,
   userName: {
-    marginTop: 2
+    marginTop: 2,
+    color: color.primary,
   } as TextStyle,
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
@@ -26,10 +27,10 @@ export default {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 24,
+    marginBottom: 20,
   } as ViewStyle,
   moduleButton: {
-    marginRight: 24,
+    marginRight: 16,
   } as ViewStyle,
   horiScrollSelf: {
     overflow: 'visible'
@@ -41,23 +42,23 @@ export default {
     overflow: 'visible',
   } as ViewStyle,
   sectionHead: {
-    marginBottom: 12,
-    marginTop: 24,
+    marginBottom: 13,
+    marginTop: 18,
   } as ViewStyle,
   blockWithMarginRight: {
-    marginRight: 12,
+    marginRight: 10,
   } as ViewStyle,
   mainView: {
     flex: 1,
   } as ViewStyle,
   curveView: {
-    marginTop: -30
+    marginTop: -26
   } as ViewStyle,
   stat: {
-    marginTop: 30
+    marginTop: 26
   } as ViewStyle,
   moreButton: {
-    marginTop: 30,
+    marginTop: 26,
     alignSelf: "stretch"
   } as ViewStyle
 }

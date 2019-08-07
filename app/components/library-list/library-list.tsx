@@ -55,6 +55,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
           animationOut={"fadeOutUp"}
           animationInTiming={400}
           animationOutTiming={300}
+          backdropTransitionOutTiming={0}
           onBackButtonPress={this.closeModal}
           onBackdropPress={this.closeModal}
           useNativeDriver={true}
@@ -101,11 +102,9 @@ export class LibraryList extends React.Component<BookListProps, {}> {
 
           <View style={ss.renewArea}>
             {this.state.userInformed && (
-              <View>
-                <Text style={ss.renewCaveat} text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"/>
-              </View>
+              <Text style={ss.renewCaveat} text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"/>
             )}
-            <Button preset="lite" onPress={() => {
+            <Button preset="lite" style={ss.modalButton} onPress={() => {
               if (this.state.userInformed) {
                 twtGet(`v1/library/renew${chosenBook['barcode']}`)
                   .then((response) => response.json())

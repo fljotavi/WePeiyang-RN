@@ -16,7 +16,6 @@ export default {
     left: 0,
     right: 0,
     position: "absolute",
-    overflow: "hidden",
   } as ViewStyle,
   ambient1: {
     width: abm1r,

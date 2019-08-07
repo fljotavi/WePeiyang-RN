@@ -9,30 +9,28 @@ export default {
     overflow: "visible"
   } as ViewStyle,
   courseBlockStyle: {
-    marginRight: 12
+    marginRight: 13
   } as ViewStyle,
 
   screen: {
     backgroundColor: color.background,
   },
   modal: {
-    width: 280,
+    width: 250,
     alignSelf: "center",
-    elevation: 90,
   } as ViewStyle,
   modalCard: {
-    padding: 32,
-    height: 433,
+    padding: 28,
+    height: 390,
     backgroundColor: color.card,
-    borderRadius: layoutParam.borderRadius,
+    borderRadius: layoutParam.borderRadius * 2,
     justifyContent: "space-between",
-    elevation: 90,
     overflow: "hidden",
   } as ViewStyle,
 
   courseTitle: {
-    fontSize: 30,
-    lineHeight: 40,
+    fontSize: 27,
+    lineHeight: 36,
     fontWeight: "bold",
     marginTop: 5,
     marginBottom: 10,

@@ -23,6 +23,7 @@ export default {
   statKey: {
     color: color.module.ecard[1],
     fontWeight: "bold",
+    fontSize: 11,
   } as TextStyle,
   statVal: {
     color: color.module.ecard[1],

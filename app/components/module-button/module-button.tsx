@@ -14,8 +14,8 @@ export interface ModuleButtonProps {
 export function ModuleButton(props: ModuleButtonProps) {
   const { tx, icon, style, onPress } = props
   const textStyle: TextStyle = {
-    color: color.primary,
-    fontSize: 14,
+    color: color.lightGrey,
+    fontSize: 12,
     fontWeight: "bold",
     marginTop: 3
   }
@@ -24,14 +24,14 @@ export function ModuleButton(props: ModuleButtonProps) {
     borderRadius: layoutParam.borderRadius,
   }
   const containerStyle: ViewStyle = {
-    width: 105,
-    height: 80,
-    borderRadius: 10,
+    paddingVertical: 14,
+    width: 99,
+    borderRadius: layoutParam.borderRadius,
     alignItems: "center",
     justifyContent: "center"
   }
   const iconStyle = {
-    fontSize: 28,
+    fontSize: 25,
     color: color.lightGrey,
   }
 

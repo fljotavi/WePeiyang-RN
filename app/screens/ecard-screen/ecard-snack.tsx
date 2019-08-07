@@ -33,7 +33,8 @@ export function EcardSnack(props: EcardSnackProps) {
     } as ViewStyle,
     left: {
       flexDirection: "row",
-      alignItems: "center"
+      alignItems: "center",
+      flex: 1,
     } as ViewStyle,
     title: {
       color: color.module.ecard[1],
@@ -45,17 +46,20 @@ export function EcardSnack(props: EcardSnackProps) {
     score: {
       color: color.module.ecard[1],
       fontSize: 30,
-    },
+      textAlign: "right",
+      width: 100,
+    } as TextStyle,
     scoreGolden: {
       color: color.module.ecard[2],
       fontSize: 30,
-    },
+      textAlign: "right",
+      width: 100,
+    } as TextStyle,
     text: {
       marginLeft: 10,
       width: 190,
     } as TextStyle,
     subtitle: {
-      fontSize: 12,
       color: color.module.ecard[1],
     }
   }
