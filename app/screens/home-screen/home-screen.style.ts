@@ -6,9 +6,10 @@ export default {
     paddingTop: layoutParam.statusBarHeight
   } as ViewStyle,
   avatar: {
-    borderRadius: 40,
+    borderRadius: 20,
     height: 40,
     width: 40,
+    marginLeft: 10,
   } as ImageStyle,
   userInfo: {
     flexDirection: "row",

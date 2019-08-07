@@ -121,8 +121,9 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
-          animationIn={"flipInY"}
-          animationOut={"flipOutY"}
+          hideModalContentWhileAnimating={true}
+          animationIn={"fadeInUp"}
+          animationOut={"fadeOutUp"}
           animationInTiming={400}
           animationOutTiming={300}
           onBackButtonPress={this.closeModal}

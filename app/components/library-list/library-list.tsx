@@ -51,8 +51,8 @@ export class LibraryList extends React.Component<BookListProps, {}> {
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
           backdropOpacity={0.9}
-          animationIn={"flipInY"}
-          animationOut={"flipOutY"}
+          animationIn={"fadeInUp"}
+          animationOut={"fadeOutUp"}
           animationInTiming={400}
           animationOutTiming={300}
           onBackButtonPress={this.closeModal}

@@ -50,7 +50,7 @@ export default {
     marginTop: 10
   } as TextStyle,
   avatar: {
-    borderRadius: 999,
+    borderRadius: 49,
     height: 98,
     width: 98,
   } as ImageStyle,

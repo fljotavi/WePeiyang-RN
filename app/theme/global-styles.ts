@@ -1,5 +1,5 @@
-import { TextStyle, ViewStyle } from "react-native"
-import {color} from "./color";
+import { TextStyle, ViewStyle, Platform } from "react-native"
+import { color } from "./color"
 
 export const layoutParam = {
   paddingHorizontal: 24,
@@ -7,7 +7,7 @@ export const layoutParam = {
   footerHeight: 60,
   borderRadius: 10,
   fixedMobileWidth: 400,
-  statusBarHeight: 26, // TODO: Change to device-specific calculations
+  statusBarHeight: Platform.select({ ios: 0, android: 26 }), // TODO: Change to device-specific calculations
 }
 
 export const ssGlobal = {

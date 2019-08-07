@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image, StatusBar, View } from "react-native"
+import { Image, ScrollView, StatusBar, View } from "react-native"
 import { connect } from 'react-redux'
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
@@ -45,7 +45,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
     const { compData } = this.props
 
     return (
-      <Screen preset="scroll">
+      <Screen>
         <StatusBar
           translucent
           backgroundColor="transparent"
@@ -59,34 +59,38 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           () => this.props.navigation.goBack(),
           () => this.props.navigation.navigate("settings"),
         ]}/>
-        <View style={ss.container}>
-          <View style={ss.userInfoPanel}>
-            <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar}/>
-            <Text text={compData.userInfo.data.twtuname} style={ss.userName} preset="h4"/>
-            <Text text={`${compData.userInfo.data.studentid} / ${compData.userInfo.data.realname}`} style={ss.userId} preset="small"/>
-          </View>
-          <View style={ss.shortcutModulePanel}>
-            <Gradicon onPress={() => this.props.navigation.navigate('gpa')} source={require("./gradicons/gradicon1.png")} tx="modules.gpa"/>
-            <Gradicon source={require("./gradicons/gradicon2.png")} tx="modules.library"/>
-            <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.cards"/>
-          </View>
-          <BindingBar style={ss.bindingBar} txTitle="accountBinding.portalAccount" txSubtitle="common.unknown" icon="event_note"/>
-          <BindingBar
-            onPress={() => this.props.navigation.navigate('bind')}
-            style={ss.bindingBar}
-            txTitle="accountBinding.ecardAccount"
-            txSubtitle={compData.ecard.auth.status === 'BOUND' ? "accountBinding.bound" : "accountBinding.unbound"}
-            icon="credit_card"
-          />
-          <BindingBar style={ss.bindingBar} txTitle="accountBinding.bicycleAccount" txSubtitle="common.unknown" icon="directions_bike"/>
-          <BindingBar style={ss.bindingBar} txTitle="accountBinding.libraryAccount" txSubtitle="common.unknown" icon="book"/>
-          <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
-            <View style={ss.logoutButtonContentWrapper}>
-              <Text style={ss.logoutIcon} preset="i" text="exit_to_app"/>
-              <Text style={ss.logoutText} tx="auth.logout"/>
+        <ScrollView>
+
+          <View style={ss.container}>
+            <View style={ss.userInfoPanel}>
+              <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar}/>
+              <Text text={compData.userInfo.data.twtuname} style={ss.userName} preset="h4"/>
+              <Text text={`${compData.userInfo.data.studentid} / ${compData.userInfo.data.realname}`} style={ss.userId} preset="small"/>
             </View>
-          </Button>
-        </View>
+            <View style={ss.shortcutModulePanel}>
+              <Gradicon onPress={() => this.props.navigation.navigate('gpa')} source={require("./gradicons/gradicon1.png")} tx="modules.gpa"/>
+              <Gradicon source={require("./gradicons/gradicon2.png")} tx="modules.library"/>
+              <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.cards"/>
+            </View>
+            <BindingBar style={ss.bindingBar} txTitle="accountBinding.portalAccount" txSubtitle="common.unknown" icon="event_note"/>
+            <BindingBar
+              onPress={() => this.props.navigation.navigate('bind')}
+              style={ss.bindingBar}
+              txTitle="accountBinding.ecardAccount"
+              txSubtitle={compData.ecard.auth.status === 'BOUND' ? "accountBinding.bound" : "accountBinding.unbound"}
+              icon="credit_card"
+            />
+            <BindingBar style={ss.bindingBar} txTitle="accountBinding.bicycleAccount" txSubtitle="common.unknown" icon="directions_bike"/>
+            <BindingBar style={ss.bindingBar} txTitle="accountBinding.libraryAccount" txSubtitle="common.unknown" icon="book"/>
+            <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
+              <View style={ss.logoutButtonContentWrapper}>
+                <Text style={ss.logoutIcon} preset="i" text="exit_to_app"/>
+                <Text style={ss.logoutText} tx="auth.logout"/>
+              </View>
+            </Button>
+          </View>
+        </ScrollView>
+
       </Screen>
     )
   }
