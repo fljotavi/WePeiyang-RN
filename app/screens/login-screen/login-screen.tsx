@@ -84,7 +84,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 onChangeText={text => this.setState({ username: text })}
                 style={ssGlobal.login.input}
                 value={this.state.username}
-                autoFocus={true}
                 autoCorrect={false}
               />
               <TextField

@@ -73,7 +73,6 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
                 style={ssGlobal.login.input}
                 onChangeText={text => this.setState({ cardId: text })}
                 value={this.state.cardId}
-                autoFocus={true}
                 autoCorrect={false}
               />
               <TextField

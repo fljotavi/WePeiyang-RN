@@ -88,7 +88,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     })
   }
 
-  componentWillMount(): void {
+  componentDidMount(): void {
     if (this.props.compData.status === "INIT") {
       this.prepareData()
     }
@@ -186,7 +186,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <GpaStat
               style={ss.stat}
               status={compData.gpa.status}
-              setScoreType={newType => setScoreType(newType)}
+              setScoreType={newType => this.props.setScoreType(newType)}
               scores={compData.gpa.data.gpaOverall}
               txs={["gpa.totalWeighted", "gpa.totalGpa", "gpa.creditsEarned"]}
             />

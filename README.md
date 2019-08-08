@@ -5,8 +5,6 @@ The project is currently in experimental stage.
 ![Modules.PNG](https://i.loli.net/2019/08/06/1wguWQRlea4r9tY.png)
 
 
-
-
 # Start Building
 
 ### Android
@@ -31,13 +29,10 @@ react-native run-ios
 
 Note that to run the above commands, you need to ensure several prerequisites in your building environment. Please refer to [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for the most up-to-date building indications.
 
-This project was initiated by `react-native-cli`. 
-
-
 
 # Project Structure
 
-WePeiyang-RN is initiated with Ignite boilerplate along with a few customized modifications.
+WePeiyang-RN is initiated with `react-native-cli` boilerplate along with a few customized modifications.
 
 ```
 WePeiyang-RN
