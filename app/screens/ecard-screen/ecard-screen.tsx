@@ -1,9 +1,17 @@
 import * as React from "react"
 import { connect } from "react-redux"
-import { Animated, FlatList, RefreshControl, ScrollView, StatusBar, View } from "react-native"
+import {
+  ActivityIndicator,
+  Animated,
+  FlatList,
+  RefreshControl,
+  ScrollView,
+  StatusBar,
+  View,
+} from "react-native"
 import Color from "color"
 import { Screen } from "../../components/screen"
-import { color } from "../../theme"
+import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { TopBar } from "./top-bar"
@@ -33,6 +41,7 @@ export interface EcardScreenProps extends NavigationScreenProps<{}> {
 export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   state = {
     refreshing: false,
+    loadingMore: false,
     daysToLoad: 2,
     renderChart: false, // Defer chart render for better entry performance
     fadeAnim: new Animated.Value(0),
@@ -96,8 +105,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   _keyExtractor = (item, index) => String(index)
 
   _loadMore = async () => {
-    this.setState({ daysToLoad: this.state.daysToLoad + 1 }, async () => {
-      this.setState({ refreshing: true })
+    this.setState({ daysToLoad: this.state.daysToLoad + 1, loadingMore: true }, async () => {
       await Promise.all([
         this.props.fetchEcardTurnover(
           this.props.ecard.auth.cardId,
@@ -106,10 +114,10 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
         ),
       ])
         .then(() => {
-          this.setState({ refreshing: false })
+          this.setState({ loadingMore: false })
         })
         .catch(err => {
-          this.setState({ refreshing: false })
+          this.setState({ loadingMore: false })
           console.log(err)
           Toast.show(
             (
@@ -134,7 +142,12 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              tintColor={color.module.ecard[1]}
+              colors={[color.module.ecard[0]]}
+            />
           }
         >
           <TopBar actions={[() => this.props.navigation.goBack(), () => {}, this._onRefresh]} />
@@ -194,6 +207,14 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             />
 
             <Button style={ss.loadMoreTouchable} onPress={this._loadMore}>
+              <ActivityIndicator
+                style={[
+                  ssGlobal.buttonLoadingIndicator,
+                  { opacity: this.state.loadingMore ? 1 : 0 },
+                ]}
+                color={color.module.ecard[0]}
+                size={12}
+              />
               <Text text="Load One More Day" style={ss.loadMoreText} />
             </Button>
           </View>

@@ -29,6 +29,9 @@ export default {
     justifyContent: "space-between",
     marginBottom: 20,
   } as ViewStyle,
+  headerGroup: {
+    flexDirection: "row",
+  } as ViewStyle,
   moduleButton: {
     marginRight: 16,
   } as ViewStyle,

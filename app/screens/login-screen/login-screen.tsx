@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StatusBar, View } from "react-native"
+import { ActivityIndicator, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -19,6 +19,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   state = {
     username: "",
     password: "",
+    loggingIn: false,
   }
 
   storeToken = async token => {
@@ -27,6 +28,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   login = () => {
+    this.setState({ loggingIn: true })
     twtGet("v1/auth/token/get", { twtuname: this.state.username, twtpasswd: this.state.password })
       .then(response => response.json())
       .then(responseJson => {
@@ -66,6 +68,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         )
         console.log(error)
       })
+      .then(() => {
+        this.setState({ loggingIn: false })
+      })
   }
 
   render() {
@@ -94,9 +99,21 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 secureTextEntry={true}
                 autoCorrect={false}
               />
+
               <View style={ssGlobal.login.buttonRow}>
-                <Button style={ssGlobal.login.button} tx="auth.login" onPress={this.login} />
+                <Button style={ssGlobal.login.button} onPress={this.login}>
+                  <ActivityIndicator
+                    style={[
+                      ssGlobal.buttonLoadingIndicator,
+                      { opacity: this.state.loggingIn ? 1 : 0 },
+                    ]}
+                    color={color.background}
+                    size={12}
+                  />
+                  <Text tx="auth.login" style={ssGlobal.login.buttonText} />
+                </Button>
               </View>
+
             </View>
           </View>
 

@@ -13,7 +13,14 @@ import { digitsFromScoreType } from "../../utils/common"
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
 
-import { View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar } from "react-native"
+import {
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+  StatusBar,
+} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { ModuleButton } from "../../components/module-button"
@@ -26,6 +33,7 @@ import { format } from "date-fns"
 import Toast from "react-native-root-toast"
 import toastOptions from "../../theme/toast"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
+import { color } from "../../theme"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -79,6 +87,10 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           toastOptions.err,
         )
       })
+      .then(() => {
+        // finally
+        console.log(this.state)
+      })
   }
 
   _onRefresh = () => {
@@ -90,7 +102,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   componentDidMount(): void {
     if (this.props.compData.status === "INIT") {
-      this.prepareData()
+      this._onRefresh()
     }
   }
 
@@ -108,12 +120,20 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              tintColor={color.primary}
+              colors={[color.primary]}
+            />
           }
         >
           <View style={ss.container}>
             <View style={ss.headerBar}>
-              <Text text="Hello" preset="h2" />
+              <View style={ss.headerGroup}>
+                <Text text="Hello" preset="h2" />
+                <Text text=" " preset="h2" />
+              </View>
               <TouchableOpacity onPress={() => this.props.navigation.navigate("user")}>
                 <View style={ss.userInfo}>
                   <Text text={compData.userInfo.data.twtuname} style={ss.userName} />

@@ -168,7 +168,12 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              tintColor={color.module.gpa[1]}
+              colors={[color.module.gpa[0]]}
+            />
           }
         >
           <TopBar

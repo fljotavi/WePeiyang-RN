@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { StatusBar, View } from "react-native"
+import {ActivityIndicator, StatusBar, View} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
@@ -23,9 +23,11 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
   state = {
     cardId: "",
     password: "",
+    loggingIn: false,
   }
 
   attemptToBind = () => {
+    this.setState({ loggingIn: true })
     this.props
       .fetchEcardProfile(this.state.cardId, this.state.password)
       .then(() => {
@@ -51,6 +53,9 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
           ) as any,
           toastOptions.err,
         )
+      })
+      .then(() => {
+        this.setState({ loggingIn: false })
       })
   }
 
@@ -84,13 +89,21 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
                 secureTextEntry={true}
                 autoCorrect={false}
               />
+
               <View style={ssGlobal.login.buttonRow}>
-                <Button
-                  style={ssGlobal.login.button}
-                  tx="accountBinding.bind"
-                  onPress={this.attemptToBind}
-                />
+                <Button style={ssGlobal.login.button} onPress={this.attemptToBind}>
+                  <ActivityIndicator
+                    style={[
+                      ssGlobal.buttonLoadingIndicator,
+                      { opacity: this.state.loggingIn ? 1 : 0 },
+                    ]}
+                    color={color.background}
+                    size={12}
+                  />
+                  <Text tx="accountBinding.bind" style={ssGlobal.login.buttonText} />
+                </Button>
               </View>
+
             </View>
           </View>
 

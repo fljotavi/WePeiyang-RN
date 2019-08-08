@@ -57,6 +57,7 @@ export default {
     backgroundColor: color.module.ecard[2],
     alignSelf: "center",
     width: 250,
+    position: "relative",
   } as ViewStyle,
   loadMoreText: {
     color: color.module.ecard[0],

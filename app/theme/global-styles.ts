@@ -10,6 +10,12 @@ export const layoutParam = {
 }
 
 export const ssGlobal = {
+  buttonLoadingIndicator: {
+    position: "absolute",
+    right: -18,
+    top: 0,
+    bottom: 0,
+  } as ViewStyle,
   topBar: {
     container: {
       paddingHorizontal: 14,
@@ -38,8 +44,11 @@ export const ssGlobal = {
       marginBottom: 13,
     } as ViewStyle,
     button: {
-      paddingHorizontal: 34,
+      paddingHorizontal: 45,
     } as ViewStyle,
+    buttonText: {
+      color: color.background,
+    } as TextStyle,
     heading: {
       marginTop: 8,
       fontWeight: "normal",

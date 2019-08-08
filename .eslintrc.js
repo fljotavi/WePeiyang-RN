@@ -3,8 +3,8 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     "semi": ["error", "never"],
-    // disable rules from base configurations
     "no-console": "off",
     "quotes": "off",
-  }
+    "react-native/no-inline-styles": "off",
+  },
 };
