@@ -77,10 +77,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           toastOptions.err,
         )
       })
-      .then(() => {
-        // finally
-        console.log(this.state)
-      })
   }
 
   _onRefresh = () => {

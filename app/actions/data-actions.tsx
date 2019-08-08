@@ -29,7 +29,6 @@ export function fetchCourseData() {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
-          console.log(responseJson.data)
           dispatch({
             type: "SET_COURSE_DATA",
             payload: responseJson.data,
@@ -65,6 +64,8 @@ export function fetchLibraryData() {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
+          // I can't believe this API returns NULL (instead of an empty array) if zero book is borrowed
+          responseJson.data.books = responseJson.data.books || []
           dispatch({
             type: "SET_LIBRARY_DATA",
             payload: responseJson.data,

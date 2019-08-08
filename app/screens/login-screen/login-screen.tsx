@@ -113,7 +113,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                   <Text tx="auth.login" style={ssGlobal.login.buttonText} />
                 </Button>
               </View>
-
             </View>
           </View>
 
