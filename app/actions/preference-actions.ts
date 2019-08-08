@@ -18,3 +18,10 @@ export function setSemesterIndex(newIndex) {
     payload: newIndex,
   }
 }
+
+export function setLanguage(l) {
+  return {
+    type: "SET_LANGUAGE",
+    payload: l,
+  }
+}

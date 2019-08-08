@@ -66,7 +66,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         Toast.show(
           (
             <Text
-              tx="homeScreen.prepareDataSuccess"
+              tx="data.prepareDataSuccess"
               style={{ color: toastOptions.primary.textColor }}
             />
           ) as any,
@@ -124,7 +124,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           <View style={ss.container}>
             <View style={ss.headerBar}>
               <View style={ss.headerGroup}>
-                <Text text="Hello" preset="h2" />
+                <Text tx="homeScreen.greetings" preset="h2" />
                 <Text text=" " preset="h2" />
               </View>
               <TouchableOpacity onPress={() => this.props.navigation.navigate("user")}>

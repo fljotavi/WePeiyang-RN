@@ -6,6 +6,7 @@ import { connectedSettingsScreen as SettingsScreen } from "../screens/settings-s
 import { connectedBindScreen as BindScreen } from "../screens/bind-screen"
 import { connectedLibraryScreen as LibraryScreen } from "../screens/library-screen"
 import { connectedEcardScreen as EcardScreen } from "../screens/ecard-screen"
+import { connectedLanguageSettingsScreen as LanguageSettingsScreen } from "../screens/settings-screen/language-settings-screen"
 
 export const AppNavigator = createStackNavigator(
   {
@@ -13,6 +14,7 @@ export const AppNavigator = createStackNavigator(
     user: UserScreen,
     gpa: GpaScreen,
     settings: SettingsScreen,
+    languageSettings: LanguageSettingsScreen,
     bind: BindScreen,
     library: LibraryScreen,
     ecard: EcardScreen,

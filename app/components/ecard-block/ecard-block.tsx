@@ -5,17 +5,16 @@ import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
 import Touchable from "react-native-platform-touchable"
-import { NavigationScreenProps } from "react-navigation"
 import { Ian } from "../ian"
 
-export interface EcardBlockProps extends NavigationScreenProps<{}> {
+export interface EcardBlockProps {
   style?: ViewStyle
   ecard?
   palette?
   onPress?
 }
 
-class EcardBlock extends React.Component<EcardBlockProps, {}> {
+class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
   render() {
     let { ecard, style, palette, onPress } = this.props
     palette = palette || [color.lightGrey, color.background, color.background]

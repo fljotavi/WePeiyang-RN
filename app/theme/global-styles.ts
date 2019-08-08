@@ -5,7 +5,7 @@ export const layoutParam = {
   paddingHorizontal: 22,
   paddingVertical: 22,
   footerHeight: 55,
-  borderRadius: 9,
+  borderRadius: 10,
   statusBarHeight: Platform.select({ ios: 0, android: 26 }), // TODO: Change to device-specific calculations
 }
 

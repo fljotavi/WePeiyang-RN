@@ -6,10 +6,12 @@ import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
+import { setLanguage } from "../../actions/preference-actions"
 import { SettingsSnack } from "./settings-snack"
 
-export interface SettingsScreenProps extends NavigationScreenProps<{}> {
+export interface LanguageSettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
+  setLanguage?
 }
 
 const ss = {
@@ -25,36 +27,40 @@ const ss = {
   } as ViewStyle,
 }
 
-export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
+export class LanguageSettingsScreen extends React.Component<LanguageSettingsScreenProps, {}> {
   state = {
     egSwOn: false,
   }
 
   render() {
-    const { pref } = this.props
+    const { pref, setLanguage } = this.props
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <View style={ss.container}>
-          <Text text="Settings" preset="h2" style={ss.heading} />
+          <Text text="Language Settings" preset="h2" style={ss.heading} />
 
           <SettingsSnack
             style={ss.snack}
-            txTitle="settingsScreen.displayGpa"
-            txSubtitle="common.unknown"
-            switchable={true}
-            on={this.state.egSwOn}
-            onPress={() => {
-              this.setState({ egSwOn: !this.state.egSwOn })
-            }}
+            textTitle="中文"
+            textSubtitle="Chinese"
+            onPress={() => setLanguage("zh")}
           />
 
           <SettingsSnack
             style={ss.snack}
-            txTitle="settingsScreen.language"
-            textSubtitle={pref.language}
-            onPress={() => this.props.navigation.navigate("languageSettings")}
+            textTitle="Espana"
+            textSubtitle={"Spanish"}
+            onPress={() => setLanguage("es")}
           />
+
+          <SettingsSnack
+            style={ss.snack}
+            textTitle="English"
+            textSubtitle={"English"}
+            onPress={() => setLanguage("en")}
+          />
+
         </View>
       </Screen>
     )
@@ -67,11 +73,15 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = () => {
-  return {}
+const mapDispatchToProps = dispatch => {
+  return {
+    setLanguage: l => {
+      dispatch(setLanguage(l))
+    },
+  }
 }
 
-export const connectedSettingsScreen = connect(
+export const connectedLanguageSettingsScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SettingsScreen)
+)(LanguageSettingsScreen)

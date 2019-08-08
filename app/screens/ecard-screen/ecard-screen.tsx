@@ -72,10 +72,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
       .then(values => {
         Toast.show(
           (
-            <Text
-              tx="ecardScreen.prepareDataSuccess"
-              style={{ color: toastOptions.ecard.textColor }}
-            />
+            <Text tx="data.prepareDataSuccess" style={{ color: toastOptions.ecard.textColor }} />
           ) as any,
           toastOptions.ecard,
         )
@@ -84,12 +81,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
       .catch(err => {
         console.log(err)
         Toast.show(
-          (
-            <Text
-              tx="ecardScreen.prepareDataFailed"
-              style={{ color: toastOptions.err.textColor }}
-            />
-          ) as any,
+          <Text tx="data.prepareDataFailed" style={{ color: toastOptions.err.textColor }} /> as any,
           toastOptions.err,
         )
       })
@@ -121,10 +113,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
           console.log(err)
           Toast.show(
             (
-              <Text
-                tx="ecardScreen.prepareDataFailed"
-                style={{ color: toastOptions.err.textColor }}
-              />
+              <Text tx="data.prepareDataFailed" style={{ color: toastOptions.err.textColor }} />
             ) as any,
             toastOptions.err,
           )

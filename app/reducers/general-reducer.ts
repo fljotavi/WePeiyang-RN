@@ -27,6 +27,12 @@ export const preferenceReducer = (
         gpaOrderBy: action.payload,
       }
       break
+    case "SET_LANGUAGE":
+      state = {
+        ...state,
+        language: action.payload,
+      }
+      break
   }
   return state
 }

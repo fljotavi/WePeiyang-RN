@@ -67,7 +67,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
       .then(values => {
         Toast.show(
           (
-            <Text tx="gpaScreen.prepareDataSuccess" style={{ color: toastOptions.gpa.textColor }} />
+            <Text tx="data.prepareDataSuccess" style={{ color: toastOptions.gpa.textColor }} />
           ) as any,
           toastOptions.gpa,
         )
@@ -77,7 +77,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         console.log(err)
         Toast.show(
           (
-            <Text tx="gpaScreen.prepareDataFailed" style={{ color: toastOptions.err.textColor }} />
+            <Text tx="data.prepareDataFailed" style={{ color: toastOptions.err.textColor }} />
           ) as any,
           toastOptions.err,
         )

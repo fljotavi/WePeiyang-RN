@@ -15,6 +15,10 @@
       "d": "Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus."
     }
   },
+  "data": {
+    "prepareDataSuccess": "成功获取最新数据",
+    "prepareDataFailed": "由于网络请求失败，可能有部分数据未成功更新..."
+  },
   "auth": {
     "login": "登录",
     "logout": "注销用户",
@@ -30,18 +34,7 @@
     "password": "天外天帐号密码"
   },
   "homeScreen": {
-    "header": "We Peiyang",
-    "more": "更多 >>",
-    "prepareDataSuccess": "已获取所有的最新数据",
-    "partialData": "由于网络请求失败，一部分数据可能没有正常加载。"
-  },
-  "gpaScreen": {
-    "prepareDataSuccess": "已获取最新 GPA 数据",
-    "prepareDataFailed": "由于网络请求失败，一部分数据可能没有正常加载。"
-  },
-  "ecardScreen": {
-    "prepareDataSuccess": "已获取最新校园卡数据",
-    "prepareDataFailed": "由于网络请求失败，一部分数据可能没有正常加载。"
+    "greetings": "Hello",
   },
   "newsScreen": {
     "header": "新闻"
