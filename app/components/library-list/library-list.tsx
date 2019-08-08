@@ -1,5 +1,5 @@
 import * as React from "react"
-import { FlatList, View, ViewStyle } from "react-native"
+import { DeviceEventEmitter, FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"
 import { Ian } from "../ian"
 import Touchable from "react-native-platform-touchable"
@@ -9,9 +9,8 @@ import { Text } from "../text"
 import { Button } from "../button"
 import ss from "./library-list.style"
 import { twtGet } from "../../services/twt-fetch"
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 import { TjuBadge } from "../tju-badge"
+import { Toasti } from "../toasti"
 export interface BookListProps {
   style?: ViewStyle
   data
@@ -109,15 +108,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
                     .then(response => response.json())
                     .then(responseJson => {
                       this.closeModal()
-                      Toast.show(
-                        (
-                          <Text
-                            text={responseJson.message}
-                            style={{ color: toastOptions.primary.textColor }}
-                          />
-                        ) as any,
-                        toastOptions.primary,
-                      )
+                      DeviceEventEmitter.emit("showToast", <Toasti text={responseJson.message} />)
                       console.log(responseJson)
                     })
                 } else {

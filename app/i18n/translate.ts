@@ -1,8 +1,6 @@
 import i18n from "i18n-js"
-import configureStore from "../store"
-const { store } = configureStore()
 
-export function translate(key: string, options?: object) {
-  i18n.locale = store.getState().preferenceReducer.language
+export function translate(key: string, lang, options?: object) {
+  i18n.locale = lang
   return key ? i18n.t(key, options) : null
 }

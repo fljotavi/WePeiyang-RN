@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 
 import {
   Animated,
+  DeviceEventEmitter,
   FlatList,
   RefreshControl,
   ScrollView,
@@ -23,13 +24,12 @@ import { connectedGpaRadar as GpaRadar } from "../../components/gpa-radar"
 import { GpaSnack } from "./gpa-snack"
 
 import { Text } from "../../components/text"
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 import { TopBar } from "./top-bar"
 
 import Modal from "react-native-modal"
 import { Button } from "../../components/button"
 import { GpaInfo } from "./gpa-info"
+import { Toasti } from "../../components/toasti"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -64,23 +64,11 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
   prepareData = async () => {
     await Promise.all([this.props.fetchGpaData()])
-      .then(values => {
-        Toast.show(
-          (
-            <Text tx="data.prepareDataSuccess" style={{ color: toastOptions.gpa.textColor }} />
-          ) as any,
-          toastOptions.gpa,
-        )
-        console.log(values)
+      .then(() => {
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" preset="gpa" />)
       })
       .catch(err => {
-        console.log(err)
-        Toast.show(
-          (
-            <Text tx="data.prepareDataFailed" style={{ color: toastOptions.err.textColor }} />
-          ) as any,
-          toastOptions.err,
-        )
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataFailed" preset="error" />)
       })
   }
 
@@ -132,14 +120,12 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         case "score":
           return courseA.score < courseB.score ? 1 : -1
       }
-      Toast.show(
-        (
-          <Text
-            text="Sort failed: Unknown sorting key. Please check your code spelling."
-            style={{ color: toastOptions.err.textColor }}
-          />
-        ) as any,
-        toastOptions.err,
+      DeviceEventEmitter.emit(
+        "showToast",
+        <Toasti
+          text="Sort failed: Unknown sorting key. Please check your code spelling."
+          preset="warning"
+        />,
       )
       return 1
     })

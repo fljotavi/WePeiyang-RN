@@ -15,6 +15,7 @@ export function Toasti(props: ToastiProps) {
   const { tx, text, preset, backgroundColor, textColor } = props
   let v, t
   v = {
+    backgroundColor: color.primary,
     borderRadius: layoutParam.borderRadius / 2,
     alignItems: "center",
     justifyContent: "center",
@@ -24,11 +25,16 @@ export function Toasti(props: ToastiProps) {
   } as ViewStyle
 
   t = {
+    color: color.background,
     fontSize: 15,
   } as TextStyle
 
   switch (preset) {
     case undefined:
+      break
+    case "gpa":
+      v.backgroundColor = color.module.gpa[1]
+      t.color = color.module.gpa[0]
       break
     case "ecard":
       v.backgroundColor = color.module.ecard[1]
@@ -36,6 +42,10 @@ export function Toasti(props: ToastiProps) {
       break
     case "error":
       v.backgroundColor = color.error
+      t.color = color.white(1)
+      break
+    case "warning":
+      v.backgroundColor = color.warning
       t.color = color.white(1)
       break
   }

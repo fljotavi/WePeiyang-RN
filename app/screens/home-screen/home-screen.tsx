@@ -13,7 +13,15 @@ import { digitsFromScoreType } from "../../utils/common"
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
 
-import { View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar } from "react-native"
+import {
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+  StatusBar,
+  DeviceEventEmitter,
+} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { ModuleButton } from "../../components/module-button"
@@ -23,10 +31,9 @@ import { CourseDailySchedule } from "../../components/course-daily-schedule"
 import { LibraryList } from "../../components/library-list"
 
 import { format } from "date-fns"
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { color } from "../../theme"
+import { Toasti } from "../../components/toasti"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -63,19 +70,11 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     }
     await Promise.all(toFetch)
       .then(() => {
-        Toast.show(
-          (
-            <Text tx="data.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }} />
-          ) as any,
-          toastOptions.primary,
-        )
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
       })
       .catch(err => {
         console.log(err)
-        Toast.show(
-          <Text tx="homeScreen.partialData" style={{ color: toastOptions.err.textColor }} /> as any,
-          toastOptions.err,
-        )
+        DeviceEventEmitter.emit("showToast", <Toasti tx="homeScreen.partialData" preset="error" />)
       })
   }
 

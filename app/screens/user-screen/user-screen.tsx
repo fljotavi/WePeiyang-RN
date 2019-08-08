@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image, ScrollView, StatusBar, View } from "react-native"
+import { DeviceEventEmitter, Image, ScrollView, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationScreenProps } from "react-navigation"
@@ -9,12 +9,11 @@ import { BindingBar } from "./binding-bar"
 import { Button } from "../../components/button"
 import { deleteTokenFromStore } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 
 import ss from "./user-screen.style"
 import { clearAllData } from "../../actions/data-actions"
 import { TopBar } from "./top-bar"
+import { Toasti } from "../../components/toasti"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   compData
@@ -25,10 +24,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
   logout = () => {
     this.props.clearAllData()
     this.deleteToken().then(() => {
-      Toast.show(
-        <Text tx="auth.logoutSuccess" style={{ color: toastOptions.primary.textColor }} /> as any,
-        toastOptions.primary,
-      )
+      DeviceEventEmitter.emit("showToast", <Toasti tx="auth.logoutSuccess" />)
       this.props.navigation.navigate("authLoading")
     })
   }
@@ -38,10 +34,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
     try {
       await AsyncStorage.removeItem("@WePeiyangRN_token")
     } catch (e) {
-      Toast.show(
-        <Text tx="auth.tokenDeleteFailure" style={{ color: toastOptions.err.textColor }} /> as any,
-        toastOptions.err,
-      )
+      DeviceEventEmitter.emit("showToast", <Toasti tx="auth.tokenDeleteFailure" preset="error" />)
     }
   }
 

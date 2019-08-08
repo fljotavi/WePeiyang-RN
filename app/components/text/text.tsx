@@ -1,4 +1,5 @@
 import * as React from "react"
+import { connect } from "react-redux"
 
 import { Text as ReactNativeText } from "react-native"
 import { presets } from "./text.presets"
@@ -12,7 +13,7 @@ import { mergeAll, flatten } from "ramda"
  * This component is a HOC over the built-in React Native one.
  */
 
-export class Text extends React.PureComponent<TextProps, {}> {
+class _Text extends React.PureComponent<TextProps, {}> {
   render() {
     // grab the props
     const {
@@ -21,12 +22,14 @@ export class Text extends React.PureComponent<TextProps, {}> {
       txOptions,
       text,
       children,
+      lang,
       style: styleOverride,
       ...rest
     } = this.props
 
     // figure out which content to use
-    const i18nText = tx && translate(tx, txOptions)
+    console.log(lang)
+    const i18nText = tx && translate(tx, lang, txOptions)
     const content = i18nText || text || children
 
     const style = mergeAll(flatten([presets[preset] || presets.default, styleOverride]))
@@ -38,3 +41,18 @@ export class Text extends React.PureComponent<TextProps, {}> {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    lang: state.preferenceReducer.language,
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export const Text = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(_Text)

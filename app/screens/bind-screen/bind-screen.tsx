@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {ActivityIndicator, StatusBar, View} from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
@@ -9,10 +9,9 @@ import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { fetchEcardProfile, setEcardAuth } from "../../actions/data-actions"
-import Toast from "react-native-root-toast"
-import toastOptions from "../../theme/toast"
 import { TopBar } from "./top-bar"
 import { ByTwt } from "../../components/by-twt/by-twt"
+import { Toasti } from "../../components/toasti"
 
 export interface BindScreenProps extends NavigationScreenProps<{}> {
   fetchEcardProfile?
@@ -31,27 +30,14 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
     this.props
       .fetchEcardProfile(this.state.cardId, this.state.password)
       .then(() => {
-        Toast.show(
-          (
-            <Text
-              tx="accountBinding.bindSuccess"
-              style={{ color: toastOptions.primary.textColor }}
-            />
-          ) as any,
-          toastOptions.primary,
-        )
+        DeviceEventEmitter.emit("showToast", <Toasti tx="accountBinding.bindSuccess" />)
         this.props.setEcardAuth(this.state.cardId, this.state.password)
         this.props.navigation.goBack()
       })
       .catch(err => {
-        Toast.show(
-          (
-            <Text
-              text={`${err.error_code} / ${err.message}`}
-              style={{ color: toastOptions.err.textColor }}
-            />
-          ) as any,
-          toastOptions.err,
+        DeviceEventEmitter.emit(
+          "showToast",
+          <Toasti text={`${err.error_code} / ${err.message}`} preset="error" />,
         )
       })
       .then(() => {
@@ -103,7 +89,6 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
                   <Text tx="accountBinding.bind" style={ssGlobal.login.buttonText} />
                 </Button>
               </View>
-
             </View>
           </View>
 
