@@ -6,7 +6,7 @@ import {
   fetchCourseData,
   fetchLibraryData,
   fetchUserData,
-  fetchEcardProfile
+  fetchEcardProfile,
 } from "../../actions/data-actions"
 import { digitsFromScoreType } from "../../utils/common"
 
@@ -28,7 +28,6 @@ import toastOptions from "../../theme/toast"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
-
   scoreType?
   setScoreType?
 
@@ -42,7 +41,6 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
 }
 
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
-
   state = {
     refreshing: false,
   }
@@ -54,13 +52,33 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       this.props.fetchLibraryData(),
       this.props.fetchGpaData(),
     ]
-    if (this.props.compData.ecard.auth.status === 'BOUND') toFetch.push(this.props.fetchEcardProfile(this.props.compData.ecard.auth.cardId, this.props.compData.ecard.auth.password))
-    await Promise.all(toFetch).then((values) => {
-      Toast.show(<Text tx="homeScreen.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-    }).catch((err) => {
-      console.log(err)
-      Toast.show(<Text tx="homeScreen.partialData" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-    })
+    if (this.props.compData.ecard.auth.status === "BOUND") {
+      toFetch.push(
+        this.props.fetchEcardProfile(
+          this.props.compData.ecard.auth.cardId,
+          this.props.compData.ecard.auth.password,
+        ),
+      )
+    }
+    await Promise.all(toFetch)
+      .then(() => {
+        Toast.show(
+          (
+            <Text
+              tx="homeScreen.prepareDataSuccess"
+              style={{ color: toastOptions.primary.textColor }}
+            />
+          ) as any,
+          toastOptions.primary,
+        )
+      })
+      .catch(err => {
+        console.log(err)
+        Toast.show(
+          <Text tx="homeScreen.partialData" style={{ color: toastOptions.err.textColor }} /> as any,
+          toastOptions.err,
+        )
+      })
   }
 
   _onRefresh = () => {
@@ -71,60 +89,78 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   componentWillMount(): void {
-    if (this.props.compData.status === "INIT") this.prepareData()
+    if (this.props.compData.status === "INIT") {
+      this.prepareData()
+    }
   }
 
-  render () {
-
+  render() {
     // Grab the props
-    const {
-      scoreType, setScoreType, compData
-    } = this.props
+    const { scoreType, compData } = this.props
 
     let dayToRender = new Date("2019-09-24")
     let timestamp = new Date(dayToRender).getTime()
-    let formattedHead = format(
-      new Date(dayToRender),
-      'MMM Do, dddd'
-    )
+    let formattedHead = format(new Date(dayToRender), "MMM Do, dddd")
 
     return (
       <Screen>
-        <StatusBar
-          translucent
-          backgroundColor="transparent"
-          barStyle='dark-content'
-        />
-        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-        } >
+        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+          }
+        >
           <View style={ss.container}>
             <View style={ss.headerBar}>
-              <Text text="Hello" preset="h2"/>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('user')}>
+              <Text text="Hello" preset="h2" />
+              <TouchableOpacity onPress={() => this.props.navigation.navigate("user")}>
                 <View style={ss.userInfo}>
-                  <Text text={compData.userInfo.data.twtuname} style={ss.userName}/>
-                  <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar}/>
+                  <Text text={compData.userInfo.data.twtuname} style={ss.userName} />
+                  <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar} />
                 </View>
               </TouchableOpacity>
             </View>
-            <ScrollView style={ss.horiScrollSelf} contentContainerStyle={ss.horiScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.bike" icon="directions_bike"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.gpa" icon="timeline" onPress={() => this.props.navigation.navigate('gpa')}/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.contact" icon="call"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.learning" icon="assignment_turned_in"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.library" icon="local_library"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.cards" icon="credit_card"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.classroom" icon="room"/>
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.coffee" icon="free_breakfast"/>
-              <ModuleButton tx="modules.buses" icon="directions_bus"/>
+            <ScrollView
+              style={ss.horiScrollSelf}
+              contentContainerStyle={ss.horiScroll}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.bike"
+                icon="directions_bike"
+              />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.gpa"
+                icon="timeline"
+                onPress={() => this.props.navigation.navigate("gpa")}
+              />
+              <ModuleButton style={ss.blockWithMarginRight} tx="modules.contact" icon="call" />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.learning"
+                icon="assignment_turned_in"
+              />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.library"
+                icon="local_library"
+              />
+              <ModuleButton style={ss.blockWithMarginRight} tx="modules.cards" icon="credit_card" />
+              <ModuleButton style={ss.blockWithMarginRight} tx="modules.classroom" icon="room" />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.coffee"
+                icon="free_breakfast"
+              />
+              <ModuleButton tx="modules.buses" icon="directions_bus" />
             </ScrollView>
 
             <View style={ss.sectionHead}>
-              <Text text={formattedHead} preset="h5"/>
+              <Text text={formattedHead} preset="h5" />
             </View>
             <CourseDailySchedule
               data={compData.course.data}
@@ -133,12 +169,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             />
 
             <View style={ss.sectionHead}>
-              <Text text="Library" preset="h5"/>
+              <Text text="Library" preset="h5" />
             </View>
             <LibraryList data={compData.library.data} status={compData.library.status} />
 
             <View style={ss.sectionHead}>
-              <Text text="GPA Curve" preset="h5"/>
+              <Text text="GPA Curve" preset="h5" />
             </View>
             <GpaCurve
               data={compData.gpa.data.gpaSemestral[scoreType]}
@@ -150,16 +186,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <GpaStat
               style={ss.stat}
               status={compData.gpa.status}
-              setScoreType={(scoreType) => setScoreType(scoreType)}
+              setScoreType={newType => setScoreType(newType)}
               scores={compData.gpa.data.gpaOverall}
               txs={["gpa.totalWeighted", "gpa.totalGpa", "gpa.creditsEarned"]}
             />
 
             <View style={ss.sectionHead}>
-              <Text text="E-card" preset="h5"/>
+              <Text text="E-card" preset="h5" />
             </View>
-            <EcardBlock onPress={() => this.props.navigation.navigate('ecard')}/>
-
+            <EcardBlock onPress={() => this.props.navigation.navigate("ecard")} />
           </View>
         </ScrollView>
       </Screen>
@@ -167,16 +202,16 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     scoreType: state.preferenceReducer.scoreType,
     compData: state.dataReducer,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setScoreType: (newType) => {
+    setScoreType: newType => {
       dispatch(setScoreType(newType))
     },
     fetchGpaData: async () => {
@@ -197,4 +232,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export const connectedHomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export const connectedHomeScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen)

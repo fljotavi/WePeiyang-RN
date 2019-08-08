@@ -14,7 +14,7 @@ export interface LibraryBlockProps {
 export function LibraryBlock(props: LibraryBlockProps) {
   const { style, bookName, local, returnTime } = props
   const colorHash = (str: string) => {
-    return (str.length) % (color.hash.bookStrip.length)
+    return str.length % color.hash.bookStrip.length
   }
   const bookColor: number = colorHash(bookName)
   const predefinedStyle: ViewStyle = {
@@ -23,7 +23,7 @@ export function LibraryBlock(props: LibraryBlockProps) {
     borderTopRightRadius: layoutParam.borderRadius,
     borderBottomRightRadius: layoutParam.borderRadius,
     flexDirection: "row",
-    overflow: "hidden"
+    overflow: "hidden",
   }
   const decoStripStyle: ViewStyle = {
     width: 5,
@@ -33,24 +33,27 @@ export function LibraryBlock(props: LibraryBlockProps) {
     paddingHorizontal: 10,
     paddingVertical: 26,
     width: 105,
-    backgroundColor: color.card
+    backgroundColor: color.card,
   }
   const BASE: TextStyle = {
     color: color.primary,
   }
 
   const h1: TextStyle = { ...BASE, fontSize: 14, height: 77, fontWeight: "bold" }
-  const small: TextStyle = { ...BASE, fontSize: 10, }
+  const small: TextStyle = { ...BASE, fontSize: 10 }
   const additionalInfo: TextStyle = { height: 16 }
   return (
     <View style={[predefinedStyle, style]} pointerEvents="box-only">
       <View style={decoStripStyle} />
       <View style={mainContentStyle}>
-        <Text numberOfLines={3} text={bookName} style={h1}/>
-        <Text text={local} numberOfLines={1} style={small}/>
+        <Text numberOfLines={3} text={bookName} style={h1} />
+        <Text text={local} numberOfLines={1} style={small} />
         <Text style={additionalInfo}>
           <Text tx={"common.time.remaining"} style={small} />
-          <Text text={String(differenceInCalendarDays(new Date(returnTime), Date.now()))} style={small} />
+          <Text
+            text={String(differenceInCalendarDays(new Date(returnTime), Date.now()))}
+            style={small}
+          />
           <Text tx={"common.time.daysLeft"} style={small} />
         </Text>
       </View>

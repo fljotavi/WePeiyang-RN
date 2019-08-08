@@ -6,21 +6,24 @@ export const semesterReducer = (state = 0, action) => {
   return state
 }
 
-export const preferenceReducer = (state = {
-  scoreType: "weighted",
-  gpaOrderBy: "credits"
-}, action) => {
+export const preferenceReducer = (
+  state = {
+    scoreType: "weighted",
+    gpaOrderBy: "credits",
+  },
+  action,
+) => {
   switch (action.type) {
     case "SET_SCORE_TYPE":
       state = {
         ...state,
-        scoreType: action.payload
+        scoreType: action.payload,
       }
       break
     case "SET_GPA_ORDER_BY":
       state = {
         ...state,
-        gpaOrderBy: action.payload
+        gpaOrderBy: action.payload,
       }
       break
   }
@@ -32,13 +35,13 @@ export const authReducer = (state = { token: null, logged: false }, action) => {
     case "SET_TOKEN":
       state = {
         ...state,
-        token: action.payload
+        token: action.payload,
       }
       break
     case "LOGIN_SUCCESS":
       state = {
         ...state,
-        logged: true
+        logged: true,
       }
       break
   }

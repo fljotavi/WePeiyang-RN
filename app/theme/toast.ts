@@ -21,7 +21,7 @@ const BASE = {
   shadow: false,
   opacity: 0.95,
   position: -80, // Need to be slightly higher for the sake of the bottom tab bar
-  animation: true
+  animation: true,
 }
 
 const primary = {
@@ -49,5 +49,8 @@ const err = {
 }
 
 export default {
-  primary, err, gpa, ecard
+  primary,
+  err,
+  gpa,
+  ecard,
 }

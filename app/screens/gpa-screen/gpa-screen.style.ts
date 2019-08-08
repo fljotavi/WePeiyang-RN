@@ -43,8 +43,8 @@ export default {
   orderTexts: {
     borderRadius: 3,
     padding: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   } as ViewStyle,
   orderIcon: {
     color: color.module.gpa[2],
@@ -68,5 +68,4 @@ export default {
   snackStyle: {
     marginBottom: 10,
   } as ViewStyle,
-
 }

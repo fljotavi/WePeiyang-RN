@@ -4,27 +4,23 @@ const dataReducerInitialState = {
   status: "INIT",
   userInfo: {
     status: "NOT_RECEIVED",
-    data: {}
+    data: {},
   },
   gpa: {
     status: "NOT_RECEIVED",
     data: {
-      gpaSemestral: {
-      },
-      gpaDetailed: {
-
-      },
-      gpaOverall: {
-      }
-    }
+      gpaSemestral: {},
+      gpaDetailed: {},
+      gpaOverall: {},
+    },
   },
   library: {
     status: "NOT_RECEIVED",
-    data: {}
+    data: {},
   },
   course: {
     status: "NOT_RECEIVED",
-    data: {}
+    data: {},
   },
   ecard: {
     status: "NOT_RECEIVED",
@@ -36,13 +32,12 @@ const dataReducerInitialState = {
     profile: undefined,
     turnover: undefined,
     lineChart: undefined,
-    total: undefined
-  }
+    total: undefined,
+  },
 }
 
 export const dataReducer = (state = dataReducerInitialState, action) => {
   switch (action.type) {
-
     case "CLEAR_ALL_DATA":
       state = dataReducerInitialState
       break
@@ -53,7 +48,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         status: "MODIFIED",
         userInfo: {
           status: "VALID",
-          data: action.payload
+          data: action.payload,
         },
       }
       break
@@ -63,16 +58,22 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       const statData = action.payload.stat
       let extractedData = {
         gpaSemestral: {
-          weighted: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.score } }),
-          gradePoints: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.gpa } }),
-          credits: semestralData.map((raw, index) => { return { x: index + 1, y: raw.stat.credit } }),
+          weighted: semestralData.map((raw, index) => {
+            return { x: index + 1, y: raw.stat.score }
+          }),
+          gradePoints: semestralData.map((raw, index) => {
+            return { x: index + 1, y: raw.stat.gpa }
+          }),
+          credits: semestralData.map((raw, index) => {
+            return { x: index + 1, y: raw.stat.credit }
+          }),
         },
         gpaOverall: {
           weighted: statData.total.score.toFixed(digitsFromScoreType("weighted")),
           gradePoints: statData.total.gpa.toFixed(digitsFromScoreType("gradePoints")),
           credits: statData.total.credit.toFixed(digitsFromScoreType("credits")),
         },
-        gpaDetailed: semestralData // SemestralData here actually contains all courses in detail, correcting semantics here.
+        gpaDetailed: semestralData, // SemestralData here actually contains all courses in detail, correcting semantics here.
       }
       console.log(extractedData)
       state = {
@@ -80,21 +81,21 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         status: "MODIFIED",
         gpa: {
           status: "VALID",
-          data: extractedData
-        }
+          data: extractedData,
+        },
       }
       break
 
     case "SET_COURSE_DATA":
       let payload = action.payload
-      delete Object.assign(payload, { 'courses': payload['data'] })['data'] // Replace object key 'data' with 'courses', semantically
+      delete Object.assign(payload, { courses: payload.data }).data // Replace object key 'data' with 'courses', semantically
       state = {
         ...state,
         status: "MODIFIED",
         course: {
           status: "VALID",
-          data: payload
-        }
+          data: payload,
+        },
       }
       break
 
@@ -104,8 +105,8 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         status: "MODIFIED",
         library: {
           status: "VALID",
-          data: action.payload
-        }
+          data: action.payload,
+        },
       }
       break
 
@@ -119,8 +120,8 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
             status: "BOUND",
             cardId: action.payload.cardId,
             password: action.payload.password,
-          }
-        }
+          },
+        },
       }
       break
 
@@ -131,8 +132,8 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         ecard: {
           ...state.ecard,
           status: "VALID",
-          profile: action.payload
-        }
+          profile: action.payload,
+        },
       }
       break
 
@@ -142,8 +143,8 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         status: "MODIFIED",
         ecard: {
           ...state.ecard,
-          turnover: action.payload
-        }
+          turnover: action.payload,
+        },
       }
       break
 
@@ -153,8 +154,8 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         status: "MODIFIED",
         ecard: {
           ...state.ecard,
-          total: action.payload
-        }
+          total: action.payload,
+        },
       }
       break
 
@@ -164,11 +165,10 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         status: "MODIFIED",
         ecard: {
           ...state.ecard,
-          lineChart: action.payload
-        }
+          lineChart: action.payload,
+        },
       }
       break
-
   }
   return state
 }

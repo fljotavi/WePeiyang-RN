@@ -2,7 +2,7 @@ import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "../../theme"
 import { Text } from "../../components/text"
 import * as React from "react"
-import Touchable from 'react-native-platform-touchable'
+import Touchable from "react-native-platform-touchable"
 
 export interface EcardSnackProps {
   location?
@@ -25,7 +25,7 @@ export function EcardSnack(props: EcardSnackProps) {
     snackContainer: {
       paddingVertical: 10,
       paddingHorizontal: 7,
-      width: '100%',
+      width: "100%",
       flexDirection: "row",
       justifyContent: "space-between",
       borderBottomColor: color.white(0.1),
@@ -61,45 +61,55 @@ export function EcardSnack(props: EcardSnackProps) {
     } as TextStyle,
     subtitle: {
       color: color.module.ecard[1],
-    }
+    },
   }
 
-  let iconText = 'layers'
+  let iconText = "layers"
   switch (subType) {
     case "食堂":
-      iconText = 'restaurant'
+      iconText = "restaurant"
       break
     case "充值":
-      iconText = 'attach_money'
+      iconText = "attach_money"
       break
     case "超市":
-      iconText = 'store_mall_directory'
+      iconText = "store_mall_directory"
       break
     default:
-      iconText = 'place'
+      iconText = "place"
       break
   }
 
   // I have to say man, thanks to the truly fucked-up API design, I can do my funny ugly coding works here
-  let humanReadableDateTime =
-    `${date.substr(0, 4)}/${date.substr(4, 2)}/${date.substr(6, 2)} ${time.substr(0, 2)}:${time.substr(2, 2)}`
+  let humanReadableDateTime = `${date.substr(0, 4)}/${date.substr(4, 2)}/${date.substr(
+    6,
+    2,
+  )} ${time.substr(0, 2)}:${time.substr(2, 2)}`
 
   let amountText = String(amount)
-  if (type === 2) amountText = "-" + amountText
-  if (type === 1) amountText = "+" + amountText
+  if (type === 2) {
+    amountText = "-" + amountText
+  }
+  if (type === 1) {
+    amountText = "+" + amountText
+  }
   return (
-    <Touchable background={Touchable.Ripple(type === 1 ? color.module.ecard[2] : color.white(0.05))} style={[ss.snack, style]} delayPressIn={0}>
-      <View style={ss.snackContainer} pointerEvents='box-only'>
+    <Touchable
+      background={Touchable.Ripple(type === 1 ? color.module.ecard[2] : color.white(0.05))}
+      style={[ss.snack, style]}
+      delayPressIn={0}
+    >
+      <View style={ss.snackContainer} pointerEvents="box-only">
         <View style={ss.left}>
-          <Text text={iconText} style={ss.icon} preset="i"/>
+          <Text text={iconText} style={ss.icon} preset="i" />
           <View style={ss.text}>
-            <Text text={location} style={ss.title}/>
+            <Text text={location} style={ss.title} />
             <Text>
-              <Text preset="small" style={ss.subtitle} text={humanReadableDateTime}/>
+              <Text preset="small" style={ss.subtitle} text={humanReadableDateTime} />
             </Text>
           </View>
         </View>
-        <Text text={amountText} style={type === 2 ? ss.score : ss.scoreGolden}/>
+        <Text text={amountText} style={type === 2 ? ss.score : ss.scoreGolden} />
       </View>
     </Touchable>
   )

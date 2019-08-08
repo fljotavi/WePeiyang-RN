@@ -2,21 +2,23 @@ import { twtGet } from "../services/twt-fetch"
 
 export function clearAllData() {
   return {
-    type: "CLEAR_ALL_DATA"
+    type: "CLEAR_ALL_DATA",
   }
 }
 
 export function fetchGpaData() {
   return dispatch => {
     return twtGet("v1/gpa")
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_GPA_DATA",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -24,14 +26,16 @@ export function fetchGpaData() {
 export function fetchCourseData() {
   return dispatch => {
     return twtGet("v1/classtable")
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_COURSE_DATA",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -39,15 +43,17 @@ export function fetchCourseData() {
 export function fetchUserData() {
   return dispatch => {
     return twtGet("v2/auth/self")
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         // Inconsistent response formatting here, no error_code. Bad server-side api design, yet there's nothing I can do about it.
         if (responseJson.twtuname) {
           dispatch({
             type: "SET_USER_DATA",
-            payload: responseJson
+            payload: responseJson,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -55,23 +61,25 @@ export function fetchUserData() {
 export function fetchLibraryData() {
   return dispatch => {
     return twtGet("v1/library/user/info")
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_LIBRARY_DATA",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
 
 export function renewBook(barcode) {
-  return dispatch => {
+  return () => {
     return twtGet(`v1/library/renew${barcode}`)
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         console.log(responseJson)
       })
   }
@@ -80,14 +88,16 @@ export function renewBook(barcode) {
 export function fetchEcardProfile(cardId, password) {
   return dispatch => {
     return twtGet("v1/ecard/profile", { cardnum: cardId, password: password })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_PROFILE",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -95,14 +105,16 @@ export function fetchEcardProfile(cardId, password) {
 export function fetchEcardTurnover(cardId, password, days) {
   return dispatch => {
     return twtGet("v1/ecard/turnover", { cardnum: cardId, password: password, term: days })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_TURNOVER",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -110,15 +122,17 @@ export function fetchEcardTurnover(cardId, password, days) {
 export function fetchEcardTotal(cardId, password) {
   return dispatch => {
     return twtGet("v1/ecard/total", { cardnum: cardId, password: password })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         console.log("Ecard Total Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_TOTAL",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -126,15 +140,17 @@ export function fetchEcardTotal(cardId, password) {
 export function fetchEcardLineChart(cardId, password) {
   return dispatch => {
     return twtGet("v1/ecard/lineChart", { cardnum: cardId, password: password })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         console.log("Ecard LineChart Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_LINE_CHART",
-            payload: responseJson.data
+            payload: responseJson.data,
           })
-        } else throw responseJson
+        } else {
+          throw responseJson
+        }
       })
   }
 }
@@ -142,6 +158,6 @@ export function fetchEcardLineChart(cardId, password) {
 export function setEcardAuth(cardId, password) {
   return {
     type: "SET_ECARD_AUTH",
-    payload: { cardId, password }
+    payload: { cardId, password },
   }
 }

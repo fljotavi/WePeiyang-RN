@@ -14,7 +14,7 @@ export const ssGlobal = {
     container: {
       paddingHorizontal: 14,
       paddingVertical: 16,
-      alignSelf: 'stretch',
+      alignSelf: "stretch",
       flexDirection: "row",
       justifyContent: "space-between",
     } as ViewStyle,
@@ -27,9 +27,7 @@ export const ssGlobal = {
     } as TextStyle,
   },
   login: {
-    screen: {
-
-    } as ViewStyle,
+    screen: {} as ViewStyle,
     container: {
       paddingHorizontal: layoutParam.paddingHorizontal,
       paddingVertical: layoutParam.paddingVertical,
@@ -67,6 +65,6 @@ export const ssGlobal = {
       flexDirection: "row",
       justifyContent: "flex-start",
       alignItems: "center",
-    } as ViewStyle
-  }
+    } as ViewStyle,
+  },
 }

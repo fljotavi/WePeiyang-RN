@@ -11,7 +11,9 @@ export function digitsFromScoreType(scoreType) {
 }
 
 export function getScheduleTimeSlot(raw) {
-  if (typeof raw === 'number') raw = String(raw)
+  if (typeof raw === "number") {
+    raw = String(raw)
+  }
   switch (raw) {
     case "1":
       return ["08:30", "09:15"]
@@ -43,21 +45,32 @@ export function getScheduleTimeSlot(raw) {
 
 export function shuffleData(a) {
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
   }
   return a
 }
 
 export function sanitizeLocation(raw: string) {
-  return raw.replace('楼', '-')
+  return raw.replace("楼", "-")
 }
 
 export function colorHashByCredits(credits) {
-  if (typeof credits === 'string') credits = Number(credits)
-  if (credits >= 5) return 4
-  if (credits >= 3.5) return 3
-  if (credits >= 2.5) return 2
-  if (credits >= 1.5) return 1
-  else return 0
+  if (typeof credits === "string") {
+    credits = Number(credits)
+  }
+  if (credits >= 5) {
+    return 4
+  }
+  if (credits >= 3.5) {
+    return 3
+  }
+  if (credits >= 2.5) {
+    return 2
+  }
+  if (credits >= 1.5) {
+    return 1
+  } else {
+    return 0
+  }
 }

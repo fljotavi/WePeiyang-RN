@@ -46,7 +46,7 @@ export default {
   userId: {
     color: color.washed,
     opacity: 0.6,
-    marginTop: 10
+    marginTop: 10,
   } as TextStyle,
   avatar: {
     borderRadius: 49,
@@ -62,14 +62,14 @@ export default {
     paddingHorizontal: 30,
     flexDirection: "row",
     justifyContent: "space-around",
-    width: '100%',
+    width: "100%",
     maxWidth: 500,
   } as ViewStyle,
   bindingBar: {
     marginTop: 13,
   } as ViewStyle,
   logoutButton: {
-    width: '100%',
+    width: "100%",
     maxWidth: 500,
     marginVertical: 40,
     elevation: 99,

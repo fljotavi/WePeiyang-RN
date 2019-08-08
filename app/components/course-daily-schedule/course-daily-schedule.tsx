@@ -27,24 +27,30 @@ const getCoursesByDay = (timestamp, data) => {
   let semesterStart = data.term_start * 1000
   let currentWeek = getWeek(timestamp, semesterStart)
   let res = []
-  data.courses.forEach((course) => {
+  data.courses.forEach(course => {
     if (course.week.start <= currentWeek && currentWeek <= course.week.end) {
-      course.arrange.forEach((arrangement) => {
+      course.arrange.forEach(arrangement => {
         if (arrangement.day === String(now.getDay())) {
           let arrangedThisWeek = true
           switch (arrangement.week) {
             case "单周":
-              if (currentWeek % 2 === 0) arrangedThisWeek = false
+              if (currentWeek % 2 === 0) {
+                arrangedThisWeek = false
+              }
               break
             case "双周":
-              if (currentWeek % 2 === 1) arrangedThisWeek = false
+              if (currentWeek % 2 === 1) {
+                arrangedThisWeek = false
+              }
               break
           }
           if (arrangedThisWeek) {
             // Finally
             res.push({
               courseName: course.coursename,
-              timeSlot: `${getScheduleTimeSlot(arrangement.start)[0]} - ${getScheduleTimeSlot(arrangement.end)[1]}`,
+              timeSlot: `${getScheduleTimeSlot(arrangement.start)[0]} - ${
+                getScheduleTimeSlot(arrangement.end)[1]
+              }`,
               location: sanitizeLocation(arrangement.room),
               credits: course.credit,
             })
@@ -88,7 +94,6 @@ const genDummyCourses = (a, b) => {
 }
 
 export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
-
   state = {
     isModalVisible: false,
     userInformed: false,
@@ -109,7 +114,9 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
     const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
     let courseDaily = genDummyCourses(timestampOwl, data)
     let chosenCourse = courseDaily[this.state.courseIndex]
-    let backgroundStyle = { backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credits)] }
+    let backgroundStyle = {
+      backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credits)],
+    }
 
     if (status !== "VALID") {
       return <View />
@@ -117,7 +124,6 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
 
     return (
       <View style={[ss.predefinedStyle, style]}>
-
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
@@ -131,18 +137,12 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           useNativeDriver={true}
           style={ss.modal}
         >
-
-          <View
-            style={[ss.modalCard, backgroundStyle]}
-          >
-
+          <View style={[ss.modalCard, backgroundStyle]}>
             <View>
-              <Text text={chosenCourse['courseName']} style={ss.courseTitle} selectable={true}/>
-              <Text text={chosenCourse['location']} style={ss.courseTutor} selectable={true}/>
+              <Text text={chosenCourse.courseName} style={ss.courseTitle} selectable={true} />
+              <Text text={chosenCourse.location} style={ss.courseTutor} selectable={true} />
             </View>
-
           </View>
-
         </Modal>
 
         <FlatList
@@ -168,9 +168,8 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
                 location={item.location}
               />
             </Touchable>
-
           )}
-          ListEmptyComponent={() => <Ian tx="schedule.noCourseToday"/>}
+          ListEmptyComponent={() => <Ian tx="schedule.noCourseToday" />}
         />
       </View>
     )

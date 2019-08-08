@@ -1,14 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
-import {
-  Animated,
-  FlatList,
-  RefreshControl,
-  ScrollView,
-  StatusBar,
-  View,
-} from "react-native"
-import Color from 'color'
+import { Animated, FlatList, RefreshControl, ScrollView, StatusBar, View } from "react-native"
+import Color from "color"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -17,7 +10,12 @@ import { TopBar } from "./top-bar"
 import Toast from "react-native-root-toast"
 import { Text } from "../../components/text"
 import toastOptions from "../../theme/toast"
-import { fetchEcardLineChart, fetchEcardProfile, fetchEcardTotal, fetchEcardTurnover } from "../../actions/data-actions"
+import {
+  fetchEcardLineChart,
+  fetchEcardProfile,
+  fetchEcardTotal,
+  fetchEcardTurnover,
+} from "../../actions/data-actions"
 import { EcardSnack } from "./ecard-snack"
 import { EcardBar } from "./ecard-bar"
 import { Button } from "../../components/button"
@@ -33,7 +31,6 @@ export interface EcardScreenProps extends NavigationScreenProps<{}> {
 }
 
 export class EcardScreen extends React.Component<EcardScreenProps, {}> {
-
   state = {
     refreshing: false,
     daysToLoad: 2,
@@ -45,29 +42,48 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
     this._onRefresh()
     setTimeout(() => {
       this.setState({ renderChart: true })
-      Animated.timing(
-        this.state.fadeAnim,
-        {
-          toValue: 1, // Animate to opacity: 1 (opaque)
-          duration: 1000, // Make it take a while
-        }
-      ).start()
+      Animated.timing(this.state.fadeAnim, {
+        toValue: 1, // Animate to opacity: 1 (opaque)
+        duration: 1000, // Make it take a while
+      }).start()
     }, 1)
   }
 
   prepareData = async () => {
     await Promise.all([
       this.props.fetchEcardProfile(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
-      this.props.fetchEcardTurnover(this.props.ecard.auth.cardId, this.props.ecard.auth.password, this.state.daysToLoad),
+      this.props.fetchEcardTurnover(
+        this.props.ecard.auth.cardId,
+        this.props.ecard.auth.password,
+        this.state.daysToLoad,
+      ),
       this.props.fetchEcardLineChart(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
       this.props.fetchEcardTotal(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
-    ]).then((values) => {
-      Toast.show(<Text tx="ecardScreen.prepareDataSuccess" style={{ color: toastOptions.ecard.textColor }}/> as any, toastOptions.ecard)
-      console.log(values)
-    }).catch((err) => {
-      console.log(err)
-      Toast.show(<Text tx="ecardScreen.prepareDataFailed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-    })
+    ])
+      .then(values => {
+        Toast.show(
+          (
+            <Text
+              tx="ecardScreen.prepareDataSuccess"
+              style={{ color: toastOptions.ecard.textColor }}
+            />
+          ) as any,
+          toastOptions.ecard,
+        )
+        console.log(values)
+      })
+      .catch(err => {
+        console.log(err)
+        Toast.show(
+          (
+            <Text
+              tx="ecardScreen.prepareDataFailed"
+              style={{ color: toastOptions.err.textColor }}
+            />
+          ) as any,
+          toastOptions.err,
+        )
+      })
   }
 
   _onRefresh = () => {
@@ -77,84 +93,86 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
     })
   }
 
-  _keyExtractor = (item, index) => String(index);
+  _keyExtractor = (item, index) => String(index)
 
   _loadMore = async () => {
     this.setState({ daysToLoad: this.state.daysToLoad + 1 }, async () => {
       this.setState({ refreshing: true })
       await Promise.all([
-        this.props.fetchEcardTurnover(this.props.ecard.auth.cardId, this.props.ecard.auth.password, this.state.daysToLoad)
-      ]).then(() => {
-        this.setState({ refreshing: false })
-      }).catch((err) => {
-        this.setState({ refreshing: false })
-        console.log(err)
-        Toast.show(<Text tx="ecardScreen.prepareDataFailed" style={{ color: toastOptions.err.textColor }}/> as any, toastOptions.err)
-      })
+        this.props.fetchEcardTurnover(
+          this.props.ecard.auth.cardId,
+          this.props.ecard.auth.password,
+          this.state.daysToLoad,
+        ),
+      ])
+        .then(() => {
+          this.setState({ refreshing: false })
+        })
+        .catch(err => {
+          this.setState({ refreshing: false })
+          console.log(err)
+          Toast.show(
+            (
+              <Text
+                tx="ecardScreen.prepareDataFailed"
+                style={{ color: toastOptions.err.textColor }}
+              />
+            ) as any,
+            toastOptions.err,
+          )
+        })
     })
   }
 
-  render () {
-
+  render() {
     const { ecard } = this.props
 
     return (
-
       <Screen style={ss.screen}>
-        <StatusBar
-          translucent
-          backgroundColor={"transparent"}
-          barStyle='light-content'
-        />
+        <StatusBar translucent backgroundColor={"transparent"} barStyle="light-content" />
 
-        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-        } >
-
-          <TopBar actions={[
-            () => this.props.navigation.goBack(),
-            () => {},
-            this._onRefresh
-          ]}/>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+          }
+        >
+          <TopBar actions={[() => this.props.navigation.goBack(), () => {}, this._onRefresh]} />
 
           <View style={ss.container}>
-
             <EcardBlock
-              palette={[Color(color.module.ecard[0]).mix(Color("white"), 0.02), color.module.ecard[1], color.module.ecard[1]]}
+              palette={[
+                Color(color.module.ecard[0]).mix(Color("white"), 0.02),
+                color.module.ecard[1],
+                color.module.ecard[1],
+              ]}
             />
 
             <Animated.View style={{ ...ss.ecardBar, opacity: this.state.fadeAnim }}>
-              {(ecard.lineChart && this.state.renderChart) && (
-                <EcardBar data={ecard.lineChart}/>
-              )}
+              {ecard.lineChart && this.state.renderChart && <EcardBar data={ecard.lineChart} />}
             </Animated.View>
 
-            {
-              ecard.total && (
-                <View style={ss.stat}>
-                  <View style={ss.statPair}>
-                    <Text text="Daily Expense" style={ss.statKey}/>
-                    <Text style={ss.statVal} preset="h3">
-                      <Text text="¥" style={ss.yen}/>
-                      <Text text={Number(ecard.total.total_day).toFixed(2)}/>
-                    </Text>
-                  </View>
-                  <View style={ss.statPair}>
-                    <Text text="Monthly Expense" style={ss.statKey}/>
-                    <Text style={ss.statVal} preset="h3">
-                      <Text text="¥" style={ss.yen}/>
-                      <Text text={Number(ecard.total.total_30_days).toFixed(2)}/>
-                    </Text>
-                  </View>
+            {ecard.total && (
+              <View style={ss.stat}>
+                <View style={ss.statPair}>
+                  <Text text="Daily Expense" style={ss.statKey} />
+                  <Text style={ss.statVal} preset="h3">
+                    <Text text="¥" style={ss.yen} />
+                    <Text text={Number(ecard.total.total_day).toFixed(2)} />
+                  </Text>
                 </View>
-              )
-            }
+                <View style={ss.statPair}>
+                  <Text text="Monthly Expense" style={ss.statKey} />
+                  <Text style={ss.statVal} preset="h3">
+                    <Text text="¥" style={ss.yen} />
+                    <Text text={Number(ecard.total.total_30_days).toFixed(2)} />
+                  </Text>
+                </View>
+              </View>
+            )}
 
             <Text style={ss.caption}>
-              <Text text="▼ billing details" preset="lausanne"/>
+              <Text text="▼ billing details" preset="lausanne" />
             </Text>
 
             <FlatList
@@ -165,39 +183,33 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
               renderItem={({ item }) => (
                 <EcardSnack
                   style={ss.snackStyle}
-                  location={item['location']}
-                  amount={item['amount']}
-                  date={item['date']}
-                  time={item['time']}
-                  type={item['type']}
-                  subType={item['sub_type']}
+                  location={item.location}
+                  amount={item.amount}
+                  date={item.date}
+                  time={item.time}
+                  type={item.type}
+                  subType={item.sub_type}
                 />
               )}
             />
 
-            <Button
-              style={ss.loadMoreTouchable}
-              onPress={this._loadMore}
-            >
-              <Text text="Load One More Day" style={ss.loadMoreText}/>
+            <Button style={ss.loadMoreTouchable} onPress={this._loadMore}>
+              <Text text="Load One More Day" style={ss.loadMoreText} />
             </Button>
-
           </View>
-
         </ScrollView>
-
       </Screen>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    ecard: state.dataReducer.ecard
+    ecard: state.dataReducer.ecard,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchEcardProfile: async (cardId, password) => {
       await dispatch(fetchEcardProfile(cardId, password))
@@ -214,4 +226,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export const connectedEcardScreen = connect(mapStateToProps, mapDispatchToProps)(EcardScreen)
+export const connectedEcardScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EcardScreen)

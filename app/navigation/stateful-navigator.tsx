@@ -3,9 +3,7 @@ import * as React from "react"
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 import { RootNavigator } from "./root-navigator"
 
-interface StatefulNavigatorProps {
-
-}
+interface StatefulNavigatorProps {}
 
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
   currentNavProp: NavigationScreenProp<NavigationState>

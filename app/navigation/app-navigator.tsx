@@ -16,8 +16,9 @@ export const AppNavigator = createStackNavigator(
     bind: BindScreen,
     library: LibraryScreen,
     ecard: EcardScreen,
-  }, {
-    initialRouteName: 'home',
-    headerMode: 'none',
-  }
+  },
+  {
+    initialRouteName: "home",
+    headerMode: "none",
+  },
 )

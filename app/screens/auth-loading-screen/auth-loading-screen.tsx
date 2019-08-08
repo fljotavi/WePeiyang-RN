@@ -5,20 +5,18 @@ import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { processAuthStatus } from "../../services/twt-fetch"
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from "react-native-splash-screen"
 
-export interface AuthLoadingScreenProps extends NavigationScreenProps<{}> {
-}
+export interface AuthLoadingScreenProps extends NavigationScreenProps<{}> {}
 
 const ss = {
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical
+    paddingVertical: layoutParam.paddingVertical,
   } as ViewStyle,
 }
 
 export class AuthLoadingScreen extends React.Component<AuthLoadingScreenProps, {}> {
-
   constructor(props) {
     super(props)
     this._bootstrapAuthStatus()
@@ -30,20 +28,16 @@ export class AuthLoadingScreen extends React.Component<AuthLoadingScreenProps, {
     SplashScreen.hide()
   }
 
-  _bootstrapAuthStatus = async() => {
-    await processAuthStatus().then((tokenExists) => {
-      this.props.navigation.navigate(tokenExists ? 'app' : 'login')
+  _bootstrapAuthStatus = async () => {
+    await processAuthStatus().then(tokenExists => {
+      this.props.navigation.navigate(tokenExists ? "app" : "login")
     })
   }
 
-  render () {
+  render() {
     return (
       <Screen preset="scroll">
-        <StatusBar
-          translucent
-          backgroundColor="transparent"
-          barStyle='dark-content'
-        />
+        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <View style={ss.container}>
           <Text text="Loading..." preset="h2" />
         </View>

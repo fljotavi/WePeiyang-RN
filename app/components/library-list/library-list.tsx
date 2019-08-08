@@ -19,7 +19,6 @@ export interface BookListProps {
 }
 
 export class LibraryList extends React.Component<BookListProps, {}> {
-
   state = {
     isModalVisible: false,
     userInformed: false,
@@ -33,7 +32,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
     this.setState({ isModalVisible: false, userInformed: false })
   }
 
-  _keyExtractor = (item) => String(item.id);
+  _keyExtractor = item => String(item.id)
 
   render() {
     const { style, data, status } = this.props
@@ -46,7 +45,6 @@ export class LibraryList extends React.Component<BookListProps, {}> {
 
     return (
       <View style={[ss.predefinedStyle, style]}>
-
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
@@ -61,70 +59,83 @@ export class LibraryList extends React.Component<BookListProps, {}> {
           useNativeDriver={true}
           style={ss.modal}
         >
-
-          <View
-            style={ss.modalCard}
-          >
-
-            <TjuBadge style={ss.tjuBadge} fill={color.black(0.02)} height={310} width={270}/>
+          <View style={ss.modalCard}>
+            <TjuBadge style={ss.tjuBadge} fill={color.black(0.02)} height={310} width={270} />
 
             <View>
-              <Text text={chosenBook['title']} style={ss.bookTitle} selectable={true}/>
-              <Text text={chosenBook['author']} style={ss.bookAuthor} selectable={true}/>
+              <Text text={chosenBook.title} style={ss.bookTitle} selectable={true} />
+              <Text text={chosenBook.author} style={ss.bookAuthor} selectable={true} />
             </View>
 
             <View>
               <View style={ss.bookAttrs}>
                 <View style={ss.bookAttrPair}>
-                  <Text text={"Call No."} style={ss.bookAttrKey}/>
-                  <Text text={chosenBook['callno']} style={ss.bookAttrValue}/>
+                  <Text text={"Call No."} style={ss.bookAttrKey} />
+                  <Text text={chosenBook.callno} style={ss.bookAttrValue} />
                 </View>
                 <View style={ss.bookAttrPair}>
-                  <Text text={"Type"} style={ss.bookAttrKey}/>
-                  <Text text={chosenBook['type']} style={ss.bookAttrValue}/>
+                  <Text text={"Type"} style={ss.bookAttrKey} />
+                  <Text text={chosenBook.type} style={ss.bookAttrValue} />
                 </View>
                 <View style={ss.bookAttrPair}>
-                  <Text text={"Location"} style={ss.bookAttrKey}/>
-                  <Text text={chosenBook['local']} style={ss.bookAttrValue}/>
+                  <Text text={"Location"} style={ss.bookAttrKey} />
+                  <Text text={chosenBook.local} style={ss.bookAttrValue} />
                 </View>
                 <View style={ss.bookAttrPair}>
-                  <Text text={"Borrowed"} style={ss.bookAttrKey}/>
-                  <Text text={chosenBook['loanTime']} style={ss.bookAttrValue}/>
+                  <Text text={"Borrowed"} style={ss.bookAttrKey} />
+                  <Text text={chosenBook.loanTime} style={ss.bookAttrValue} />
                 </View>
                 <View style={ss.bookAttrPair}>
-                  <Text text={"Return By"} style={ss.bookAttrKey}/>
-                  <Text text={chosenBook['returnTime']} style={ss.bookAttrValue}/>
+                  <Text text={"Return By"} style={ss.bookAttrKey} />
+                  <Text text={chosenBook.returnTime} style={ss.bookAttrValue} />
                 </View>
               </View>
             </View>
-
           </View>
 
           <View style={ss.renewArea}>
             {this.state.userInformed && (
-              <Text style={ss.renewCaveat} text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"/>
+              <Text
+                style={ss.renewCaveat}
+                text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"
+              />
             )}
-            <Button preset="lite" style={ss.modalButton} onPress={() => {
-              if (this.state.userInformed) {
-                twtGet(`v1/library/renew${chosenBook['barcode']}`)
-                  .then((response) => response.json())
-                  .then((responseJson) => {
-                    this.closeModal()
-                    Toast.show(<Text text={responseJson.message} style={{ color: toastOptions.primary.textColor }}/> as any, toastOptions.primary)
-                    console.log(responseJson)
-                  })
-              } else {
-                this.setState({ userInformed: true })
-              }
-            }}>
+            <Button
+              preset="lite"
+              style={ss.modalButton}
+              onPress={() => {
+                if (this.state.userInformed) {
+                  twtGet(`v1/library/renew${chosenBook.barcode}`)
+                    .then(response => response.json())
+                    .then(responseJson => {
+                      this.closeModal()
+                      Toast.show(
+                        (
+                          <Text
+                            text={responseJson.message}
+                            style={{ color: toastOptions.primary.textColor }}
+                          />
+                        ) as any,
+                        toastOptions.primary,
+                      )
+                      console.log(responseJson)
+                    })
+                } else {
+                  this.setState({ userInformed: true })
+                }
+              }}
+            >
               <View style={ss.modalButtonContent}>
-                <Text text={ this.state.userInformed ? "check" : "update"} preset="i" style={ss.modalButtonIcon}/>
-                <Text text=" " preset="h6"/>
-                <Text text={ this.state.userInformed ? "CONFIRM" : "RENEW"} preset="h6"/>
+                <Text
+                  text={this.state.userInformed ? "check" : "update"}
+                  preset="i"
+                  style={ss.modalButtonIcon}
+                />
+                <Text text=" " preset="h6" />
+                <Text text={this.state.userInformed ? "CONFIRM" : "RENEW"} preset="h6" />
               </View>
             </Button>
           </View>
-
         </Modal>
 
         <FlatList
@@ -143,16 +154,11 @@ export class LibraryList extends React.Component<BookListProps, {}> {
                 this.setState({ bookIndex: index })
               }}
             >
-              <LibraryBlock
-                bookName={item['title']}
-                local={item['local']}
-                returnTime={item['returnTime']}
-              />
+              <LibraryBlock bookName={item.title} local={item.local} returnTime={item.returnTime} />
             </Touchable>
           )}
-          ListEmptyComponent={() => <Ian tx="library.noBooks"/>}
+          ListEmptyComponent={() => <Ian tx="library.noBooks" />}
         />
-
       </View>
     )
   }

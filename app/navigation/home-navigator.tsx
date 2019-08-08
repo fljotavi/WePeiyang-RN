@@ -6,7 +6,7 @@ import { TjuLoginScreen } from "../screens/tju-login-screen"
 import { Text } from "../components/text"
 import { TextStyle, ViewStyle } from "react-native"
 import { color, layoutParam } from "../theme"
-import Touchable from 'react-native-platform-touchable'
+import Touchable from "react-native-platform-touchable"
 
 const barStyle: ViewStyle = {
   height: layoutParam.footerHeight,
@@ -14,38 +14,44 @@ const barStyle: ViewStyle = {
   backgroundColor: color.card,
   overflow: "visible",
   alignItems: "center",
-  borderTopWidth: 0
+  borderTopWidth: 0,
 }
 const textStyle: TextStyle = {
   color: color.primary,
-  textAlign: "center"
+  textAlign: "center",
 }
 
 export const HomeNavigator = createBottomTabNavigator(
   {
     wpy: { screen: HomeScreen },
     news: { screen: NewsScreen },
-    tju: { screen: TjuLoginScreen }
+    tju: { screen: TjuLoginScreen },
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
       let genCustomTag = ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state
         let i18nKey = "tab." + routeName
-        return <Touchable onPress={() => navigation.navigate(routeName)} background={Touchable.Ripple(color.lightGrey, true)} delayPressIn={0}>
-          <Text tx={i18nKey} style={textStyle} preset="h5"/>
-        </Touchable>
+        return (
+          <Touchable
+            onPress={() => navigation.navigate(routeName)}
+            background={Touchable.Ripple(color.lightGrey, true)}
+            delayPressIn={0}
+          >
+            <Text tx={i18nKey} style={textStyle} preset="h5" />
+          </Touchable>
+        )
       }
       return {
-        tabBarLabel: genCustomTag
+        tabBarLabel: genCustomTag,
       }
     },
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      activeTintColor: "tomato",
+      inactiveTintColor: "gray",
       showIcon: false,
       labelStyle: textStyle,
       style: barStyle,
     },
-  }
+  },
 )

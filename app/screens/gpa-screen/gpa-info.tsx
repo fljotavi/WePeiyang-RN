@@ -3,19 +3,15 @@ import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { color } from "../../theme"
 
-export interface GpaInfoProps {
-
-}
+export interface GpaInfoProps {}
 
 export function GpaInfo(props: GpaInfoProps) {
-
   const textStyle: TextStyle = {
     color: color.module.gpa[0],
     fontSize: 14,
     marginVertical: 10,
   }
-  const predefinedStyle: ViewStyle = {
-  }
+  const predefinedStyle: ViewStyle = {}
 
   return (
     <View style={predefinedStyle}>

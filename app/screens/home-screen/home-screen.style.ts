@@ -3,7 +3,7 @@ import { color, layoutParam } from "../../theme"
 
 export default {
   screen: {
-    paddingTop: layoutParam.statusBarHeight
+    paddingTop: layoutParam.statusBarHeight,
   } as ViewStyle,
   avatar: {
     borderRadius: 20,
@@ -21,7 +21,7 @@ export default {
   } as TextStyle,
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical
+    paddingVertical: layoutParam.paddingVertical,
   } as ViewStyle,
   headerBar: {
     alignItems: "center",
@@ -33,13 +33,13 @@ export default {
     marginRight: 16,
   } as ViewStyle,
   horiScrollSelf: {
-    overflow: 'visible'
+    overflow: "visible",
   } as ViewStyle,
   horiScroll: {
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
     flexDirection: "row",
-    justifyContent: 'space-between',
-    overflow: 'visible',
+    justifyContent: "space-between",
+    overflow: "visible",
   } as ViewStyle,
   sectionHead: {
     marginBottom: 13,
@@ -52,13 +52,13 @@ export default {
     flex: 1,
   } as ViewStyle,
   curveView: {
-    marginTop: -26
+    marginTop: -26,
   } as ViewStyle,
   stat: {
-    marginTop: 26
+    marginTop: 26,
   } as ViewStyle,
   moreButton: {
     marginTop: 26,
-    alignSelf: "stretch"
-  } as ViewStyle
+    alignSelf: "stretch",
+  } as ViewStyle,
 }

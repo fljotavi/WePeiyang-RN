@@ -7,7 +7,7 @@ export default {
   } as ViewStyle,
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingBottom: layoutParam.paddingVertical
+    paddingBottom: layoutParam.paddingVertical,
   } as ViewStyle,
 
   stat: {
@@ -38,9 +38,7 @@ export default {
   listContainer: {
     alignItems: "center",
   } as ViewStyle,
-  snackStyle: {
-
-  } as ViewStyle,
+  snackStyle: {} as ViewStyle,
 
   ecardBar: {
     marginTop: 32,
@@ -70,5 +68,4 @@ export default {
     color: color.module.ecard[0],
     marginRight: 10,
   } as TextStyle,
-
 }

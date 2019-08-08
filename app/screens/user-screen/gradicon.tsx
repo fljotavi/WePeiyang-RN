@@ -14,7 +14,7 @@ export function Gradicon(props: GradiconProps) {
   const { source, tx, style, onPress } = props
   const predefinedStyle: ViewStyle = {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   }
   const textStyle: TextStyle = {
     color: color.primary,
@@ -23,13 +23,13 @@ export function Gradicon(props: GradiconProps) {
   }
   const iconStyle: ImageStyle = {
     width: 50,
-    height: 50
+    height: 50,
   }
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[predefinedStyle, style]}>
-        <Image source={source} style={iconStyle}/>
-        <Text tx={tx} style={textStyle}/>
+        <Image source={source} style={iconStyle} />
+        <Text tx={tx} style={textStyle} />
       </View>
     </TouchableOpacity>
   )

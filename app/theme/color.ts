@@ -1,7 +1,7 @@
 import { palette } from "./palette"
 
-const white = (alpha) => `rgba(255,255,255,${alpha})`
-const black = (alpha) => `rgba(0,0,0,${alpha})`
+const white = alpha => `rgba(255,255,255,${alpha})`
+const black = alpha => `rgba(0,0,0,${alpha})`
 
 export const color = {
   /**
@@ -50,7 +50,13 @@ export const color = {
    * ColorHashes palette for books & course blocks.
    */
   hash: {
-    course: [palette.offPale, palette.novaPale, palette.authenticPale, palette.pale, palette.offBlack],
+    course: [
+      palette.offPale,
+      palette.novaPale,
+      palette.authenticPale,
+      palette.pale,
+      palette.offBlack,
+    ],
     bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
   },
 
@@ -59,7 +65,7 @@ export const color = {
    */
   module: {
     gpa: [palette.angry, white(0.95), white(0.35), white(0.08)],
-    ecard: [palette.offBlack, palette.silver, palette.gold]
+    ecard: [palette.offBlack, palette.silver, palette.gold],
   },
 
   /**
@@ -67,5 +73,4 @@ export const color = {
    */
   white: white,
   black: black,
-
 }

@@ -16,22 +16,21 @@ export interface EcardBlockProps extends NavigationScreenProps<{}> {
 }
 
 class EcardBlock extends React.Component<EcardBlockProps, {}> {
-
   render() {
     let { ecard, style, palette, onPress } = this.props
     palette = palette || [color.lightGrey, color.background, color.background]
 
     if (ecard.auth.status !== "BOUND") {
-      return <Ian text="No cards bound"/>
+      return <Ian text="No cards bound" />
     }
 
     if (ecard.status !== "VALID") {
-      return <Ian text="No available data"/>
+      return <Ian text="No available data" />
     }
 
     // The current balance api returns "XX.XX元", which is ugly, and of course is going to,
     // and must be fixed in the future. So let's try to be robust here:
-    let displayBalance = String(ecard.profile.balance).replace('元', '')
+    let displayBalance = String(ecard.profile.balance).replace("元", "")
 
     const ss = {
       predefinedStyle: {
@@ -52,7 +51,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
         right: -400,
         top: -100,
         backgroundColor: color.white(0.1),
-        transform: [{ rotate: '22 deg' }]
+        transform: [{ rotate: "22 deg" }],
       } as ViewStyle,
       top: {
         flex: 5,
@@ -69,7 +68,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
       yen: {
         fontSize: 60,
         color: palette[1],
-        fontWeight: "bold"
+        fontWeight: "bold",
       } as TextStyle,
       bar: {
         marginTop: 5,
@@ -93,7 +92,7 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
       },
       pair: {
         marginLeft: 10,
-        alignItems: 'flex-end',
+        alignItems: "flex-end",
       } as ViewStyle,
       attrKey: {
         color: palette[2],
@@ -110,46 +109,53 @@ class EcardBlock extends React.Component<EcardBlockProps, {}> {
     }
 
     return (
-      <Touchable foreground={Touchable.Ripple(palette[1])} style={[ss.predefinedStyle, style]} delayPressIn={0} onPress={onPress}>
-        <View style={ss.containerStyle} pointerEvents='box-only'>
-          <View style={ss.ambient}/>
+      <Touchable
+        foreground={Touchable.Ripple(palette[1])}
+        style={[ss.predefinedStyle, style]}
+        delayPressIn={0}
+        onPress={onPress}
+      >
+        <View style={ss.containerStyle} pointerEvents="box-only">
+          <View style={ss.ambient} />
           <View style={ss.top}>
             <View style={ss.bar}>
               <Text>
-                <Text text="CARD " style={ss.barTextPre}/>
-                <Text text={"NO." + ecard.profile.cardnum} style={ss.barTextSub}/>
+                <Text text="CARD " style={ss.barTextPre} />
+                <Text text={"NO." + ecard.profile.cardnum} style={ss.barTextSub} />
               </Text>
             </View>
             <Text>
-              <Text text="¥" style={ss.yen}/>
-              <Text text={displayBalance} style={ss.balance}/>
+              <Text text="¥" style={ss.yen} />
+              <Text text={displayBalance} style={ss.balance} />
             </Text>
           </View>
           <View style={ss.bottom}>
             <View style={ss.pair}>
-              <Text text="HOLDER" style={ss.attrKey}/>
-              <Text text={ecard.profile.name} style={ss.attrValue}/>
+              <Text text="HOLDER" style={ss.attrKey} />
+              <Text text={ecard.profile.name} style={ss.attrValue} />
             </View>
             <View style={ss.pair}>
-              <Text text="EXPIRES BY" style={ss.attrKey}/>
-              <Text text={ecard.profile.expiry} style={ss.attrValue}/>
+              <Text text="EXPIRES BY" style={ss.attrKey} />
+              <Text text={ecard.profile.expiry} style={ss.attrValue} />
             </View>
           </View>
         </View>
       </Touchable>
     )
   }
-
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     ecard: state.dataReducer.ecard,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {}
 }
 
-export const connectedEcardBlock = connect(mapStateToProps, mapDispatchToProps)(EcardBlock)
+export const connectedEcardBlock = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EcardBlock)

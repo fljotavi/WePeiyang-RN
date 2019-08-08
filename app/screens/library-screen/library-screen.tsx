@@ -8,46 +8,37 @@ import { NavigationScreenProps } from "react-navigation"
 import { StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 
-export interface LibraryScreenProps extends NavigationScreenProps<{}> {
-
-}
+export interface LibraryScreenProps extends NavigationScreenProps<{}> {}
 
 export class LibraryScreen extends React.Component<LibraryScreenProps, {}> {
-
-  render () {
-
+  render() {
     return (
       <Screen style={ss.screen}>
-
-        <StatusBar
-          translucent
-          backgroundColor="transparent"
-          barStyle='light-content'
-        />
+        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
         <View style={ss.container}>
           <View style={ss.heading}>
-
-            <Text text="Books Borrowed" style={ss.headingKey}/>
-            <Text text="2" style={ss.headingValue}/>
-            <Text text="Quota" style={ss.headingKey}/>
-            <Text text="10" style={ss.headingValue}/>
-
+            <Text text="Books Borrowed" style={ss.headingKey} />
+            <Text text="2" style={ss.headingValue} />
+            <Text text="Quota" style={ss.headingKey} />
+            <Text text="10" style={ss.headingValue} />
           </View>
         </View>
-
       </Screen>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {}
 }
 
-export const connectedLibraryScreen = connect(mapStateToProps, mapDispatchToProps)(LibraryScreen)
+export const connectedLibraryScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LibraryScreen)
 export default connectedLibraryScreen

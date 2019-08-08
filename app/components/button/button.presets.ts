@@ -39,8 +39,7 @@ export const viewPresets = {
 
   lite: {
     ...BASE_VIEW,
-
-  }
+  },
 }
 
 export const textPresets = {

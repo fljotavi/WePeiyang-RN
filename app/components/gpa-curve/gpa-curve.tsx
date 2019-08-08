@@ -30,7 +30,8 @@ export function GpaTooltip(props: GpaTooltipProps) {
           fill={palette[1]}
           textAnchor="middle"
           fontFamily={typography.primaryBold}
-          fontWeight="bold">
+          fontWeight="bold"
+        >
           {score.toFixed(scoreToFixed || 2)}
         </Svgtext>
       </G>
@@ -50,20 +51,25 @@ export interface GpaCurveProps {
 }
 
 export class GpaCurve extends React.Component<GpaCurveProps, {}> {
-
   render() {
     let { style, data, status, semesterIndex, scoreToFixed, animated, palette } = this.props
-    palette = palette || [color.card, color.primary, color.washed, color.lightGrey, color.background]
+    palette = palette || [
+      color.card,
+      color.primary,
+      color.washed,
+      color.lightGrey,
+      color.background,
+    ]
 
     if (status !== "VALID" || data.length <= 0) {
       return <View />
     }
 
-    const textStyle = { }
+    const textStyle = {}
     const predefinedStyle: ViewStyle = {
       flex: 1,
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
     }
 
     let selected = semesterIndex
@@ -71,8 +77,12 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
     let lowest = Math.min(...gpaArray)
     let highest = Math.max(...gpaArray)
     let domainPadding = (highest - lowest) / 4
-    let passedData = [{ x: 0, y: data[0].y }, ...data, { x: data.length + 1, y: data[data.length - 1].y }]
-    let chartWidth = Dimensions.get('window').width
+    let passedData = [
+      { x: 0, y: data[0].y },
+      ...data,
+      { x: data.length + 1, y: data[data.length - 1].y },
+    ]
+    let chartWidth = Dimensions.get("window").width
     let chartHeight = 100
     return (
       <View style={[predefinedStyle, style]}>
@@ -84,7 +94,8 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             height={chartHeight}
             width={chartWidth}
             padding={0}
-            color={palette[2]} >
+            color={palette[2]}
+          >
             <VictoryLine
               data={passedData}
               interpolation="cardinal"
@@ -104,17 +115,25 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
                       this.props.setSemesterIndex(i.index)
                     },
                     onPressIn: () => {
-                      return [{
-                        mutation: () => { return { size: 9 } }
-                      }]
+                      return [
+                        {
+                          mutation: () => {
+                            return { size: 9 }
+                          },
+                        },
+                      ]
                     },
                     onPressOut: () => {
-                      return [{
-                        mutation: () => { return { size: 6.6 } }
-                      }]
-                    }
-                  }
-                }
+                      return [
+                        {
+                          mutation: () => {
+                            return { size: 6.6 }
+                          },
+                        },
+                      ]
+                    },
+                  },
+                },
               ]}
             />
             <VictoryScatter
@@ -125,7 +144,13 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             />
             <VictoryScatter
               data={[data[selected]]}
-              dataComponent={<GpaTooltip score={data[selected].y} scoreToFixed={scoreToFixed || 2} palette={[palette[0], palette[1]]}/>}
+              dataComponent={
+                <GpaTooltip
+                  score={data[selected].y}
+                  scoreToFixed={scoreToFixed || 2}
+                  palette={[palette[0], palette[1]]}
+                />
+              }
             />
           </VictoryGroup>
         </Svg>
@@ -134,18 +159,21 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    semesterIndex: state.semesterReducer
+    semesterIndex: state.semesterReducer,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setSemesterIndex: (newType) => {
+    setSemesterIndex: newType => {
       dispatch(setSemesterIndex(newType))
     },
   }
 }
 
-export const connectedGpaCurve = connect(mapStateToProps, mapDispatchToProps)(GpaCurve)
+export const connectedGpaCurve = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(GpaCurve)

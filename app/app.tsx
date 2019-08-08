@@ -8,14 +8,13 @@ import { RootNavigator } from "./navigation/root-navigator"
 import { createAppContainer } from "react-navigation"
 
 import configureStore from "./store"
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from "redux-persist/integration/react"
 import { Text } from "./components/text"
 
 const AppContainer = createAppContainer(RootNavigator)
 const { persistor, store } = configureStore()
 
-interface AppState {
-}
+interface AppState {}
 
 /**
  * This is the root component of our app.
@@ -24,12 +23,8 @@ export class App extends React.Component<{}, AppState> {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={<Text text="loading"/>} persistor={persistor}>
-          <StatusBar
-            translucent
-            backgroundColor="transparent"
-            barStyle='dark-content'
-          />
+        <PersistGate loading={<Text text="loading" />} persistor={persistor}>
+          <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
           <AppContainer />
         </PersistGate>
       </Provider>

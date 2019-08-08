@@ -3,7 +3,7 @@ import { Text } from "../text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
-import Touchable from 'react-native-platform-touchable'
+import Touchable from "react-native-platform-touchable"
 import { View } from "react-native"
 
 /**
@@ -32,9 +32,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <Touchable style={viewStyle} {...rest} delayPressIn={0}>
-      <View pointerEvents='box-only'>
-        {content}
-      </View>
+      <View pointerEvents="box-only">{content}</View>
     </Touchable>
   )
 }

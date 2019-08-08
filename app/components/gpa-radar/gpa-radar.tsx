@@ -1,7 +1,13 @@
 import * as React from "react"
 import { TouchableOpacity, View, ViewStyle } from "react-native"
 import { color, typography } from "../../theme"
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryArea, VictoryPolarAxis } from "victory-native"
+import {
+  VictoryChart,
+  VictoryGroup,
+  VictoryBar,
+  VictoryArea,
+  VictoryPolarAxis,
+} from "victory-native"
 import Svg, { G, Text as Svgtext, TSpan } from "react-native-svg"
 import { shuffleData } from "../../utils/common"
 import { connect } from "react-redux"
@@ -29,36 +35,28 @@ export function GpaPolarLabel(props: GpaPolarLabelProps) {
 
     switch (l) {
       case 12:
-        tspans = [
-          n.substring(0, 4), n.substring(4, 8), n.substring(8, 12)
-        ]
+        tspans = [n.substring(0, 4), n.substring(4, 8), n.substring(8, 12)]
         break
       case 11:
-        tspans = [
-          n.substring(0, 4), n.substring(4, 8), n.substring(8, 11)
-        ]
+        tspans = [n.substring(0, 4), n.substring(4, 8), n.substring(8, 11)]
         break
       case 10:
-        tspans = [
-          n.substring(0, 3), n.substring(3, 7), n.substring(7, 10)
-        ]
+        tspans = [n.substring(0, 3), n.substring(3, 7), n.substring(7, 10)]
         break
       case 9:
-        tspans = [
-          n.substring(0, 3), n.substring(3, 6), n.substring(6, 9)
-        ]
+        tspans = [n.substring(0, 3), n.substring(3, 6), n.substring(6, 9)]
         break
       case 8:
-        tspans = [ n.substring(0, 4), n.substring(4, 8) ]
+        tspans = [n.substring(0, 4), n.substring(4, 8)]
         break
       case 7:
-        tspans = [ n.substring(0, 4), n.substring(4, 7) ]
+        tspans = [n.substring(0, 4), n.substring(4, 7)]
         break
       case 6:
-        tspans = [ n.substring(0, 3), n.substring(3, 6) ]
+        tspans = [n.substring(0, 3), n.substring(3, 6)]
         break
       case 5:
-        tspans = [ n.substring(0, 3), n.substring(3, 5) ]
+        tspans = [n.substring(0, 3), n.substring(3, 5)]
         break
       default:
         tspans = [n]
@@ -68,20 +66,32 @@ export function GpaPolarLabel(props: GpaPolarLabelProps) {
     switch (tspans.length) {
       case 3:
         tgroup = [
-          <TSpan key="0" x="0" y={String(-lineHeight)}>{tspans[0]}</TSpan>,
-          <TSpan key="1" x="0" dy={String(lineHeight)}>{tspans[1]}</TSpan>,
-          <TSpan key="2" x="0" dy={String(lineHeight)}>{tspans[2]}</TSpan>,
+          <TSpan key="0" x="0" y={String(-lineHeight)}>
+            {tspans[0]}
+          </TSpan>,
+          <TSpan key="1" x="0" dy={String(lineHeight)}>
+            {tspans[1]}
+          </TSpan>,
+          <TSpan key="2" x="0" dy={String(lineHeight)}>
+            {tspans[2]}
+          </TSpan>,
         ]
         break
       case 2:
         tgroup = [
-          <TSpan key="0" x="0" y={String(-lineHeight / 2)}>{tspans[0]}</TSpan>,
-          <TSpan key="1" x="0" dy={String(lineHeight)}>{tspans[1]}</TSpan>,
+          <TSpan key="0" x="0" y={String(-lineHeight / 2)}>
+            {tspans[0]}
+          </TSpan>,
+          <TSpan key="1" x="0" dy={String(lineHeight)}>
+            {tspans[1]}
+          </TSpan>,
         ]
         break
       case 1:
         tgroup = [
-          <TSpan key="0" x="0" y="0">{tspans[0]}</TSpan>,
+          <TSpan key="0" x="0" y="0">
+            {tspans[0]}
+          </TSpan>,
         ]
     }
 
@@ -107,7 +117,6 @@ export interface GpaRadarProps {
 }
 
 export class GpaRadar extends React.Component<GpaRadarProps, {}> {
-
   render() {
     const { style, gpa } = this.props
     let shuffled = shuffleData([...this.props.gpa.data.gpaDetailed[this.props.semesterIndex].data])
@@ -126,55 +135,45 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
     return (
       <TouchableOpacity style={[predefinedStyle, style]} onPress={() => this.forceUpdate()}>
         <Svg>
-          <VictoryChart
-            domain={{ y: [ 0, 100 ] }}
-            polar
-          >
-            <VictoryGroup
-              colorScale={[color.module.gpa[1]]}
-            >
+          <VictoryChart domain={{ y: [0, 100] }} polar>
+            <VictoryGroup colorScale={[color.module.gpa[1]]}>
               <VictoryArea
                 style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
                 data={processed}
-                labelComponent={
-                  <G/>
-                }
+                labelComponent={<G />}
               />
               <VictoryBar
-                style={{ data: {
-                  fill: color.module.gpa[1], fillOpacity: 0.07
-                } }}
+                style={{
+                  data: {
+                    fill: color.module.gpa[1],
+                    fillOpacity: 0.07,
+                  },
+                }}
                 data={processedCredits}
-                labelComponent={
-                  <G/>
-                }
+                labelComponent={<G />}
               />
             </VictoryGroup>
-            {
-              processed.map((key, i) => {
-                return (
-                  <VictoryPolarAxis
-                    key={i}
-                    dependentAxis
-                    style={{
-                      axis: { stroke: "none" },
-                    }}
-                    label="foo"
-                    axisLabelComponent={
-                      <GpaPolarLabel courseName={key.x}/>
-                    }
-                    tickLabelComponent={<G/>}
-                    axisValue={i + 1}
-                  />
-                )
-              })
-            }
+            {processed.map((key, i) => {
+              return (
+                <VictoryPolarAxis
+                  key={i}
+                  dependentAxis
+                  style={{
+                    axis: { stroke: "none" },
+                  }}
+                  label="foo"
+                  axisLabelComponent={<GpaPolarLabel courseName={key.x} />}
+                  tickLabelComponent={<G />}
+                  axisValue={i + 1}
+                />
+              )
+            })}
             <VictoryPolarAxis
               labelPlacement="parallel"
               tickFormat={() => ""}
               style={{
                 axis: { stroke: "none" },
-                grid: { stroke: color.module.gpa[1], opacity: 0.5, strokeWidth: 0.25 }
+                grid: { stroke: color.module.gpa[1], opacity: 0.5, strokeWidth: 0.25 },
               }}
             />
           </VictoryChart>
@@ -184,16 +183,19 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     gpa: state.dataReducer.gpa,
-    semesterIndex: state.semesterReducer
+    semesterIndex: state.semesterReducer,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {}
 }
 
-export const connectedGpaRadar = connect(mapStateToProps, mapDispatchToProps)(GpaRadar)
+export const connectedGpaRadar = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(GpaRadar)
 export default connectedGpaRadar

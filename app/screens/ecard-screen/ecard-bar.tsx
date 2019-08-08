@@ -10,7 +10,6 @@ export interface EcardBarProps {
 }
 
 export class EcardBar extends React.Component<EcardBarProps, {}> {
-
   state = {
     barIndex: 0,
   }
@@ -20,7 +19,6 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
   }
 
   render() {
-
     const barData = []
     const stampDiff = 86400000
 
@@ -37,7 +35,7 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
             barData.push({
               x: i,
               y: 2,
-              y0: -1
+              y0: -1,
             }) // Push a small amount of (yet visible) data
           }
         }
@@ -46,25 +44,23 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
       barData.push({
         x: stamp,
         y: amount * 2,
-        y0: -amount
+        y0: -amount,
       })
     })
 
     const predefinedStyle: ViewStyle = {
       flex: 1,
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
     }
 
-    let chartWidth = Dimensions.get('window').width
+    let chartWidth = Dimensions.get("window").width
     let chartHeight = 100
 
     return (
       <View style={[predefinedStyle, this.props.style]}>
         <Svg height={chartHeight} width={chartWidth}>
-
           <VictoryGroup height={chartHeight} width={chartWidth} padding={5}>
-
             {/* <VictoryScatter */}
             {/*  name="tooltip" */}
             {/*  data={data} */}
@@ -76,9 +72,7 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
               style={{ data: { fill: color.module.ecard[2] } }}
               data={barData}
             />
-
           </VictoryGroup>
-
         </Svg>
       </View>
     )

@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { color, ssGlobal } from "../../theme"
-import Touchable from 'react-native-platform-touchable'
+import Touchable from "react-native-platform-touchable"
 
 export interface TopBarProps {
   style?
@@ -24,7 +24,7 @@ export function TopBar(props: TopBarProps) {
           onPress={actions[0]}
           delayPressIn={0}
         >
-          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="arrow_back" preset="i"/>
+          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="arrow_back" preset="i" />
         </Touchable>
       </View>
       <View style={ssGlobal.topBar.side}>
@@ -33,14 +33,14 @@ export function TopBar(props: TopBarProps) {
           onPress={actions[1]}
           delayPressIn={0}
         >
-          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="error_outline" preset="i"/>
+          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="error_outline" preset="i" />
         </Touchable>
         <Touchable
           background={Touchable.Ripple(color.lightGrey, true)}
           onPress={actions[2]}
           delayPressIn={0}
         >
-          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="sync" preset="i"/>
+          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="sync" preset="i" />
         </Touchable>
       </View>
     </View>

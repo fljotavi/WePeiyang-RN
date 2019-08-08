@@ -1,6 +1,6 @@
 /*
-* Iana (Plural form for Ian) are components for empty blocks.
-* */
+ * Iana (Plural form for Ian) are components for empty blocks.
+ * */
 
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
@@ -8,8 +8,8 @@ import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
 
 export interface IanProps {
-  tx?: string,
-  text?: string,
+  tx?: string
+  text?: string
   style?: ViewStyle
 }
 

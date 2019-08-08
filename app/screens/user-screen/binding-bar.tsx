@@ -2,7 +2,7 @@ import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { color, layoutParam } from "../../theme"
-import Touchable from 'react-native-platform-touchable'
+import Touchable from "react-native-platform-touchable"
 
 export interface BindingBarProps {
   txTitle?
@@ -27,12 +27,12 @@ export function BindingBar(props: BindingBarProps) {
       paddingLeft: 20,
       paddingRight: 10,
       paddingVertical: 16,
-      width: '100%',
+      width: "100%",
       maxWidth: 500,
     } as ViewStyle,
     left: {
       flexDirection: "row",
-      alignItems: "center"
+      alignItems: "center",
     } as ViewStyle,
     title: {
       color: color.primary,
@@ -47,24 +47,24 @@ export function BindingBar(props: BindingBarProps) {
       opacity: arrowVisible ? 1 : 0,
     },
     text: {
-      marginLeft: 10
+      marginLeft: 10,
     },
     subtitle: {
       color: color.lightGrey,
       fontSize: 10,
-    }
+    },
   }
   return (
     <Touchable style={[ss.bindingBarContainer, style]} onPress={onPress} delayPressIn={0}>
-      <View style={ss.bindingBar} pointerEvents='box-only'>
+      <View style={ss.bindingBar} pointerEvents="box-only">
         <View style={ss.left}>
-          <Text text={icon} style={ss.icon} preset="i"/>
+          <Text text={icon} style={ss.icon} preset="i" />
           <View style={ss.text}>
-            <Text tx={txTitle} style={ss.title}/>
-            <Text tx={txSubtitle} preset="small" style={ss.subtitle}/>
+            <Text tx={txTitle} style={ss.title} />
+            <Text tx={txSubtitle} preset="small" style={ss.subtitle} />
           </View>
         </View>
-        <Text text="navigate_next" style={ss.backArrow} preset="i"/>
+        <Text text="navigate_next" style={ss.backArrow} preset="i" />
       </View>
     </Touchable>
   )

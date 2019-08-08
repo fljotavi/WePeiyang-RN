@@ -20,7 +20,7 @@ export function CourseBlock(props: CourseBlockProps) {
     backgroundColor: backgroundColor,
     borderRadius: layoutParam.borderRadius,
     paddingHorizontal: 12,
-    paddingVertical: 25
+    paddingVertical: 25,
   }
   const BASE: TextStyle = {
     color: color.background,
@@ -30,9 +30,9 @@ export function CourseBlock(props: CourseBlockProps) {
   const p: TextStyle = { ...BASE, fontSize: 12, height: 26, fontWeight: "bold" }
   return (
     <View style={[predefinedStyle, style]} pointerEvents="box-only">
-      <Text numberOfLines={3} text={courseName} style={h1}/>
+      <Text numberOfLines={3} text={courseName} style={h1} />
       <Text text={timeSlot} style={small} />
-      <Text text={location} style={p}/>
+      <Text text={location} style={p} />
     </View>
   )
 }

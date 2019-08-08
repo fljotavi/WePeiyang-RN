@@ -3,10 +3,10 @@ import { color, layoutParam } from "../../theme"
 
 export default {
   predefinedStyle: {
-    overflow: "visible"
+    overflow: "visible",
   } as ViewStyle,
   listStyle: {
-    overflow: "visible"
+    overflow: "visible",
   } as ViewStyle,
   libraryBlockStyle: {
     marginRight: 13,
@@ -93,5 +93,4 @@ export default {
     right: -50,
     bottom: -50,
   } as ViewStyle,
-
 }

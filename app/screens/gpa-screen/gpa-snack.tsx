@@ -2,7 +2,7 @@ import { TextStyle, View, ViewStyle } from "react-native"
 import { color, layoutParam } from "../../theme"
 import { Text } from "../../components/text"
 import * as React from "react"
-import Touchable from 'react-native-platform-touchable'
+import Touchable from "react-native-platform-touchable"
 import { digitsFromScoreType } from "../../utils/common"
 
 export interface GpaSnackProps {
@@ -27,7 +27,7 @@ export function GpaSnack(props: GpaSnackProps) {
       backgroundColor: color.module.gpa[3],
       paddingHorizontal: 18,
       paddingVertical: 14,
-      width: '100%',
+      width: "100%",
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
@@ -38,7 +38,7 @@ export function GpaSnack(props: GpaSnackProps) {
       flex: 1,
     } as ViewStyle,
     title: {
-      color: color.module.gpa[1]
+      color: color.module.gpa[1],
     },
     icon: {
       color: color.module.gpa[2],
@@ -54,26 +54,38 @@ export function GpaSnack(props: GpaSnackProps) {
       marginLeft: 10,
     } as TextStyle,
     subtitle: {
-      color: color.module.gpa[2]
-    }
+      color: color.module.gpa[2],
+    },
   }
-  let iconText = 'assignment_turned_in'
-  if (score > 99) iconText = 'flash_auto'
-  if (score < 60) iconText = 'hourglass_full'
+  let iconText = "assignment_turned_in"
+  if (score > 99) {
+    iconText = "flash_auto"
+  }
+  if (score < 60) {
+    iconText = "hourglass_full"
+  }
   return (
-    <Touchable background={Touchable.Ripple(color.module.gpa[2])} style={[ss.snack, style]} delayPressIn={0}>
-      <View style={ss.snackContainer} pointerEvents='box-only'>
+    <Touchable
+      background={Touchable.Ripple(color.module.gpa[2])}
+      style={[ss.snack, style]}
+      delayPressIn={0}
+    >
+      <View style={ss.snackContainer} pointerEvents="box-only">
         <View style={ss.left}>
-          <Text text={iconText} style={ss.icon} preset="i"/>
+          <Text text={iconText} style={ss.icon} preset="i" />
           <View style={ss.text}>
-            <Text text={courseName} style={ss.title}/>
+            <Text text={courseName} style={ss.title} />
             <Text>
-              <Text preset="small" style={ss.subtitle} text={courseType + " / " + credits.toFixed(digitsFromScoreType('credits'))}/>
-              <Text preset="small" style={ss.subtitle} text=" Credits"/>
+              <Text
+                preset="small"
+                style={ss.subtitle}
+                text={courseType + " / " + credits.toFixed(digitsFromScoreType("credits"))}
+              />
+              <Text preset="small" style={ss.subtitle} text=" Credits" />
             </Text>
           </View>
         </View>
-        <Text text={score} style={ss.score} preset="h2"/>
+        <Text text={score} style={ss.score} preset="h2" />
       </View>
     </Touchable>
   )

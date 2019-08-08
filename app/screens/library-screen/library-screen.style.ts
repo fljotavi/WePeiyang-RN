@@ -22,8 +22,8 @@ export default {
   headingValue: {
     color: color.background,
     fontSize: 100,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: -20,
-    marginBottom: 20
+    marginBottom: 20,
   } as TextStyle,
 }

@@ -8,7 +8,8 @@ export const RootNavigator = createSwitchNavigator(
     app: AppNavigator,
     authLoading: AuthLoadingScreen,
     login: connectedLoginScreen,
-  }, {
-    initialRouteName: 'authLoading'
-  }
+  },
+  {
+    initialRouteName: "authLoading",
+  },
 )
