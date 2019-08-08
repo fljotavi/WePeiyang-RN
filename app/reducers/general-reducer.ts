@@ -10,6 +10,7 @@ export const preferenceReducer = (
   state = {
     scoreType: "weighted",
     gpaOrderBy: "credits",
+    language: "zh",
   },
   action,
 ) => {

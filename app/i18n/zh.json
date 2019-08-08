@@ -1,22 +1,70 @@
 {
   "common": {
-    "ok": "OK!",
-    "cancel": "Cancel",
-    "back": "Back",
+    "ok": "好的",
+    "cancel": "取消",
+    "back": "返回",
     "time": {
-      "remaining": "",
-      "daysLeft": " Days Left"
+      "remaining": "还剩 ",
+      "daysLeft": " 天"
+    },
+    "unknown": "未知",
+    "lipsum": {
+      "a": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus metus ac pellentesque pellentesque. Donec quis egestas purus. Donec ut ligula sit amet urna posuere vehicula ut laoreet dui. Fusce molestie, libero ut maximus euismod, ante dolor suscipit erat, a mattis nibh mauris quis ipsum. Mauris et bibendum sem, id scelerisque urna. Proin libero mi, sodales ac velit eu, elementum volutpat odio. Donec pharetra tempor vehicula.",
+      "b": "Maecenas efficitur consequat mi. In sit amet ornare est, nec sagittis magna. Donec quis sem ultrices, faucibus augue eget, fringilla sem. ",
+      "c": "Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.",
+      "d": "Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus."
     }
   },
-  "errors": {
-    "invalidEmail": "Invalid email address."
+  "auth": {
+    "login": "登录",
+    "logout": "注销用户",
+    "loginSuccess": "登录成功",
+    "loginFailure": "登陆失败...",
+    "logoutSuccess": "已登出用户",
+    "tokenStoreFailure": "Failed to store token locally. Additional manual login may be need during the next start.",
+    "tokenDeleteFailure": "Failed to delete local token. If the problem persists, we recommend you to clear App storage in system settings to ensure account safety."
+  },
+  "loginScreen": {
+    "greetings": "又一次见到你回来，总是好的",
+    "username": "天外天帐号用户名",
+    "password": "天外天帐号密码"
   },
   "homeScreen": {
-    "header": "We Peiyang"
+    "header": "We Peiyang",
+    "more": "更多 >>",
+    "prepareDataSuccess": "已获取所有的最新数据",
+    "partialData": "由于网络请求失败，一部分数据可能没有正常加载。"
   },
-  "footer": {
+  "gpaScreen": {
+    "prepareDataSuccess": "已获取最新 GPA 数据",
+    "prepareDataFailed": "由于网络请求失败，一部分数据可能没有正常加载。"
+  },
+  "ecardScreen": {
+    "prepareDataSuccess": "已获取最新校园卡数据",
+    "prepareDataFailed": "由于网络请求失败，一部分数据可能没有正常加载。"
+  },
+  "newsScreen": {
+    "header": "新闻"
+  },
+  "tjuScreen": {
+    "header": "TJU 网络"
+  },
+  "accountBinding": {
+    "bicycleAccount": "自行车帐号",
+    "libraryAccount": "图书馆帐号",
+    "ecardAccount": "校园一卡通帐号",
+    "portalAccount": "办公网帐号",
+    "unbound": "尚未绑定",
+    "bound": "已绑定",
+    "greetings": "连接你的帐户，发现更多可能",
+    "ecardId": "你的学号",
+    "ecardPassword": "你的 6 位校园卡密码（通常用于 POS 机）",
+    "bind": "绑定",
+    "bindSuccess": "帐号绑定成功"
+  },
+  "tab": {
     "wpy": "WPY",
-    "news": "News",
+    "news": "新闻",
     "tju": "TJU"
   },
   "modules": {
@@ -24,28 +72,25 @@
     "contact": "黄页",
     "learning": "刷题",
     "library": "图书馆",
-    "cards": "一卡通",
+    "cards": "校园卡",
     "gpa": "GPA",
     "classroom": "自习室",
     "news": "新闻",
     "coffee": "咖啡",
     "buses": "公交车"
   },
-  "welcomeScreen": {
-    "poweredBy": "POWERED BY BOWSER",
-    "readyForLaunch": "Ready for launddddch.",
-    "continue": "CONTINUE"
+  "gpa": {
+    "totalWeighted": "总加权",
+    "totalGpa": "总绩点",
+    "creditsEarned": "已修学分",
+    "semestralWeighted": "学期加权",
+    "semestralGpa": "学期绩点",
+    "semestralCredits": "阶段学分"
   },
-  "demoScreen": {
-    "howTo": "HOW TO",
-    "title": "What’s In This Stack?",
-    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
-    "reactotron": "Demo Reactotron",
-    "androidReactotronHint": "If this doesn't work, ensure the Reactotron desktop app is running, run adb reverse tcp:9090 tcp:9090 from your terminal, and reload the app.",
-    "iosReactotronHint": "If this doesn't work, ensure the Reactotron desktop app is running and reload app."
+  "schedule": {
+    "noCourseToday": "阁下今日无课"
   },
-  "storybook": {
-    "placeholder": "Placeholder",
-    "field": "Field"
+  "library": {
+    "noBooks": "你还没有借阅书籍"
   }
 }

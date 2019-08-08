@@ -13,14 +13,7 @@ import { digitsFromScoreType } from "../../utils/common"
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
 
-import {
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  RefreshControl,
-  StatusBar,
-} from "react-native"
+import { View, Image, ScrollView, TouchableOpacity, RefreshControl, StatusBar } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { ModuleButton } from "../../components/module-button"
