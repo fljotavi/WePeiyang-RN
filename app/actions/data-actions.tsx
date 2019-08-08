@@ -29,6 +29,7 @@ export function fetchCourseData() {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
+          console.log(responseJson.data)
           dispatch({
             type: "SET_COURSE_DATA",
             payload: responseJson.data,

@@ -65,10 +65,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       .then(() => {
         Toast.show(
           (
-            <Text
-              tx="data.prepareDataSuccess"
-              style={{ color: toastOptions.primary.textColor }}
-            />
+            <Text tx="data.prepareDataSuccess" style={{ color: toastOptions.primary.textColor }} />
           ) as any,
           toastOptions.primary,
         )

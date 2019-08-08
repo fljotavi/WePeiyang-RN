@@ -41,10 +41,10 @@ export class LibraryList extends React.Component<BookListProps, {}> {
       return <View />
     }
 
-    let chosenBook = data.books[this.state.bookIndex]
-
-    return (
-      <View style={[ss.predefinedStyle, style]}>
+    let modal
+    if (data.books.length > 0) {
+      let chosenBook = data.books[this.state.bookIndex]
+      modal = (
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
@@ -137,7 +137,12 @@ export class LibraryList extends React.Component<BookListProps, {}> {
             </Button>
           </View>
         </Modal>
+      )
+    }
 
+    return (
+      <View style={[ss.predefinedStyle, style]}>
+        {data.books.length > 0 && modal}
         <FlatList
           style={ss.listStyle}
           horizontal={true}

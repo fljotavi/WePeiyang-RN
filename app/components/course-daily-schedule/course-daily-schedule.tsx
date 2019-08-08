@@ -62,9 +62,7 @@ const getCoursesByDay = (timestamp, data) => {
   return res
 }
 
-console.log(getCoursesByDay)
-
-const genDummyCourses = (a, b) => {
+const genDummyCourses = () => {
   return [
     {
       courseName: "计算机产业新技术与发展",
@@ -93,6 +91,8 @@ const genDummyCourses = (a, b) => {
   ]
 }
 
+console.log(genDummyCourses)
+
 export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
   state = {
     isModalVisible: false,
@@ -107,23 +107,25 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
     this.setState({ isModalVisible: false, userInformed: false })
   }
 
-  _keyExtractor = (item, index) => String(item.courseName) // TODO: Change attr to sth else
+  _keyExtractor = (item, index) => String(index)
 
   render() {
     const { style, data, timestamp, status } = this.props
-    const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
-    let courseDaily = genDummyCourses(timestampOwl, data)
-    let chosenCourse = courseDaily[this.state.courseIndex]
-    let backgroundStyle = {
-      backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credits)],
-    }
 
     if (status !== "VALID") {
       return <View />
     }
 
-    return (
-      <View style={[ss.predefinedStyle, style]}>
+    const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
+    let courseDaily = getCoursesByDay(timestampOwl, data)
+    let modal
+
+    if (courseDaily.length > 0) {
+      let chosenCourse = courseDaily[this.state.courseIndex]
+      let backgroundStyle = {
+        backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credits)],
+      }
+      modal = (
         <Modal
           isVisible={this.state.isModalVisible}
           backdropColor={ss.screen.backgroundColor}
@@ -144,13 +146,19 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
             </View>
           </View>
         </Modal>
+      )
+    }
+
+    return (
+      <View style={[ss.predefinedStyle, style]}>
+        {courseDaily.length > 0 && modal}
 
         <FlatList
           style={ss.listStyle}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           keyExtractor={this._keyExtractor}
-          data={courseDaily} // TODO: Return authentic data
+          data={courseDaily}
           renderItem={({ item, index }) => (
             <Touchable
               foreground={Touchable.Ripple(color.background)}

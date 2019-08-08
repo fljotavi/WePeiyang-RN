@@ -41,7 +41,6 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
           <SettingsSnack
             style={ss.snack}
             txTitle="settingsScreen.displayGpa"
-            txSubtitle="common.unknown"
             switchable={true}
             on={this.state.egSwOn}
             onPress={() => {

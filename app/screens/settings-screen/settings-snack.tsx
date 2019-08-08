@@ -73,7 +73,9 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
           <View style={ss.left}>
             <View style={ss.text}>
               <Text tx={txTitle} text={textTitle} style={ss.title} />
-              <Text tx={txSubtitle} text={textSubtitle} preset="small" style={ss.subtitle} />
+              {(txSubtitle || textSubtitle) && (
+                <Text tx={txSubtitle} text={textSubtitle} preset="small" style={ss.subtitle} />
+              )}
             </View>
           </View>
           {switchable ? (

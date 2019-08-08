@@ -34,6 +34,7 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
 
   render() {
     const { pref, setLanguage } = this.props
+    console.log(pref)
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
