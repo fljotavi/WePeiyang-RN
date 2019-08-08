@@ -34,7 +34,7 @@
     "password": "天外天帐号密码"
   },
   "homeScreen": {
-    "greetings": "Hello",
+    "greetings": "你好"
   },
   "newsScreen": {
     "header": "新闻"

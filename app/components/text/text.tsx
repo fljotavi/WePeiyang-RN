@@ -1,4 +1,6 @@
 import * as React from "react"
+import { connect } from "react-redux"
+
 import { Text as ReactNativeText } from "react-native"
 import { presets } from "./text.presets"
 import { TextProps } from "./text.props"
@@ -10,19 +12,47 @@ import { mergeAll, flatten } from "ramda"
  *
  * This component is a HOC over the built-in React Native one.
  */
-export function Text(props: TextProps) {
-  // grab the props
-  const { preset = "default", tx, txOptions, text, children, style: styleOverride, ...rest } = props
 
-  // figure out which content to use
-  const i18nText = tx && translate(tx, txOptions)
-  const content = i18nText || text || children
+class _Text extends React.PureComponent<TextProps, {}> {
+  render() {
+    // grab the props
+    const {
+      preset = "default",
+      tx,
+      txOptions,
+      text,
+      children,
+      lang,
+      style: styleOverride,
+      ...rest
+    } = this.props
 
-  const style = mergeAll(flatten([presets[preset] || presets.default, styleOverride]))
+    // figure out which content to use
+    console.log(lang)
+    const i18nText = tx && translate(tx, lang, txOptions)
+    const content = i18nText || text || children
 
-  return (
-    <ReactNativeText {...rest} style={style}>
-      {content}
-    </ReactNativeText>
-  )
+    const style = mergeAll(flatten([presets[preset] || presets.default, styleOverride]))
+
+    return (
+      <ReactNativeText {...rest} style={style}>
+        {content}
+      </ReactNativeText>
+    )
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    lang: state.preferenceReducer.language,
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export const Text = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(_Text)
