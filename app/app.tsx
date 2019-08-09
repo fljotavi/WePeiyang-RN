@@ -24,12 +24,13 @@ export class App extends React.Component<{}, AppState> {
   toastRef
 
   componentDidMount() {
+    console.disableYellowBox = true // TODO: Comment this line when preparing for a release
     this.listener = DeviceEventEmitter.addListener("showToast", inner => {
       this.toastRef.show(inner)
     })
   }
 
-  componentWillUnmount() {
+  componentDidUnmount() {
     if (this.listener) {
       this.listener.remove()
     }

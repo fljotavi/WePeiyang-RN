@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { FlatList, StatusBar, TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { layoutParam } from "../../theme"
+import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setLanguage } from "../../actions/preference-actions"
 import { SettingsSnack } from "./settings-snack"
@@ -23,6 +23,10 @@ const ss = {
   } as ViewStyle,
   heading: {
     marginBottom: 20,
+  } as TextStyle,
+  small: {
+    marginBottom: 20,
+    color: color.lightGrey,
   } as TextStyle,
   snack: {
     marginBottom: 10,
@@ -45,7 +49,17 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <TopBar actions={[() => this.props.navigation.goBack()]} />
         <View style={ss.container}>
-          <Text text="Language Settings" preset="h2" style={ss.heading} />
+          <Text tx="settingsScreen.languageSetting" preset="h2" style={ss.heading} />
+
+          <Text tx="settingsScreen.languageWarning" preset="small" style={ss.small} />
+
+          <SettingsSnack
+            style={ss.snack}
+            textTitle="I prefer RTL Layout"
+            textSubtitle="RTL layout isn't necessarily language-specific. We respect your personal preference."
+            preset="switch"
+            on={false}
+          />
 
           <FlatList
             data={Object.keys(languageFullnames)}

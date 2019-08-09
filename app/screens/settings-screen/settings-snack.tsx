@@ -37,6 +37,11 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
       left: {
         flexDirection: "row",
         alignItems: "center",
+        flex: 1,
+      } as ViewStyle,
+      right: {
+        width: 70,
+        alignItems: "flex-end",
       } as ViewStyle,
       title: {
         color: color.primary,
@@ -90,7 +95,9 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
               )}
             </View>
           </View>
-          {right}
+          <View style={ss.right}>
+            {right}
+          </View>
         </View>
       </Touchable>
     )

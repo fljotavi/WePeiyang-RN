@@ -39,7 +39,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <TopBar actions={[() => this.props.navigation.goBack()]} />
         <View style={ss.container}>
-          <Text text="Settings" preset="h2" style={ss.heading} />
+          <Text tx="settingsScreen.settings" preset="h2" style={ss.heading} />
 
           <SettingsSnack
             style={ss.snack}
