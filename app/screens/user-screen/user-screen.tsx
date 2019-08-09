@@ -75,7 +75,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                 tx="modules.gpa"
               />
               <Gradicon source={require("./gradicons/gradicon2.png")} tx="modules.library" />
-              <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.cards" />
+              <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.ecard" />
             </View>
             <BindingBar
               style={ss.bindingBar}

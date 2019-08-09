@@ -95,9 +95,13 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     // Grab the props
     const { scoreType, compData } = this.props
 
-    let dayToRender = new Date("2019-09-24")
+    let dayToRender = "2019-08-09"
     let timestamp = new Date(dayToRender).getTime()
-    let formattedHead = format(new Date(dayToRender), "MMM Do, dddd")
+    const dateLocales = {
+      en: require("date-fns/locale/en"),
+      es: require("date-fns/locale/es"),
+      zh: require("date-fns/locale/zh_cn"),
+    }
 
     return (
       <Screen>
@@ -154,7 +158,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
                 tx="modules.library"
                 icon="local_library"
               />
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.cards" icon="credit_card" />
+              <ModuleButton style={ss.blockWithMarginRight} tx="modules.ecard" icon="credit_card" />
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.classroom" icon="room" />
               <ModuleButton
                 style={ss.blockWithMarginRight}
@@ -165,7 +169,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             </ScrollView>
 
             <View style={ss.sectionHead}>
-              <Text text={formattedHead} preset="h5" />
+              <Text
+                tx={dayToRender}
+                customTranslationMethod={(lang, tx) => {
+                  return format(new Date(tx), "MMM Do, dddd", {
+                    locale: dateLocales[lang],
+                  })
+                }}
+                preset="h5"
+              />
             </View>
             <CourseDailySchedule
               data={compData.course.data}
@@ -174,12 +186,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             />
 
             <View style={ss.sectionHead}>
-              <Text text="Library" preset="h5" />
+              <Text tx="modules.library" preset="h5" />
             </View>
             <LibraryList data={compData.library.data} status={compData.library.status} />
 
             <View style={ss.sectionHead}>
-              <Text text="GPA Curve" preset="h5" />
+              <Text tx="modules.gpaCurve" preset="h5" />
             </View>
             <GpaCurve
               data={compData.gpa.data.gpaSemestral[scoreType]}
@@ -197,7 +209,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             />
 
             <View style={ss.sectionHead}>
-              <Text text="E-card" preset="h5" />
+              <Text tx="modules.ecard" preset="h5" />
             </View>
             <EcardBlock onPress={() => this.props.navigation.navigate("ecard")} />
           </View>

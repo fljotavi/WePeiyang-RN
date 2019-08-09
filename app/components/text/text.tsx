@@ -23,6 +23,7 @@ class _Text extends React.PureComponent<TextProps, {}> {
       text,
       children,
       lang,
+      customTranslationMethod,
       style: styleOverride,
       ...rest
     } = this.props
@@ -30,8 +31,10 @@ class _Text extends React.PureComponent<TextProps, {}> {
     // figure out which content to use
     console.log(lang)
     const i18nText = tx && translate(tx, lang, txOptions)
-    const content = i18nText || text || children
-
+    let content = i18nText || text || children
+    if (customTranslationMethod && tx) {
+      content = customTranslationMethod(lang, tx)
+    }
     const style = mergeAll(flatten([presets[preset] || presets.default, styleOverride]))
 
     return (

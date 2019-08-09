@@ -34,7 +34,7 @@
     "password": "Password"
   },
   "homeScreen": {
-    "greetings": "Hello"
+    "greetings": "Hello",
   },
   "gpaScreen": {
 
@@ -76,8 +76,9 @@
     "contact": "Contact",
     "learning": "Learning",
     "library": "Library",
-    "cards": "Cards",
+    "ecard": "E-card",
     "gpa": "GPA",
+    "gpaCurve": "GPA Curve",
     "classroom": "Classroom",
     "news": "News",
     "coffee": "Coffee",
