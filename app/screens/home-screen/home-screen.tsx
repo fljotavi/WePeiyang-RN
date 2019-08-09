@@ -74,7 +74,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       })
       .catch(err => {
         console.log(err)
-        DeviceEventEmitter.emit("showToast", <Toasti tx="data.partialData" preset="error" />)
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataFailed" preset="error" />)
       })
   }
 
@@ -95,7 +95,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     // Grab the props
     const { scoreType, compData } = this.props
 
-    let dayToRender = "2019-10-09"
+    let dayToRender = "2018-05-08"
     let timestamp = new Date(dayToRender).getTime()
     const dateLocales = {
       en: require("date-fns/locale/en"),
