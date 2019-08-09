@@ -194,7 +194,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                   { opacity: this.state.loadingMore ? 1 : 0 },
                 ]}
                 color={color.module.ecard[0]}
-                size={12}
+                size={ssGlobal.loadingSize}
               />
               <Text text="Load One More Day" style={ss.loadMoreText} />
             </Button>

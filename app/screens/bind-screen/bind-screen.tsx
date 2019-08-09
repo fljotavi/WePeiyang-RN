@@ -84,7 +84,7 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
                       { opacity: this.state.loggingIn ? 1 : 0 },
                     ]}
                     color={color.background}
-                    size={12}
+                    size={ssGlobal.loadingSize}
                   />
                   <Text tx="accountBinding.bind" style={ssGlobal.login.buttonText} />
                 </Button>

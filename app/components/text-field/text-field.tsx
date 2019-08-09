@@ -1,4 +1,6 @@
 import * as React from "react"
+import { connect } from "react-redux"
+
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
 import { color, layoutParam, typography } from "../../theme"
 import { translate } from "../../i18n"
@@ -16,7 +18,7 @@ const INPUT: TextStyle = {
   paddingHorizontal: 15,
   fontFamily: typography.primary,
   color: color.text,
-  minHeight: 28,
+  minHeight: 45,
   fontSize: 16,
   backgroundColor: color.washed,
   borderRadius: layoutParam.borderRadius,
@@ -34,7 +36,7 @@ const enhance = (style, styleOverride) => {
 /**
  * A component which has a label and an input together.
  */
-export class TextField extends React.Component<TextFieldProps, {}> {
+export class _TextField extends React.Component<TextFieldProps, {}> {
   render() {
     const {
       placeholderTx,
@@ -45,6 +47,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
       style: styleOverride,
       inputStyle: inputStyleOverride,
       forwardedRef,
+      lang,
       ...rest
     } = this.props
     let containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset] }
@@ -52,7 +55,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
 
     let inputStyle: TextStyle = INPUT
     inputStyle = enhance(inputStyle, inputStyleOverride)
-    const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
+    const actualPlaceholder = placeholderTx ? translate(placeholderTx, lang) : placeholder
 
     return (
       <View style={containerStyle}>
@@ -70,3 +73,18 @@ export class TextField extends React.Component<TextFieldProps, {}> {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    lang: state.preferenceReducer.language,
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export const TextField = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(_TextField)

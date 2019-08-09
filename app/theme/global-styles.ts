@@ -10,12 +10,14 @@ export const layoutParam = {
 }
 
 export const ssGlobal = {
+  loadingSize: Platform.select({ ios: 10, android: 12 }),
   buttonLoadingIndicator: {
     position: "absolute",
     right: -18,
     top: 0,
     bottom: 0,
   } as ViewStyle,
+
   topBar: {
     container: {
       paddingHorizontal: 14,
@@ -32,6 +34,7 @@ export const ssGlobal = {
       marginHorizontal: 6,
     } as TextStyle,
   },
+
   login: {
     screen: {} as ViewStyle,
     container: {

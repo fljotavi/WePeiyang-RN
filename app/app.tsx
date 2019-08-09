@@ -45,7 +45,7 @@ export class App extends React.Component<{}, AppState> {
         <PersistGate loading={<View />} persistor={persistor}>
           <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
           <AppContainer />
-          <Toast // tslint:disable-next-line
+          <Toast // tslint:disable-next-line (Wrong type def in the including library)
             style={toastStyle}
             ref={ref => {
               this.toastRef = ref

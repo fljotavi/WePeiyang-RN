@@ -37,4 +37,9 @@ export interface TextFieldProps extends TextInputProps {
   preset?: "default"
 
   forwardedRef?: any
+
+  /**
+   * Populated by React-redux and should not be manually set.
+   */
+  lang?
 }

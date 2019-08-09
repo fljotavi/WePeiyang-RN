@@ -94,7 +94,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                       { opacity: this.state.loggingIn ? 1 : 0 },
                     ]}
                     color={color.background}
-                    size={12}
+                    size={ssGlobal.loadingSize}
                   />
                   <Text tx="auth.login" style={ssGlobal.login.buttonText} />
                 </Button>
