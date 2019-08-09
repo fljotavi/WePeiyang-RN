@@ -7,17 +7,21 @@ import { connectedBindScreen as BindScreen } from "../screens/bind-screen"
 import { connectedLibraryScreen as LibraryScreen } from "../screens/library-screen"
 import { connectedEcardScreen as EcardScreen } from "../screens/ecard-screen"
 import { connectedLanguageSettingsScreen as LanguageSettingsScreen } from "../screens/settings-screen/language-settings-screen"
+import { connectedScheduleScreen as ScheduleScreen } from "../screens/schedule-screen"
 
 export const AppNavigator = createStackNavigator(
   {
     home: HomeNavigator,
     user: UserScreen,
+
     gpa: GpaScreen,
-    settings: SettingsScreen,
-    languageSettings: LanguageSettingsScreen,
+    schedule: ScheduleScreen,
     bind: BindScreen,
     library: LibraryScreen,
     ecard: EcardScreen,
+
+    settings: SettingsScreen,
+    languageSettings: LanguageSettingsScreen,
   },
   {
     initialRouteName: "home",

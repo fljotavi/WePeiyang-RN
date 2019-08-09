@@ -143,6 +143,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               />
               <ModuleButton
                 style={ss.blockWithMarginRight}
+                tx="modules.schedule"
+                icon="event"
+                onPress={() => this.props.navigation.navigate("schedule")}
+              />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
                 tx="modules.gpa"
                 icon="timeline"
                 onPress={() => this.props.navigation.navigate("gpa")}
@@ -158,7 +164,18 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
                 tx="modules.library"
                 icon="local_library"
               />
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.ecard" icon="credit_card" />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.ecard"
+                icon="credit_card"
+                onPress={() => {
+                  if (compData.ecard.auth.status === "BOUND") {
+                    this.props.navigation.navigate("ecard")
+                  } else {
+                    this.props.navigation.navigate("bind")
+                  }
+                }}
+              />
               <ModuleButton style={ss.blockWithMarginRight} tx="modules.classroom" icon="room" />
               <ModuleButton
                 style={ss.blockWithMarginRight}
