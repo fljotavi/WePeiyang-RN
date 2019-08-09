@@ -61,6 +61,13 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
             textSubtitle={"English"}
             onPress={() => setLanguage("en")}
           />
+
+          <SettingsSnack
+            style={ss.snack}
+            textTitle="عربى"
+            textSubtitle={"Arabic"}
+            onPress={() => setLanguage("ar")}
+          />
         </View>
       </Screen>
     )

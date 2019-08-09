@@ -1,0 +1,54 @@
+{
+  "common": {
+    "unknown": "غير معروف",
+    "time": {
+      "remaining": "",
+      "daysLeft": " أيام متبقية "
+    }
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل خروجي",
+    "logoutSuccess": "نجاح التسجيل"
+  },
+  "loginScreen": {
+    "greetings": "من الجميل دائمًا إعادتك.",
+    "username": "TWT اسم صاحب الحساب",
+    "password": "TWT كلمه السر"
+  },
+  "homeScreen": {
+    "greetings": "مرحبا"
+  },
+  "tab": {
+    "news": "أخبار"
+  },
+  "modules": {
+    "bike": "دراجة",
+    "contact": "اتصل",
+    "library": "مكتبة",
+    "learning": "تعلم",
+    "ecard": "البطاقة الرقمية",
+    "gpaCurve": "منحنى GPA"
+  },
+  "gpa": {
+    "totalWeighted": "مجموع النقاط",
+    "totalGpa": "شامل GPA",
+    "creditsEarned": "ائتمان"
+  },
+  "schedule": {
+    "noCourseToday": "ليس لديك فصل اليوم."
+  },
+  "accountBinding": {
+    "bicycleAccount": "حساب دراجة",
+    "libraryAccount": "حساب المكتبة",
+    "ecardAccount": "حساب البطاقة الإلكترونية",
+    "portalAccount": "حساب TJU",
+    "unbound": "Unbound",
+    "bound": "مقيد",
+    "greetings": "Your accounts are stronger together.",
+    "ecardId": "Your Student ID",
+    "ecardPassword": "E-card password (Used on POS machines)",
+    "bind": "Bind",
+    "bindSuccess": "Account bound"
+  }
+}
