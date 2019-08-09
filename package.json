@@ -30,6 +30,7 @@
     "ramda": "0.25.0",
     "react": "16.8.6",
     "react-native": "0.60.4",
+    "react-native-easy-toast": "^1.2.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-keychain": "3.0.0",
     "react-native-localize": "^1.0.0",

@@ -1,17 +1,16 @@
 import * as React from "react"
-import { ActivityIndicator, StatusBar, View } from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
-import toastOptions from "../../theme/toast"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
-import Toast from "react-native-root-toast"
 import { ByTwt } from "../../components/by-twt/by-twt"
+import { Toasti } from "../../components/toasti"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {}
 
@@ -36,36 +35,23 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
           const token = responseJson.data.token
           this.storeToken(token)
             .then(() => {
-              Toast.show(
-                (
-                  <Text tx="auth.loginSuccess" style={{ color: toastOptions.primary.textColor }} />
-                ) as any,
-                toastOptions.primary,
-              )
+              DeviceEventEmitter.emit("showToast", <Toasti tx="auth.loginSuccess" />)
               this.props.navigation.navigate("app")
             })
             .catch(() => {
-              Toast.show(
-                (
-                  <Text tx="auth.tokenStoreFailure" style={{ color: toastOptions.err.textColor }} />
-                ) as any,
-                toastOptions.err,
+              DeviceEventEmitter.emit(
+                "showToast",
+                <Toasti tx="auth.tokenStoreFailure" preset="error" />,
               )
               this.props.navigation.navigate("app")
             })
         } else {
           let errorMessage = responseJson.message || "Unknown error"
-          Toast.show(
-            <Text text={errorMessage} style={{ color: toastOptions.err.textColor }} /> as any,
-            toastOptions.err,
-          )
+          DeviceEventEmitter.emit("showToast", <Toasti text={errorMessage} />)
         }
       })
       .catch(error => {
-        Toast.show(
-          <Text text="Login Fetch failed" style={{ color: toastOptions.err.textColor }} /> as any,
-          toastOptions.err,
-        )
+        DeviceEventEmitter.emit("showToast", <Toasti text="Login Fetch failed" preset="error" />)
         console.log(error)
       })
       .then(() => {

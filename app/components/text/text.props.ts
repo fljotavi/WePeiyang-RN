@@ -33,4 +33,8 @@ export interface TextProps extends TextProperties {
    */
   preset?: TextPresets
 
+  /**
+   * Populated by React-redux and should not be manually set.
+   */
+  lang?
 }

@@ -45,6 +45,7 @@ export const color = {
    * Error messages and icons.
    */
   error: palette.angry,
+  warning: palette.orange,
 
   /**
    * ColorHashes palette for books & course blocks.

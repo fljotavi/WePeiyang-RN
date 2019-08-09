@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import {
   ActivityIndicator,
   Animated,
+  DeviceEventEmitter,
   FlatList,
   RefreshControl,
   ScrollView,
@@ -15,9 +16,9 @@ import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { TopBar } from "./top-bar"
-import Toast from "react-native-root-toast"
+import Toast from "react-native-easy-toast"
 import { Text } from "../../components/text"
-import toastOptions from "../../theme/toast"
+
 import {
   fetchEcardLineChart,
   fetchEcardProfile,
@@ -29,6 +30,7 @@ import { EcardBar } from "./ecard-bar"
 import { Button } from "../../components/button"
 
 import ss from "./ecard-screen-style"
+import { Toasti } from "../../components/toasti"
 
 export interface EcardScreenProps extends NavigationScreenProps<{}> {
   ecard?
@@ -46,6 +48,8 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
     renderChart: false, // Defer chart render for better entry performance
     fadeAnim: new Animated.Value(0),
   }
+
+  toastRef
 
   componentDidMount() {
     this._onRefresh()
@@ -69,21 +73,12 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
       this.props.fetchEcardLineChart(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
       this.props.fetchEcardTotal(this.props.ecard.auth.cardId, this.props.ecard.auth.password),
     ])
-      .then(values => {
-        Toast.show(
-          (
-            <Text tx="data.prepareDataSuccess" style={{ color: toastOptions.ecard.textColor }} />
-          ) as any,
-          toastOptions.ecard,
-        )
-        console.log(values)
+      .then(() => {
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" preset="ecard" />)
       })
       .catch(err => {
         console.log(err)
-        Toast.show(
-          <Text tx="data.prepareDataFailed" style={{ color: toastOptions.err.textColor }} /> as any,
-          toastOptions.err,
-        )
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataFailed" preset="error" />)
       })
   }
 
@@ -108,14 +103,11 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
         .then(() => {
           this.setState({ loadingMore: false })
         })
-        .catch(err => {
+        .catch(() => {
           this.setState({ loadingMore: false })
-          console.log(err)
-          Toast.show(
-            (
-              <Text tx="data.prepareDataFailed" style={{ color: toastOptions.err.textColor }} />
-            ) as any,
-            toastOptions.err,
+          DeviceEventEmitter.emit(
+            "showToast",
+            <Toasti tx="data.prepareDataFailed" preset="error" />,
           )
         })
     })
@@ -208,6 +200,11 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             </Button>
           </View>
         </ScrollView>
+        <Toast
+          ref={ref => {
+            this.toastRef = ref
+          }}
+        />
       </Screen>
     )
   }
