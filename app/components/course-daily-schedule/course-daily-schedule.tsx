@@ -13,6 +13,7 @@ import Modal from "react-native-modal"
 import Touchable from "react-native-platform-touchable"
 import { Text } from "../text"
 import { TjuBadge } from "../tju-badge"
+import { getCoursesByDay } from "../../utils/schedule"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle
@@ -22,51 +23,6 @@ export interface CourseDailyScheduleProps {
 }
 
 const OWL_CONSTANT = 21
-
-const getWeek = (timestamp, semesterStart) => {
-  return (timestamp - semesterStart) / (1000 * 60 * 60 * 24 * 7) + 1
-}
-
-const getCoursesByDay = (timestamp, data) => {
-  let now = new Date(timestamp)
-  let semesterStart = data.term_start * 1000
-  let currentWeek = getWeek(timestamp, semesterStart)
-  let res = []
-  data.courses.forEach(course => {
-    if (course.week.start <= currentWeek && currentWeek <= course.week.end) {
-      course.arrange.forEach(arrangement => {
-        let dayOfWeek = now.getDay()
-        if (arrangement.day === "7") {
-          arrangement.day = "0"
-        }
-        if (Number(arrangement.day) === dayOfWeek) {
-          let arrangedThisWeek = true
-          switch (arrangement.week) {
-            case "单周":
-              if (currentWeek % 2 === 0) {
-                arrangedThisWeek = false
-              }
-              break
-            case "双周":
-              if (currentWeek % 2 === 1) {
-                arrangedThisWeek = false
-              }
-              break
-          }
-          if (arrangedThisWeek) {
-            console.log(course)
-            // Finally
-            res.push({
-              ...course,
-              activeArrange: arrangement,
-            })
-          }
-        }
-      })
-    }
-  })
-  return res
-}
 
 export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
   state = {
