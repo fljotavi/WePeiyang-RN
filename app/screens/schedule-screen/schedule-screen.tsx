@@ -1,22 +1,14 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {
-  FlatList,
-  StatusBar,
-  TextStyle,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native"
+import { FlatList, StatusBar, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
-import { getCoursesByDay, getFullSchedule } from "../../utils/schedule"
+import { getFullSchedule } from "../../utils/schedule"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
