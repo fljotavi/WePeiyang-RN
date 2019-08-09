@@ -1,11 +1,44 @@
-# We Peiyang React-Native
+　
+<p align="center">
+	<img src="assets/heading.png?raw=true" alt="WePeiyang 4.0" width="300">
+</p>
 
-The project is currently in experimental stage.
+　
+　
+### About 关于
+
+The concept of WePeiyang 4.0 was brought by designer [Owlling](http://www.owlling.com/). Later in July 2019, the development of WePeiyang 4.0 was initiated.
+
+微北洋 4.0 的概念提出自设计师 [Owlling](http://www.owlling.com/)。随后的 2019 年 7 月，开发工作正式启动。
+
+　
+
+At that time, the previous major version of WePeiyang, functionally mature and time-proven, does not require an immediate update itself. However, our studio did face problems like unbalanced iOS/Android productivity, inconsistency across platforms, and a mediocre UX. The current version therefore primarily focuses on better structure designs, enhanced user experience and bold experiments on new features.
+
+在项目提出之前，上一版本的微北洋已经具有事实上完整的功能模块，也通过了数年的时间检验。它本身无需一次迫切的升级。但是，工作室的技术团队近期确实面临着一些问题，如生产力失衡、不一致的平台体验、欠佳的用户体验等。因此，这一新版本的开发将会侧重于平台一致性、架构设计、大胆的功能探索，并注入更多与体验和视觉相关的思考。
+
+　
+
+![Main.png](https://i.loli.net/2019/08/10/NeVkmxZo3H8cFBO.png "Main module")
+
+*Main Module / 主模块*
 
 ![Modules.PNG](https://i.loli.net/2019/08/06/1wguWQRlea4r9tY.png)
 
+*GPA & Ecard Module / GPA 与校园卡模块*
 
-# Start Building
+　
+
+### Status 状态
+
+The project is currently under experimental stage with several primary modules finished.
+
+本项目整体目前仍处于实验阶段，部分主要模块已经开发完成。
+
+　
+
+
+# Start Building 开始构建
 
 ### Android
 
@@ -29,10 +62,15 @@ react-native run-ios
 
 Note that to run the above commands, you need to ensure several prerequisites in your building environment. Please refer to [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for the most up-to-date building indications.
 
+请注意，为了使上述命令顺利运行，你的构建环境需要满足一些前提条件。请参考 [React Native: 开始构建](https://facebook.github.io/react-native/docs/getting-started.html) 以获取最新版本的构建要求和步骤。
 
-# Project Structure
+　
 
-WePeiyang-RN is initiated with `react-native-cli` boilerplate along with a few customized modifications.
+# Project Structure 项目架构
+
+WePeiyang-RN is initiated with `react-native-cli` along with a few customized modifications.
+
+微北洋 RN 使用 `react-native-cli` 初始化，并对原始文件结构应用了少许变更。
 
 ```
 WePeiyang-RN
@@ -91,3 +129,17 @@ This is the entry point to your app. This is where you will find the main App co
 ### ./test directory
 
 This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
+
+　
+
+# License 协议
+
+A license would be published after the first release. Before that happens, issues are pull requests are welcomed.
+
+协议会发布在项目第一版开发完成之后。在此之前，欢迎任何问题讨论与合并请求。
+
+　
+
+<p align="center">
+	<img src="assets/credits.png?raw=true" alt="TWT STUDIO × Tzingtao Chow" width="255">
+</p>
