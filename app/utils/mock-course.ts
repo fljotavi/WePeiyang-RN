@@ -40,7 +40,7 @@ export const schedule1 = {
         arrange: [
           {
             week: "单双周",
-            day: "6",
+            day: "7",
             start: "7",
             end: "8",
             room: "46楼A110",

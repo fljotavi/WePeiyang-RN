@@ -35,7 +35,11 @@ const getCoursesByDay = (timestamp, data) => {
   data.courses.forEach(course => {
     if (course.week.start <= currentWeek && currentWeek <= course.week.end) {
       course.arrange.forEach(arrangement => {
-        if (arrangement.day === String(now.getDay())) {
+        let dayOfWeek = now.getDay()
+        if (arrangement.day === "7") {
+          arrangement.day = "0"
+        }
+        if (Number(arrangement.day) === dayOfWeek) {
           let arrangedThisWeek = true
           switch (arrangement.week) {
             case "单周":
@@ -68,7 +72,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
   state = {
     isModalVisible: false,
     userInformed: false,
-    courseIndex: 1,
+    courseIndex: 0,
   }
 
   openModal = () => {
@@ -93,9 +97,11 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
 
     if (courseDaily.length > 0) {
       let chosenCourse = courseDaily[this.state.courseIndex]
-      let backgroundStyle = {
-        backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credit)],
+      let hashedColorStyle = {
+        fontWeight: "bold",
+        color: color.hash.course[colorHashByCredits(chosenCourse.credit)],
       }
+
       modal = (
         <Modal
           isVisible={this.state.isModalVisible}
@@ -110,10 +116,25 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           useNativeDriver={true}
           style={ss.modal}
         >
-          <View style={[ss.modalCard, backgroundStyle]}>
+          <View
+            style={[
+              ss.modalCard,
+              {
+                backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credit)],
+              },
+            ]}
+          >
             <TjuBadge style={ss.tjuBadge} fill={color.white(0.02)} height={310} width={270} />
 
             <View>
+              {chosenCourse.ext.length > 0 && (
+                <View style={ss.courseTag}>
+                  <Text text="school" preset="i" style={hashedColorStyle} />
+                  <Text text=" " preset="small" style={hashedColorStyle} />
+                  <Text text="重修" preset="small" style={hashedColorStyle} />
+                </View>
+              )}
+
               <Text text={chosenCourse.coursename} style={ss.courseTitle} selectable={true} />
               <Text style={ss.courseTutor}>
                 <Text

@@ -23,9 +23,20 @@ export default {
     padding: 28,
     height: 390,
     backgroundColor: color.card,
-    borderRadius: layoutParam.borderRadius * 2,
+    borderRadius: layoutParam.borderRadius * 1.7,
     justifyContent: "space-between",
     overflow: "hidden",
+  } as ViewStyle,
+
+  courseTag: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    marginBottom: 5,
+    backgroundColor: color.background,
+    alignSelf: "flex-start",
+    borderRadius: layoutParam.borderRadius / 2.4,
+    flexDirection: "row",
+    alignItems: "center",
   } as ViewStyle,
 
   courseTitle: {
