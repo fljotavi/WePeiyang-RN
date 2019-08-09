@@ -30,7 +30,7 @@ export const getFullSchedule = data => {
         let start = Number(course.activeArrange.start)
         let end = Number(course.activeArrange.end)
         for (let timeSlot = start; timeSlot <= end; timeSlot++) {
-          column[mapTimeSlotToFlatIndex(timeSlot)] = 1
+          column[mapTimeSlotToFlatIndex(timeSlot)] += 1
         }
       })
       matrix.push(column)

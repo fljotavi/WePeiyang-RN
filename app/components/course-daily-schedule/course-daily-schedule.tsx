@@ -41,7 +41,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
   _keyExtractor = (item, index) => String(index)
 
   render() {
-    const { style, data, timestamp, status } = this.props
+    const { style, data, status, timestamp } = this.props
 
     if (!(status === "VALID" && data.courses)) {
       return <View />

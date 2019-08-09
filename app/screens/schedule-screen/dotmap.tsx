@@ -47,7 +47,7 @@ export function Dotmap(props: DotmapProps) {
   let rows = matrix.map((row, i) => (
     <View style={rowStyle} key={i}>
       {row.map((dot, j) => (
-        <View style={dot ? dotActive : dotInactive} key={j}/>
+        <View style={dot === 0 ? dotInactive : dotActive} key={j} />
       ))}
     </View>
   ))
