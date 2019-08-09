@@ -1,13 +1,18 @@
 import * as React from "react"
 import { FlatList, View, ViewStyle } from "react-native"
 import { CourseBlock } from "../course-block"
-import { colorHashByCredits, getScheduleTimeSlot, sanitizeLocation } from "../../utils/common"
+import {
+  colorHashByCredits,
+  getScheduledTimeFromArrangement,
+  sanitizeLocation,
+} from "../../utils/common"
 import { Ian } from "../ian"
 import ss from "./course-daily-schedule.style"
 import { color } from "../../theme"
 import Modal from "react-native-modal"
 import Touchable from "react-native-platform-touchable"
 import { Text } from "../text"
+import { TjuBadge } from "../tju-badge"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle
@@ -45,14 +50,11 @@ const getCoursesByDay = (timestamp, data) => {
               break
           }
           if (arrangedThisWeek) {
+            console.log(course)
             // Finally
             res.push({
-              courseName: course.coursename,
-              timeSlot: `${getScheduleTimeSlot(arrangement.start)[0]} - ${
-                getScheduleTimeSlot(arrangement.end)[1]
-              }`,
-              location: sanitizeLocation(arrangement.room),
-              credits: course.credit,
+              ...course,
+              activeArrange: arrangement,
             })
           }
         }
@@ -61,37 +63,6 @@ const getCoursesByDay = (timestamp, data) => {
   })
   return res
 }
-
-const genDummyCourses = () => {
-  return [
-    {
-      courseName: "计算机产业新技术与发展",
-      timeSlot: `${getScheduleTimeSlot(3)[0]} - ${getScheduleTimeSlot(4)[1]}`,
-      location: sanitizeLocation("55-A117"),
-      credits: "1.0",
-    },
-    {
-      courseName: "高等数学",
-      timeSlot: `${getScheduleTimeSlot(5)[0]} - ${getScheduleTimeSlot(6)[1]}`,
-      location: sanitizeLocation("46-B118"),
-      credits: "5.0",
-    },
-    {
-      courseName: "绿色建筑概论",
-      timeSlot: `${getScheduleTimeSlot(9)[0]} - ${getScheduleTimeSlot(11)[1]}`,
-      location: sanitizeLocation("游泳馆"),
-      credits: "2.5",
-    },
-    {
-      courseName: "体育3A",
-      timeSlot: `${getScheduleTimeSlot(1)[0]} - ${getScheduleTimeSlot(2)[1]}`,
-      location: sanitizeLocation("46-B138"),
-      credits: "0.5",
-    },
-  ]
-}
-
-console.log(genDummyCourses)
 
 export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
   state = {
@@ -123,7 +94,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
     if (courseDaily.length > 0) {
       let chosenCourse = courseDaily[this.state.courseIndex]
       let backgroundStyle = {
-        backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credits)],
+        backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credit)],
       }
       modal = (
         <Modal
@@ -140,9 +111,55 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           style={ss.modal}
         >
           <View style={[ss.modalCard, backgroundStyle]}>
+            <TjuBadge style={ss.tjuBadge} fill={color.white(0.02)} height={310} width={270} />
+
             <View>
-              <Text text={chosenCourse.courseName} style={ss.courseTitle} selectable={true} />
-              <Text text={chosenCourse.location} style={ss.courseTutor} selectable={true} />
+              <Text text={chosenCourse.coursename} style={ss.courseTitle} selectable={true} />
+              <Text style={ss.courseTutor}>
+                <Text
+                  text={`${chosenCourse.teacher} · ${chosenCourse.college}`}
+                  selectable={true}
+                />
+              </Text>
+            </View>
+
+            <View>
+              <View style={ss.courseAttrs}>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"ID"} style={ss.courseAttrKey} />
+                  <Text text={chosenCourse.courseid} style={ss.courseAttrValue} />
+                </View>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"Type"} style={ss.courseAttrKey} />
+                  <Text text={chosenCourse.coursenature} style={ss.courseAttrValue} />
+                </View>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"SubType"} style={ss.courseAttrKey} />
+                  <Text text={chosenCourse.coursetype} style={ss.courseAttrValue} />
+                </View>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"逻辑班号"} style={ss.courseAttrKey} />
+                  <Text text={chosenCourse.classid} style={ss.courseAttrValue} />
+                </View>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"Campus"} style={ss.courseAttrKey} />
+                  <Text text={chosenCourse.campus} style={ss.courseAttrValue} />
+                </View>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"Location"} style={ss.courseAttrKey} />
+                  <Text
+                    text={sanitizeLocation(chosenCourse.activeArrange.room)}
+                    style={ss.courseAttrValue}
+                  />
+                </View>
+                <View style={ss.courseAttrPair}>
+                  <Text text={"Time"} style={ss.courseAttrKey} />
+                  <Text
+                    text={getScheduledTimeFromArrangement(chosenCourse.activeArrange)}
+                    style={ss.courseAttrValue}
+                  />
+                </View>
+              </View>
             </View>
           </View>
         </Modal>
@@ -170,10 +187,10 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
               }}
             >
               <CourseBlock
-                backgroundColor={color.hash.course[colorHashByCredits(item.credits)]}
-                courseName={item.courseName}
-                timeSlot={item.timeSlot}
-                location={item.location}
+                backgroundColor={color.hash.course[colorHashByCredits(item.credit)]}
+                courseName={item.coursename}
+                timeSlot={getScheduledTimeFromArrangement(item.activeArrange)}
+                location={sanitizeLocation(item.activeArrange.room)}
               />
             </Touchable>
           )}

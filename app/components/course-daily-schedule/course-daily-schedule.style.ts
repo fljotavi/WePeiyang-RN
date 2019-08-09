@@ -39,4 +39,31 @@ export default {
   courseTutor: {
     color: color.background,
   } as TextStyle,
+
+  courseAttrs: {
+    marginTop: 0,
+    flexWrap: "wrap",
+    flexDirection: "row",
+  } as ViewStyle,
+  courseAttrPair: {
+    marginBottom: 7,
+    marginRight: 14,
+  } as ViewStyle,
+  courseAttrKey: {
+    fontSize: 9,
+    letterSpacing: 2.5,
+    textTransform: "uppercase",
+    color: color.background,
+  } as TextStyle,
+  courseAttrValue: {
+    fontSize: 11,
+    color: color.background,
+    fontWeight: "bold",
+  } as TextStyle,
+
+  tjuBadge: {
+    position: "absolute",
+    right: -50,
+    bottom: -50,
+  } as ViewStyle,
 }

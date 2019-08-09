@@ -29,7 +29,6 @@ class _Text extends React.PureComponent<TextProps, {}> {
     } = this.props
 
     // figure out which content to use
-    console.log(lang)
     const i18nText = tx && translate(tx, lang, txOptions)
     let content = i18nText || text || children
     if (customTranslationMethod && tx) {

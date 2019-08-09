@@ -1,4 +1,5 @@
 import { twtGet } from "../services/twt-fetch"
+import { schedule1 } from "../utils/mock-course"
 
 export function clearAllData() {
   return {
@@ -31,7 +32,7 @@ export function fetchCourseData() {
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_COURSE_DATA",
-            payload: responseJson.data,
+            payload: schedule1.data, // responseJson.data,
           })
         } else {
           throw responseJson

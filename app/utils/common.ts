@@ -43,6 +43,11 @@ export function getScheduleTimeSlot(raw) {
   return ["Indefinite Time", "Indefinite Time"]
 }
 
+// Transform standard arrangement objects into strings like "13:30-15:05"
+export function getScheduledTimeFromArrangement(arrangement) {
+  return `${getScheduleTimeSlot(arrangement.start)[0]} - ${getScheduleTimeSlot(arrangement.end)[1]}`
+}
+
 export function shuffleData(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
