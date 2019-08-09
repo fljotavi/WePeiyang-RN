@@ -1,23 +1,18 @@
-　
+
 <p align="center">
 	<img src="assets/heading.png?raw=true" alt="WePeiyang 4.0" width="300">
 </p>
 
-　
-　
 ### About 关于
 
 The concept of WePeiyang 4.0 was brought by designer [Owlling](http://www.owlling.com/). Later in July 2019, the development of WePeiyang 4.0 was initiated.
 
 微北洋 4.0 的概念提出自设计师 [Owlling](http://www.owlling.com/)。随后的 2019 年 7 月，开发工作正式启动。
 
-　
-
 At that time, the previous major version of WePeiyang, functionally mature and time-proven, does not require an immediate update itself. However, our studio did face problems like unbalanced iOS/Android productivity, inconsistency across platforms, and a mediocre UX. The current version therefore primarily focuses on better structure designs, enhanced user experience and bold experiments on new features.
 
 在项目提出之前，上一版本的微北洋已经具有事实上完整的功能模块，也通过了数年的时间检验。它本身无需一次迫切的升级。但是，工作室的技术团队近期确实面临着一些问题，如生产力失衡、不一致的平台体验、欠佳的用户体验等。因此，这一新版本的开发将会侧重于平台一致性、架构设计、大胆的功能探索，并注入更多与体验和视觉相关的思考。
 
-　
 
 ![Main.png](https://i.loli.net/2019/08/10/NeVkmxZo3H8cFBO.png "Main module")
 
@@ -36,7 +31,6 @@ The project is currently under experimental stage with several primary modules f
 本项目整体目前仍处于实验阶段，部分主要模块已经开发完成。
 
 　
-
 
 # Start Building 开始构建
 
@@ -137,6 +131,16 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 A license would be published after the first release. Before that happens, issues are pull requests are welcomed.
 
 协议会发布在项目第一版开发完成之后。在此之前，欢迎任何问题讨论与合并请求。
+
+　
+
+# Elsewhere 别处
+
+- [TWT Studio 主页](https://coder.twtstudio.com/index)
+- [TWT 移动应用发布平台](https://mobile.twt.edu.cn/)
+- [WePeiyang Android 3.0](https://github.com/twtstudio/WePeiYang-Android)
+- [WePeiyang iOS Everest](https://github.com/twtstudio/WePeiYang-iOS-Everest)
+- [WePeiyang API](https://github.com/twtstudio/WePeiYang-Api)
 
 　
 
