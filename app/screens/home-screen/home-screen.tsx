@@ -95,7 +95,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     // Grab the props
     const { scoreType, compData } = this.props
 
-    let dayToRender = "2018-05-27"
+    let dayToRender = "2019-10-09"
     let timestamp = new Date(dayToRender).getTime()
     const dateLocales = {
       en: require("date-fns/locale/en"),
