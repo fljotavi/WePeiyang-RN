@@ -7,6 +7,7 @@ import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { SettingsSnack } from "./settings-snack"
+import { TopBar } from "./top-bar"
 
 export interface SettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
@@ -35,6 +36,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <TopBar actions={[() => this.props.navigation.goBack()]} />
         <View style={ss.container}>
           <Text text="Settings" preset="h2" style={ss.heading} />
 
