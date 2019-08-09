@@ -1,14 +1,15 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { StatusBar, TextStyle, View, ViewStyle } from "react-native"
+import { FlatList, StatusBar, TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setLanguage } from "../../actions/preference-actions"
 import { SettingsSnack } from "./settings-snack"
-import {TopBar} from "./top-bar";
+import { TopBar } from "./top-bar"
+import { languageFullnames } from "../../i18n/i18n"
 
 export interface LanguageSettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
@@ -33,8 +34,11 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
     egSwOn: false,
   }
 
+  _keyExtractor = lang => lang
+
   render() {
     const { pref, setLanguage } = this.props
+
     console.log(pref)
     return (
       <Screen preset="scroll">
@@ -43,32 +47,18 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
         <View style={ss.container}>
           <Text text="Language Settings" preset="h2" style={ss.heading} />
 
-          <SettingsSnack
-            style={ss.snack}
-            textTitle="中文"
-            textSubtitle="Chinese"
-            onPress={() => setLanguage("zh")}
-          />
-
-          <SettingsSnack
-            style={ss.snack}
-            textTitle="Espana"
-            textSubtitle={"Spanish"}
-            onPress={() => setLanguage("es")}
-          />
-
-          <SettingsSnack
-            style={ss.snack}
-            textTitle="English"
-            textSubtitle={"English"}
-            onPress={() => setLanguage("en")}
-          />
-
-          <SettingsSnack
-            style={ss.snack}
-            textTitle="عربى"
-            textSubtitle={"Arabic"}
-            onPress={() => setLanguage("ar")}
+          <FlatList
+            data={Object.keys(languageFullnames)}
+            keyExtractor={this._keyExtractor}
+            renderItem={({ item }) => (
+              <SettingsSnack
+                style={ss.snack}
+                preset={item === pref.language ? "selected" : undefined}
+                textTitle={languageFullnames[item].native}
+                textSubtitle={languageFullnames[item].common}
+                onPress={() => setLanguage(item)}
+              />
+            )}
           />
         </View>
       </Screen>

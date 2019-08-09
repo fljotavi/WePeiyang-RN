@@ -74,7 +74,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       })
       .catch(err => {
         console.log(err)
-        DeviceEventEmitter.emit("showToast", <Toasti tx="homeScreen.partialData" preset="error" />)
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.partialData" preset="error" />)
       })
   }
 

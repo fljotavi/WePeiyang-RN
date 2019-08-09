@@ -8,6 +8,7 @@ import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { SettingsSnack } from "./settings-snack"
 import { TopBar } from "./top-bar"
+import {languageFullnames} from "../../i18n/i18n";
 
 export interface SettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
@@ -43,7 +44,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
           <SettingsSnack
             style={ss.snack}
             txTitle="settingsScreen.displayGpa"
-            switchable={true}
+            preset="switch"
             on={this.state.egSwOn}
             onPress={() => {
               this.setState({ egSwOn: !this.state.egSwOn })
@@ -52,8 +53,9 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
 
           <SettingsSnack
             style={ss.snack}
+            preset="enter"
             txTitle="settingsScreen.language"
-            textSubtitle={pref.language}
+            textSubtitle={languageFullnames[pref.language].common}
             onPress={() => this.props.navigation.navigate("languageSettings")}
           />
         </View>

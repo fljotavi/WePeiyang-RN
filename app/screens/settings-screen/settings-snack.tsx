@@ -10,7 +10,7 @@ export interface SettingsSnackProps {
   txSubtitle?
   textTitle?
   textSubtitle?
-  switchable?
+  preset?
   style?
   onPress?
   on?
@@ -18,16 +18,7 @@ export interface SettingsSnackProps {
 
 export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
   render() {
-    let {
-      txTitle,
-      txSubtitle,
-      textTitle,
-      textSubtitle,
-      onPress,
-      switchable = false,
-      on,
-      style,
-    } = this.props
+    let { txTitle, txSubtitle, textTitle, textSubtitle, onPress, preset, on, style } = this.props
     const ss = {
       SettingsSnack: {
         flexDirection: "row",
@@ -67,6 +58,27 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
         fontSize: 10,
       },
     }
+
+    let right = <View />
+    switch (preset) {
+      case "switch":
+        right = (
+          <Switch
+            value={on}
+            trackColor={{
+              false: color.black(0.1),
+              true: Color(color.primary).fade(0.5),
+            }}
+            thumbColor={color.primary}
+          />
+        )
+        break
+      case "enter":
+        right = <Text text="navigate_next" style={ss.switz} preset="i" />
+        break
+      case "selected":
+        right = <Text text="check" style={ss.switz} preset="i" />
+    }
     return (
       <Touchable style={[ss.SettingsSnackContainer, style]} onPress={onPress} delayPressIn={0}>
         <View style={ss.SettingsSnack} pointerEvents="box-only">
@@ -78,18 +90,7 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
               )}
             </View>
           </View>
-          {switchable ? (
-            <Switch
-              value={on}
-              trackColor={{
-                false: color.black(0.1),
-                true: Color(color.primary).fade(0.5),
-              }}
-              thumbColor={color.primary}
-            />
-          ) : (
-            <Text text="navigate_next" style={ss.switz} preset="i" />
-          )}
+          {right}
         </View>
       </Touchable>
     )
