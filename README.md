@@ -2,6 +2,14 @@
 <p align="center">
 	<img src="assets/heading.png?raw=true" alt="WePeiyang 4.0" width="300">
 </p>
+　
+
+> *There was a gravity - almost a sense of civic responsibility,*
+> *to care way beyond any sort of functional imperative.*
+>
+> — Jony Ives, Former Chief Design Officer of Apple
+
+　
 
 ### About 关于
 
@@ -22,13 +30,58 @@ At that time, the previous major version of WePeiyang, functionally mature and t
 
 *GPA & Ecard Module / GPA 与校园卡模块*
 
-　
-
 ### Status 状态
 
 The project is currently under experimental stage with several primary modules finished.
 
 本项目整体目前仍处于实验阶段，部分主要模块已经开发完成。
+
+### New Features to Expect 功能性改进
+
+| Feature                                                     | 特性                       | Status              |
+| ----------------------------------------------------------- | -------------------------- | ------------------- |
+| GPA Rose Chart                                              | GPA 玫瑰图                 | ✔                   |
+| GPA order by course name                                    | GPA 按照课程名称排序       | ✔                   |
+| E-card spending trend chart in 180 days                     | 校园卡 180 日消费趋势图    | ✔                   |
+| Toggle your curves                                          | 切换绩点 / 学分 / 加权曲线 | ✔                   |
+| Custom layout order on homepage                             | 主页自定义模块布局顺序     |                     |
+| I18n & multilingual support                                 | 多语言支持                 | ✔                   |
+| Data persistent storage & conditional update                | 数据持久性存储与选择性更新 | ✔                   |
+| Scroll down to update                                       | 下拉刷新                   | ✔                   |
+| Global custom identity font                                 | 全局自定义品牌字体         | ✔                   |
+| Cancel & delay courses                                      | 取消课程或调课             |                     |
+| Custom course scheduling & events                           | 自定义课程 / 事件          |                     |
+| Independent book renew                                      | 指定书籍续借               | ⚠ (API Malfunction) |
+| Latitude of custom theming                                  | 更加完善的主题定制系统     |                     |
+| Proper spacing between latin letters & ideograph characters | 中西文混排空格间距         |                     |
+| ......                                                      |                            |                     |
+
+### Guidelines on UX Design 体验性改进
+
+- Pixel-perfect UI implementation / 像素级精确的设计图还原
+- Use transitions & animations / 使用过渡与动画
+- Lazy loading on costly charts / 低性能图表的延迟加载
+- Settings instantly take effect / 避免设置项变更后重启应用
+- Every `Touchable` needs visual feedback / 每一个可触摸元素都需要触摸视觉反馈
+- Loading indicators on async actions / 加载时的 Loading 动画指示
+- Consistent layout across platforms / 平台无关的一致布局
+- ......
+
+### Supported Languages 已支持语言
+
+![i18n](https://i.loli.net/2019/08/10/7qMbpr4WC6Dd2s3.png)
+
+| Language (Native) | Language | Status              |
+| ----------------- | -------- | ------------------- |
+| English           | English  | Supported           |
+| 简体中文          | Chinese  | Partial translation |
+| عربى              | Arabic   | Partial translation |
+| Espanol           | Spanish  | Partial translation |
+| 日本語            | Japanese | Partial translation |
+
+More is coming, help is welcome.
+
+更多语言将后续支持，欢迎帮助我们提供翻译。
 
 　
 
@@ -126,14 +179,6 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 
 　
 
-# License 协议
-
-A license would be published after the first release. Before that happens, issues are pull requests are welcomed.
-
-协议会发布在项目第一版开发完成之后。在此之前，欢迎任何问题讨论与合并请求。
-
-　
-
 # Elsewhere 别处
 
 - [TWT Studio 主页](https://coder.twtstudio.com/index)
@@ -141,6 +186,14 @@ A license would be published after the first release. Before that happens, issue
 - [WePeiyang Android 3.0](https://github.com/twtstudio/WePeiYang-Android)
 - [WePeiyang iOS Everest](https://github.com/twtstudio/WePeiYang-iOS-Everest)
 - [WePeiyang API](https://github.com/twtstudio/WePeiYang-Api)
+
+　
+
+# License 协议
+
+A license would be published after the first release. Before that happens, issues are pull requests are welcomed.
+
+协议会发布在项目第一版开发完成之后。在此之前，欢迎任何问题讨论与合并请求。
 
 　
 
