@@ -10,6 +10,7 @@ import { fetchCourseData } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
 import { getFullSchedule } from "../../utils/schedule"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
+import { TopBar } from "./top-bar"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
@@ -56,11 +57,12 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     const { course } = this.props
 
     let weeks = getFullSchedule(course.data)
-    let days = weeks[this.state.currentWeek + 1].days
+    let days = weeks[this.state.currentWeek - 1].days
 
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <TopBar actions={[() => this.props.navigation.goBack(), () => {}]} />
         <View style={ss.container}>
           <Text text="Schedule" preset="h2" />
 

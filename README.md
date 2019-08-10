@@ -71,13 +71,13 @@ The project is currently under experimental stage with several primary modules f
 
 ![i18n](https://i.loli.net/2019/08/10/7qMbpr4WC6Dd2s3.png)
 
-| Language (Native) | Language | Status              |
-| ----------------- | -------- | ------------------- |
-| English           | English  | Supported           |
-| 简体中文          | Chinese  | Partial translation |
-| عربى              | Arabic   | Partial translation |
-| Espanol           | Spanish  | Partial translation |
-| 日本語            | Japanese | Partial translation |
+| Language (Native)                                            | Language | Status              |
+| ------------------------------------------------------------ | -------- | ------------------- |
+| [English](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/en.json) | English  | Supported           |
+| [简体中文](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/zh.json) | Chinese  | Partial translation |
+| [عربى](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/ar.json) | Arabic   | Partial translation |
+| [Espanol](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/es.json) | Spanish  | Partial translation |
+| [日本語](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/ja.json) | Japanese | Partial translation |
 
 More is coming, help is welcome.
 
