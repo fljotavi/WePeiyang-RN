@@ -6,6 +6,7 @@ import { presets } from "./text.presets"
 import { TextProps } from "./text.props"
 import { translate } from "../../i18n"
 import { mergeAll, flatten } from "ramda"
+import pangu from "pangu"
 
 /**
  * For your text displaying needs.
@@ -16,12 +17,13 @@ import { mergeAll, flatten } from "ramda"
 class _Text extends React.PureComponent<TextProps, {}> {
   render() {
     // grab the props
-    const {
+    let {
       preset = "default",
       tx,
       txOptions,
       text,
       children,
+      spacing,
       lang,
       customTranslationMethod,
       style: styleOverride,
@@ -30,6 +32,16 @@ class _Text extends React.PureComponent<TextProps, {}> {
 
     // figure out which content to use
     const i18nText = tx && translate(tx, lang, txOptions)
+
+    // Spacing between languages
+    if (text) {
+      if (spacing === undefined) {
+        if (text.length < 100) text = pangu.spacing(text)
+      } else if (spacing === true) {
+        text = pangu.spacing(text)
+      }
+    }
+
     let content = i18nText || text || children
     if (customTranslationMethod && tx) {
       content = customTranslationMethod(lang, tx)

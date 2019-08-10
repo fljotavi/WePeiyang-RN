@@ -55,7 +55,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
   render() {
     const { course } = this.props
-    
+
     let weeks = getFullSchedule(course.data, 5)
     let days = weeks[this.state.currentWeek - 1].days
 

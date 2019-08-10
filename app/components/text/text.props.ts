@@ -24,6 +24,13 @@ export interface TextProps extends TextProperties {
   text?: string
 
   /**
+   * Whether to space the text between languages.
+   * i.e. "有关Lorem Ipsum的方程第8个参数" would be "有关 Lorem Ipsum 的方程第 8 个参数" after spacing.
+   * Note that spacing is default to true only for short texts, and not enabled for i18n tx props.
+   */
+  spacing?: boolean
+
+  /**
    * An optional style override useful for padding & margin.
    */
   style?: TextStyle | TextStyle[]
