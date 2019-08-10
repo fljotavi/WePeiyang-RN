@@ -12,7 +12,7 @@ export const languageFullnames = {
     common: "English",
   },
   ja: {
-    native: "日本语",
+    native: "日本語",
     common: "Japanese",
   },
   zh: {

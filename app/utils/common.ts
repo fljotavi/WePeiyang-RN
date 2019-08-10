@@ -10,44 +10,6 @@ export function digitsFromScoreType(scoreType) {
   return 2
 }
 
-export function getScheduleTimeSlot(raw) {
-  if (typeof raw === "number") {
-    raw = String(raw)
-  }
-  switch (raw) {
-    case "1":
-      return ["08:30", "09:15"]
-    case "2":
-      return ["09:20", "10:05"]
-    case "3":
-      return ["10:25", "11:10"]
-    case "4":
-      return ["11:15", "12:00"]
-    case "5":
-      return ["13:30", "14:15"]
-    case "6":
-      return ["14:20", "15:05"]
-    case "7":
-      return ["15:25", "16:10"]
-    case "8":
-      return ["16:15", "17:00"]
-    case "9":
-      return ["18:30", "19:15"]
-    case "10":
-      return ["19:20", "20:05"]
-    case "11":
-      return ["20:10", "20:55"]
-    case "12":
-      return ["21:00", "21:45"]
-  }
-  return ["Indefinite Time", "Indefinite Time"]
-}
-
-// Transform standard arrangement objects into strings like "13:30-15:05"
-export function getScheduledTimeFromArrangement(arrangement) {
-  return `${getScheduleTimeSlot(arrangement.start)[0]} - ${getScheduleTimeSlot(arrangement.end)[1]}`
-}
-
 export function shuffleData(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))

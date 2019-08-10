@@ -1,11 +1,7 @@
 import * as React from "react"
 import { FlatList, View, ViewStyle } from "react-native"
 import { CourseBlock } from "../course-block"
-import {
-  colorHashByCredits,
-  getScheduledTimeFromArrangement,
-  sanitizeLocation,
-} from "../../utils/common"
+import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import { Ian } from "../ian"
 import ss from "./course-daily-schedule.style"
 import { color } from "../../theme"
@@ -13,7 +9,7 @@ import Modal from "react-native-modal"
 import Touchable from "react-native-platform-touchable"
 import { Text } from "../text"
 import { TjuBadge } from "../tju-badge"
-import { getCoursesByDay } from "../../utils/schedule"
+import { getCoursesByDay, getScheduledTimeFromArrangement } from "../../utils/schedule"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle

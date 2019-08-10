@@ -13,18 +13,18 @@ export interface DotmapProps {
 
 export function Dotmap(props: DotmapProps) {
   let { dotColor, dotInactiveColor, matrix, dotSize, width, height, style } = props
-  matrix = matrix || [[1, 0, 1, 0], [0, 0, 0, 1], [1, 1, 0, 0], [1, 0, 0, 0]]
+  matrix = matrix || []
 
   const viewStyle: ViewStyle = {
     width: width,
     height: height,
+    flexDirection: "row",
     justifyContent: "space-between",
   }
 
-  const rowStyle: ViewStyle = {
-    width: width,
-    height: dotSize,
-    flexDirection: "row",
+  const columnStyle: ViewStyle = {
+    width: dotSize,
+    height: height,
     justifyContent: "space-between",
   }
 
@@ -44,13 +44,13 @@ export function Dotmap(props: DotmapProps) {
     backgroundColor: dotColor,
   }
 
-  let rows = matrix.map((row, i) => (
-    <View style={rowStyle} key={i}>
-      {row.map((dot, j) => (
+  let columns = matrix.map((column, i) => (
+    <View style={columnStyle} key={i}>
+      {column.map((dot, j) => (
         <View style={dot === 0 ? dotInactive : dotActive} key={j} />
       ))}
     </View>
   ))
 
-  return <View style={[viewStyle, style]}>{rows}</View>
+  return <View style={[viewStyle, style]}>{columns}</View>
 }
