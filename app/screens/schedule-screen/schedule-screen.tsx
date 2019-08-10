@@ -1,15 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {
-  Dimensions,
-  FlatList,
-  StatusBar,
-  TextStyle,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native"
+import { Dimensions, FlatList, ScrollView, StatusBar, TouchableOpacity, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
@@ -22,60 +14,22 @@ import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import Touchable from "react-native-platform-touchable"
 import { format } from "date-fns"
+import ss from "./schedule-screen.style"
+import Modal from "react-native-modal"
+import { CourseModal } from "../../components/course-modal"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
   fetchCourseData?
 }
 
-const ss = {
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical,
-  } as ViewStyle,
-  dotmapContainer: {
-    alignItems: "center",
-    marginRight: 25,
-  } as ViewStyle,
-  dotmapText: {
-    color: color.lightGrey,
-    fontSize: 10,
-    fontWeight: "bold",
-  } as TextStyle,
-  dotmap: {
-    marginBottom: 10,
-  } as ViewStyle,
-  dotBar: {
-    marginTop: 20,
-  } as ViewStyle,
-
-  dayRow: {
-    marginBottom: 20,
-  } as ViewStyle,
-  dayRowText: {
-    marginBottom: 10,
-  } as TextStyle,
-  main: {
-    alignSelf: "stretch",
-    alignItems: "stretch",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
-  } as ViewStyle,
-  column: {} as ViewStyle,
-
-  dateIndicator: {
-    color: color.lightGrey,
-    fontWeight: "bold",
-    fontSize: 10,
-  } as TextStyle,
-}
-
 export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   state = {
+    isModalVisible: false,
     currentWeek: 1,
     windowWidth: Dimensions.get("window").width,
     screenHeight: Dimensions.get("screen").height,
+    courseIndex: undefined,
   }
 
   getNewDimensions = event => {
@@ -85,12 +39,20 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     })
   }
 
+  openModal = () => {
+    this.setState({ isModalVisible: true })
+  }
+  closeModal = () => {
+    this.setState({ isModalVisible: false, userInformed: false })
+  }
+
   _keyExtractor = (item, index) => String(index)
 
   render() {
     const { course } = this.props
 
     let daysEachWeek = 5
+
     let weeks = getFullSchedule(course.data, daysEachWeek)
     let days = weeks[this.state.currentWeek - 1].days
 
@@ -136,7 +98,16 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                 }}
                 key={j}
                 delayPressIn={0}
-                onPress={() => {}}
+                onPress={() => {
+                  this.setState(
+                    {
+                      courseIndex: [i, j],
+                    },
+                    () => {
+                      this.openModal()
+                    },
+                  )
+                }}
                 foreground={Touchable.Ripple(color.background)}
               >
                 <CourseBlockInner
@@ -157,49 +128,79 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
       </View>
     ))
 
+    let modal = <View />
+
+    if (this.state.courseIndex) {
+      let idx = this.state.courseIndex
+      let chosenCourse = weeks[this.state.currentWeek - 1].days[idx[0]].courses[idx[1]]
+
+      modal = (
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.screen.backgroundColor}
+          hideModalContentWhileAnimating={true}
+          animationIn={"fadeInUp"}
+          animationOut={"fadeOutUp"}
+          animationInTiming={400}
+          animationOutTiming={300}
+          onBackButtonPress={this.closeModal}
+          onBackdropPress={this.closeModal}
+          useNativeDriver={true}
+          style={ss.modal}
+        >
+          <CourseModal chosenCourse={chosenCourse} />
+        </Modal>
+      )
+    }
+
     return (
-      <Screen preset="scroll">
+      <Screen>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-        <TopBar actions={[() => this.props.navigation.goBack(), () => {}]} />
-        <View style={ss.container} onLayout={this.getNewDimensions}>
-          <Text text="Schedule" preset="h2" />
 
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            style={ss.dotBar}
-            data={weeks}
-            keyExtractor={this._keyExtractor}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  this.setState({
-                    currentWeek: item.week,
-                  })
-                }}
-              >
-                <View style={ss.dotmapContainer}>
-                  <Dotmap
-                    dotColor={color.primary}
-                    dotInactiveColor={color.washed}
-                    dotSize={6}
-                    width={10 * daysEachWeek}
-                    height={50}
-                    style={ss.dotmap}
-                    matrix={item.matrix}
-                  />
-                  <Text style={ss.dotmapText}>
-                    <Text text="WEEK " />
-                    <Text text={item.week} />
-                    <Text text="" />
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
+        {modal}
 
-          <View style={[ss.main, { height: renderHeight }]}>{columns}</View>
-        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <TopBar actions={[() => this.props.navigation.goBack(), () => {}]} />
+          <View style={ss.container} onLayout={this.getNewDimensions}>
+            <Text text="Schedule" preset="h2" />
+
+            <FlatList
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={ss.dotBar}
+              data={weeks}
+              keyExtractor={this._keyExtractor}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.setState({
+                      currentWeek: item.week,
+                    })
+                  }}
+                >
+                  <View style={ss.dotmapContainer}>
+                    <Dotmap
+                      dotColor={color.primary}
+                      dotInactiveColor={color.washed}
+                      dotSize={6}
+                      width={10 * daysEachWeek}
+                      height={50}
+                      style={ss.dotmap}
+                      matrix={item.matrix}
+                    />
+                    <Text style={ss.dotmapText}>
+                      <Text text="WEEK " />
+                      <Text text={item.week} />
+                      <Text text="" />
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+
+            <View style={[ss.main, { height: renderHeight }]}>{columns}</View>
+          </View>
+        </ScrollView>
       </Screen>
     )
   }

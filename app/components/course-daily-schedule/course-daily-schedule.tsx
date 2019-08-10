@@ -7,9 +7,8 @@ import ss from "./course-daily-schedule.style"
 import { color } from "../../theme"
 import Modal from "react-native-modal"
 import Touchable from "react-native-platform-touchable"
-import { Text } from "../text"
-import { TjuBadge } from "../tju-badge"
 import { getCoursesByDay, getScheduledTimeFromArrangement } from "../../utils/schedule"
+import { CourseModal } from "../course-modal"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle
@@ -49,10 +48,6 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
 
     if (courseDaily.length > 0) {
       let chosenCourse = courseDaily[this.state.courseIndex]
-      let hashedColorStyle = {
-        fontWeight: "bold",
-        color: color.hash.course[colorHashByCredits(chosenCourse.credit)],
-      }
 
       modal = (
         <Modal
@@ -68,73 +63,7 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
           useNativeDriver={true}
           style={ss.modal}
         >
-          <View
-            style={[
-              ss.modalCard,
-              {
-                backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credit)],
-              },
-            ]}
-          >
-            <TjuBadge style={ss.tjuBadge} fill={color.white(0.02)} height={310} width={270} />
-
-            <View>
-              {chosenCourse.ext.length > 0 && (
-                <View style={ss.courseTag}>
-                  <Text text="school" preset="i" style={hashedColorStyle} />
-                  <Text text=" " preset="small" style={hashedColorStyle} />
-                  <Text text="重修" preset="small" style={hashedColorStyle} />
-                </View>
-              )}
-
-              <Text text={chosenCourse.coursename} style={ss.courseTitle} selectable={true} />
-              <Text style={ss.courseTutor}>
-                <Text
-                  text={`${chosenCourse.teacher} · ${chosenCourse.college}`}
-                  selectable={true}
-                />
-              </Text>
-            </View>
-
-            <View>
-              <View style={ss.courseAttrs}>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"ID"} style={ss.courseAttrKey} />
-                  <Text text={chosenCourse.courseid} style={ss.courseAttrValue} />
-                </View>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"Type"} style={ss.courseAttrKey} />
-                  <Text text={chosenCourse.coursenature} style={ss.courseAttrValue} />
-                </View>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"SubType"} style={ss.courseAttrKey} />
-                  <Text text={chosenCourse.coursetype} style={ss.courseAttrValue} />
-                </View>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"逻辑班号"} style={ss.courseAttrKey} />
-                  <Text text={chosenCourse.classid} style={ss.courseAttrValue} />
-                </View>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"Campus"} style={ss.courseAttrKey} />
-                  <Text text={chosenCourse.campus} style={ss.courseAttrValue} />
-                </View>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"Location"} style={ss.courseAttrKey} />
-                  <Text
-                    text={sanitizeLocation(chosenCourse.activeArrange.room)}
-                    style={ss.courseAttrValue}
-                  />
-                </View>
-                <View style={ss.courseAttrPair}>
-                  <Text text={"Time"} style={ss.courseAttrKey} />
-                  <Text
-                    text={getScheduledTimeFromArrangement(chosenCourse.activeArrange)}
-                    style={ss.courseAttrValue}
-                  />
-                </View>
-              </View>
-            </View>
-          </View>
+          <CourseModal chosenCourse={chosenCourse} />
         </Modal>
       )
     }
