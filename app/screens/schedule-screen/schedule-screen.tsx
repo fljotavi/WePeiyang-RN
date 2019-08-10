@@ -1,7 +1,15 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { FlatList, StatusBar, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import {
+  Dimensions,
+  FlatList,
+  StatusBar,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
@@ -9,8 +17,9 @@ import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
 import { getFullSchedule } from "../../utils/schedule"
-import { CourseDailySchedule } from "../../components/course-daily-schedule"
 import { TopBar } from "./top-bar"
+import { CourseBlockInner } from "../../components/course-block-inner"
+import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
@@ -44,11 +53,29 @@ const ss = {
   dayRowText: {
     marginBottom: 10,
   } as TextStyle,
+  main: {
+    alignSelf: "stretch",
+    alignItems: "stretch",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  } as ViewStyle,
+  column: {} as ViewStyle,
 }
 
 export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   state = {
     currentWeek: 1,
+    windowWidth: Dimensions.get("window").width,
+    screenHeight: Dimensions.get("screen").height,
+  }
+
+  getNewDimensions = event => {
+    console.log(this.setState)
+    this.setState({
+      windowWidth: event.nativeEvent.layout.width,
+      screenHeight: Dimensions.get("screen").height,
+    })
   }
 
   _keyExtractor = (item, index) => String(index)
@@ -56,14 +83,51 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   render() {
     const { course } = this.props
 
-    let weeks = getFullSchedule(course.data, 5)
+    let daysEachWeek = 5
+    let weeks = getFullSchedule(course.data, daysEachWeek)
     let days = weeks[this.state.currentWeek - 1].days
+
+    // For height, you need to specify height of a single components,
+    // and the total renderHeight would span
+    let timeSlotHeight = this.state.screenHeight / 12
+    let timeSlotMargin = 8
+    let nTimeSlots = 12
+    let renderHeight = timeSlotHeight * nTimeSlots + timeSlotMargin * (nTimeSlots - 1)
+
+    // For width, you need to specify total renderWidth
+    let renderWidth = this.state.windowWidth - 2 * layoutParam.paddingHorizontal
+    let dayMargin = timeSlotMargin
+    let dayWidth = (renderWidth - (daysEachWeek - 1) * dayMargin) / daysEachWeek
+
+    let columns = days.map(day => (
+      <View style={[ss.column, { width: dayWidth }]}>
+        {day.courses.map(c => {
+          let start = Number(c.activeArrange.start) - 1
+          let end = Number(c.activeArrange.end)
+          let duration = end - start
+          return (
+            <CourseBlockInner
+              style={{
+                position: "absolute",
+                top: start * (timeSlotHeight + timeSlotMargin),
+                height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
+                width: dayWidth,
+              }}
+              backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
+              courseName={c.coursename}
+              p1={c.teacher}
+              p2={sanitizeLocation(c.activeArrange.room)}
+            />
+          )
+        })}
+      </View>
+    ))
 
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <TopBar actions={[() => this.props.navigation.goBack(), () => {}]} />
-        <View style={ss.container}>
+        <View style={ss.container} onLayout={this.getNewDimensions}>
           <Text text="Schedule" preset="h2" />
 
           <FlatList
@@ -100,26 +164,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             )}
           />
 
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            style={ss.dotBar}
-            data={days}
-            keyExtractor={this._keyExtractor}
-            renderItem={({ item }) => (
-              <View style={ss.dayRow}>
-                <Text
-                  text={new Date(item.timestamp).toDateString()}
-                  style={ss.dayRowText}
-                  preset="h5"
-                />
-                <CourseDailySchedule
-                  data={course.data}
-                  timestamp={item.timestamp}
-                  status={course.status}
-                />
-              </View>
-            )}
-          />
+          <View style={[ss.main, { height: renderHeight }]}>{columns}</View>
         </View>
       </Screen>
     )

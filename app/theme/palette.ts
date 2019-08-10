@@ -19,6 +19,8 @@ export const palette = {
   pale: "rgb(54, 60, 84)",
   offPale: "rgb(109, 105, 127)",
   offPale2: "rgb(99, 103, 123)",
+  offPale3: "rgba(99, 103, 123, 0.6)",
+  offPale4: "rgba(99, 103, 123, 0.3)",
   novaPale: "rgb(103,111,150)",
   authenticPale: "rgb(70, 92, 117)",
 

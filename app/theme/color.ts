@@ -24,19 +24,18 @@ export const color = {
    */
   primary: palette.offPale2,
   /**
+   * The default color of text in many components.
+   */
+  text: palette.offPale2,
+  /**
    * The main tinting color, but darker.
    */
-
   lightGrey: palette.lightGrey,
   washed: palette.washed,
   /**
    * A subtle color used for borders and lines.
    */
   line: palette.offWhite,
-  /**
-   * The default color of text in many components.
-   */
-  text: palette.offPale2,
   /**
    * Secondary information.
    */
@@ -52,10 +51,12 @@ export const color = {
    */
   hash: {
     course: [
+      palette.offPale4,
+      palette.offPale3,
       palette.offPale,
-      palette.novaPale,
-      palette.authenticPale,
+      palette.offPale2,
       palette.pale,
+      palette.offBlack,
       palette.offBlack,
     ],
     bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
