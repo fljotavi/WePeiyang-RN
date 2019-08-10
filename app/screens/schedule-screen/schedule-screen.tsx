@@ -20,6 +20,8 @@ import { getFullSchedule } from "../../utils/schedule"
 import { TopBar } from "./top-bar"
 import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
+import Touchable from "react-native-platform-touchable"
+import { format } from "date-fns"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
@@ -61,6 +63,12 @@ const ss = {
     marginTop: 20,
   } as ViewStyle,
   column: {} as ViewStyle,
+
+  dateIndicator: {
+    color: color.lightGrey,
+    fontWeight: "bold",
+    fontSize: 10,
+  } as TextStyle,
 }
 
 export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
@@ -71,7 +79,6 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   }
 
   getNewDimensions = event => {
-    console.log(this.setState)
     this.setState({
       windowWidth: event.nativeEvent.layout.width,
       screenHeight: Dimensions.get("screen").height,
@@ -89,37 +96,64 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
     // For height, you need to specify height of a single components,
     // and the total renderHeight would span
-    let timeSlotHeight = this.state.screenHeight / 12
-    let timeSlotMargin = 8
+    let timeSlotHeight = this.state.screenHeight / (18 - daysEachWeek)
+    let dateIndicatorHeight = 30
+    let timeSlotMargin = 12 - daysEachWeek
     let nTimeSlots = 12
-    let renderHeight = timeSlotHeight * nTimeSlots + timeSlotMargin * (nTimeSlots - 1)
+    let renderHeight = (timeSlotHeight + timeSlotMargin) * nTimeSlots + dateIndicatorHeight
 
     // For width, you need to specify total renderWidth
     let renderWidth = this.state.windowWidth - 2 * layoutParam.paddingHorizontal
     let dayMargin = timeSlotMargin
     let dayWidth = (renderWidth - (daysEachWeek - 1) * dayMargin) / daysEachWeek
 
-    let columns = days.map(day => (
-      <View style={[ss.column, { width: dayWidth }]}>
-        {day.courses.map(c => {
-          let start = Number(c.activeArrange.start) - 1
-          let end = Number(c.activeArrange.end)
-          let duration = end - start
-          return (
-            <CourseBlockInner
-              style={{
-                position: "absolute",
-                top: start * (timeSlotHeight + timeSlotMargin),
-                height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
-                width: dayWidth,
-              }}
-              backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
-              courseName={c.coursename}
-              p1={c.teacher}
-              p2={sanitizeLocation(c.activeArrange.room)}
-            />
-          )
-        })}
+    // When styles are strongly connected to programmatic process,
+    // usage of inline styles are not avoidable.
+    let columns = days.map((day, i) => (
+      <View>
+        <View
+          style={{
+            height: dateIndicatorHeight,
+            marginBottom: timeSlotMargin,
+            backgroundColor: color.washed,
+            borderRadius: layoutParam.borderRadius / 1.5,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text text={format(new Date(day.timestamp), "MM/DD")} style={ss.dateIndicator} />
+        </View>
+        <View style={[ss.column, { width: dayWidth }]} key={i}>
+          {day.courses.map((c, j) => {
+            let start = Number(c.activeArrange.start) - 1
+            let end = Number(c.activeArrange.end)
+            let duration = end - start
+            return (
+              <Touchable
+                style={{
+                  position: "absolute",
+                  top: start * (timeSlotHeight + timeSlotMargin),
+                }}
+                key={j}
+                delayPressIn={0}
+                onPress={() => {}}
+                foreground={Touchable.Ripple(color.background)}
+              >
+                <CourseBlockInner
+                  style={{
+                    width: dayWidth,
+                    height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
+                    alignSelf: "stretch",
+                  }}
+                  backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
+                  courseName={c.coursename}
+                  p1={c.teacher}
+                  p2={sanitizeLocation(c.activeArrange.room)}
+                />
+              </Touchable>
+            )
+          })}
+        </View>
       </View>
     ))
 
@@ -149,7 +183,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                     dotColor={color.primary}
                     dotInactiveColor={color.washed}
                     dotSize={6}
-                    width={50}
+                    width={10 * daysEachWeek}
                     height={50}
                     style={ss.dotmap}
                     matrix={item.matrix}

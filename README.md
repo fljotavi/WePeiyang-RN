@@ -50,6 +50,7 @@ The project is currently under experimental stage with several primary modules f
 | Scroll down to update                                       | 下拉刷新                     | ✔                   |
 | Global custom identity font                                 | 全局自定义品牌字体           | ✔                   |
 | Cancel & delay courses                                      | 取消课程或调课               |                     |
+| Responsive course table layout                              | 响应式课表布局               | ✔                   |
 | Custom course scheduling & events                           | 自定义课程 / 事件            |                     |
 | Independent book renew                                      | 指定书籍续借                 | ⚠ (API Malfunction) |
 | Latitude of custom theming                                  | 更加完善的主题定制系统       |                     |

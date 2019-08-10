@@ -30,7 +30,7 @@ export class App extends React.Component<{}, AppState> {
     })
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     if (this.listener) {
       this.listener.remove()
     }
