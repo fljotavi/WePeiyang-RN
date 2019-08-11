@@ -123,3 +123,53 @@ export const getCoursesByDay = (timestamp, data) => {
   })
   return res
 }
+
+export const dayOffActivities = (timestamp, hashParam) => {
+  let activities = [
+    "golf_course",
+    "fitness_center",
+    "casino",
+    "beach_access",
+    "cake",
+    "pool",
+    "airline_seat_flat",
+    "wc",
+    "local_dining",
+    "local_laundry_service",
+    "directions_boat",
+    "palette",
+    "headset",
+    "videogame_asset",
+    "format_paint",
+    "shopping_cart",
+    "rowing",
+    "remove_shopping_cart",
+    "motorcycle",
+    "favorite",
+    "camera_enhance",
+    "flight_takeoff",
+    "ondemand_video",
+    "free_breakfast",
+    "whatshot",
+    "plusone",
+    "notifications",
+    "library_music",
+    "4k",
+    "album",
+    "work",
+    "trending_up",
+    "thumbs_up_down",
+    "supervisor_account",
+    "store",
+    "loyalty",
+    "home",
+    "extension",
+    "explore",
+    "build",
+    "accessibility",
+    "hot_tub",
+    "room_service",
+  ]
+  let hashed = Math.floor(timestamp / (5489 + (hashParam % 11)) / 19)
+  return activities[hashed % activities.length]
+}

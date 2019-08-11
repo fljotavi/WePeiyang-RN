@@ -17,7 +17,7 @@ import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
-import { getFullSchedule, getWeek, WEEK_LIMIT } from "../../utils/schedule"
+import { dayOffActivities, getFullSchedule, getWeek, WEEK_LIMIT } from "../../utils/schedule"
 import { TopBar } from "./top-bar"
 import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
@@ -32,6 +32,7 @@ import { DateIndicator } from "./date-indicator"
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
   pref?
+  userInfo?
   fetchCourseData?
   setGeneratedSchedule?
 }
@@ -108,6 +109,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
   render() {
     const { course, pref } = this.props
+    const studentId = Number(this.props.userInfo.data.studentid)
     let daysEachWeek = pref.daysEachWeek
     let weeks
 
@@ -129,6 +131,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     let timeSlotMargin = 12 - daysEachWeek
     let nTimeSlots = 12
     let renderHeight = (timeSlotHeight + timeSlotMargin) * nTimeSlots + dateIndicatorHeight
+    let scheduleRenderHeight = renderHeight - timeSlotMargin - dateIndicatorHeight
 
     // For width, you need to specify total renderWidth
     let renderWidth = this.state.windowWidth - 2 * layoutParam.paddingHorizontal
@@ -147,45 +150,56 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
         />
 
         {/*Begin a daily schedule column*/}
-        <View style={[ss.column, { width: dayWidth }]} key={i}>
-          {day.courses.map((c, j) => {
-            let start = Number(c.activeArrange.start) - 1
-            let end = Number(c.activeArrange.end)
-            let duration = end - start
-            return (
-              <Touchable
-                style={{
-                  position: "absolute",
-                  top: start * (timeSlotHeight + timeSlotMargin),
-                }}
-                key={j}
-                delayPressIn={0}
-                onPress={() => {
-                  this.setState(
-                    {
-                      courseIndex: [i, j],
-                    },
-                    () => {
-                      this.openModal()
-                    },
-                  )
-                }}
-                foreground={Touchable.Ripple(color.background)}
-              >
-                <CourseBlockInner
+        <View style={[ss.column, { width: dayWidth, height: scheduleRenderHeight }]} key={i}>
+          {day.courses.length > 0 ? (
+            day.courses.map((c, j) => {
+              let start = Number(c.activeArrange.start) - 1
+              let end = Number(c.activeArrange.end)
+              let duration = end - start
+              return (
+                <Touchable
                   style={{
-                    width: dayWidth,
-                    height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
-                    alignSelf: "stretch",
+                    position: "absolute",
+                    top: start * (timeSlotHeight + timeSlotMargin),
                   }}
-                  backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
-                  courseName={c.coursename}
-                  p1={c.teacher}
-                  p2={sanitizeLocation(c.activeArrange.room)}
-                />
-              </Touchable>
-            )
-          })}
+                  key={j}
+                  delayPressIn={0}
+                  onPress={() => {
+                    this.setState(
+                      {
+                        courseIndex: [i, j],
+                      },
+                      () => {
+                        this.openModal()
+                      },
+                    )
+                  }}
+                  foreground={Touchable.Ripple(color.background)}
+                >
+                  <CourseBlockInner
+                    style={{
+                      width: dayWidth,
+                      height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
+                      alignSelf: "stretch",
+                    }}
+                    backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
+                    courseName={c.coursename}
+                    p1={c.teacher}
+                    p2={sanitizeLocation(c.activeArrange.room)}
+                  />
+                </Touchable>
+              )
+            })
+          ) : (
+            // Ian and this view here have more differences than styles in common, so plain view.
+            <View style={ss.scheduleIan}>
+              <Text
+                style={ss.scheduleIanText}
+                preset="i"
+                text={dayOffActivities(day.timestamp, studentId)}
+              />
+            </View>
+          )}
         </View>
         {/*End a daily schedule column*/}
       </View>
@@ -287,6 +301,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 const mapStateToProps = state => {
   return {
     course: state.dataReducer.course,
+    userInfo: state.dataReducer.userInfo,
     pref: state.preferenceReducer,
   }
 }

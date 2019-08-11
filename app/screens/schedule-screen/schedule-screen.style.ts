@@ -39,9 +39,17 @@ export default {
     marginTop: 20,
   } as ViewStyle,
   column: {} as ViewStyle,
-
-
-
+  scheduleIan: {
+    flex: 1,
+    backgroundColor: color.washed,
+    borderRadius: layoutParam.borderRadius / 1.5,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
+  scheduleIanText: {
+    color: color.lightGrey,
+    fontSize: 30,
+  } as TextStyle,
   modal: {
     width: 250,
     alignSelf: "center",
