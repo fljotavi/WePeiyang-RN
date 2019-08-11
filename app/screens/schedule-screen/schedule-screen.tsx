@@ -235,7 +235,9 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             />
           }
         >
-          <TopBar actions={[() => this.props.navigation.goBack(), () => this._onRefresh(), () => {}]} />
+          <TopBar
+            actions={[() => this.props.navigation.goBack(), () => this._onRefresh(), () => {}]}
+          />
 
           <View style={ss.container} onLayout={this.getNewDimensions}>
             <Text text="Schedule" preset="h2" />

@@ -89,7 +89,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
     case "SET_COURSE_DATA":
       let payload = action.payload
       payload.courses = payload.data
-      payload.data = undefined // Replace object key 'data' with 'courses', semantically
       state = {
         ...state,
         status: "MODIFIED",
