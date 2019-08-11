@@ -16,7 +16,6 @@ import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { TopBar } from "./top-bar"
-import Toast from "react-native-easy-toast"
 import { Text } from "../../components/text"
 
 import {
@@ -48,8 +47,6 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
     renderChart: false, // Defer chart render for better entry performance
     fadeAnim: new Animated.Value(0),
   }
-
-  toastRef
 
   componentDidMount() {
     this._onRefresh()
@@ -200,11 +197,6 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             </Button>
           </View>
         </ScrollView>
-        <Toast
-          ref={ref => {
-            this.toastRef = ref
-          }}
-        />
       </Screen>
     )
   }

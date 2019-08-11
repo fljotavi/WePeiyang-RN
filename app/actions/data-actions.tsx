@@ -41,6 +41,13 @@ export function fetchCourseData() {
   }
 }
 
+export function setGeneratedSchedule(payload) {
+  return {
+    type: "SET_GENERATED_SCHEDULE",
+    payload: payload,
+  }
+}
+
 export function fetchUserData() {
   return dispatch => {
     return twtGet("v2/auth/self")

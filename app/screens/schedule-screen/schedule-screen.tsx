@@ -5,6 +5,7 @@ import {
   DeviceEventEmitter,
   Dimensions,
   FlatList,
+  RefreshControl,
   ScrollView,
   StatusBar,
   TouchableOpacity,
@@ -14,7 +15,7 @@ import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { fetchCourseData } from "../../actions/data-actions"
+import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
 import { getFullSchedule, getWeek, WEEK_LIMIT } from "../../utils/schedule"
 import { TopBar } from "./top-bar"
@@ -26,14 +27,18 @@ import ss from "./schedule-screen.style"
 import Modal from "react-native-modal"
 import { CourseModal } from "../../components/course-modal"
 import { Toasti } from "../../components/toasti"
+import { DateIndicator } from "./date-indicator"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
+  pref?
   fetchCourseData?
+  setGeneratedSchedule?
 }
 
 export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   state = {
+    refreshing: false,
     isModalVisible: false,
     chosenWeek: 1,
     currentWeek: 1,
@@ -77,15 +82,45 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     this.setState({ isModalVisible: false, userInformed: false })
   }
 
+  prepareData = async () => {
+    await Promise.all([this.props.fetchCourseData()])
+      .then(() => {
+        console.log("Costly branch")
+        this.props.setGeneratedSchedule(
+          getFullSchedule(this.props.course.data, this.props.pref.daysEachWeek),
+        )
+        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
+      })
+      .catch(err => {
+        console.log(err)
+        DeviceEventEmitter.emit("showToast", <Toasti text={err.message} preset="error" />)
+      })
+  }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true })
+    this.prepareData().then(() => {
+      this.setState({ refreshing: false })
+    })
+  }
+
   _keyExtractor = (item, index) => String(index)
 
   render() {
-    const { course } = this.props
+    const { course, pref } = this.props
+    let daysEachWeek = pref.daysEachWeek
+    let weeks
 
-    let daysEachWeek = 5
+    if (course.generated) {
+      console.log("Cached branch")
+      weeks = course.generated
+    } else {
+      console.log("Costly branch")
+      weeks = getFullSchedule(course.data, daysEachWeek)
+      this.props.setGeneratedSchedule(weeks)
+    }
 
-    let weeks = getFullSchedule(course.data, daysEachWeek)
-    let days = weeks[this.state.chosenWeek - 1].days // ???
+    let days = weeks[this.state.chosenWeek - 1].days
 
     // For height, you need to specify height of a single components,
     // and the total renderHeight would span
@@ -104,25 +139,14 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     // usage of inline styles are not avoidable.
     let columns = days.map((day, i) => (
       <View key={i}>
-        <View
-          style={{
-            height: dateIndicatorHeight,
-            marginBottom: timeSlotMargin,
-            backgroundColor: color.washed,
-            borderRadius: layoutParam.borderRadius / 1.5,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            text={format(new Date(day.timestamp), "MM/DD")}
-            style={
-              isSameDay(new Date(day.timestamp), new Date(this.state.currentTimestamp))
-                ? ss.dateIndicatorCurrent
-                : ss.dateIndicator
-            }
-          />
-        </View>
+        <DateIndicator
+          height={dateIndicatorHeight}
+          marginBottom={timeSlotMargin}
+          text={format(new Date(day.timestamp), "MM/DD")}
+          active={isSameDay(new Date(day.timestamp), new Date(this.state.currentTimestamp))}
+        />
+
+        {/*Begin a daily schedule column*/}
         <View style={[ss.column, { width: dayWidth }]} key={i}>
           {day.courses.map((c, j) => {
             let start = Number(c.activeArrange.start) - 1
@@ -163,6 +187,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             )
           })}
         </View>
+        {/*End a daily schedule column*/}
       </View>
     ))
 
@@ -199,8 +224,19 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
         {modal}
 
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBar actions={[() => this.props.navigation.goBack(), () => {}]} />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              tintColor={color.primary}
+              colors={[color.primary]}
+            />
+          }
+        >
+          <TopBar actions={[() => this.props.navigation.goBack(), () => this._onRefresh(), () => {}]} />
+
           <View style={ss.container} onLayout={this.getNewDimensions}>
             <Text text="Schedule" preset="h2" />
 
@@ -209,12 +245,6 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
               showsHorizontalScrollIndicator={false}
               style={ss.dotBar}
               data={weeks}
-              initialScrollIndex={this.state.currentWeek - 1}
-              getItemLayout={(data, index) => ({
-                length: dotmapWidth,
-                offset: dotmapWidth * index,
-                index,
-              })}
               keyExtractor={this._keyExtractor}
               renderItem={({ item }) => (
                 <TouchableOpacity
@@ -255,6 +285,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 const mapStateToProps = state => {
   return {
     course: state.dataReducer.course,
+    pref: state.preferenceReducer,
   }
 }
 
@@ -262,6 +293,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCourseData: async () => {
       await dispatch(fetchCourseData())
+    },
+    setGeneratedSchedule: generated => {
+      dispatch(setGeneratedSchedule(generated))
     },
   }
 }

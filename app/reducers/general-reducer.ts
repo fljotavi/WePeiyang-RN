@@ -11,6 +11,7 @@ export const preferenceReducer = (
     scoreType: "weighted",
     gpaOrderBy: "credits",
     language: "zh",
+    daysEachWeek: 6,
   },
   action,
 ) => {

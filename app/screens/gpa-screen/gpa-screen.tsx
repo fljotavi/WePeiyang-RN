@@ -68,7 +68,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
         DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" preset="gpa" />)
       })
       .catch(err => {
-        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataFailed" preset="error" />)
+        DeviceEventEmitter.emit("showToast", <Toasti text={err.message} preset="error" />)
       })
   }
 

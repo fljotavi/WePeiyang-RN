@@ -20,7 +20,7 @@ export const ssGlobal = {
 
   topBar: {
     container: {
-      paddingHorizontal: 14,
+      paddingHorizontal: 10,
       paddingVertical: 16,
       alignSelf: "stretch",
       flexDirection: "row",
@@ -31,7 +31,7 @@ export const ssGlobal = {
     } as ViewStyle,
     icon: {
       fontSize: 26,
-      marginHorizontal: 6,
+      marginHorizontal: 9,
     } as TextStyle,
   },
 

@@ -33,7 +33,14 @@ export function TopBar(props: TopBarProps) {
           onPress={actions[1]}
           delayPressIn={0}
         >
-          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="info" preset="i" />
+          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="autorenew" preset="i" />
+        </Touchable>
+        <Touchable
+          background={Touchable.Ripple(color.lightGrey, true)}
+          onPress={actions[2]}
+          delayPressIn={0}
+        >
+          <Text style={[ssGlobal.topBar.icon, topBarIcon]} text="subtitles" preset="i" />
         </Touchable>
       </View>
     </View>

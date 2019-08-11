@@ -21,6 +21,7 @@ const dataReducerInitialState = {
   course: {
     status: "NOT_RECEIVED",
     data: {},
+    generated: undefined,
   },
   ecard: {
     status: "NOT_RECEIVED",
@@ -75,7 +76,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         },
         gpaDetailed: semestralData, // SemestralData here actually contains all courses in detail, correcting semantics here.
       }
-      console.log(extractedData)
       state = {
         ...state,
         status: "MODIFIED",
@@ -88,13 +88,25 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
 
     case "SET_COURSE_DATA":
       let payload = action.payload
-      delete Object.assign(payload, { courses: payload.data }).data // Replace object key 'data' with 'courses', semantically
+      payload.courses = payload.data
+      payload.data = undefined // Replace object key 'data' with 'courses', semantically
       state = {
         ...state,
         status: "MODIFIED",
         course: {
+          ...state.course,
           status: "VALID",
-          data: payload,
+          data: action.payload,
+        },
+      }
+      break
+
+    case "SET_GENERATED_SCHEDULE":
+      state = {
+        ...state,
+        course: {
+          ...state.course,
+          generated: action.payload,
         },
       }
       break
