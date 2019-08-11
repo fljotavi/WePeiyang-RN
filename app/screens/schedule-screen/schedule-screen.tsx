@@ -1,22 +1,31 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { Dimensions, FlatList, ScrollView, StatusBar, TouchableOpacity, View } from "react-native"
+import {
+  DeviceEventEmitter,
+  Dimensions,
+  FlatList,
+  ScrollView,
+  StatusBar,
+  TouchableOpacity,
+  View,
+} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
-import { getFullSchedule } from "../../utils/schedule"
+import { getFullSchedule, getWeek, WEEK_LIMIT } from "../../utils/schedule"
 import { TopBar } from "./top-bar"
 import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import Touchable from "react-native-platform-touchable"
-import { format } from "date-fns"
+import { format, isSameDay } from "date-fns"
 import ss from "./schedule-screen.style"
 import Modal from "react-native-modal"
 import { CourseModal } from "../../components/course-modal"
+import { Toasti } from "../../components/toasti"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
@@ -26,10 +35,32 @@ export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
 export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   state = {
     isModalVisible: false,
+    chosenWeek: 1,
     currentWeek: 1,
+    currentTimestamp: 0,
     windowWidth: Dimensions.get("window").width,
     screenHeight: Dimensions.get("screen").height,
     courseIndex: undefined,
+  }
+
+  componentDidMount = () => {
+    let dayToRender = "2018/05/08 13:00"
+    let timestamp = new Date(dayToRender).getTime()
+    let currentWeek = getWeek(timestamp, 1520179200 * 1000)
+    if (currentWeek < 1) currentWeek = 1
+    if (isNaN(currentWeek)) {
+      currentWeek = 1
+      DeviceEventEmitter.emit(
+        "showToast",
+        <Toasti text="Cannot decide current week =(" preset="error" />,
+      )
+    }
+    if (currentWeek > WEEK_LIMIT) currentWeek = WEEK_LIMIT
+    this.setState({
+      chosenWeek: currentWeek,
+      currentWeek: currentWeek,
+      currentTimestamp: timestamp,
+    })
   }
 
   getNewDimensions = event => {
@@ -54,7 +85,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     let daysEachWeek = 5
 
     let weeks = getFullSchedule(course.data, daysEachWeek)
-    let days = weeks[this.state.currentWeek - 1].days
+    let days = weeks[this.state.chosenWeek - 1].days // ???
 
     // For height, you need to specify height of a single components,
     // and the total renderHeight would span
@@ -72,7 +103,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     // When styles are strongly connected to programmatic process,
     // usage of inline styles are not avoidable.
     let columns = days.map((day, i) => (
-      <View>
+      <View key={i}>
         <View
           style={{
             height: dateIndicatorHeight,
@@ -83,7 +114,14 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             alignItems: "center",
           }}
         >
-          <Text text={format(new Date(day.timestamp), "MM/DD")} style={ss.dateIndicator} />
+          <Text
+            text={format(new Date(day.timestamp), "MM/DD")}
+            style={
+              isSameDay(new Date(day.timestamp), new Date(this.state.currentTimestamp))
+                ? ss.dateIndicatorCurrent
+                : ss.dateIndicator
+            }
+          />
         </View>
         <View style={[ss.column, { width: dayWidth }]} key={i}>
           {day.courses.map((c, j) => {
@@ -132,7 +170,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
     if (this.state.courseIndex) {
       let idx = this.state.courseIndex
-      let chosenCourse = weeks[this.state.currentWeek - 1].days[idx[0]].courses[idx[1]]
+      let chosenCourse = weeks[this.state.chosenWeek - 1].days[idx[0]].courses[idx[1]]
 
       modal = (
         <Modal
@@ -153,6 +191,8 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
       )
     }
 
+    const dotmapWidth = 10 * daysEachWeek
+
     return (
       <Screen>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -169,12 +209,18 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
               showsHorizontalScrollIndicator={false}
               style={ss.dotBar}
               data={weeks}
+              initialScrollIndex={this.state.currentWeek - 1}
+              getItemLayout={(data, index) => ({
+                length: dotmapWidth,
+                offset: dotmapWidth * index,
+                index,
+              })}
               keyExtractor={this._keyExtractor}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() => {
                     this.setState({
-                      currentWeek: item.week,
+                      chosenWeek: item.week,
                     })
                   }}
                 >
@@ -183,14 +229,14 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                       dotColor={color.primary}
                       dotInactiveColor={color.washed}
                       dotSize={6}
-                      width={10 * daysEachWeek}
+                      width={dotmapWidth}
                       height={50}
                       style={ss.dotmap}
                       matrix={item.matrix}
                     />
                     <Text style={ss.dotmapText}>
                       <Text text="WEEK " />
-                      <Text text={item.week} />
+                      {this.state.currentWeek !== item.week && <Text text={item.week} />}
                       <Text text="" />
                     </Text>
                   </View>

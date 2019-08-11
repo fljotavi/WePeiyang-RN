@@ -1,3 +1,5 @@
+export const WEEK_LIMIT = 21
+
 export function getScheduleTimeSlot(raw) {
   if (typeof raw === "number") {
     raw = String(raw)
@@ -50,7 +52,7 @@ export const mapTimeSlotToFlatIndex = timeSlot => {
 
 export const getFullSchedule = (data, daysEachWeek) => {
   let weeks = []
-  for (let week = 1; week < 22; week++) {
+  for (let week = 1; week <= WEEK_LIMIT; week++) {
     let days = []
     let matrix = []
     for (let day = 1; day < daysEachWeek + 1; day++) {

@@ -45,6 +45,11 @@ export default {
     fontWeight: "bold",
     fontSize: 10,
   } as TextStyle,
+  dateIndicatorCurrent: {
+    color: color.primary,
+    fontWeight: "bold",
+    fontSize: 10,
+  } as TextStyle,
 
   modal: {
     width: 250,
