@@ -1,3 +1,16 @@
+/*
+ * Course Block
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Course Blocks 是显示在 Home Screen 上的课程块。
+ * 它是纯粹的 Presentational component。这意味着它应该被直接传送最底层的 Styles，
+ * 而所有的课程信息提取、字符串处理、颜色 Hash 计算等，都在调用它的上一级中进行。
+ *
+ * 请不要将它与展示在 Schedule Screen 中的 Course Inner Blocks 混淆。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"

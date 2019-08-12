@@ -1,3 +1,13 @@
+/*
+ * Course Daily Schedule
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Course Daily Schedules 是显示在主页上的今日课程安排。
+ * 此组件也包含了点击每一个 Course 后出现 Modal 的逻辑。
+ *
+ */
+
 import * as React from "react"
 import { FlatList, View, ViewStyle } from "react-native"
 import { CourseBlock } from "../course-block"

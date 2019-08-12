@@ -1,3 +1,15 @@
+/*
+ * Gpa Stat
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Gpa Stat 会显示加权、绩点和学分三组统计数据的数字。
+ * 传入的数据 scores 应该是一个同时具有这三个 keys 的 Object。
+ *
+ * Gpa Stat 通常会同显示 GPA 曲线的 Gpa Curve 一起使用。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"

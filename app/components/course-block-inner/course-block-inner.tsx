@@ -1,3 +1,16 @@
+/*
+ * Course Block Inner
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Course Blocks Inners 是显示在 Schedule Screen 上的课程块。
+ * 与显示在主页上的课程块不同，显示在 Schedule Screen 上的课程块是多样、复杂、大小可变的。
+ * 此组件会自动根据它所获得的宽高来决定内部文字的尺寸、截取的字数和具体布局方式。
+ *
+ * 它比 Home Screen 中的 Course Blocks 更智能一点。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
@@ -39,14 +52,9 @@ export function CourseBlockInner(props: CourseBlockInnerProps) {
     }
   }
 
-  let displayName = courseName
-  // if (courseName.length > 15) {
-  //   displayName = courseName.substr(0, 14) + "…"
-  // }
-
   return (
     <View style={[predefinedStyle, style]} pointerEvents="box-only">
-      <Text numberOfLines={height > 62 ? 3 : 2} text={displayName} style={h1} />
+      <Text numberOfLines={height > 62 ? 3 : 2} text={courseName} style={h1} />
       <View style={info}>
         <Text text={p1} style={small} />
         <Text text={p2} style={small} />

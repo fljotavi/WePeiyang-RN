@@ -1,3 +1,19 @@
+/*
+ * Ecard Bar
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Ecard Bar 会绘制一条 ~180 天每日消费数据的柱状图。
+ *
+ * Ecard Bar 是具有一定设计感的组件。它会显示成类似一条音频信号的形状。
+ * 目前的 API 给出的数据跳过了没有消费的天。因此，为了绘制出这种效果，我们需要对这些数组中缺失的天做填充 (Padding)。
+ * 这部分工作在组件内部完成。
+ *
+ * 请注意，Ecard Bar 是一个非常 Costly 的图表。
+ * 在 Victory Native 实现显著的性能提升之前，在任何时候调用它，都应当考虑延迟渲染以优化加载体验。
+ *
+ */
+
 import * as React from "react"
 import { Dimensions, View, ViewStyle } from "react-native"
 import { VictoryBar, VictoryGroup } from "victory-native"

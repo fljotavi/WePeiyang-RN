@@ -1,3 +1,18 @@
+/*
+ * Gpa Curve
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Gpa Curve 会展示一条 GPA 曲线（包含曲线上的 Tooltips）。
+ * 它通过上级指定的数据进行绘制，但指定的数据不应该是具体的分数，
+ * 而是包含了所有学期成绩信息的标准数据体（详见 Data reducers 中的 GPA 部分数据体）。
+ * 这是为了避免组件复用时冗余的数据提取过程，
+ * 同时保持它为 Presentational component。
+ *
+ * Gpa Curve 通常会同显示三组统计数字的 Gpa Stat 一起使用。
+ *
+ */
+
 import * as React from "react"
 import { Dimensions, View, ViewStyle } from "react-native"
 import { Text } from "../text"

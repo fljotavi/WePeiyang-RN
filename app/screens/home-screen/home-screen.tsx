@@ -1,3 +1,13 @@
+/*
+ * Home Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Home Screen 是正常状态下登录微北洋后，或打开存储了有效 Token 的微北洋后会跳转到的主页。
+ * 这里会显示模块导航、GPA 曲线、今日课程、借阅书籍等主要数据。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 import { setScoreType } from "../../actions/preference-actions"

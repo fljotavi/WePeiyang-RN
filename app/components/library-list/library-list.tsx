@@ -1,3 +1,14 @@
+/*
+ * Library List
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Library Lists 是显示在主页上的已借阅书籍。
+ * 此组件也包含了点击每一本书后出现 Modal 的逻辑。
+ *
+ */
+
+
 import * as React from "react"
 import { DeviceEventEmitter, FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"

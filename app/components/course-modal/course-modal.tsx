@@ -1,3 +1,14 @@
+/*
+ * Course Modal
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Course Modals 是
+ * 点击主页或 Schedule Screen 上的课程块后
+ * 出现的包含课程详细信息的对话框。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"

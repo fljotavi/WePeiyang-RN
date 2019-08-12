@@ -1,3 +1,14 @@
+/*
+ * By TWT
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * By TWTs 是用于显示天外天 Logo 以及附带文字的组件。
+ * 它在需要显示子品牌或 Slogan 时也很有用，如 [天外天 Logo] SecureAuth™。
+ * 本组件符合天外天工作室的品牌形象规范。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import Svg, { G, Path } from "react-native-svg"

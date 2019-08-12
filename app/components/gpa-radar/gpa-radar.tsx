@@ -1,3 +1,16 @@
+/*
+ * Gpa Radar
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Gpa Radar 会绘制一个 GPA 雷达 + 玫瑰复合图表。
+ * 这是一个 Stateful 组件，它会从全局的 Redux Store 中读取 GPA 成绩和当前选中的学期状态，而不支持手动指定。
+ *
+ * 请注意，Gpa Radar 是一个非常 Costly 的图表。
+ * 在 Victory Native 实现显著的性能提升之前，在任何时候调用它，都应当考虑延迟渲染以优化加载体验。
+ *
+ */
+
 import * as React from "react"
 import { TouchableOpacity, View, ViewStyle } from "react-native"
 import { color, typography } from "../../theme"
@@ -190,7 +203,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {}
 }
 
@@ -198,4 +211,3 @@ export const connectedGpaRadar = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(GpaRadar)
-export default connectedGpaRadar

@@ -1,3 +1,14 @@
+/*
+ * Ecard Block
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Ecard Block 会展示一张拟物风格的校园卡。
+ * 这是一个 Stateful 组件，它会从全局的 Redux Store 中读取校园卡的详细信息，而不支持手动指定。
+ * 这是为了保证数据的一致性，利用 Flux 设计模式中的 "Single source of truth"。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

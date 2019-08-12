@@ -1,6 +1,13 @@
 /*
- * Iana (Plural form for Ian) are components for empty blocks.
- * */
+ * Ian
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Iana (Ian 的复数形式) 是用于填充空 List 的提示性组件。
+ * 如主页的「你还没有借阅书籍」，Schedule Screen 的「今天无课」等。
+ * 样式上，它表现为淡灰色的圆角矩形。
+ *
+ */
 
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"

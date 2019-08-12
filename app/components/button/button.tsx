@@ -1,3 +1,14 @@
+/*
+ * Button
+ * Created by Ignite
+ * Edited by Tzingtao Chow
+ * ---
+ *
+ * Button 是微北洋内通用的按钮组件，用于简单的可点击元素。
+ * Button 可以传入文字、i18n 翻译定位或传入子组件，并支持预设样式。
+ *
+ */
+
 import * as React from "react"
 import { Text } from "../text"
 import { viewPresets, textPresets } from "./button.presets"

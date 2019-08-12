@@ -1,3 +1,16 @@
+/*
+ * Data actions
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Data actions 中包含了所有与获取和储存数据相关的 Redux actions。
+ *
+ * 微北洋内部的网络请求在这里发起，并且经过必要的错误捕捉与处理等步骤。
+ * 捕捉到的错误一般会统一格式，并注入错误来源（主要考虑到 HomeScreen 中 Promise.all 的刷新错误定位）后抛出。
+ * 如果数据格式本身存在设计弊端，也一般在本层提前处理。其它的数据处理步骤，请参见 Reducers。
+ *
+ */
+
 import { twtGet } from "../services/twt-fetch"
 import { schedule1 } from "../utils/mock-course"
 

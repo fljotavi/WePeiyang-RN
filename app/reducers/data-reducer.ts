@@ -1,3 +1,13 @@
+/*
+ * Data Reducers
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Data Reducers 包含了所有与网络请求得到的数据处理相关的 Reducers。
+ * 涉及到的数据如课表内容、GPA、校园卡流水记录等。
+ *
+ */
+
 import { digitsFromScoreType } from "../utils/common"
 
 const dataReducerInitialState = {
