@@ -8,8 +8,9 @@ export function clearAllData() {
 }
 
 export function fetchGpaData() {
+  let path = "v1/gpa"
   return dispatch => {
-    return twtGet("v1/gpa")
+    return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
@@ -18,6 +19,7 @@ export function fetchGpaData() {
             payload: responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -25,8 +27,9 @@ export function fetchGpaData() {
 }
 
 export function fetchCourseData() {
+  let path = "v1/classtable"
   return dispatch => {
-    return twtGet("v1/classtable")
+    return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
@@ -35,6 +38,7 @@ export function fetchCourseData() {
             payload: schedule1.data, // responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -49,8 +53,9 @@ export function setGeneratedSchedule(payload) {
 }
 
 export function fetchUserData() {
+  let path = "v2/auth/self"
   return dispatch => {
-    return twtGet("v2/auth/self")
+    return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
         // Inconsistent response formatting here, no error_code. Bad server-side api design, yet there's nothing I can do about it.
@@ -60,6 +65,7 @@ export function fetchUserData() {
             payload: responseJson,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -67,8 +73,9 @@ export function fetchUserData() {
 }
 
 export function fetchLibraryData() {
+  let path = "v1/library/user/info"
   return dispatch => {
-    return twtGet("v1/library/user/info")
+    return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
@@ -79,6 +86,7 @@ export function fetchLibraryData() {
             payload: responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -86,8 +94,9 @@ export function fetchLibraryData() {
 }
 
 export function renewBook(barcode) {
+  let path = `v1/library/renew${barcode}`
   return () => {
-    return twtGet(`v1/library/renew${barcode}`)
+    return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson)
@@ -96,8 +105,9 @@ export function renewBook(barcode) {
 }
 
 export function fetchEcardProfile(cardId, password) {
+  let path = "v1/ecard/profile"
   return dispatch => {
-    return twtGet("v1/ecard/profile", { cardnum: cardId, password: password })
+    return twtGet(path, { cardnum: cardId, password: password })
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
@@ -106,6 +116,7 @@ export function fetchEcardProfile(cardId, password) {
             payload: responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -113,8 +124,9 @@ export function fetchEcardProfile(cardId, password) {
 }
 
 export function fetchEcardTurnover(cardId, password, days) {
+  let path = "v1/ecard/turnover"
   return dispatch => {
-    return twtGet("v1/ecard/turnover", { cardnum: cardId, password: password, term: days })
+    return twtGet(path, { cardnum: cardId, password: password, term: days })
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.error_code === -1) {
@@ -123,6 +135,7 @@ export function fetchEcardTurnover(cardId, password, days) {
             payload: responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -130,8 +143,9 @@ export function fetchEcardTurnover(cardId, password, days) {
 }
 
 export function fetchEcardTotal(cardId, password) {
+  let path = "v1/ecard/total"
   return dispatch => {
-    return twtGet("v1/ecard/total", { cardnum: cardId, password: password })
+    return twtGet(path, { cardnum: cardId, password: password })
       .then(response => response.json())
       .then(responseJson => {
         console.log("Ecard Total Format", responseJson)
@@ -141,6 +155,7 @@ export function fetchEcardTotal(cardId, password) {
             payload: responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })
@@ -148,8 +163,9 @@ export function fetchEcardTotal(cardId, password) {
 }
 
 export function fetchEcardLineChart(cardId, password) {
+  let path = "v1/ecard/lineChart"
   return dispatch => {
-    return twtGet("v1/ecard/lineChart", { cardnum: cardId, password: password })
+    return twtGet(path, { cardnum: cardId, password: password })
       .then(response => response.json())
       .then(responseJson => {
         console.log("Ecard LineChart Format", responseJson)
@@ -159,6 +175,7 @@ export function fetchEcardLineChart(cardId, password) {
             payload: responseJson.data,
           })
         } else {
+          responseJson.origin = path
           throw responseJson
         }
       })

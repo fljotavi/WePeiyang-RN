@@ -1,4 +1,4 @@
-export const schedule1 = {
+export const schedule3 = {
   error_code: -1,
   message: "",
   data: {
@@ -816,5 +816,93 @@ export const schedule2 = {
         ext: "",
       },
     ],
+  },
+}
+
+export const schedule1 = {
+  error_code: -1,
+  message: "",
+  data: {
+    term: "17182",
+    data: [
+      {
+        classid: "5596",
+        courseid: "2100075",
+        coursename: "概率论与数理统计1",
+        coursetype: "数学",
+        coursenature: "必修",
+        credit: "3.0",
+        teacher: "杨玲玲",
+        arrange: [
+          {
+            week: "单双周",
+            day: "1",
+            start: "1",
+            end: "3",
+            room: "45楼B118",
+          },
+        ],
+        week: {
+          start: "4",
+          end: "14",
+        },
+        college: "数学学院",
+        campus: "北洋园校区",
+        ext: "重修",
+      },
+      {
+        classid: "5531",
+        courseid: "2111140",
+        coursename: "马克思主义基本原理",
+        coursetype: "思想政治理论",
+        coursenature: "必修",
+        credit: "2.5",
+        teacher: "孙利",
+        arrange: [
+          {
+            week: "单双周",
+            day: "1",
+            start: "5",
+            end: "6",
+            room: "46楼A110",
+          },
+        ],
+        week: {
+          start: "4",
+          end: "14",
+        },
+        college: "马克思主义学院",
+        campus: "北洋园校区",
+        ext: "重修",
+      },
+      {
+        classid: "3839",
+        courseid: "2111295",
+        coursename: "大学英语4",
+        coursetype: "外语",
+        coursenature: "必修",
+        credit: "2.0",
+        teacher: "李小红",
+        arrange: [
+          {
+            week: "单双周",
+            day: "1",
+            start: "1",
+            end: "3",
+            room: "48楼210",
+          },
+        ],
+        week: {
+          start: "1",
+          end: "16",
+        },
+        college: "文学院",
+        campus: "北洋园校区",
+        ext: "",
+      }
+    ],
+    week: 3,
+    term_start: 1520179200,
+    updated_at: "2018-03-29 12:24:22",
   },
 }
