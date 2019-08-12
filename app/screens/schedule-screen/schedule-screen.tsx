@@ -140,70 +140,84 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
     // When styles are strongly connected to programmatic process,
     // usage of inline styles are not avoidable.
-    let columns = days.map((day, i) => (
-      <View key={i}>
-        <DateIndicator
-          height={dateIndicatorHeight}
-          marginBottom={timeSlotMargin}
-          text={format(new Date(day.timestamp), "MM/DD")}
-          active={isSameDay(new Date(day.timestamp), new Date(this.state.currentTimestamp))}
-        />
+    let columns = days.map((day, i) => {
+      let crashIndex = 0
+      return (
+        <View key={i}>
+          <DateIndicator
+            height={dateIndicatorHeight}
+            marginBottom={timeSlotMargin}
+            text={format(new Date(day.timestamp), "MM/DD")}
+            active={isSameDay(new Date(day.timestamp), new Date(this.state.currentTimestamp))}
+          />
 
-        {/*Begin a daily schedule column*/}
-        <View style={[ss.column, { width: dayWidth, height: scheduleRenderHeight }]} key={i}>
-          {day.courses.length > 0 ? (
-            day.courses.map((c, j) => {
-              let start = Number(c.activeArrange.start) - 1
-              let end = Number(c.activeArrange.end)
-              let duration = end - start
-              return (
-                <Touchable
-                  style={{
-                    position: "absolute",
-                    top: start * (timeSlotHeight + timeSlotMargin),
-                  }}
-                  key={j}
-                  delayPressIn={0}
-                  onPress={() => {
-                    this.setState(
-                      {
-                        courseIndex: [i, j],
-                      },
-                      () => {
-                        this.openModal()
-                      },
-                    )
-                  }}
-                  foreground={Touchable.Ripple(color.background)}
-                >
-                  <CourseBlockInner
+          {/*Begin a daily schedule column*/}
+          <View style={[ss.column, { width: dayWidth, height: scheduleRenderHeight }]} key={i}>
+            {day.courses.length > 0 ? (
+              day.courses.map((c, j, arr) => {
+                let start = Number(c.activeArrange.start) - 1
+                let end = Number(c.activeArrange.end)
+                let duration = end - start
+
+                // If detected 2 courses with the same start time, translate the late rendered one
+                let verticalPosition = start * (timeSlotHeight + timeSlotMargin)
+                if (j > 0) {
+                  if (arr[j].activeArrange.start === arr[j - 1].activeArrange.start) {
+                    crashIndex += 1
+                    verticalPosition += crashIndex * 20
+                  } else {
+                    crashIndex = 0
+                  }
+                }
+                return (
+                  <Touchable
                     style={{
-                      width: dayWidth,
-                      height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
-                      alignSelf: "stretch",
+                      position: "absolute",
+                      top: verticalPosition,
                     }}
-                    backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
-                    courseName={c.coursename}
-                    p1={c.teacher}
-                    p2={sanitizeLocation(c.activeArrange.room)}
-                  />
-                </Touchable>
-              )
-            })
-          ) : (
-            // Ian and this view here have more differences than styles in common, so plain view.
-            <View style={ss.scheduleIan}>
-              <Text
-                style={ss.scheduleIanText}
-                preset="i"
-                text={dayOffActivities(day.timestamp, studentId)}
-              />
-            </View>
-          )}
+                    key={j}
+                    delayPressIn={0}
+                    onPress={() => {
+                      this.setState(
+                        {
+                          courseIndex: [i, j],
+                        },
+                        () => {
+                          this.openModal()
+                        },
+                      )
+                    }}
+                    foreground={Touchable.Ripple(color.background)}
+                  >
+                    <CourseBlockInner
+                      style={{
+                        width: dayWidth,
+                        height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
+                        alignSelf: "stretch",
+                      }}
+                      backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
+                      courseName={c.coursename}
+                      p1={c.teacher}
+                      p2={sanitizeLocation(c.activeArrange.room)}
+                    />
+                  </Touchable>
+                )
+              })
+            ) : (
+              // Ian and this view here have more differences than styles in common, so plain view.
+              <View style={ss.scheduleIan}>
+                <Text
+                  style={ss.scheduleIanText}
+                  preset="i"
+                  text={dayOffActivities(day.timestamp, studentId)}
+                />
+              </View>
+            )}
+          </View>
+          {/*End a daily schedule column*/}
         </View>
-        {/*End a daily schedule column*/}
-      </View>
-    ))
+      )
+    })
 
     let modal = <View />
 

@@ -836,9 +836,9 @@ export const schedule1 = {
         arrange: [
           {
             week: "单双周",
-            day: "1",
-            start: "1",
-            end: "3",
+            day: "4",
+            start: "2",
+            end: "4",
             room: "45楼B118",
           },
         ],
@@ -862,9 +862,30 @@ export const schedule1 = {
           {
             week: "单双周",
             day: "1",
-            start: "5",
-            end: "6",
+            start: "3",
+            end: "4",
             room: "46楼A110",
+          },
+          {
+            week: "单双周",
+            day: "2",
+            start: "1",
+            end: "4",
+            room: "46楼A110",
+          },
+          {
+            week: "单双周",
+            day: "3",
+            start: "4",
+            end: "5",
+            room: "45楼B118",
+          },
+          {
+            week: "单双周",
+            day: "4",
+            start: "2",
+            end: "4",
+            room: "45楼B118",
           },
         ],
         week: {
@@ -887,9 +908,30 @@ export const schedule1 = {
           {
             week: "单双周",
             day: "1",
-            start: "1",
-            end: "3",
+            start: "3",
+            end: "4",
             room: "48楼210",
+          },
+          {
+            week: "单双周",
+            day: "2",
+            start: "3",
+            end: "5",
+            room: "48楼210",
+          },
+          {
+            week: "单双周",
+            day: "3",
+            start: "1",
+            end: "6",
+            room: "45楼B118",
+          },
+          {
+            week: "单双周",
+            day: "4",
+            start: "2",
+            end: "4",
+            room: "45楼B118",
           },
         ],
         week: {

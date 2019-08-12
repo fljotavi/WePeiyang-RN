@@ -1,4 +1,5 @@
 import { palette } from "./palette"
+import Color from "color"
 
 const white = alpha => `rgba(255,255,255,${alpha})`
 const black = alpha => `rgba(0,0,0,${alpha})`
@@ -58,7 +59,7 @@ export const color = {
       palette.pale,
       palette.offBlack,
       palette.offBlack,
-    ],
+    ].map(c => Color(c).fade(0.1)),
     bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
   },
 

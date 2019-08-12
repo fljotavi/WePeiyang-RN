@@ -89,7 +89,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
     case "SET_COURSE_DATA":
       let payload = action.payload
       payload.courses = payload.data
-      console.log(payload)
       state = {
         ...state,
         status: "MODIFIED",

@@ -121,6 +121,9 @@ export const getCoursesByDay = (timestamp, data) => {
       })
     }
   })
+  res.sort((a, b) => {
+    return a.activeArrange.start - b.activeArrange.start
+  })
   return res
 }
 
