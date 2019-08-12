@@ -1,3 +1,15 @@
+/*
+ * Text Field
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Text Fields 是微北洋内通用的 TextInput 组件，用于显示文字输入框。
+ *
+ * 这是一个对于 React Native 内置 TextInput 组件的 HOC。
+ * 它和 Text 组件的来头差不多，请参见 Text 组件的使用说明。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

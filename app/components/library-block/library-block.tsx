@@ -3,7 +3,7 @@
  * Created by Tzingtao Chow
  * ---
  *
- * Library Blocks 是一本形象的书。
+ * 一个 Library Block 绘制一本形象的书。
  * 它目前被显示在 Home Screen 的借阅架中。
  * 为了实现点击详情和续借等功能，它通常需要被 Library List 组件包含显示。
  *

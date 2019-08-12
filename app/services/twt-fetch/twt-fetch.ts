@@ -1,3 +1,16 @@
+/*
+ * TWT Fetch
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * TWT Fetch 模块用于存储应用发起 Open.twtstudio.com 域下的标准网络请求的底层流程。
+ * 它会帮你处理请求签名、Token 鉴权等必要流程，调用时只需给出相对 URL 即可。
+ * 由于签名和鉴权是发送网络请求给 Open 必须的步骤，所以它们默认开启。但你可以通过传递参数来覆写这些设置。
+ *
+ * 当然，由于 App Key 和 Secret 很早就被开源，所以签名本质并没有什么用，只是徒增了前后端开发人员的负担而已。
+ *
+ */
+
 import sha1 from "./sha1.js"
 import { mergeDeepLeft } from "ramda"
 import AsyncStorage from "@react-native-community/async-storage"

@@ -1,3 +1,13 @@
+/*
+ * Tju Badge
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Tju Badge 用于绘制一个天津大学校徽盾牌。
+ * Nothing fancy, huh?
+ *
+ */
+
 import * as React from "react"
 import { ViewStyle } from "react-native"
 import Svg, { G, Path } from "react-native-svg"

@@ -1,3 +1,13 @@
+/*
+ * Module Button
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Module Buttons 是一种包含了图标的特殊按钮，它用于去向不同模块的导航。
+ * 目前 Module Buttons 显示在主页顶端。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"

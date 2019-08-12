@@ -1,3 +1,16 @@
+/*
+ * Toasti
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Toasti 用于在屏幕下方显示一条简短的文字通知，持续几秒后自动消失。
+ * 由于本组件所基于的 EasyToast 已经在根组件注册在 DeviceEventEmitter 中，
+ * 故可以在任何组件中通过类似 `DeviceEventEmitter.emit("showToast", <Toasti text="Your message..." />)` 的方式调用。
+ *
+ * 不指定 preset 属性，则为默认样式（primary）。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"

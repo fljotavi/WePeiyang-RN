@@ -7,7 +7,7 @@
 > *There was a gravity - almost a sense of civic responsibility,*
 > *to care way beyond any sort of functional imperative.*
 >
-> — Jony Ives, Former Chief Design Officer of Apple
+> — Jony Ives
 
 　
 
@@ -55,6 +55,7 @@ The project is currently under experimental stage with several primary modules f
 | Independent book renew                                      | 指定书籍续借                 | ⚠ (API Malfunction) |
 | Latitude of custom theming                                  | 更加完善的主题定制系统       |                     |
 | Proper spacing between latin letters & ideograph characters | 中西文混排时自动添加空格间距 | ✔                   |
+| Support of scheduling conflicts                             | 冲突课程显示                 | ✔                   |
 | ......                                                      |                              |                     |
 
 ### Guidelines on UX Design 体验性改进
@@ -63,7 +64,7 @@ The project is currently under experimental stage with several primary modules f
 - Use transitions & animations / 使用过渡与动画
 - Lazy loading on costly charts / 低性能图表的延迟加载
 - Settings instantly take effect / 避免设置项变更后重启应用
-- Every `Touchable` needs visual feedback / 每一个可触摸元素都需要触摸视觉反馈
+- Every `Touchable` needs visual feedback / 每一个可触摸元素都需要视觉反馈
 - Loading indicators on async actions / 加载时的 Loading 动画指示
 - Consistent layout across platforms / 平台无关的一致布局
 - ......
