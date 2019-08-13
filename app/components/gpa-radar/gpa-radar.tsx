@@ -136,9 +136,10 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
     let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
     let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
 
-    if (gpa.status !== "VALID") {
+    if (!(gpa.status === "VALID" && gpa.data.length > 0)) {
       return <View />
     }
+
     const predefinedStyle: ViewStyle = {
       flex: 1,
       alignItems: "center",
@@ -199,7 +200,7 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
 const mapStateToProps = state => {
   return {
     gpa: state.dataReducer.gpa,
-    semesterIndex: state.semesterReducer,
+    semesterIndex: state.dataReducer.gpa.semesterIndex,
   }
 }
 

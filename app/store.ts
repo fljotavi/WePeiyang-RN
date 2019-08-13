@@ -12,7 +12,7 @@
  */
 
 import { applyMiddleware, combineReducers, createStore } from "redux"
-import { authReducer, preferenceReducer, semesterReducer } from "./reducers/general-reducer"
+import { authReducer, preferenceReducer } from "./reducers/general-reducer"
 import { dataReducer } from "./reducers/data-reducer"
 import { persistStore, persistReducer } from "redux-persist"
 import thunk from "redux-thunk"
@@ -25,7 +25,6 @@ const persistConfig = {
 
 const topLevelReducer = combineReducers({
   preferenceReducer,
-  semesterReducer,
   dataReducer,
   authReducer,
 })

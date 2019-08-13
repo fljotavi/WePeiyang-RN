@@ -76,7 +76,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
       color.background,
     ]
 
-    if (status !== "VALID" || data.length <= 0) {
+    if (!(status === "VALID" && data.length > 0)) {
       return <View />
     }
 
@@ -176,7 +176,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
 
 const mapStateToProps = state => {
   return {
-    semesterIndex: state.semesterReducer,
+    semesterIndex: state.dataReducer.gpa.semesterIndex,
   }
 }
 

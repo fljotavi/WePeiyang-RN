@@ -251,7 +251,7 @@ const mapStateToProps = state => {
     scoreType: state.preferenceReducer.scoreType,
     gpaOrderBy: state.preferenceReducer.gpaOrderBy,
     gpa: state.dataReducer.gpa,
-    semesterIndex: state.semesterReducer,
+    semesterIndex: state.dataReducer.gpa.semesterIndex,
   }
 }
 

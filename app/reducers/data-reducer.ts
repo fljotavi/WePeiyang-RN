@@ -23,6 +23,7 @@ const dataReducerInitialState = {
       gpaDetailed: {},
       gpaOverall: {},
     },
+    semesterIndex: 0,
   },
   library: {
     status: "NOT_RECEIVED",
@@ -45,9 +46,7 @@ const dataReducerInitialState = {
     lineChart: undefined,
     total: undefined,
   },
-  yellowPages: {
-
-  },
+  yellowPages: {},
 }
 
 export const dataReducer = (state = dataReducerInitialState, action) => {
@@ -61,8 +60,19 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         ...state,
         status: "MODIFIED",
         userInfo: {
+          ...state.userInfo,
           status: "VALID",
           data: action.payload,
+        },
+      }
+      break
+
+    case "SET_SEMESTER_INDEX":
+      state = {
+        ...state,
+        gpa: {
+          ...state.gpa,
+          semesterIndex: action.payload,
         },
       }
       break
@@ -93,6 +103,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         ...state,
         status: "MODIFIED",
         gpa: {
+          ...state.gpa,
           status: "VALID",
           data: extractedData,
         },
@@ -101,6 +112,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
 
     case "SET_COURSE_DATA":
       let payload = action.payload
+      console.log(payload)
       payload.courses = payload.data
       state = {
         ...state,
@@ -128,6 +140,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
         ...state,
         status: "MODIFIED",
         library: {
+          ...state.library,
           status: "VALID",
           data: action.payload,
         },
@@ -183,6 +196,7 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       state = {
         ...state,
         yellowPages: {
+          ...state.yellowPages,
           status: "VALID",
           data: action.payload,
         },
