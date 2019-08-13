@@ -53,6 +53,7 @@ export class _TextField extends React.Component<TextFieldProps, {}> {
     const {
       placeholderTx,
       placeholder,
+      placeholderTextColor,
       labelTx,
       label,
       preset = "default",
@@ -74,7 +75,7 @@ export class _TextField extends React.Component<TextFieldProps, {}> {
         <Text preset="fieldLabel" tx={labelTx} text={label} />
         <TextInput
           placeholder={actualPlaceholder}
-          placeholderTextColor={color.lightGrey}
+          placeholderTextColor={placeholderTextColor || color.lightGrey}
           underlineColorAndroid={color.transparent}
           selectionColor={color.black(0.12)}
           {...rest}

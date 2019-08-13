@@ -88,7 +88,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
           "showToast",
           <Toasti
             text={`Part of the data wasn't successfully transmitted: Error ${err.message} in request ${err.origin}`}
-            preset="error"
+            preset="warning"
           />,
         )
       })

@@ -45,6 +45,9 @@ const dataReducerInitialState = {
     lineChart: undefined,
     total: undefined,
   },
+  yellowPages: {
+
+  },
 }
 
 export const dataReducer = (state = dataReducerInitialState, action) => {
@@ -134,7 +137,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
     case "SET_ECARD_AUTH":
       state = {
         ...state,
-        status: "MODIFIED",
         ecard: {
           ...state.ecard,
           auth: {
@@ -149,7 +151,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
     case "SET_ECARD_PROFILE":
       state = {
         ...state,
-        status: "MODIFIED",
         ecard: {
           ...state.ecard,
           status: "VALID",
@@ -161,7 +162,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
     case "SET_ECARD_TURNOVER":
       state = {
         ...state,
-        status: "MODIFIED",
         ecard: {
           ...state.ecard,
           turnover: action.payload,
@@ -172,7 +172,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
     case "SET_ECARD_TOTAL":
       state = {
         ...state,
-        status: "MODIFIED",
         ecard: {
           ...state.ecard,
           total: action.payload,
@@ -180,13 +179,12 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       }
       break
 
-    case "SET_ECARD_LINE_CHART":
+    case "SET_YELLOW_PAGES_DATA":
       state = {
         ...state,
-        status: "MODIFIED",
-        ecard: {
-          ...state.ecard,
-          lineChart: action.payload,
+        yellowPages: {
+          status: "VALID",
+          data: action.payload,
         },
       }
       break

@@ -1,6 +1,6 @@
 export const palette = {
   white: "#ffffff",
-  offWhite: "#f7f7f7",
+  offWhite: "#f8f8f8",
   washed: "rgb(236, 237, 238)",
   lightGrey: "rgb(205, 206, 212)",
   offBlack: "#262626",

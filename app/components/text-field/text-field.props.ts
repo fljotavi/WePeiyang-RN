@@ -11,6 +11,8 @@ export interface TextFieldProps extends TextInputProps {
    */
   placeholder?: string
 
+  placeholderTextColor?
+
   /**
    * The label i18n key.
    */

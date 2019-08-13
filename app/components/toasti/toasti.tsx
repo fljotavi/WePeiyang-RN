@@ -53,6 +53,10 @@ export function Toasti(props: ToastiProps) {
       v.backgroundColor = color.module.ecard[1]
       t.color = color.module.ecard[0]
       break
+    case "yellowPages":
+      v.backgroundColor = color.module.yellowPages[1]
+      t.color = color.module.yellowPages[0]
+      break
     case "error":
       v.backgroundColor = color.error
       t.color = color.white(1)

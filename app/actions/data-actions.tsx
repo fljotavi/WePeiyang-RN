@@ -79,6 +79,7 @@ export function fetchUserData() {
           })
         } else {
           responseJson.origin = path
+          responseJson.message = "Failed to fetch User Data..."
           throw responseJson
         }
       })
@@ -100,6 +101,27 @@ export function fetchLibraryData() {
           })
         } else {
           responseJson.origin = path
+          throw responseJson
+        }
+      })
+  }
+}
+
+export function fetchYellowPagesData() {
+  let path = "v1/yellowpage/data3"
+  return dispatch => {
+    return twtGet(path)
+      .then(response => response.json())
+      .then(responseJson => {
+        // Inconsistent response formatting here, no error_code. Bad server-side api design, yet there's nothing I can do about it.
+        if (responseJson.category_list) {
+          dispatch({
+            type: "SET_YELLOW_PAGES_DATA",
+            payload: responseJson.category_list,
+          })
+        } else {
+          responseJson.origin = path
+          responseJson.message = "Failed to fetch yellow pages data..."
           throw responseJson
         }
       })
