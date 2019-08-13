@@ -18,7 +18,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
 import { dayOffActivities, getFullSchedule, getWeek, WEEK_LIMIT } from "../../utils/schedule"
-import { TopBar } from "./top-bar"
+import { TopBar } from "../../components/top-bar"
 import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import Touchable from "react-native-platform-touchable"
@@ -263,8 +263,23 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             />
           }
         >
+
           <TopBar
-            actions={[() => this.props.navigation.goBack(), () => this._onRefresh(), () => {}]}
+            elements={{
+              left: [
+                {
+                  iconText: "arrow_back",
+                  action: () => this.props.navigation.goBack(),
+                },
+              ],
+              right: [
+                {
+                  iconText: "sync",
+                  action: () => this._onRefresh(),
+                },
+              ],
+            }}
+            color={color.primary}
           />
 
           <View style={ss.container} onLayout={this.getNewDimensions}>

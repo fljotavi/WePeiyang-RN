@@ -18,7 +18,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { fetchEcardProfile, setEcardAuth } from "../../actions/data-actions"
-import { TopBar } from "./top-bar"
+import { TopBar } from "../../components/top-bar"
 import { ByTwt } from "../../components/by-twt/by-twt"
 import { Toasti } from "../../components/toasti"
 
@@ -59,7 +59,18 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
       <Screen style={ssGlobal.login.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-        <TopBar actions={[() => this.props.navigation.goBack()]} />
+        <TopBar
+          elements={{
+            left: [
+              {
+                iconText: "arrow_back",
+                action: () => this.props.navigation.goBack(),
+              },
+            ],
+            right: [],
+          }}
+          color={color.primary}
+        />
 
         <View style={ssGlobal.login.container}>
           <View>

@@ -12,8 +12,9 @@ import AsyncStorage from "@react-native-community/async-storage"
 
 import ss from "./user-screen.style"
 import { clearAllData } from "../../actions/data-actions"
-import { TopBar } from "./top-bar"
+import { TopBar } from "../../components/top-bar"
 import { Toasti } from "../../components/toasti"
+import { color } from "../../theme"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   compData
@@ -52,10 +53,21 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
 
         <ScrollView>
           <TopBar
-            actions={[
-              () => this.props.navigation.goBack(),
-              () => this.props.navigation.navigate("settings"),
-            ]}
+            elements={{
+              left: [
+                {
+                  iconText: "arrow_back",
+                  action: () => this.props.navigation.goBack(),
+                },
+              ],
+              right: [
+                {
+                  iconText: "settings",
+                  action: () => this.props.navigation.navigate("settings"),
+                },
+              ],
+            }}
+            color={color.background}
           />
 
           <View style={ss.container}>

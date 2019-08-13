@@ -24,12 +24,13 @@ import { connectedGpaRadar as GpaRadar } from "../../components/gpa-radar"
 import { GpaSnack } from "./gpa-snack"
 
 import { Text } from "../../components/text"
-import { TopBar } from "./top-bar"
 
 import Modal from "react-native-modal"
 import { Button } from "../../components/button"
 import { GpaInfo } from "./gpa-info"
 import { Toasti } from "../../components/toasti"
+
+import { TopBar } from "../../components/top-bar"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -163,7 +164,25 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           }
         >
           <TopBar
-            actions={[() => this.props.navigation.goBack(), this.toggleModal, this._onRefresh]}
+            elements={{
+              left: [
+                {
+                  iconText: "arrow_back",
+                  action: () => this.props.navigation.goBack(),
+                },
+              ],
+              right: [
+                {
+                  iconText: "info_outline",
+                  action: this.toggleModal,
+                },
+                {
+                  iconText: "sync",
+                  action: this._onRefresh,
+                },
+              ],
+            }}
+            color={color.module.gpa[1]}
           />
 
           <Animated.View style={{ ...ss.radarContainer, opacity: this.state.fadeAnim }}>

@@ -8,7 +8,7 @@ import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setLanguage } from "../../actions/preference-actions"
 import { SettingsSnack } from "./settings-snack"
-import { TopBar } from "./top-bar"
+import { TopBar } from "../../components/top-bar"
 import { languageFullnames } from "../../i18n/i18n"
 
 export interface LanguageSettingsScreenProps extends NavigationScreenProps<{}> {
@@ -47,7 +47,19 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-        <TopBar actions={[() => this.props.navigation.goBack()]} />
+        <TopBar
+          elements={{
+            left: [
+              {
+                iconText: "arrow_back",
+                action: () => this.props.navigation.goBack(),
+              },
+            ],
+            right: [],
+          }}
+          color={color.primary}
+        />
+
         <View style={ss.container}>
           <Text tx="settingsScreen.languageSetting" preset="h2" style={ss.heading} />
 

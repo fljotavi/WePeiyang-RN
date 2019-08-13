@@ -15,7 +15,7 @@ import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
-import { TopBar } from "./top-bar"
+import { TopBar } from "../../components/top-bar"
 import { Text } from "../../components/text"
 
 import {
@@ -128,7 +128,23 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             />
           }
         >
-          <TopBar actions={[() => this.props.navigation.goBack(), () => {}, this._onRefresh]} />
+          <TopBar
+            elements={{
+              left: [
+                {
+                  iconText: "arrow_back",
+                  action: () => this.props.navigation.goBack(),
+                },
+              ],
+              right: [
+                {
+                  iconText: "sync",
+                  action: this._onRefresh,
+                },
+              ],
+            }}
+            color={color.module.ecard[1]}
+          />
 
           <View style={ss.container}>
             <EcardBlock
