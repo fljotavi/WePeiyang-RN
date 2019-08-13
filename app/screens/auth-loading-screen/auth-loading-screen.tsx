@@ -1,3 +1,13 @@
+/*
+ * Auth Loading Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Auth Loading Screen 是应用打开后总是要加载的第一个 Screen。
+ * 它会判断用户的登陆状态，并根据判断结果决定 navigate 到 Home Screen 还是登录页。
+ *
+ */
+
 import * as React from "react"
 import { StatusBar, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"

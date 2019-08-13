@@ -1,4 +1,12 @@
-// Welcome to the main entry point of the app.
+/*
+ * App
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 欢迎来到程序的主入口。
+ * Welcome to the main entry point of the app.
+ *
+ */
 
 import "./i18n"
 import * as React from "react"

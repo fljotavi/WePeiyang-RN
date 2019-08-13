@@ -11,7 +11,7 @@
  *
  */
 
-import sha1 from "./sha1.js"
+import sha1 from "../../utils/sha1"
 import { mergeDeepLeft } from "ramda"
 import AsyncStorage from "@react-native-community/async-storage"
 import configureStore from "../../store"

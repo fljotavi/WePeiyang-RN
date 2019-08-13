@@ -1,3 +1,12 @@
+/*
+ * Bind Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Bind Screen 目前是用来绑定校园卡的页面。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 
