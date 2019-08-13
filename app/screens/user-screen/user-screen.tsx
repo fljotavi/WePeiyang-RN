@@ -14,7 +14,7 @@ import ss from "./user-screen.style"
 import { clearAllData } from "../../actions/data-actions"
 import { TopBar } from "../../components/top-bar"
 import { Toasti } from "../../components/toasti"
-import { color } from "../../theme"
+import { color, shadowPresets } from "../../theme"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   compData
@@ -80,7 +80,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                 preset="small"
               />
             </View>
-            <View style={ss.shortcutModulePanel}>
+            <View style={[ss.shortcutModulePanel, shadowPresets.close]}>
               <Gradicon
                 onPress={() => this.props.navigation.navigate("gpa")}
                 source={require("./gradicons/gradicon1.png")}

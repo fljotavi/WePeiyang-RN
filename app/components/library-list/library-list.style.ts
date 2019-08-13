@@ -12,7 +12,6 @@ export default {
     marginRight: 13,
     borderTopRightRadius: layoutParam.borderRadius,
     borderBottomRightRadius: layoutParam.borderRadius,
-    overflow: "hidden",
   } as ViewStyle,
   screen: {
     backgroundColor: color.background,
@@ -28,7 +27,6 @@ export default {
     borderTopRightRadius: layoutParam.borderRadius * 2,
     borderBottomRightRadius: layoutParam.borderRadius * 2,
     justifyContent: "space-between",
-    overflow: "hidden",
   } as ViewStyle,
   bookTitle: {
     fontSize: 27,

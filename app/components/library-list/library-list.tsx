@@ -8,19 +8,17 @@
  *
  */
 
-
 import * as React from "react"
 import { DeviceEventEmitter, FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"
 import { Ian } from "../ian"
 import Touchable from "react-native-platform-touchable"
-import { color } from "../../theme"
+import { color, shadowPresets } from "../../theme"
 import Modal from "react-native-modal"
 import { Text } from "../text"
 import { Button } from "../button"
 import ss from "./library-list.style"
 import { twtGet } from "../../services/twt-fetch"
-import { TjuBadge } from "../tju-badge"
 import { Toasti } from "../toasti"
 export interface BookListProps {
   style?: ViewStyle
@@ -69,9 +67,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
           useNativeDriver={true}
           style={ss.modal}
         >
-          <View style={ss.modalCard}>
-            <TjuBadge style={ss.tjuBadge} fill={color.black(0.02)} height={310} width={270} />
-
+          <View style={[ss.modalCard, shadowPresets.large]}>
             <View>
               <Text text={chosenBook.title} style={ss.bookTitle} selectable={true} />
               <Text text={chosenBook.author} style={ss.bookAuthor} selectable={true} />
@@ -154,7 +150,7 @@ export class LibraryList extends React.Component<BookListProps, {}> {
           renderItem={({ item, index }) => (
             <Touchable
               foreground={Touchable.Ripple(color.background)}
-              style={ss.libraryBlockStyle}
+              style={[ss.libraryBlockStyle, shadowPresets.float]}
               delayPressIn={0}
               onPress={() => {
                 this.openModal()

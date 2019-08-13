@@ -9,6 +9,36 @@ export const layoutParam = {
   statusBarHeight: Platform.select({ ios: 0, android: 26 }), // TODO: Change to device-specific calculations
 }
 
+export const shadowPresets = {
+  large: {
+    shadowColor: color.black(1),
+    shadowOffset: {
+      width: 0,
+      height: 45,
+    },
+    shadowOpacity: 0.07,
+    shadowRadius: 45,
+  },
+  float: {
+    shadowColor: color.black(1),
+    shadowOffset: {
+      width: 0,
+      height: 35,
+    },
+    shadowOpacity: 0.04,
+    shadowRadius: 25,
+  },
+  close: {
+    shadowColor: color.black(1),
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.02,
+    shadowRadius: 7,
+  },
+}
+
 export const ssGlobal = {
   loadingSize: Platform.select({ ios: 10, android: 12 }),
   buttonLoadingIndicator: {

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
-import { color, layoutParam } from "../../theme"
+import { color, layoutParam, shadowPresets } from "../../theme"
 import Touchable from "react-native-platform-touchable"
 
 export interface BindingBarProps {
@@ -55,7 +55,11 @@ export function BindingBar(props: BindingBarProps) {
     },
   }
   return (
-    <Touchable style={[ss.bindingBarContainer, style]} onPress={onPress} delayPressIn={0}>
+    <Touchable
+      style={[ss.bindingBarContainer, shadowPresets.close, style]}
+      onPress={onPress}
+      delayPressIn={0}
+    >
       <View style={ss.bindingBar} pointerEvents="box-only">
         <View style={ss.left}>
           <Text text={icon} style={ss.icon} preset="i" />

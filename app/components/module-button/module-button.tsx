@@ -11,7 +11,7 @@
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
-import { color, layoutParam } from "../../theme"
+import { color, layoutParam, shadowPresets } from "../../theme"
 import Touchable from "react-native-platform-touchable"
 
 export interface ModuleButtonProps {
@@ -46,7 +46,11 @@ export function ModuleButton(props: ModuleButtonProps) {
   }
 
   return (
-    <Touchable style={[predefinedStyle, style]} onPress={onPress} delayPressIn={0}>
+    <Touchable
+      style={[predefinedStyle, shadowPresets.float, style]}
+      onPress={onPress}
+      delayPressIn={0}
+    >
       <View style={containerStyle} pointerEvents="box-only">
         <Text text={icon} preset="i" style={iconStyle} />
         <Text tx={tx} style={textStyle} />
