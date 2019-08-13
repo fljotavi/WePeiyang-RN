@@ -155,11 +155,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             >
               <ModuleButton
                 style={ss.blockWithMarginRight}
-                tx="modules.bike"
-                icon="directions_bike"
-              />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
                 tx="modules.schedule"
                 icon="event"
                 onPress={() => this.props.navigation.navigate("schedule")}

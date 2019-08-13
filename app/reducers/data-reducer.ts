@@ -46,7 +46,11 @@ const dataReducerInitialState = {
     lineChart: undefined,
     total: undefined,
   },
-  yellowPages: {},
+  yellowPages: {
+    status: "NOT_RECEIVED",
+    data: undefined,
+    generated: undefined,
+  },
 }
 
 export const dataReducer = (state = dataReducerInitialState, action) => {
@@ -193,12 +197,28 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       break
 
     case "SET_YELLOW_PAGES_DATA":
+      let generated = []
+      action.payload.forEach((cat, i) => {
+        cat.department_list.forEach((dep, j) => {
+          dep.unit_list.forEach((unit, k) => {
+            generated.push({
+              indices: [i, j, k],
+              category: cat.category_name,
+              department: dep.department_name,
+              unit: unit.item_name,
+              phone: unit.item_phone,
+              keywords: dep.department_name + " " + unit.item_name,
+            })
+          })
+        })
+      })
       state = {
         ...state,
         yellowPages: {
           ...state.yellowPages,
           status: "VALID",
           data: action.payload,
+          generated: generated,
         },
       }
       break

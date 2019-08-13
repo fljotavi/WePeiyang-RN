@@ -12,6 +12,8 @@ import { fetchYellowPagesData } from "../../actions/data-actions"
 import { Toasti } from "../../components/toasti"
 import { TextField } from "../../components/text-field"
 
+import FlexSearch from "../../utils/flex-search"
+
 export interface YellowPagesScreenProps extends NavigationScreenProps<{}> {
   pref?
   yellowPages?
@@ -47,6 +49,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
   _keyExtractor = item => String(item.no)
 
   render() {
+    const { yellowPages } = this.props
     return (
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -64,6 +67,21 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
                 iconText: "android",
                 action: () => {
                   console.log(this.props.yellowPages.data)
+                  let fs = FlexSearch.create({
+                    encode: false,
+                    tokenize: function(str) {
+                      return str.replace(/[\x00-\x7F]/g, "").split("")
+                    },
+                  })
+                  yellowPages.generated.forEach((item, i) => {
+                    fs.add(i, item.keywords)
+                  })
+                  let res = fs.search({
+                    query: this.state.keyword,
+                    suggest: true,
+                    limit: 20,
+                  })
+                  console.log(res.map(id => yellowPages.generated[id]))
                 },
               },
               {
