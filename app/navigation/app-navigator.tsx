@@ -10,24 +10,26 @@
 
 import { createStackNavigator } from "react-navigation"
 import { HomeNavigator } from "./home-navigator"
-import { connectedUserScreen as UserScreen } from "../screens/user-screen"
-import { connectedGpaScreen as GpaScreen } from "../screens/gpa-screen"
-import { connectedBindScreen as BindScreen } from "../screens/bind-screen"
-import { connectedLibraryScreen as LibraryScreen } from "../screens/library-screen"
-import { connectedEcardScreen as EcardScreen } from "../screens/ecard-screen"
-import { connectedScheduleScreen as ScheduleScreen } from "../screens/schedule-screen"
 import { SettingsNavigator } from "./settings-navigator"
+import { connectedYellowPagesScreen } from "../screens/yellow-pages-screen"
+import { connectedScheduleScreen } from "../screens/schedule-screen"
+import { connectedLibraryScreen } from "../screens/library-screen"
+import { connectedUserScreen } from "../screens/user-screen"
+import { connectedGpaScreen } from "../screens/gpa-screen"
+import { connectedBindScreen } from "../screens/bind-screen"
+import { connectedEcardScreen } from "../screens/ecard-screen"
 
 export const AppNavigator = createStackNavigator(
   {
     home: HomeNavigator,
-    user: UserScreen,
+    user: connectedUserScreen,
 
-    gpa: GpaScreen,
-    schedule: ScheduleScreen,
-    bind: BindScreen,
-    library: LibraryScreen,
-    ecard: EcardScreen,
+    gpa: connectedGpaScreen,
+    schedule: connectedScheduleScreen,
+    bind: connectedBindScreen,
+    library: connectedLibraryScreen,
+    ecard: connectedEcardScreen,
+    yellowPages: connectedYellowPagesScreen,
 
     settings: SettingsNavigator,
   },

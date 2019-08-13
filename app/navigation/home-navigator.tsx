@@ -5,10 +5,10 @@
  *
  * 主页导航器。
  * 使用它主页底部三个 Bottom Tab bar 之间跳转。
- * 
+ *
  */
 
- import * as React from "react"
+import * as React from "react"
 import { createBottomTabNavigator } from "react-navigation"
 import HomeScreen from "../screens/home-screen"
 import { NewsScreen } from "../screens/news-screen"

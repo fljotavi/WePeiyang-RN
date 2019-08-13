@@ -169,7 +169,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
                 icon="timeline"
                 onPress={() => this.props.navigation.navigate("gpa")}
               />
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.contact" icon="call" />
+              <ModuleButton
+                style={ss.blockWithMarginRight}
+                tx="modules.contact"
+                icon="call"
+                onPress={() => this.props.navigation.navigate("yellowPages")}
+              />
               <ModuleButton
                 style={ss.blockWithMarginRight}
                 tx="modules.learning"
