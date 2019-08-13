@@ -17,11 +17,9 @@
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
     "patch": "patch-package",
-    "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001 --skip-packager"
+    "prepare": "npm-run-all patch hack:*"
   },
   "dependencies": {
-    "@react-native-community/art": "^1.0.1",
     "@react-native-community/async-storage": "^1.5.1",
     "apisauce": "0.16.0",
     "color": "^3.1.2",
@@ -38,13 +36,10 @@
     "react-native-localize": "^1.0.0",
     "react-native-modal": "^11.2.0",
     "react-native-platform-touchable": "^1.1.1",
-    "react-native-root-toast": "^3.1.2",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^9.5.1",
     "react-navigation": "^3.0.0",
     "react-redux": "^7.1.0",
-    "reactotron-mst": "^3.1.1",
-    "reactotron-react-native": "^3.4.1",
     "redux": "^4.0.4",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
@@ -57,9 +52,6 @@
     "@babel/plugin-proposal-optional-catch-binding": "^7.0.0",
     "@babel/runtime": "^7.5.5",
     "@react-native-community/eslint-config": "^0.0.5",
-    "@storybook/addon-storyshots": "^4.0.6",
-    "@storybook/addons": "^3.3.0",
-    "@storybook/react-native": "3.4.3",
     "@types/jest": "23.3.2",
     "@types/ramda": "0.25.28",
     "@types/react": "16.7.7",
@@ -111,9 +103,6 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/e2e"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-native|react-navigation|@react-navigation|@storybook|@react-native-community)"
     ]
   },
   "prettier": {
