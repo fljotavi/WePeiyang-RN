@@ -5,7 +5,7 @@ import { StatusBar, TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationActions, NavigationScreenProps } from "react-navigation"
 import { SettingsSnack } from "./settings-snack"
 import { TopBar } from "../../components/top-bar"
 import { languageFullnames } from "../../i18n/i18n"
@@ -43,7 +43,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
             left: [
               {
                 iconText: "arrow_back",
-                action: () => this.props.navigation.goBack(),
+                action: () => this.props.navigation.dispatch(NavigationActions.back()),
               },
             ],
             right: [],
@@ -69,7 +69,15 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
             preset="enter"
             txTitle="settingsScreen.language"
             textSubtitle={languageFullnames[pref.language].common}
-            onPress={() => this.props.navigation.navigate("languageSettings")}
+            onPress={() => this.props.navigation.navigate("language")}
+          />
+
+          <SettingsSnack
+            style={ss.snack}
+            preset="enter"
+            textTitle={"Displayed Days Each Week"}
+            textSubtitle={pref.daysEachWeek}
+            onPress={() => this.props.navigation.navigate("daysEachWeek")}
           />
         </View>
       </Screen>

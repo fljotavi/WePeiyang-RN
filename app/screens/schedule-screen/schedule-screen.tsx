@@ -47,6 +47,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     windowWidth: Dimensions.get("window").width,
     screenHeight: Dimensions.get("screen").height,
     courseIndex: undefined,
+    daysEachWeek: this.props.pref.daysEachWeek,
   }
 
   componentDidMount = () => {
@@ -88,7 +89,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
       .then(() => {
         console.log("Costly branch")
         this.props.setGeneratedSchedule(
-          getFullSchedule(this.props.course.data, this.props.pref.daysEachWeek),
+          getFullSchedule(this.props.course.data, this.state.daysEachWeek),
         )
         DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
       })
@@ -108,12 +109,12 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   _keyExtractor = (item, index) => String(index)
 
   render() {
-    const { course, pref } = this.props
+    const { course } = this.props
     const studentId = Number(this.props.userInfo.data.studentid)
-    let daysEachWeek = pref.daysEachWeek
+    let daysEachWeek = this.state.daysEachWeek
     let weeks
 
-    if (course.generated) {
+    if (course.generated && course.generated[0].days.length === daysEachWeek) {
       console.log("Cached branch")
       weeks = course.generated
     } else {
@@ -263,7 +264,6 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             />
           }
         >
-
           <TopBar
             elements={{
               left: [

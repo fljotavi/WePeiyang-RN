@@ -9,6 +9,7 @@ export default {
     overflow: "visible",
   } as ViewStyle,
   libraryBlockStyle: {
+    backgroundColor: color.washed,
     marginRight: 13,
     borderTopRightRadius: layoutParam.borderRadius,
     borderBottomRightRadius: layoutParam.borderRadius,

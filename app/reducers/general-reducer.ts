@@ -44,17 +44,18 @@ export const preferenceReducer = (
         gpaOrderBy: action.payload,
       }
       break
-    case "SET_LANGUAGE":
+    case "SET_PREFERENCE":
       state = {
         ...state,
-        language: action.payload,
       }
+      state[action.payload.key] = action.payload.value
       break
   }
   return state
 }
 
 // Auth Reducer 用于记录用户的登陆状态，并保存本地的 Token。
+
 export const authReducer = (state = { token: null, logged: false }, action) => {
   switch (action.type) {
     case "SET_TOKEN":

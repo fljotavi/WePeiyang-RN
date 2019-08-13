@@ -44,22 +44,24 @@ export function TopBar(props: TopBarProps) {
   return (
     <View style={[ss.container, style]}>
       <View style={ss.side}>
-        {elements.left.map(el => (
+        {elements.left.map((el, i) => (
           <Touchable
             background={Touchable.Ripple(color, true)}
             onPress={el.action}
             delayPressIn={0}
+            key={i}
           >
             <Text style={ss.icon} text={el.iconText} preset="i" />
           </Touchable>
         ))}
       </View>
       <View style={ss.side}>
-        {elements.right.map(el => (
+        {elements.right.map((el, i) => (
           <Touchable
             background={Touchable.Ripple(color, true)}
             onPress={el.action}
             delayPressIn={0}
+            key={i}
           >
             <Text style={ss.icon} text={el.iconText} preset="i" />
           </Touchable>

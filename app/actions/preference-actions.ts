@@ -35,3 +35,10 @@ export function setLanguage(l) {
     payload: l,
   }
 }
+
+export function setPreference(key, value) {
+  return {
+    type: "SET_PREFERENCE",
+    payload: { key, value },
+  }
+}
