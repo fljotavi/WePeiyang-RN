@@ -1,3 +1,14 @@
+/*
+ * Dotmap
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Dotmaps 是显示在 Schedule Screen 每周上方的课程安排点阵。
+ * 它接受一个由 0，1 组成的二维数组作为参数，并在指定的宽高下，自动安排内部的 Dot spacing。
+ * 每一个 Dotmap 代表一个点阵。
+ *
+ */
+
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 
