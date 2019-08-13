@@ -1,6 +1,11 @@
 /*
+ * Date Indicators
+ * Created by Tzingtao Chow
+ * ---
+ *
  * Date Indicators are the date tags above each daily schedule columns in Schedule Screen.
- * */
+ *
+ */
 
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
