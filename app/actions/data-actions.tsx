@@ -182,7 +182,6 @@ export function fetchEcardTotal(cardId, password) {
     return twtGet(path, { cardnum: cardId, password: password })
       .then(response => response.json())
       .then(responseJson => {
-        console.log("Ecard Total Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_TOTAL",
@@ -202,7 +201,6 @@ export function fetchEcardLineChart(cardId, password) {
     return twtGet(path, { cardnum: cardId, password: password })
       .then(response => response.json())
       .then(responseJson => {
-        console.log("Ecard LineChart Format", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_ECARD_LINE_CHART",

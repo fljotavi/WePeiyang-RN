@@ -196,6 +196,16 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       }
       break
 
+    case "SET_ECARD_LINE_CHART":
+      state = {
+        ...state,
+        ecard: {
+          ...state.ecard,
+          lineChart: action.payload,
+        },
+      }
+      break
+
     case "SET_YELLOW_PAGES_DATA":
       let generated = []
       action.payload.forEach((cat, i) => {

@@ -110,7 +110,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   render() {
     // Grab the props
     const { scoreType, compData } = this.props
-    console.log(compData)
 
     let dayToRender = "2018-05-08"
     let timestamp = new Date(dayToRender).getTime()

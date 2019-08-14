@@ -35,6 +35,7 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
   }
 
   render() {
+    console.log("Passed in", this.props.data)
     const barData = []
     const stampDiff = 86400000
 
@@ -77,12 +78,6 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
       <View style={[predefinedStyle, this.props.style]}>
         <Svg height={chartHeight} width={chartWidth}>
           <VictoryGroup height={chartHeight} width={chartWidth} padding={5}>
-            {/* <VictoryScatter */}
-            {/*  name="tooltip" */}
-            {/*  data={data} */}
-            {/*  dataComponent={<EcardTooltip/>} */}
-            {/* /> */}
-
             <VictoryBar
               name="bar"
               style={{ data: { fill: color.module.ecard[2] } }}

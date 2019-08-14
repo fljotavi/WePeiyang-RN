@@ -136,7 +136,8 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
     let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
     let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
 
-    if (!(gpa.status === "VALID" && gpa.data.length > 0)) {
+    if (!(gpa.status === "VALID" && gpa.data && gpa.data.gpaSemestral.weighted.length)) {
+      console.log("Skipping", gpa)
       return <View />
     }
 
