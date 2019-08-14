@@ -13,7 +13,7 @@ export default {
   field: {
     backgroundColor: color.transparent,
     padding: 0,
-    marginLeft: -3,
+    marginLeft: -1,
   } as ViewStyle,
   input: {
     backgroundColor: color.transparent,

@@ -89,7 +89,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
   _keyExtractor = (item, index) => String(index)
 
   _loadMore = async () => {
-    this.setState({ daysToLoad: this.state.daysToLoad + 1, loadingMore: true }, async () => {
+    this.setState({ daysToLoad: this.state.daysToLoad + 7, loadingMore: true }, async () => {
       await Promise.all([
         this.props.fetchEcardTurnover(
           this.props.ecard.auth.cardId,
@@ -199,6 +199,16 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                   subType={item.sub_type}
                 />
               )}
+              ListEmptyComponent={() => (
+                <View style={ss.noTransaction}>
+                  <Text style={ss.noTransactionIcon} text="accessibility" preset="i" />
+                  <Text style={ss.noTransactionText}>
+                    <Text text="No transaction record found in the last " />
+                    <Text text={this.state.daysToLoad} />
+                    <Text text=" days" />
+                  </Text>
+                </View>
+              )}
             />
 
             <Button style={ss.loadMoreTouchable} onPress={this._loadMore}>
@@ -210,7 +220,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                 color={color.module.ecard[0]}
                 size={ssGlobal.loadingSize}
               />
-              <Text text="Load One More Day" style={ss.loadMoreText} />
+              <Text text="Load One More Week" style={ss.loadMoreText} />
             </Button>
           </View>
         </ScrollView>

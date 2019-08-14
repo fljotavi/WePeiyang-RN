@@ -44,6 +44,7 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
         this.props.navigation.goBack()
       })
       .catch(err => {
+        console.log(err)
         DeviceEventEmitter.emit(
           "showToast",
           <Toasti text={`${err.error_code} / ${err.message}`} preset="error" />,

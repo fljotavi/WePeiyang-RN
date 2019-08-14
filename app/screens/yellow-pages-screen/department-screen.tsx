@@ -27,7 +27,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
     const dep = this.props.yellowPages.data[indices[0]].department_list[indices[1]]
     return (
       <Screen style={ss.screen}>
-        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
         <TopBar
           elements={{

@@ -26,9 +26,9 @@ export function FlexSearchLogo(props: FlexSearchLogoProps) {
   return (
     <Svg
       style={[predefinedStyle, style]}
-      width={width || 100}
-      height={height || 23}
-      viewBox="6 0 188 34"
+      width={width || 130}
+      height={height || 30}
+      viewBox="3 0 188 34"
     >
       <G fill={fill}>
         <Path d="M6,30.1v-24H22v4.5H11.4v5h9.5v4.5h-9.5v9.9H6z" />

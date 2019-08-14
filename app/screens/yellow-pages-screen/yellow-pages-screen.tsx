@@ -124,7 +124,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
   render() {
     return (
       <Screen style={ss.screen}>
-        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
         <TopBar
           elements={{

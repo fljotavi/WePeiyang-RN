@@ -4,6 +4,7 @@ export const palette = {
   washed: "rgb(236, 237, 238)",
   lightGrey: "rgb(205, 206, 212)",
   offBlack: "#262626",
+  offBlack2: "#343434",
   black: "#000000",
 
   gold: "rgba(215, 181, 118, 0.7)",
