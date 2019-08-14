@@ -207,11 +207,21 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
       break
 
     case "SET_YELLOW_PAGES_DATA":
-      let generated = []
+      let generated = {
+        units: [],
+        deps: [],
+      }
       action.payload.forEach((cat, i) => {
         cat.department_list.forEach((dep, j) => {
+          generated.deps.push({
+            indices: [i, j],
+            category: cat.category_name,
+            department: dep.department_name,
+            keywords: dep.department_name,
+            nChildren: dep.unit_list.length,
+          })
           dep.unit_list.forEach((unit, k) => {
-            generated.push({
+            generated.units.push({
               indices: [i, j, k],
               category: cat.category_name,
               department: dep.department_name,

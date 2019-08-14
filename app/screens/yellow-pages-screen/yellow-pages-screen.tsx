@@ -1,8 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { DeviceEventEmitter, StatusBar, View } from "react-native"
-import { Text } from "../../components/text"
+import { DeviceEventEmitter, RefreshControl, ScrollView, StatusBar, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import ss from "./yellow-pages-screen.styles"
@@ -26,6 +25,20 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
     keyword: "",
   }
 
+  fsOptionCJK = {
+    encode: false,
+    tokenize: function(str) {
+      return str.replace(/[\x00-\x7F]/g, "").split("")
+    },
+  }
+
+  searchEngines = {
+    // 用于搜索单位条目关键词的 FlexSearch 搜索引擎
+    fsUnit: FlexSearch.create(this.fsOptionCJK),
+    // 用于搜索部门关键词的 FlexSearch 搜索引擎
+    fsDep: FlexSearch.create(this.fsOptionCJK),
+  }
+
   prepareData = async () => {
     await Promise.all([this.props.fetchYellowPagesData()])
       .then(() => {
@@ -39,17 +52,51 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
       })
   }
 
+  componentDidMount = () => {
+    const { yellowPages } = this.props
+    if (yellowPages.status !== "VALID") {
+      this._onRefresh()
+    }
+  }
+
+  goSearch = text => {
+    const { yellowPages } = this.props
+
+    this.setState({ keyword: text }, () => {
+      let resUnit = this.searchEngines.fsUnit.search({
+        query: this.state.keyword,
+        suggest: true,
+        limit: 20,
+      })
+      let resDep = this.searchEngines.fsDep.search({
+        query: this.state.keyword,
+      })
+      console.log(resUnit.map(id => yellowPages.generated.units[id]))
+      console.log(resDep.map(id => yellowPages.generated.deps[id]))
+    })
+  }
+
   _onRefresh = () => {
     this.setState({ refreshing: true })
     this.prepareData().then(() => {
+      // 为 FlexSearch 搜索引擎添加搜索条目及关键词
       this.setState({ refreshing: false })
+
+      const { yellowPages } = this.props
+      console.log(yellowPages)
+
+      yellowPages.generated.units.forEach((item, i) => {
+        this.searchEngines.fsUnit.add(i, item.keywords)
+      })
+      yellowPages.generated.deps.forEach((item, i) => {
+        this.searchEngines.fsDep.add(i, item.keywords)
+      })
     })
   }
 
   _keyExtractor = item => String(item.no)
 
   render() {
-    const { yellowPages } = this.props
     return (
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -67,21 +114,6 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
                 iconText: "android",
                 action: () => {
                   console.log(this.props.yellowPages.data)
-                  let fs = FlexSearch.create({
-                    encode: false,
-                    tokenize: function(str) {
-                      return str.replace(/[\x00-\x7F]/g, "").split("")
-                    },
-                  })
-                  yellowPages.generated.forEach((item, i) => {
-                    fs.add(i, item.keywords)
-                  })
-                  let res = fs.search({
-                    query: this.state.keyword,
-                    suggest: true,
-                    limit: 20,
-                  })
-                  console.log(res.map(id => yellowPages.generated[id]))
                 },
               },
               {
@@ -93,17 +125,29 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
           color={color.module.yellowPages[1]}
         />
 
-        <View style={ss.container}>
-          <TextField
-            placeholder="Search keywords..."
-            placeholderTextColor={color.module.yellowPages[2]}
-            onChangeText={text => this.setState({ keyword: text })}
-            style={ss.field}
-            inputStyle={ss.input}
-            value={this.state.keyword}
-            autoCorrect={false}
-          />
-        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              tintColor={color.module.yellowPages[1]}
+              colors={[color.module.yellowPages[0]]}
+            />
+          }
+        >
+          <View style={ss.container}>
+            <TextField
+              placeholder="Search keywords..."
+              placeholderTextColor={color.module.yellowPages[2]}
+              onChangeText={text => this.goSearch(text)}
+              style={ss.field}
+              inputStyle={ss.input}
+              value={this.state.keyword}
+              autoCorrect={false}
+            />
+          </View>
+        </ScrollView>
       </Screen>
     )
   }
