@@ -12,6 +12,7 @@ import { Toasti } from "../../components/toasti"
 import { TextField } from "../../components/text-field"
 
 import FlexSearch from "../../utils/flex-search"
+import { SearchResult } from "./search-result"
 
 export interface YellowPagesScreenProps extends NavigationScreenProps<{}> {
   pref?
@@ -23,6 +24,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
   state = {
     refreshing: false,
     keyword: "",
+    result: {},
   }
 
   fsOptionCJK = {
@@ -56,6 +58,8 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
     const { yellowPages } = this.props
     if (yellowPages.status !== "VALID") {
       this._onRefresh()
+    } else {
+      this.initSearchEngines()
     }
   }
 
@@ -70,9 +74,15 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
       })
       let resDep = this.searchEngines.fsDep.search({
         query: this.state.keyword,
+        suggest: true,
+        limit: 5,
       })
-      console.log(resUnit.map(id => yellowPages.generated.units[id]))
-      console.log(resDep.map(id => yellowPages.generated.deps[id]))
+      this.setState({
+        result: {
+          units: resUnit.map(id => yellowPages.generated.units[id]),
+          deps: resDep.map(id => yellowPages.generated.deps[id]),
+        },
+      })
     })
   }
 
@@ -81,16 +91,18 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
     this.prepareData().then(() => {
       // 为 FlexSearch 搜索引擎添加搜索条目及关键词
       this.setState({ refreshing: false })
+      this.initSearchEngines()
+    })
+  }
 
-      const { yellowPages } = this.props
-      console.log(yellowPages)
+  initSearchEngines = () => {
+    const { yellowPages } = this.props
 
-      yellowPages.generated.units.forEach((item, i) => {
-        this.searchEngines.fsUnit.add(i, item.keywords)
-      })
-      yellowPages.generated.deps.forEach((item, i) => {
-        this.searchEngines.fsDep.add(i, item.keywords)
-      })
+    yellowPages.generated.units.forEach((item, i) => {
+      this.searchEngines.fsUnit.add(i, item.keywords)
+    })
+    yellowPages.generated.deps.forEach((item, i) => {
+      this.searchEngines.fsDep.add(i, item.keywords)
     })
   }
 
@@ -146,6 +158,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
               value={this.state.keyword}
               autoCorrect={false}
             />
+            <SearchResult result={this.state.result} show={this.state.keyword.length > 0} navigation={this.props.navigation}/>
           </View>
         </ScrollView>
       </Screen>

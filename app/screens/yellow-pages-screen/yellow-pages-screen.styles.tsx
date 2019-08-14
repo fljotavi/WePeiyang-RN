@@ -19,4 +19,10 @@ export default {
     fontSize: 40,
     color: color.module.yellowPages[1],
   } as TextStyle,
+
+  h0: {
+    fontWeight: "bold",
+    fontSize: 50,
+    color: color.module.yellowPages[1],
+  } as TextStyle,
 }

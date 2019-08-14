@@ -18,6 +18,7 @@ import { connectedUserScreen } from "../screens/user-screen"
 import { connectedGpaScreen } from "../screens/gpa-screen"
 import { connectedBindScreen } from "../screens/bind-screen"
 import { connectedEcardScreen } from "../screens/ecard-screen"
+import { connectedDepartmentScreen } from "../screens/yellow-pages-screen/department-screen"
 
 export const AppNavigator = createStackNavigator(
   {
@@ -29,7 +30,9 @@ export const AppNavigator = createStackNavigator(
     bind: connectedBindScreen,
     library: connectedLibraryScreen,
     ecard: connectedEcardScreen,
+
     yellowPages: connectedYellowPagesScreen,
+    department: connectedDepartmentScreen,
 
     settings: SettingsNavigator,
   },

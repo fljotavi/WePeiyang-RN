@@ -18,13 +18,15 @@ export interface IanProps {
   tx?: string
   text?: string
   style?: ViewStyle
+  palette?
 }
 
 export function Ian(props: IanProps) {
-  const { tx, text, style } = props
+  const { tx, text, style, palette } = props
+  let colors = palette || [color.washed, color.lightGrey]
 
   const ianView: ViewStyle = {
-    backgroundColor: color.washed,
+    backgroundColor: colors[0],
     borderRadius: layoutParam.borderRadius,
     alignItems: "center",
     justifyContent: "center",
@@ -32,7 +34,7 @@ export function Ian(props: IanProps) {
   }
 
   const ianText: TextStyle = {
-    color: color.lightGrey,
+    color: colors[1],
     fontWeight: "bold",
     textTransform: "uppercase",
   }
