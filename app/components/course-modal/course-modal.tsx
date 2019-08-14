@@ -16,6 +16,7 @@ import { color, layoutParam } from "../../theme"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import { TjuBadge } from "../tju-badge"
 import { getScheduledTimeFromArrangement } from "../../utils/schedule"
+import { Tag } from "../tag"
 
 export interface CourseModalProps {
   chosenCourse?
@@ -31,17 +32,6 @@ export function CourseModal(props: CourseModalProps) {
       borderRadius: layoutParam.borderRadius * 1.7,
       justifyContent: "space-between",
       overflow: "hidden",
-    } as ViewStyle,
-
-    courseTag: {
-      paddingHorizontal: 8,
-      paddingVertical: 3,
-      marginBottom: 5,
-      backgroundColor: color.background,
-      alignSelf: "flex-start",
-      borderRadius: layoutParam.borderRadius / 2.4,
-      flexDirection: "row",
-      alignItems: "center",
     } as ViewStyle,
 
     courseTitle: {
@@ -86,11 +76,6 @@ export function CourseModal(props: CourseModalProps) {
 
   const { chosenCourse, style } = props
 
-  let hashedColorStyle = {
-    fontWeight: "bold",
-    color: color.hash.course[colorHashByCredits(chosenCourse.credit)],
-  }
-
   return (
     <View
       style={[
@@ -105,11 +90,11 @@ export function CourseModal(props: CourseModalProps) {
 
       <View>
         {chosenCourse.ext.length > 0 && (
-          <View style={ss.courseTag}>
-            <Text text="school" preset="i" style={hashedColorStyle} />
-            <Text text=" " preset="small" style={hashedColorStyle} />
-            <Text text="重修" preset="small" style={hashedColorStyle} />
-          </View>
+          <Tag
+            text={chosenCourse.ext}
+            iconText="school"
+            palette={[color.background, color.hash.course[colorHashByCredits(chosenCourse.credit)]]}
+          />
         )}
 
         <Text text={chosenCourse.coursename} style={ss.courseTitle} selectable={true} />

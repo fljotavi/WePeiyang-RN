@@ -38,25 +38,56 @@ The project is currently under experimental stage with several primary modules f
 
 ### New Features to Expect 功能性改进
 
+##### Global Features
+
 | Feature                                                     | 特性                         | Status              |
 | ----------------------------------------------------------- | ---------------------------- | ------------------- |
-| GPA Rose Chart                                              | GPA 玫瑰图                   | ✔                   |
-| GPA order by course name                                    | GPA 按照课程名称排序         | ✔                   |
-| E-card spending trend chart in 180 days                     | 校园卡 180 日消费趋势图      | ✔                   |
-| Toggle your curves                                          | 切换绩点 / 学分 / 加权曲线   | ✔                   |
 | Custom layout order on homepage                             | 主页自定义模块布局顺序       |                     |
 | I18n & multilingual support                                 | 多语言支持                   | ✔                   |
 | Data persistent storage & conditional update                | 数据持久性存储与选择性更新   | ✔                   |
 | Scroll down to update                                       | 下拉刷新                     | ✔                   |
 | Global custom identity font                                 | 全局自定义品牌字体           | ✔                   |
+| Latitude of custom theming                                  | 更加完善的主题定制系统       |                     |
+| Proper spacing between latin letters & ideograph characters | 中西文混排时自动添加空格间距 | ✔                   |
+| Guest login | 体验版账号登入 |                   |
+| ......                                                      |                              |                     |
+
+##### GPA
+
+| Feature                                                     | 特性                         | Status              |
+| ----------------------------------------------------------- | ---------------------------- | ------------------- |
+| GPA Rose Chart                                              | GPA 玫瑰图                   | ✔                   |
+| GPA order by course name                                    | GPA 按照课程名称排序         | ✔                   |
+| Toggle your curves                                          | 切换绩点 / 学分 / 加权曲线   | ✔                   |
+
+
+##### E-card
+
+| Feature                                                     | 特性                         | Status              |
+| ----------------------------------------------------------- | ---------------------------- | ------------------- |
+| Spending trend chart in 180 days                     |  180 日消费趋势图      | ✔                   |
+
+##### Library
+
+| Feature                                                     | 特性                         | Status              |
+| ----------------------------------------------------------- | ---------------------------- | ------------------- |
+| Renew specific books                                     | 指定书籍续借                 | ⚠ (API Malfunction) |
+
+##### Schedule
+
+| Feature                                                     | 特性                         | Status              |
+| ----------------------------------------------------------- | ---------------------------- | ------------------- |
 | Cancel & delay courses                                      | 取消课程或调课               |                     |
 | Responsive course table layout                              | 响应式课表布局               | ✔                   |
 | Custom course scheduling & events                           | 自定义课程 / 事件            |                     |
-| Independent book renew                                      | 指定书籍续借                 | ⚠ (API Malfunction) |
-| Latitude of custom theming                                  | 更加完善的主题定制系统       |                     |
-| Proper spacing between latin letters & ideograph characters | 中西文混排时自动添加空格间距 | ✔                   |
 | Support of scheduling conflicts                             | 冲突课程显示                 | ✔                   |
-| ......                                                      |                              |                     |
+
+##### YellowPage
+
+| Feature                                                     | 特性                         | Status              |
+| ----------------------------------------------------------- | ---------------------------- | ------------------- |
+| Search algorithm based on FlexSearch.js                           | 基于 FlexSearch 的关键词检索算法                | ✔                   |
+| Type-as-you-search                         | 搜索结果即时展现                 | ✔                   |
 
 ### Guidelines on UX Design 体验性改进
 

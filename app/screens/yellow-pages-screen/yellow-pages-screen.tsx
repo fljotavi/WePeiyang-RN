@@ -13,6 +13,8 @@ import { TextField } from "../../components/text-field"
 
 import FlexSearch from "../../utils/flex-search"
 import { SearchResult } from "./search-result"
+import { FlexSearchLogo } from "./flex-search-logo"
+import { Text } from "../../components/text"
 
 export interface YellowPagesScreenProps extends NavigationScreenProps<{}> {
   pref?
@@ -30,7 +32,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
   fsOptionCJK = {
     encode: false,
     tokenize: function(str) {
-      return str.replace(/[\x00-\x7F]/g, "").split("")
+      return str.split("")
     },
   }
 
@@ -79,8 +81,18 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
       })
       this.setState({
         result: {
-          units: resUnit.map(id => yellowPages.generated.units[id]),
-          deps: resDep.map(id => yellowPages.generated.deps[id]),
+          units: resUnit.map(id => {
+            return {
+              id: id,
+              body: yellowPages.generated.units[id],
+            }
+          }),
+          deps: resDep.map(id => {
+            return {
+              id: id,
+              body: yellowPages.generated.deps[id],
+            }
+          }),
         },
       })
     })
@@ -97,6 +109,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
 
   initSearchEngines = () => {
     const { yellowPages } = this.props
+    console.log(yellowPages)
 
     yellowPages.generated.units.forEach((item, i) => {
       this.searchEngines.fsUnit.add(i, item.keywords)
@@ -149,6 +162,10 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
           }
         >
           <View style={ss.container}>
+            <View style={ss.poweredBy}>
+              <Text text="Powered by" preset="lausanne" style={ss.poweredByText} />
+              <FlexSearchLogo style={ss.poweredByLogo} fill={color.module.yellowPages[1]} />
+            </View>
             <TextField
               placeholder="Search keywords..."
               placeholderTextColor={color.module.yellowPages[2]}
@@ -158,7 +175,11 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
               value={this.state.keyword}
               autoCorrect={false}
             />
-            <SearchResult result={this.state.result} show={this.state.keyword.length > 0} navigation={this.props.navigation}/>
+            <SearchResult
+              result={this.state.result}
+              show={this.state.keyword.length > 0}
+              navigation={this.props.navigation}
+            />
           </View>
         </ScrollView>
       </Screen>

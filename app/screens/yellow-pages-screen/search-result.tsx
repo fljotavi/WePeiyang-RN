@@ -28,6 +28,7 @@ export function SearchResult(props: SearchResultProps) {
   const ss = {
     view: {
       justifyContent: "center",
+      marginTop: 20,
     } as ViewStyle,
     sectionHead: {
       color: color.module.yellowPages[1],
@@ -52,12 +53,14 @@ export function SearchResult(props: SearchResultProps) {
         keyExtractor={_keyExtractor}
         renderItem={({ item }) => (
           <SearchSnack
-            title={item.department}
-            subtitle={item.category}
+            title={item.body.department}
+            subtitle={item.body.category}
             style={ss.snack}
             onPress={() => {
               navigation.navigate("department", {
-                indices: item.indices,
+                origin: "DEPARTMENT",
+                id: item.id,
+                indices: item.body.indices,
               })
             }}
           />
@@ -76,7 +79,18 @@ export function SearchResult(props: SearchResultProps) {
         data={result.units}
         keyExtractor={_keyExtractor}
         renderItem={({ item }) => (
-          <SearchSnack title={item.unit} subtitle={item.department} style={ss.snack} />
+          <SearchSnack
+            onPress={() => {
+              navigation.navigate("department", {
+                origin: "UNIT",
+                id: item.id,
+                indices: item.body.indices,
+              })
+            }}
+            title={item.body.unit}
+            subtitle={item.body.department}
+            style={ss.snack}
+          />
         )}
         ListEmptyComponent={() => (
           <Ian
