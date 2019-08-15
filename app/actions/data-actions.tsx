@@ -49,6 +49,34 @@ export function bindLibAccount(libpasswd) {
     })
 }
 
+export function unbindTjuAccount() {
+  let path = `v1/auth/unbind/tju`
+  return twtGet(path)
+    .then(response => response.json())
+    .then(responseJson => {
+      if (responseJson.error_code === -1) {
+        return responseJson
+      } else {
+        responseJson.origin = path
+        throw responseJson
+      }
+    })
+}
+
+export function unbindLibAccount() {
+  let path = `v1/auth/unbind/tju`
+  return twtGet(path)
+    .then(response => response.json())
+    .then(responseJson => {
+      if (responseJson.error_code === -1) {
+        return responseJson
+      } else {
+        responseJson.origin = path
+        throw responseJson
+      }
+    })
+}
+
 export function fetchGpaData() {
   let path = "v1/gpa"
   return dispatch => {

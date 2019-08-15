@@ -1,5 +1,5 @@
 import { ViewStyle, TextStyle } from "react-native"
-import { color } from "../../theme"
+import { color, layoutParam } from "../../theme"
 
 /**
  * All text will start off looking like this.
@@ -40,6 +40,14 @@ export const viewPresets = {
   lite: {
     ...BASE_VIEW,
   },
+
+  small: {
+    ...BASE_VIEW,
+    borderRadius: layoutParam.borderRadius,
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    backgroundColor: color.background,
+  },
 }
 
 export const textPresets = {
@@ -49,6 +57,11 @@ export const textPresets = {
     color: color.text,
     paddingHorizontal: 0,
     paddingVertical: 0,
+  } as TextStyle,
+  small: {
+    ...BASE_TEXT,
+    color: color.primary,
+    fontSize: 13,
   } as TextStyle,
 }
 

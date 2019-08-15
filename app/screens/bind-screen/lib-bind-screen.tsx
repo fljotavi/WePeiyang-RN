@@ -95,6 +95,11 @@ export class _LibBindScreen extends React.Component<LibBindScreenProps, {}> {
                 <Text text=" " />
                 <Text tx="accountBinding.libPasswordHint" />
               </Text>
+              <Text preset="small" style={ssGlobal.login.hint}>
+                <Text text="info" preset="i" />
+                <Text text=" " />
+                <Text tx="accountBinding.nextLoginHint" />
+              </Text>
               <View style={ssGlobal.login.buttonRow}>
                 <Button style={ssGlobal.login.button} onPress={this.attemptToBind}>
                   <ActivityIndicator

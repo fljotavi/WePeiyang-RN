@@ -109,6 +109,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   render() {
     // Grab the props
     const { compData } = this.props
+    console.log("HomeScreen compData", compData)
     if (compData.userInfo.status !== "VALID") {
       return (
         <View>

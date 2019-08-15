@@ -1,6 +1,7 @@
 {
   "common": {
     "ok": "OK!",
+    "confirm": "Confirm",
     "cancel": "Cancel",
     "back": "Back",
     "time": {
@@ -69,7 +70,15 @@
     "libPassword": "Your library password",
     "libPasswordHint": "Your library password is the password used on lib.tju.edu.cn. If you didn't know what it is, please try initial password 666666, or the 12th-17th digits of your National ID card. Please consult the information desk in Tianjin University Library for password reset of any further information.",
     "bind": "Bind",
-    "bindSuccess": "Account bound"
+    "unbind": "Unbind",
+    "bindSuccess": "Binding request is sent",
+    "unbindSuccess": "Unbinding request is sent",
+    "unbindModal": {
+      "heading": "This account is currently connected to WePeiyang.",
+      "content": "You can unbind this account anytime. After disconnecting, you wouldn't be able to use services relating to this account.",
+      "unbindEcardHint": "To unbind your e-card, you just need to log out. Your e-card account would be unconnected when you log in again."
+    },
+    "nextLoginHint": "Please note that each bind and unbind operation may take several minutes of time. After the operation is carried out, your account status would be updated after the next login."
   },
   "tab": {
     "wpy": "WPY",

@@ -15,7 +15,8 @@ import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
 import Touchable from "react-native-platform-touchable"
-import { View } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
+import {color} from "../../theme";
 
 /**
  * For your text displaying needs.
@@ -31,13 +32,21 @@ export function Button(props: ButtonProps) {
     style: styleOverride,
     textStyle: textStyleOverride,
     children,
+    palette,
     ...rest
   } = props
 
-  const viewStyle = mergeAll(flatten([viewPresets[preset] || viewPresets.primary, styleOverride]))
-  const textStyle = mergeAll(
+  let viewStyle = mergeAll(
+    flatten([viewPresets[preset] || viewPresets.primary, styleOverride]),
+  ) as ViewStyle
+  let textStyle = mergeAll(
     flatten([textPresets[preset] || textPresets.primary, textStyleOverride]),
-  )
+  ) as TextStyle
+
+  if (palette) {
+    viewStyle.backgroundColor = palette[1] || color.transparent
+    textStyle.color = palette[0]
+  }
 
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 

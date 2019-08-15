@@ -11,11 +11,18 @@ import { deleteTokenFromStore } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
 
 import ss from "./user-screen.style"
-import { clearAllData, fetchUserData } from "../../actions/data-actions"
+import {
+  clearAllData,
+  fetchUserData,
+  unbindLibAccount,
+  unbindTjuAccount,
+} from "../../actions/data-actions"
 import { TopBar } from "../../components/top-bar"
 import { Toasti } from "../../components/toasti"
 import { color, shadowPresets } from "../../theme"
 import { Ian } from "../../components/ian"
+import Modal from "react-native-modal"
+import { UnbindModal } from "./unbind-modal"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   compData?
@@ -24,6 +31,11 @@ export interface UserScreenProps extends NavigationScreenProps<{}> {
 }
 
 export class UserScreen extends React.Component<UserScreenProps, {}> {
+  state = {
+    isModalVisible: false,
+    selectedUnbindAction: () => {},
+  }
+
   logout = () => {
     this.props.clearAllData()
     this.deleteToken().then(() => {
@@ -32,6 +44,46 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
     })
   }
 
+  unbindTju = () => {
+    this.toggleModal()
+    unbindTjuAccount()
+      .then(() => {
+        DeviceEventEmitter.emit("showToast", <Toasti tx="accountBinding.unbindSuccess" />)
+        this.props.navigation.goBack()
+      })
+      .catch(err => {
+        console.log(err)
+        DeviceEventEmitter.emit(
+          "showToast",
+          <Toasti text={`${err.error_code} / ${err.message}`} preset="error" />,
+        )
+      })
+      .then(() => {
+        this.setState({ loggingIn: false })
+      })
+  }
+
+  unbindLib = () => {
+    this.toggleModal()
+    unbindLibAccount()
+      .then(() => {
+        DeviceEventEmitter.emit("showToast", <Toasti tx="accountBinding.unbindSuccess" />)
+        this.props.navigation.goBack()
+      })
+      .catch(err => {
+        console.log(err)
+        DeviceEventEmitter.emit(
+          "showToast",
+          <Toasti text={`${err.error_code} / ${err.message}`} preset="error" />,
+        )
+      })
+      .then(() => {
+        this.setState({ loggingIn: false })
+      })
+  }
+
+  unbindEcard = "ECARD"
+
   deleteToken = async () => {
     deleteTokenFromStore()
     try {
@@ -39,6 +91,10 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
     } catch (e) {
       DeviceEventEmitter.emit("showToast", <Toasti tx="auth.tokenDeleteFailure" preset="error" />)
     }
+  }
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   render() {
@@ -55,12 +111,22 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
       <Screen>
         <NavigationEvents
           onWillFocus={() => {
-            this.props
-              .fetchUserData()
+            this.props.fetchUserData()
           }}
         />
 
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.headPanel.backgroundColor}
+          onBackButtonPress={this.toggleModal}
+          onBackdropPress={this.toggleModal}
+          backdropOpacity={0.9}
+          useNativeDriver={true}
+        >
+          <UnbindModal actions={[this.state.selectedUnbindAction, this.toggleModal]} />
+        </Modal>
 
         <View style={ss.headPanel}>
           <View style={ss.ambient1} />
@@ -106,7 +172,18 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
               <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.ecard" />
             </View>
             <BindingBar
-              onPress={() => this.props.navigation.navigate("tjuBind")}
+              onPress={() => {
+                if (compData.userInfo.data.accounts.tju) {
+                  this.setState(
+                    {
+                      selectedUnbindAction: this.unbindTju,
+                    },
+                    this.toggleModal,
+                  )
+                } else {
+                  this.props.navigation.navigate("tjuBind")
+                }
+              }}
               style={ss.bindingBar}
               txTitle="accountBinding.portalAccount"
               txSubtitle={
@@ -116,8 +193,20 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
               }
               icon="event_note"
             />
+
             <BindingBar
-              onPress={() => this.props.navigation.navigate("bind")}
+              onPress={() => {
+                if (compData.ecard.auth.status === "BOUND") {
+                  this.setState(
+                    {
+                      selectedUnbindAction: this.unbindEcard,
+                    },
+                    this.toggleModal,
+                  )
+                } else {
+                  this.props.navigation.navigate("bind")
+                }
+              }}
               style={ss.bindingBar}
               txTitle="accountBinding.ecardAccount"
               txSubtitle={
@@ -127,8 +216,20 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
               }
               icon="credit_card"
             />
+
             <BindingBar
-              onPress={() => this.props.navigation.navigate("libBind")}
+              onPress={() => {
+                if (compData.userInfo.data.accounts.lib) {
+                  this.setState(
+                    {
+                      selectedUnbindAction: this.unbindLib,
+                    },
+                    this.toggleModal,
+                  )
+                } else {
+                  this.props.navigation.navigate("libBind")
+                }
+              }}
               style={ss.bindingBar}
               txTitle="accountBinding.libraryAccount"
               txSubtitle={
@@ -138,7 +239,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
               }
               icon="book"
             />
-            <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
+            <Button style={ss.logoutButton} preset="primary" onPress={this.logout}>
               <View style={ss.logoutButtonContentWrapper}>
                 <Text style={ss.logoutIcon} preset="i" text="exit_to_app" />
                 <Text style={ss.logoutText} tx="auth.logout" />
