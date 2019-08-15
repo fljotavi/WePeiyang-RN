@@ -35,15 +35,6 @@ export default {
   moduleButton: {
     marginRight: 16,
   } as ViewStyle,
-  horiScrollSelf: {
-    overflow: "visible",
-  } as ViewStyle,
-  horiScroll: {
-    alignSelf: "stretch",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    overflow: "visible",
-  } as ViewStyle,
   sectionHead: {
     marginBottom: 13,
     marginTop: 18,

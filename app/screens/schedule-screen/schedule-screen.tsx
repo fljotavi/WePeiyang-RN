@@ -87,7 +87,6 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   prepareData = async () => {
     await Promise.all([this.props.fetchCourseData()])
       .then(() => {
-        console.log("Costly branch")
         this.props.setGeneratedSchedule(
           getFullSchedule(this.props.course.data, this.state.daysEachWeek),
         )

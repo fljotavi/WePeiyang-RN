@@ -42,7 +42,6 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               {
                 iconText: "info",
                 action: () => {
-                  console.log(this.props.yellowPages.data)
                 },
               },
             ],

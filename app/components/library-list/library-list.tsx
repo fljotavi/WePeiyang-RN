@@ -135,7 +135,6 @@ class _LibraryList extends React.Component<BookListProps, {}> {
                   .then(responseJson => {
                     this.closeModal()
                     DeviceEventEmitter.emit("showToast", <Toasti text={responseJson.message} />)
-                    console.log(responseJson)
                   })
               } else {
                 this.setState({ userInformed: true })

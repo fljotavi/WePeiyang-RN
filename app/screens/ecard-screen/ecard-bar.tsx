@@ -35,7 +35,6 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
   }
 
   render() {
-    console.log("Passed in", this.props.data)
     const barData = []
     const stampDiff = 86400000
 

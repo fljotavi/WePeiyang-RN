@@ -19,6 +19,36 @@ export function clearAllData() {
   }
 }
 
+export function bindTjuAccount(tjuuname, tjupasswd) {
+  let path = `v1/auth/bind/tju`
+
+  return twtGet(path, { tjuuname, tjupasswd })
+    .then(response => response.json())
+    .then(responseJson => {
+      if (responseJson.error_code === -1) {
+        return responseJson
+      } else {
+        responseJson.origin = path
+        throw responseJson
+      }
+    })
+}
+
+export function bindLibAccount(libpasswd) {
+  let path = `v1/auth/bind/lib`
+
+  return twtGet(path, { libpasswd })
+    .then(response => response.json())
+    .then(responseJson => {
+      if (responseJson.error_code === -1) {
+        return responseJson
+      } else {
+        responseJson.origin = path
+        throw responseJson
+      }
+    })
+}
+
 export function fetchGpaData() {
   let path = "v1/gpa"
   return dispatch => {
@@ -30,6 +60,7 @@ export function fetchGpaData() {
             type: "SET_GPA_DATA",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson
@@ -49,6 +80,7 @@ export function fetchCourseData() {
             type: "SET_COURSE_DATA",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson
@@ -76,6 +108,7 @@ export function fetchUserData() {
             type: "SET_USER_DATA",
             payload: responseJson,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           responseJson.message = "Failed to fetch User Data..."
@@ -98,6 +131,7 @@ export function fetchLibraryData() {
             type: "SET_LIBRARY_DATA",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson
@@ -118,6 +152,7 @@ export function fetchYellowPagesData() {
             type: "SET_YELLOW_PAGES_DATA",
             payload: responseJson.category_list,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           responseJson.message = "Failed to fetch yellow pages data..."
@@ -133,7 +168,7 @@ export function renewBook(barcode) {
     return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
+        return responseJson // TODO: Fix after fixing API Malfunction
       })
   }
 }
@@ -149,6 +184,7 @@ export function fetchEcardProfile(cardId, password) {
             type: "SET_ECARD_PROFILE",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson
@@ -168,6 +204,7 @@ export function fetchEcardTurnover(cardId, password, days) {
             type: "SET_ECARD_TURNOVER",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson
@@ -187,6 +224,7 @@ export function fetchEcardTotal(cardId, password) {
             type: "SET_ECARD_TOTAL",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson
@@ -206,6 +244,7 @@ export function fetchEcardLineChart(cardId, password) {
             type: "SET_ECARD_LINE_CHART",
             payload: responseJson.data,
           })
+          return responseJson
         } else {
           responseJson.origin = path
           throw responseJson

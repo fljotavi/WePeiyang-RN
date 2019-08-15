@@ -1,9 +1,9 @@
 /*
- * Bind Screen
+ * TJU Bind Screen
  * Created by Tzingtao Chow
  * ---
  *
- * Bind Screen 目前是用来绑定校园卡的页面。
+ * TJU Bind Screen 是用来绑定天津大学办公网账号的页面。
  *
  */
 
@@ -17,34 +17,31 @@ import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
-import { fetchEcardProfile, setEcardAuth } from "../../actions/data-actions"
 import { TopBar } from "../../components/top-bar"
 import { ByTwt } from "../../components/by-twt/by-twt"
 import { Toasti } from "../../components/toasti"
+import { bindTjuAccount } from "../../actions/data-actions"
 
-export interface BindScreenProps extends NavigationScreenProps<{}> {
-  fetchEcardProfile?
-  setEcardAuth?
+export interface TjuBindScreenProps extends NavigationScreenProps<{}> {
   compData?
 }
 
-export class BindScreen extends React.Component<BindScreenProps, {}> {
+export class _TjuBindScreen extends React.Component<TjuBindScreenProps, {}> {
   state = {
-    cardId: this.props.compData.userInfo.data.studentid,
-    password: "",
+    tjuuname: "",
+    tjupasswd: "",
     loggingIn: false,
   }
 
   attemptToBind = () => {
     this.setState({ loggingIn: true })
-    this.props
-      .fetchEcardProfile(this.state.cardId, this.state.password)
+    bindTjuAccount(this.state.tjuuname, this.state.tjupasswd)
       .then(() => {
         DeviceEventEmitter.emit("showToast", <Toasti tx="accountBinding.bindSuccess" />)
-        this.props.setEcardAuth(this.state.cardId, this.state.password)
         this.props.navigation.goBack()
       })
       .catch(err => {
+        console.log(err)
         DeviceEventEmitter.emit(
           "showToast",
           <Toasti text={`${err.error_code} / ${err.message}`} preset="error" />,
@@ -81,18 +78,16 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
             <View>
               <TextField
                 placeholderTx="accountBinding.yourStudentId"
-                keyboardType="numeric"
                 style={ssGlobal.login.input}
-                onChangeText={text => this.setState({ cardId: text })}
-                value={this.state.cardId}
+                onChangeText={text => this.setState({ tjuuname: text })}
+                value={this.state.tjuuname}
                 autoCorrect={false}
               />
               <TextField
-                placeholderTx="accountBinding.ecardPassword"
-                keyboardType="numeric"
+                placeholderTx="accountBinding.etjuPassword"
                 style={ssGlobal.login.input}
-                onChangeText={text => this.setState({ password: text })}
-                value={this.state.password}
+                onChangeText={text => this.setState({ tjupasswd: text })}
+                value={this.state.tjupasswd}
                 secureTextEntry={true}
                 autoCorrect={false}
               />
@@ -126,18 +121,11 @@ const mapStateToProps = state => {
   return { compData: state.dataReducer }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchEcardProfile: async (cardId, password) => {
-      await dispatch(fetchEcardProfile(cardId, password))
-    },
-    setEcardAuth: (cardId, password) => {
-      dispatch(setEcardAuth(cardId, password))
-    },
-  }
+const mapDispatchToProps = () => {
+  return {}
 }
 
-export const connectedBindScreen = connect(
+export const TjuBindScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BindScreen)
+)(_TjuBindScreen)

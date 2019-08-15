@@ -112,7 +112,6 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
 
   render() {
     const { ecard } = this.props
-    console.log(ecard)
 
     return (
       <Screen style={ss.screen}>

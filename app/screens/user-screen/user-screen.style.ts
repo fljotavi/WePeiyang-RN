@@ -72,7 +72,6 @@ export default {
     width: "100%",
     maxWidth: 500,
     marginVertical: 40,
-    elevation: 99,
   } as ViewStyle,
   logoutButtonContentWrapper: {
     flexDirection: "row",

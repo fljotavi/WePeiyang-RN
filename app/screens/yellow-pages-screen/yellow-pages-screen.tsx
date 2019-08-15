@@ -116,7 +116,6 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
 
   initSearchEngines = () => {
     const { yellowPages } = this.props
-    console.log(yellowPages)
 
     yellowPages.generated.units.forEach((item, i) => {
       this.searchEngines.fsUnit.add(i, item.keywords)
@@ -144,9 +143,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
             right: [
               {
                 iconText: "info",
-                action: () => {
-                  console.log(this.props.yellowPages.data)
-                },
+                action: () => {},
               },
               {
                 iconText: "sync",

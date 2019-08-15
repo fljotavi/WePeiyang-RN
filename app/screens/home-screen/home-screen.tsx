@@ -33,7 +33,6 @@ import {
 } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { ModuleButton } from "../../components/module-button"
 import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
@@ -44,6 +43,7 @@ import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { color } from "../../theme"
 import { Toasti } from "../../components/toasti"
 import { Ian } from "../../components/ian"
+import { ModuleButtonList } from "../../components/module-button-list"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -83,7 +83,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
       })
       .catch(err => {
-        console.log(err)
         DeviceEventEmitter.emit(
           "showToast",
           <Toasti
@@ -117,7 +116,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         </View>
       )
     }
-    console.log(compData)
 
     let dayToRender = "2018-05-08"
     let timestamp = new Date(dayToRender).getTime()
@@ -158,60 +156,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
                 </View>
               </TouchableOpacity>
             </View>
-            <ScrollView
-              style={ss.horiScrollSelf}
-              contentContainerStyle={ss.horiScroll}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.schedule"
-                icon="event"
-                onPress={() => this.props.navigation.navigate("schedule")}
-              />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.gpa"
-                icon="timeline"
-                onPress={() => this.props.navigation.navigate("gpa")}
-              />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.contact"
-                icon="call"
-                onPress={() => this.props.navigation.navigate("yellowPages")}
-              />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.learning"
-                icon="assignment_turned_in"
-              />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.library"
-                icon="local_library"
-              />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.ecard"
-                icon="credit_card"
-                onPress={() => {
-                  if (compData.ecard.auth.status === "BOUND") {
-                    this.props.navigation.navigate("ecard")
-                  } else {
-                    this.props.navigation.navigate("bind")
-                  }
-                }}
-              />
-              <ModuleButton style={ss.blockWithMarginRight} tx="modules.classroom" icon="room" />
-              <ModuleButton
-                style={ss.blockWithMarginRight}
-                tx="modules.coffee"
-                icon="free_breakfast"
-              />
-              <ModuleButton tx="modules.buses" icon="directions_bus" />
-            </ScrollView>
+
+            <ModuleButtonList navigation={this.props.navigation} />
 
             <View style={ss.sectionHead}>
               <Text

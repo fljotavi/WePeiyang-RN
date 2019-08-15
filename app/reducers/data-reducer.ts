@@ -116,7 +116,6 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
 
     case "SET_COURSE_DATA":
       let payload = action.payload
-      console.log(payload)
       payload.courses = payload.data
       state = {
         ...state,

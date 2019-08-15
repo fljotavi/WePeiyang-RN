@@ -2,7 +2,7 @@ import * as React from "react"
 import { DeviceEventEmitter, Image, ScrollView, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationEvents, NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
 import { Gradicon } from "./gradicon"
 import { BindingBar } from "./binding-bar"
@@ -11,14 +11,16 @@ import { deleteTokenFromStore } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
 
 import ss from "./user-screen.style"
-import { clearAllData } from "../../actions/data-actions"
+import { clearAllData, fetchUserData } from "../../actions/data-actions"
 import { TopBar } from "../../components/top-bar"
 import { Toasti } from "../../components/toasti"
 import { color, shadowPresets } from "../../theme"
+import { Ian } from "../../components/ian"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
-  compData
-  clearAllData
+  compData?
+  clearAllData?
+  fetchUserData?
 }
 
 export class UserScreen extends React.Component<UserScreenProps, {}> {
@@ -41,9 +43,23 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
 
   render() {
     const { compData } = this.props
+    if (compData.userInfo.status !== "VALID") {
+      return (
+        <View>
+          <Ian text="You haven't logged in. How did you get here?" />
+        </View>
+      )
+    }
 
     return (
       <Screen>
+        <NavigationEvents
+          onWillFocus={() => {
+            this.props
+              .fetchUserData()
+          }}
+        />
+
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
         <View style={ss.headPanel}>
@@ -90,9 +106,14 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
               <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.ecard" />
             </View>
             <BindingBar
+              onPress={() => this.props.navigation.navigate("tjuBind")}
               style={ss.bindingBar}
               txTitle="accountBinding.portalAccount"
-              txSubtitle="common.unknown"
+              txSubtitle={
+                compData.userInfo.data.accounts.tju
+                  ? "accountBinding.bound"
+                  : "accountBinding.unbound"
+              }
               icon="event_note"
             />
             <BindingBar
@@ -107,15 +128,14 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
               icon="credit_card"
             />
             <BindingBar
-              style={ss.bindingBar}
-              txTitle="accountBinding.bicycleAccount"
-              txSubtitle="common.unknown"
-              icon="directions_bike"
-            />
-            <BindingBar
+              onPress={() => this.props.navigation.navigate("libBind")}
               style={ss.bindingBar}
               txTitle="accountBinding.libraryAccount"
-              txSubtitle="common.unknown"
+              txSubtitle={
+                compData.userInfo.data.accounts.lib
+                  ? "accountBinding.bound"
+                  : "accountBinding.unbound"
+              }
               icon="book"
             />
             <Button style={ss.logoutButton} preset="greyer" onPress={this.logout}>
@@ -141,6 +161,9 @@ const mapDispatchToProps = dispatch => {
   return {
     clearAllData: () => {
       dispatch(clearAllData())
+    },
+    fetchUserData: async () => {
+      await dispatch(fetchUserData())
     },
   }
 }

@@ -39,7 +39,6 @@ export class DaysEachWeekSettingsScreen extends React.Component<
   render() {
     const { pref, setPreference } = this.props
     const availableDays = [4, 5, 6, 7]
-    console.log(pref)
     return (
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />

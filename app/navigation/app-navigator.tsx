@@ -19,6 +19,8 @@ import { connectedGpaScreen } from "../screens/gpa-screen"
 import { connectedBindScreen } from "../screens/bind-screen"
 import { connectedEcardScreen } from "../screens/ecard-screen"
 import { connectedDepartmentScreen } from "../screens/yellow-pages-screen/department-screen"
+import { TjuBindScreen } from "../screens/bind-screen/tju-bind-screen"
+import { LibBindScreen } from "../screens/bind-screen/lib-bind-screen"
 
 export const AppNavigator = createStackNavigator(
   {
@@ -27,9 +29,12 @@ export const AppNavigator = createStackNavigator(
 
     gpa: connectedGpaScreen,
     schedule: connectedScheduleScreen,
-    bind: connectedBindScreen,
     library: connectedLibraryScreen,
     ecard: connectedEcardScreen,
+
+    bind: connectedBindScreen,
+    tjuBind: TjuBindScreen,
+    libBind: LibBindScreen,
 
     yellowPages: connectedYellowPagesScreen,
     department: connectedDepartmentScreen,

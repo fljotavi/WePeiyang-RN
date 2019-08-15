@@ -59,11 +59,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
     }
 
     if (compData.course.status !== "VALID") {
-      return (
-        <View style={[ss.predefinedStyle, style]}>
-          <Ian text="Invalid data status" />
-        </View>
-      )
+      return <View />
     }
 
     const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM

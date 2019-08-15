@@ -93,6 +93,10 @@ export const ssGlobal = {
     input: {
       marginBottom: 3,
     } as ViewStyle,
+    hint: {
+      marginTop: 20,
+      color: color.lightGrey,
+    } as TextStyle,
     byText: {
       fontWeight: "bold",
       letterSpacing: -1,

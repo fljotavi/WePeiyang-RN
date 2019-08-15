@@ -1,9 +1,9 @@
 /*
- * Bind Screen
+ * Lib Bind Screen
  * Created by Tzingtao Chow
  * ---
  *
- * Bind Screen 目前是用来绑定校园卡的页面。
+ * Lib Bind Screen 是用来绑定天津大学图书馆账号的页面。
  *
  */
 
@@ -17,34 +17,30 @@ import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
-import { fetchEcardProfile, setEcardAuth } from "../../actions/data-actions"
 import { TopBar } from "../../components/top-bar"
 import { ByTwt } from "../../components/by-twt/by-twt"
 import { Toasti } from "../../components/toasti"
+import { bindLibAccount } from "../../actions/data-actions"
 
-export interface BindScreenProps extends NavigationScreenProps<{}> {
-  fetchEcardProfile?
-  setEcardAuth?
+export interface LibBindScreenProps extends NavigationScreenProps<{}> {
   compData?
 }
 
-export class BindScreen extends React.Component<BindScreenProps, {}> {
+export class _LibBindScreen extends React.Component<LibBindScreenProps, {}> {
   state = {
-    cardId: this.props.compData.userInfo.data.studentid,
-    password: "",
+    libpasswd: "",
     loggingIn: false,
   }
 
   attemptToBind = () => {
     this.setState({ loggingIn: true })
-    this.props
-      .fetchEcardProfile(this.state.cardId, this.state.password)
+    bindLibAccount(this.state.libpasswd)
       .then(() => {
         DeviceEventEmitter.emit("showToast", <Toasti tx="accountBinding.bindSuccess" />)
-        this.props.setEcardAuth(this.state.cardId, this.state.password)
         this.props.navigation.goBack()
       })
       .catch(err => {
+        console.log(err)
         DeviceEventEmitter.emit(
           "showToast",
           <Toasti text={`${err.error_code} / ${err.message}`} preset="error" />,
@@ -80,23 +76,25 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
             </View>
             <View>
               <TextField
-                placeholderTx="accountBinding.yourStudentId"
-                keyboardType="numeric"
                 style={ssGlobal.login.input}
-                onChangeText={text => this.setState({ cardId: text })}
-                value={this.state.cardId}
+                placeholder={this.props.compData.userInfo.data.studentid}
                 autoCorrect={false}
+                disabled
+                pointerEvents="none"
               />
               <TextField
-                placeholderTx="accountBinding.ecardPassword"
-                keyboardType="numeric"
+                placeholderTx="accountBinding.libPassword"
                 style={ssGlobal.login.input}
-                onChangeText={text => this.setState({ password: text })}
-                value={this.state.password}
+                onChangeText={text => this.setState({ libpasswd: text })}
+                value={this.state.libpasswd}
                 secureTextEntry={true}
                 autoCorrect={false}
               />
-
+              <Text preset="small" style={ssGlobal.login.hint}>
+                <Text text="info" preset="i" />
+                <Text text=" " />
+                <Text tx="accountBinding.libPasswordHint" />
+              </Text>
               <View style={ssGlobal.login.buttonRow}>
                 <Button style={ssGlobal.login.button} onPress={this.attemptToBind}>
                   <ActivityIndicator
@@ -126,18 +124,11 @@ const mapStateToProps = state => {
   return { compData: state.dataReducer }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchEcardProfile: async (cardId, password) => {
-      await dispatch(fetchEcardProfile(cardId, password))
-    },
-    setEcardAuth: (cardId, password) => {
-      dispatch(setEcardAuth(cardId, password))
-    },
-  }
+const mapDispatchToProps = () => {
+  return {}
 }
 
-export const connectedBindScreen = connect(
+export const LibBindScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BindScreen)
+)(_LibBindScreen)
