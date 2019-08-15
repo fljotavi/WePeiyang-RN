@@ -9,6 +9,8 @@
  */
 
 import * as React from "react"
+import { connect } from "react-redux"
+
 import { FlatList, View, ViewStyle } from "react-native"
 import { CourseBlock } from "../course-block"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
@@ -22,14 +24,13 @@ import { CourseModal } from "../course-modal"
 
 export interface CourseDailyScheduleProps {
   style?: ViewStyle
-  data
+  compData?
   timestamp
-  status
 }
 
 const OWL_CONSTANT = 21
 
-export class CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
+class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
   state = {
     isModalVisible: false,
     userInformed: false,
@@ -46,41 +47,60 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
   _keyExtractor = (item, index) => String(index)
 
   render() {
-    const { style, data, status, timestamp } = this.props
+    const { style, compData, timestamp } = this.props
+    const data = compData.course.data
 
-    if (!(status === "VALID" && data.courses)) {
-      return <View />
+    if (!compData.userInfo.data.accounts.tju) {
+      return (
+        <View style={[ss.predefinedStyle, style]}>
+          <Ian text="E-tju account not bound" />
+        </View>
+      )
+    }
+
+    if (compData.course.status !== "VALID") {
+      return (
+        <View style={[ss.predefinedStyle, style]}>
+          <Ian text="Invalid data status" />
+        </View>
+      )
     }
 
     const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
     let courseDaily = getCoursesByDay(timestampOwl, data)
     let modal
 
-    if (courseDaily.length > 0) {
-      let chosenCourse = courseDaily[this.state.courseIndex]
-
-      modal = (
-        <Modal
-          isVisible={this.state.isModalVisible}
-          backdropColor={ss.screen.backgroundColor}
-          hideModalContentWhileAnimating={true}
-          animationIn={"fadeInUp"}
-          animationOut={"fadeOutUp"}
-          animationInTiming={400}
-          animationOutTiming={300}
-          onBackButtonPress={this.closeModal}
-          onBackdropPress={this.closeModal}
-          useNativeDriver={true}
-          style={ss.modal}
-        >
-          <CourseModal chosenCourse={chosenCourse} />
-        </Modal>
+    if (courseDaily.length <= 0) {
+      return (
+        <View style={[ss.predefinedStyle, style]}>
+          <Ian tx="schedule.noCourseToday" />
+        </View>
       )
     }
 
+    let chosenCourse = courseDaily[this.state.courseIndex]
+
+    modal = (
+      <Modal
+        isVisible={this.state.isModalVisible}
+        backdropColor={ss.screen.backgroundColor}
+        hideModalContentWhileAnimating={true}
+        animationIn={"fadeInUp"}
+        animationOut={"fadeOutUp"}
+        animationInTiming={400}
+        animationOutTiming={300}
+        onBackButtonPress={this.closeModal}
+        onBackdropPress={this.closeModal}
+        useNativeDriver={true}
+        style={ss.modal}
+      >
+        <CourseModal chosenCourse={chosenCourse} />
+      </Modal>
+    )
+
     return (
       <View style={[ss.predefinedStyle, style]}>
-        {courseDaily.length > 0 && modal}
+        {modal}
 
         <FlatList
           style={ss.listStyle}
@@ -106,9 +126,23 @@ export class CourseDailySchedule extends React.Component<CourseDailyScheduleProp
               />
             </Touchable>
           )}
-          ListEmptyComponent={() => <Ian tx="schedule.noCourseToday" />}
         />
       </View>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    compData: state.dataReducer,
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export const CourseDailySchedule = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(_CourseDailySchedule)

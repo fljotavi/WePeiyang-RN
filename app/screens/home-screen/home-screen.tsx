@@ -18,7 +18,6 @@ import {
   fetchUserData,
   fetchEcardProfile,
 } from "../../actions/data-actions"
-import { digitsFromScoreType } from "../../utils/common"
 
 import { NavigationScreenProps } from "react-navigation"
 import ss from "./home-screen.style"
@@ -35,7 +34,7 @@ import {
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { ModuleButton } from "../../components/module-button"
-import { connectedGpaCurve as GpaCurve } from "../../components/gpa-curve"
+import { GpaCurve } from "../../components/gpa-curve"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import { CourseDailySchedule } from "../../components/course-daily-schedule"
 import { LibraryList } from "../../components/library-list"
@@ -44,6 +43,7 @@ import { format } from "date-fns"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { color } from "../../theme"
 import { Toasti } from "../../components/toasti"
+import { Ian } from "../../components/ian"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -109,7 +109,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   render() {
     // Grab the props
-    const { scoreType, compData } = this.props
+    const { compData } = this.props
+    if (compData.userInfo.status !== "VALID") {
+      return (
+        <View>
+          <Ian text="You haven't logged in. How did you get here?" />
+        </View>
+      )
+    }
+    console.log(compData)
 
     let dayToRender = "2018-05-08"
     let timestamp = new Date(dayToRender).getTime()
@@ -142,7 +150,11 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               <TouchableOpacity onPress={() => this.props.navigation.navigate("user")}>
                 <View style={ss.userInfo}>
                   <Text text={compData.userInfo.data.twtuname} style={ss.userName} />
-                  <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar} />
+                  <Image
+                    loadingIndicatorSource={require("../../assets/loading.png")}
+                    source={{ uri: compData.userInfo.data.avatar }}
+                    style={ss.avatar}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
@@ -221,18 +233,12 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             <View style={ss.sectionHead}>
               <Text tx="modules.library" preset="h5" />
             </View>
-            <LibraryList data={compData.library.data} status={compData.library.status} />
+            <LibraryList />
 
             <View style={ss.sectionHead}>
               <Text tx="modules.gpaCurve" preset="h5" />
             </View>
-            <GpaCurve
-              data={compData.gpa.data.gpaSemestral[scoreType]}
-              status={compData.gpa.status}
-              style={ss.curveView}
-              scoreToFixed={digitsFromScoreType(scoreType)}
-              animated={true}
-            />
+            <GpaCurve style={ss.curveView} animated={true} />
             <GpaStat
               style={ss.stat}
               status={compData.gpa.status}
@@ -254,7 +260,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
 const mapStateToProps = state => {
   return {
-    scoreType: state.preferenceReducer.scoreType,
     compData: state.dataReducer,
   }
 }

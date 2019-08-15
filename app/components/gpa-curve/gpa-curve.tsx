@@ -4,11 +4,6 @@
  * ---
  *
  * 一个 Gpa Curve 会展示一条 GPA 曲线（包含曲线上的 Tooltips）。
- * 它通过上级指定的数据进行绘制，但指定的数据不应该是具体的分数，
- * 而是包含了所有学期成绩信息的标准数据体（详见 Data reducers 中的 GPA 部分数据体）。
- * 这是为了避免组件复用时冗余的数据提取过程，
- * 同时保持它为 Presentational component。
- *
  * Gpa Curve 通常会同显示三组统计数字的 Gpa Stat 一起使用。
  *
  */
@@ -21,6 +16,8 @@ import { color, typography } from "../../theme"
 import Svg, { G, Rect, Text as Svgtext } from "react-native-svg"
 import { setSemesterIndex } from "../../actions/preference-actions"
 import { connect } from "react-redux"
+import { digitsFromScoreType } from "../../utils/common"
+import { Ian } from "../ian"
 
 export interface GpaTooltipProps {
   x?: number
@@ -56,36 +53,58 @@ export function GpaTooltip(props: GpaTooltipProps) {
 
 export interface GpaCurveProps {
   style?: ViewStyle
-  data?: any[]
-  status: string
-  scoreToFixed?: number
-  semesterIndex?
   setSemesterIndex?
   animated?: boolean
   palette?
+  compData?
+  scoreType?
 }
 
-export class GpaCurve extends React.Component<GpaCurveProps, {}> {
+export class _GpaCurve extends React.Component<GpaCurveProps, {}> {
   render() {
-    let { style, data, status, semesterIndex, scoreToFixed, animated, palette } = this.props
-    palette = palette || [
+    const { style, compData, animated, palette, scoreType } = this.props
+    const textStyle = {}
+    const curveStyle: ViewStyle = {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: -26,
+    }
+
+    const predefinedStyle: ViewStyle = {}
+
+    if (!compData.userInfo.data.accounts.tju) {
+      return (
+        <View style={[predefinedStyle, style]}>
+          <Ian text="E-tju account not bound" />
+        </View>
+      )
+    }
+
+    const status = compData.gpa.status
+    if (status !== "VALID") {
+      return <View />
+    }
+
+    const data = compData.gpa.data.gpaSemestral[scoreType]
+    if (data.length <= 0) {
+      return (
+        <View style={[predefinedStyle, style]}>
+          <Ian text="No available GPA data" />
+        </View>
+      )
+    }
+
+    const scoreToFixed = digitsFromScoreType(scoreType)
+    const semesterIndex = compData.gpa.semesterIndex
+
+    let colors = palette || [
       color.card,
       color.primary,
       color.washed,
       color.lightGrey,
       color.background,
     ]
-
-    if (!(status === "VALID" && data.length > 0)) {
-      return <View />
-    }
-
-    const textStyle = {}
-    const predefinedStyle: ViewStyle = {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-    }
 
     let selected = semesterIndex
     let gpaArray = data.map(dict => dict.y)
@@ -100,7 +119,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
     let chartWidth = Dimensions.get("window").width
     let chartHeight = 100
     return (
-      <View style={[predefinedStyle, style]}>
+      <View style={[curveStyle, style]}>
         <Text style={textStyle} />
         <Svg height={chartHeight} width={chartWidth}>
           <VictoryGroup
@@ -109,17 +128,17 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             height={chartHeight}
             width={chartWidth}
             padding={0}
-            color={palette[2]}
+            color={colors[2]}
           >
             <VictoryLine
               data={passedData}
               interpolation="cardinal"
-              style={{ data: { stroke: palette[2], strokeWidth: 3.3 } }}
+              style={{ data: { stroke: colors[2], strokeWidth: 3.3 } }}
               domain={{ y: [lowest - domainPadding, highest + domainPadding * 5] }}
             />
             <VictoryScatter
               data={data}
-              color={palette[3]}
+              color={colors[3]}
               size={6.6}
               style={{ data: { stroke: "rgba(0,0,0,0)", strokeWidth: 24 } }}
               events={[
@@ -153,9 +172,9 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
             />
             <VictoryScatter
               data={[data[selected]]}
-              color={palette[4]}
+              color={colors[4]}
               size={7.1}
-              style={{ data: { stroke: palette[1], strokeWidth: 4 } }}
+              style={{ data: { stroke: colors[1], strokeWidth: 4 } }}
             />
             <VictoryScatter
               data={[data[selected]]}
@@ -163,7 +182,7 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
                 <GpaTooltip
                   score={data[selected].y}
                   scoreToFixed={scoreToFixed || 2}
-                  palette={[palette[0], palette[1]]}
+                  palette={[colors[0], colors[1]]}
                 />
               }
             />
@@ -176,7 +195,9 @@ export class GpaCurve extends React.Component<GpaCurveProps, {}> {
 
 const mapStateToProps = state => {
   return {
+    compData: state.dataReducer,
     semesterIndex: state.dataReducer.gpa.semesterIndex,
+    scoreType: state.preferenceReducer.scoreType,
   }
 }
 
@@ -188,7 +209,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedGpaCurve = connect(
+export const GpaCurve = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GpaCurve)
+)(_GpaCurve)

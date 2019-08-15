@@ -18,6 +18,7 @@ export default {
     marginBottom: -10,
   },
   curve: {
+    marginTop: 25,
     marginBottom: 50,
   },
   modal: {

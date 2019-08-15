@@ -54,9 +54,7 @@ export default {
   mainView: {
     flex: 1,
   } as ViewStyle,
-  curveView: {
-    marginTop: -26,
-  } as ViewStyle,
+  curveView: {} as ViewStyle,
   stat: {
     marginTop: 26,
   } as ViewStyle,
