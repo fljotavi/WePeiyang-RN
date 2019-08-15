@@ -16,6 +16,10 @@ export const palette = {
 
   twt: "#1c94dd",
 
+  paper: "#e6ddc9",
+  rouge: "#bf705e",
+  ink: "#4a4a4a",
+
   paleDarker: "rgb(59, 50, 69)",
   pale: "rgb(54, 60, 84)",
   offPale: "rgb(109, 105, 127)",

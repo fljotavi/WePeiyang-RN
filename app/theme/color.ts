@@ -69,7 +69,7 @@ export const color = {
   module: {
     gpa: [palette.angry, white(0.95), white(0.35), white(0.08)],
     ecard: [palette.offBlack, palette.silver, palette.gold],
-    yellowPages: [palette.orange, white(0.95), white(0.35)],
+    yellowPages: [palette.paper, palette.ink, palette.rouge],
   },
 
   /**

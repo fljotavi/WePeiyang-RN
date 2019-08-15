@@ -1,7 +1,14 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { DeviceEventEmitter, RefreshControl, ScrollView, StatusBar, View } from "react-native"
+import {
+  DeviceEventEmitter,
+  RefreshControl,
+  ScrollView,
+  StatusBar,
+  View,
+  Image,
+} from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import ss from "./yellow-pages-screen.styles"
@@ -124,7 +131,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
   render() {
     return (
       <Screen style={ss.screen}>
-        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
         <TopBar
           elements={{
@@ -136,7 +143,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
             ],
             right: [
               {
-                iconText: "android",
+                iconText: "info",
                 action: () => {
                   console.log(this.props.yellowPages.data)
                 },
@@ -157,18 +164,18 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
               refreshing={this.state.refreshing}
               onRefresh={this._onRefresh}
               tintColor={color.module.yellowPages[1]}
-              colors={[color.module.yellowPages[0]]}
+              colors={[color.module.yellowPages[1]]}
             />
           }
         >
           <View style={ss.container}>
             <View style={ss.poweredBy}>
               <Text text="Powered by" preset="lausanne" style={ss.poweredByText} />
-              <FlexSearchLogo style={ss.poweredByLogo} fill={color.module.yellowPages[1]} />
+              <FlexSearchLogo style={ss.poweredByLogo} fill={color.module.yellowPages[2]} />
             </View>
             <TextField
               placeholder="Search keywords..."
-              placeholderTextColor={color.module.yellowPages[2]}
+              placeholderTextColor={color.module.yellowPages[1]}
               onChangeText={text => this.goSearch(text)}
               style={ss.field}
               inputStyle={ss.input}
@@ -182,6 +189,9 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
             />
           </View>
         </ScrollView>
+        {this.state.keyword.length <= 0 && (
+          <Image source={require("./assets/tel-dark.png")} style={ss.telImg} />
+        )}
       </Screen>
     )
   }

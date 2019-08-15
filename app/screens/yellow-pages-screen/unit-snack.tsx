@@ -26,19 +26,19 @@ export function UnitSnack(props: UnitSnackProps) {
     } as ViewStyle,
     touchable: {} as ViewStyle,
     title: {
-      color: color.module.yellowPages[1],
+      color: color.module.yellowPages[0],
       fontSize: 12,
       marginBottom: -5,
     } as TextStyle,
     subtitle: {
-      color: color.module.yellowPages[1],
+      color: color.module.yellowPages[0],
       fontSize: 30,
       letterSpacing: -1,
       fontWeight: "bold",
       marginBottom: 2,
     } as TextStyle,
     call: {
-      color: color.module.yellowPages[1],
+      color: color.module.yellowPages[0],
       fontSize: 26,
       textAlign: "right",
     } as ViewStyle,
@@ -46,14 +46,14 @@ export function UnitSnack(props: UnitSnackProps) {
   return (
     <View style={[ss.snackContainer, style]}>
       <View style={ss.left}>
-        <Text text={unit} style={ss.title} />
-        <Text style={ss.subtitle} text={phone} />
+        <Text selectable={true} text={unit} style={ss.title} />
+        <Text selectable={true} style={ss.subtitle} text={phone} />
       </View>
       <Touchable
         style={ss.touchable}
         onPress={onPress}
         delayPressIn={0}
-        background={Touchable.Ripple(color.module.yellowPages[1], true)}
+        background={Touchable.Ripple(color.module.yellowPages[0], true)}
       >
         <Text text="phone_forwarded" style={ss.call} preset="i" />
       </Touchable>

@@ -44,5 +44,9 @@ export interface TextProps extends TextProperties {
    * Populated by React-redux and should not be manually set.
    */
   lang?
+
+  /**
+   * Custom translation method. Useful for date translation, etc.
+   */
   customTranslationMethod?
 }

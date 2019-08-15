@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { FlatList, ScrollView, StatusBar, View } from "react-native"
+import { FlatList, ScrollView, StatusBar, View, Image } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import ss from "./yellow-pages-screen.styles"
@@ -13,6 +13,7 @@ import { Ian } from "../../components/ian"
 import { UnitSnack } from "./unit-snack"
 import { Tag } from "../../components/tag"
 import { Linking } from "react-native"
+import { InfoSource } from "./info-source"
 
 export interface DepartmentScreenProps extends NavigationScreenProps<{}> {
   yellowPages?
@@ -26,7 +27,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
     const indices = this.props.navigation.getParam("indices" as never, 0 as never) // TODO: Find out what the fuck is happening, either with this library, or its type definition, or TSLint, something
     const dep = this.props.yellowPages.data[indices[0]].department_list[indices[1]]
     return (
-      <Screen style={ss.screen}>
+      <Screen style={ss.screenInvert}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
         <TopBar
@@ -39,30 +40,31 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
             ],
             right: [
               {
-                iconText: "report",
+                iconText: "info",
                 action: () => {
                   console.log(this.props.yellowPages.data)
                 },
               },
             ],
           }}
-          color={color.module.yellowPages[1]}
+          color={color.module.yellowPages[0]}
         />
 
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ss.unitScroll}>
           <View style={ss.container}>
+            <Image source={require("./assets/tjuarch.png")} style={ss.tjuArch} />
             <Text text="DEPARTMENT" style={ss.sectionHead} />
             <Text text={dep.department_name} style={ss.screenHead} />
             <View style={ss.tags}>
               <Tag
                 text={yellowPages.data[indices[0]].category_name}
                 iconText="account_balance"
-                palette={[color.module.yellowPages[1], color.module.yellowPages[0]]}
+                palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
               />
               <Tag
                 text={dep.unit_list.length + " 个办公室"}
                 iconText="subject"
-                palette={[color.module.yellowPages[1], color.module.yellowPages[0]]}
+                palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
               />
             </View>
             <FlatList
@@ -86,6 +88,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               )}
             />
           </View>
+          <InfoSource />
         </ScrollView>
       </Screen>
     )
