@@ -94,7 +94,7 @@ export class _TjuBindScreen extends React.Component<TjuBindScreenProps, {}> {
               <Text preset="small" style={ssGlobal.login.hint}>
                 <Text text="info" preset="i" />
                 <Text text=" " />
-                <Text tx="accountBinding.nextLoginHint" />
+                <Text tx="accountBinding.tjuLatencyHint" />
               </Text>
               <View style={ssGlobal.login.buttonRow}>
                 <Button style={ssGlobal.login.button} onPress={this.attemptToBind}>

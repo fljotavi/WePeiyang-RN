@@ -42,7 +42,6 @@ import { format } from "date-fns"
 import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
 import { color } from "../../theme"
 import { Toasti } from "../../components/toasti"
-import { Ian } from "../../components/ian"
 import { ModuleButtonList } from "../../components/module-button-list"
 
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
@@ -111,11 +110,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
     const { compData } = this.props
     console.log("HomeScreen compData", compData)
     if (compData.userInfo.status !== "VALID") {
-      return (
-        <View>
-          <Ian text="You haven't logged in. How did you get here?" />
-        </View>
-      )
+      return <View />
     }
 
     let dayToRender = "2018-05-08"

@@ -7,10 +7,11 @@ import { Button } from "../../components/button"
 export interface UnbindModalProps {
   style?
   actions?
+  origin?
 }
 
 export function UnbindModal(props: UnbindModalProps) {
-  const { style, actions } = props
+  const { style, actions, origin } = props
   const h2: TextStyle = {
     color: color.background,
   }
@@ -32,15 +33,14 @@ export function UnbindModal(props: UnbindModalProps) {
     alignSelf: "center",
   }
 
-  const unbindingEcard = actions[0] === "ECARD"
-
   return (
     <View style={[predefinedStyle, style]}>
       <Text tx="accountBinding.unbindModal.heading" preset="h2" style={h2} />
       <Text tx="accountBinding.unbindModal.content" style={textStyle} />
-      {unbindingEcard && <Text tx="accountBinding.unbindModal.unbindEcardHint" style={textStyle} />}
-      {!unbindingEcard && <Text tx="accountBinding.nextLoginHint" style={textStyle} />}
-      {!unbindingEcard && (
+      {origin === "ECARD" && <Text tx="accountBinding.unbindEcardHint" style={textStyle} />}
+      {origin === "TJU" && <Text tx="accountBinding.tjuLatencyHint" style={textStyle} />}
+      {origin === "LIB" && <Text tx="accountBinding.libLatencyHint" style={textStyle} />}
+      {!(origin === "ECARD") && (
         <View style={buttonRow}>
           <Button
             tx="accountBinding.unbind"

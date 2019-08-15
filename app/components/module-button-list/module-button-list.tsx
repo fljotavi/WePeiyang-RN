@@ -10,9 +10,8 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { DeviceEventEmitter, Linking, ScrollView, ViewStyle } from "react-native"
+import { Linking, ScrollView, ViewStyle } from "react-native"
 import { ModuleButton } from "../module-button"
-import { Toasti } from "../toasti"
 
 export interface ModuleButtonListProps {
   style?: ViewStyle

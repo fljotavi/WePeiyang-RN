@@ -20,7 +20,6 @@ import {
 import { TopBar } from "../../components/top-bar"
 import { Toasti } from "../../components/toasti"
 import { color, shadowPresets } from "../../theme"
-import { Ian } from "../../components/ian"
 import Modal from "react-native-modal"
 import { UnbindModal } from "./unbind-modal"
 
@@ -34,6 +33,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
   state = {
     isModalVisible: false,
     selectedUnbindAction: () => {},
+    origin: "",
   }
 
   logout = () => {
@@ -82,7 +82,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
       })
   }
 
-  unbindEcard = "ECARD"
+  unbindEcard = () => "NO_ACTION_NEEDED"
 
   deleteToken = async () => {
     deleteTokenFromStore()
@@ -100,11 +100,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
   render() {
     const { compData } = this.props
     if (compData.userInfo.status !== "VALID") {
-      return (
-        <View>
-          <Ian text="You haven't logged in. How did you get here?" />
-        </View>
-      )
+      return <View />
     }
 
     return (
@@ -125,7 +121,10 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           backdropOpacity={0.9}
           useNativeDriver={true}
         >
-          <UnbindModal actions={[this.state.selectedUnbindAction, this.toggleModal]} />
+          <UnbindModal
+            actions={[this.state.selectedUnbindAction, this.toggleModal]}
+            origin={this.state.origin}
+          />
         </Modal>
 
         <View style={ss.headPanel}>
@@ -177,6 +176,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                   this.setState(
                     {
                       selectedUnbindAction: this.unbindTju,
+                      origin: "TJU",
                     },
                     this.toggleModal,
                   )
@@ -200,6 +200,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                   this.setState(
                     {
                       selectedUnbindAction: this.unbindEcard,
+                      origin: "ECARD",
                     },
                     this.toggleModal,
                   )
@@ -223,6 +224,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                   this.setState(
                     {
                       selectedUnbindAction: this.unbindLib,
+                      origin: "LIB",
                     },
                     this.toggleModal,
                   )
