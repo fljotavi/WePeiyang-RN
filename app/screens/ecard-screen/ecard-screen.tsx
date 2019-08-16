@@ -160,20 +160,33 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             </Animated.View>
 
             {ecard.total && (
-              <View style={ss.stat}>
-                <View style={ss.statPair}>
-                  <Text text="Daily Expense" style={ss.statKey} />
-                  <Text style={ss.statVal} preset="h3">
-                    <Text text="¥" style={ss.yen} />
-                    <Text text={Number(ecard.total.total_day).toFixed(2)} />
-                  </Text>
-                </View>
-                <View style={ss.statPair}>
-                  <Text text="Monthly Expense" style={ss.statKey} />
-                  <Text style={ss.statVal} preset="h3">
-                    <Text text="¥" style={ss.yen} />
-                    <Text text={Number(ecard.total.total_30_days).toFixed(2)} />
-                  </Text>
+              <View>
+                {Number(ecard.total.total_day) === 0 && (
+                  <View style={ss.hint}>
+                    <Text preset="i" text="info" style={ss.hintText} />
+                    <Text preset="small" text=" " style={ss.hintText} />
+                    <Text
+                      style={ss.hintText}
+                      preset="small"
+                      text="The data shown here ranges to the day of your most recent bill."
+                    />
+                  </View>
+                )}
+                <View style={ss.stat}>
+                  <View style={ss.statPair}>
+                    <Text text="Daily Expense" style={ss.statKey} />
+                    <Text style={ss.statVal} preset="h3">
+                      <Text text="¥" style={ss.yen} />
+                      <Text text={Number(ecard.total.total_day).toFixed(2)} />
+                    </Text>
+                  </View>
+                  <View style={ss.statPair}>
+                    <Text text="Monthly Expense" style={ss.statKey} />
+                    <Text style={ss.statVal} preset="h3">
+                      <Text text="¥" style={ss.yen} />
+                      <Text text={Number(ecard.total.total_30_days).toFixed(2)} />
+                    </Text>
+                  </View>
                 </View>
               </View>
             )}

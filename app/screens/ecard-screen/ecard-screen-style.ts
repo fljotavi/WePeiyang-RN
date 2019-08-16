@@ -82,4 +82,14 @@ export default {
     fontSize: 130,
     marginBottom: 20,
   } as TextStyle,
+
+  hint: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+    paddingHorizontal: 30,
+  } as ViewStyle,
+  hintText: {
+    color: color.module.ecard[2],
+  } as TextStyle,
 }
