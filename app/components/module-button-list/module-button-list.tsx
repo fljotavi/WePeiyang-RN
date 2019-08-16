@@ -12,6 +12,9 @@ import { connect } from "react-redux"
 
 import { Linking, ScrollView, ViewStyle } from "react-native"
 import { ModuleButton } from "../module-button"
+import Modal from "react-native-modal"
+import { color } from "../../theme"
+import { Alert } from "../alert"
 
 export interface ModuleButtonListProps {
   style?: ViewStyle
@@ -20,8 +23,25 @@ export interface ModuleButtonListProps {
 }
 
 class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
+  state = {
+    isModalVisible: false,
+    selectedUrl: "",
+  }
+
+  openModal = url => {
+    this.setState(
+      {
+        selectedUrl: url,
+      },
+      () => this.setState({ isModalVisible: true }),
+    )
+  }
+  closeModal = () => {
+    this.setState({ isModalVisible: false, userInformed: false })
+  }
+
   openUrlAttempt = url => {
-    Linking.openURL(url).catch(err => console.log(err))
+    this.openModal(url)
   }
 
   render() {
@@ -47,6 +67,32 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={color.background}
+          onBackButtonPress={this.closeModal}
+          onBackdropPress={this.closeModal}
+          useNativeDriver={true}
+        >
+          <Alert
+            heading="We provide this service in our web platform. Open Link in Browser?"
+            content={this.state.selectedUrl}
+            buttons={[
+              {
+                tx: "common.ok",
+                onPress: () => {
+                  this.closeModal()
+                  Linking.openURL(this.state.selectedUrl).catch(err => console.log(err))
+                },
+              },
+              {
+                tx: "common.cancel",
+                onPress: this.closeModal,
+              },
+            ]}
+          />
+        </Modal>
+
         <ModuleButton
           style={ss.blockWithMarginRight}
           tx="modules.schedule"
