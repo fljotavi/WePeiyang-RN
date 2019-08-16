@@ -99,7 +99,7 @@ export function CourseModal(props: CourseModalProps) {
 
         <Text text={chosenCourse.coursename} style={ss.courseTitle} selectable={true} />
         <Text style={ss.courseTutor}>
-          <Text text={`${chosenCourse.teacher} · ${chosenCourse.college}`} selectable={true} />
+          <Text text={chosenCourse.teacher} selectable={true} />
         </Text>
       </View>
 
@@ -108,14 +108,6 @@ export function CourseModal(props: CourseModalProps) {
           <View style={ss.courseAttrPair}>
             <Text text={"ID"} style={ss.courseAttrKey} />
             <Text text={chosenCourse.courseid} style={ss.courseAttrValue} />
-          </View>
-          <View style={ss.courseAttrPair}>
-            <Text text={"Type"} style={ss.courseAttrKey} />
-            <Text text={chosenCourse.coursenature} style={ss.courseAttrValue} />
-          </View>
-          <View style={ss.courseAttrPair}>
-            <Text text={"SubType"} style={ss.courseAttrKey} />
-            <Text text={chosenCourse.coursetype} style={ss.courseAttrValue} />
           </View>
           <View style={ss.courseAttrPair}>
             <Text text={"逻辑班号"} style={ss.courseAttrKey} />
@@ -129,6 +121,13 @@ export function CourseModal(props: CourseModalProps) {
             <Text text={"Location"} style={ss.courseAttrKey} />
             <Text
               text={sanitizeLocation(chosenCourse.activeArrange.room)}
+              style={ss.courseAttrValue}
+            />
+          </View>
+          <View style={ss.courseAttrPair}>
+            <Text text={"Weeks"} style={ss.courseAttrKey} />
+            <Text
+              text={`${chosenCourse.week.start}-${chosenCourse.week.end}`}
               style={ss.courseAttrValue}
             />
           </View>
