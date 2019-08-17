@@ -72,7 +72,7 @@ export class _LibBindScreen extends React.Component<LibBindScreenProps, {}> {
         <View style={ssGlobal.login.container}>
           <View>
             <View style={ssGlobal.login.headerBar}>
-              <Text tx="accountBinding.greetings" preset="h2" style={ssGlobal.login.heading} />
+              <Text tx="accountBinding.greetings.lib" preset="h2" style={ssGlobal.login.heading} />
             </View>
             <View>
               <TextField

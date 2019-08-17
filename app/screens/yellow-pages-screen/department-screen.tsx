@@ -41,8 +41,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
             right: [
               {
                 iconText: "info",
-                action: () => {
-                },
+                action: () => {},
               },
             ],
           }}
@@ -52,7 +51,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ss.unitScroll}>
           <View style={ss.container}>
             <Image source={require("./assets/tjuarch.png")} style={ss.tjuArch} />
-            <Text text="DEPARTMENT" style={ss.sectionHead} />
+            <Text tx="contact.department" style={ss.sectionHead} />
             <Text text={dep.department_name} style={ss.screenHead} />
             <View style={ss.tags}>
               <Tag
@@ -81,7 +80,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               )}
               ListEmptyComponent={() => (
                 <Ian
-                  text="No unit found in this department"
+                  tx="contact.noUnit"
                   palette={[color.module.yellowPages[2], color.module.yellowPages[0]]}
                 />
               )}

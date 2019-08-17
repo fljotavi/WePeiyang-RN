@@ -56,9 +56,9 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
         />
 
         <View style={ss.container}>
-          <Text tx="settingsScreen.languageSetting" preset="h2" style={ss.heading} />
+          <Text tx="settings.languageSetting" preset="h2" style={ss.heading} />
 
-          <Text tx="settingsScreen.languageWarning" preset="small" style={ss.small} />
+          <Text tx="settings.languageWarning" preset="small" style={ss.small} />
 
           <FlatList
             data={Object.keys(languageFullnames)}

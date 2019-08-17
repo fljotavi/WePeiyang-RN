@@ -27,7 +27,7 @@ export function InfoSource(props: InfoSourceProps) {
   }
   return (
     <View style={[ss.container, style]}>
-      <Text text="信息来源" style={ss.text} />
+      <Text tx="contact.infoSource" style={ss.text} />
       <Text text="  /" style={ss.text} />
       <TjuBadge fill={color.module.yellowPages[0]} height={20} width={15} style={ss.icon} />
       <Text text="天津大学办公服务平台" style={ss.text} />

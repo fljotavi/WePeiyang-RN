@@ -81,7 +81,8 @@ export function GpaSnack(props: GpaSnackProps) {
                 style={ss.subtitle}
                 text={courseType + " / " + credits.toFixed(digitsFromScoreType("credits"))}
               />
-              <Text preset="small" style={ss.subtitle} text=" Credits" />
+              <Text preset="small" style={ss.subtitle} text=" " />
+              <Text preset="small" style={ss.subtitle} tx="gpa.credits" />
             </Text>
           </View>
         </View>

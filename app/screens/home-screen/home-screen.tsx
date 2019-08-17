@@ -95,7 +95,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             DeviceEventEmitter.emit(
               "showToast",
               <Toasti
-                text={`Part of the data wasn't successfully transmitted: Error ${err.message} in request ${err.origin}`}
+                // 由于 api 中的错误消息本身没有 i18n，故此处也暂时无必要实现 i18n
+                text={`部分数据未传输成功：请求 ${err.origin} 时收到错误 ${err.message}`}
                 preset="warning"
               />,
             )
@@ -106,7 +107,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
         DeviceEventEmitter.emit(
           "showToast",
           <Toasti
-            text={`Cannot get user data (${err.message}). Please check your login status.`}
+            text={`获取用户数据时收到错误 (${err.message})。请检查您的登录状态。`}
             preset="warning"
           />,
         )
@@ -134,8 +135,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       return <View />
     }
 
-    let dayToRender = "2018-05-08"
-    let timestamp = new Date(dayToRender).getTime()
+    let dateToRender = new Date(Date.now())
+    let timestamp = dateToRender.getTime()
     const dateLocales = {
       en: require("date-fns/locale/en"),
       es: require("date-fns/locale/es"),
@@ -178,9 +179,9 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
             <View style={ss.sectionHead}>
               <Text
-                tx={dayToRender}
+                tx={String(dateToRender)}
                 customTranslationMethod={(lang, tx) => {
-                  return format(new Date(tx), "MMM Do, dddd", {
+                  return format(new Date(tx), "MMM Do dddd", {
                     locale: dateLocales[lang],
                   })
                 }}

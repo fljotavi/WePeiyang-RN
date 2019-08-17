@@ -171,7 +171,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
               <FlexSearchLogo style={ss.poweredByLogo} fill={color.module.yellowPages[2]} />
             </View>
             <TextField
-              placeholder="Search keywords..."
+              placeholderTx="contact.searchBar"
               placeholderTextColor={color.module.yellowPages[1]}
               onChangeText={text => this.goSearch(text)}
               style={ss.field}

@@ -9,7 +9,7 @@ import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
-import { ByTwt } from "../../components/by-twt/by-twt"
+import { ByTwt } from "../../components/by-twt"
 import { Toasti } from "../../components/toasti"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {}
@@ -50,9 +50,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
           DeviceEventEmitter.emit("showToast", <Toasti text={errorMessage} />)
         }
       })
-      .catch(error => {
-        DeviceEventEmitter.emit("showToast", <Toasti text="Login Fetch failed" preset="error" />)
-        console.log(error)
+      .catch(err => {
+        DeviceEventEmitter.emit("showToast", <Toasti text={err.message} preset="error" />)
+        console.log(err)
       })
       .then(() => {
         this.setState({ loggingIn: false })

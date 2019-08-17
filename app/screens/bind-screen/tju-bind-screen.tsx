@@ -73,7 +73,7 @@ export class _TjuBindScreen extends React.Component<TjuBindScreenProps, {}> {
         <View style={ssGlobal.login.container}>
           <View>
             <View style={ssGlobal.login.headerBar}>
-              <Text tx="accountBinding.greetings" preset="h2" style={ssGlobal.login.heading} />
+              <Text tx="accountBinding.greetings.tju" preset="h2" style={ssGlobal.login.heading} />
             </View>
             <View>
               <TextField

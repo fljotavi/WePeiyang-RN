@@ -51,8 +51,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   }
 
   componentDidMount = () => {
-    let dayToRender = "2018/05/08 13:00"
-    let timestamp = new Date(dayToRender).getTime()
+    let timestamp = new Date(Date.now()).getTime()
     let currentWeek = getWeek(timestamp, 1520179200 * 1000)
     if (currentWeek < 1) currentWeek = 1
     if (isNaN(currentWeek)) {
@@ -282,7 +281,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
           />
 
           <View style={ss.container} onLayout={this.getNewDimensions}>
-            <Text text="Schedule" preset="h2" />
+            <Text tx="modules.schedule" preset="h2" />
 
             <FlatList
               horizontal={true}
@@ -309,9 +308,9 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                       matrix={item.matrix}
                     />
                     <Text style={ss.dotmapText}>
-                      <Text text="WEEK " />
+                      <Text tx="schedule.WEEK.pre" />
                       {this.state.currentWeek !== item.week && <Text text={item.week} />}
-                      <Text text="" />
+                      <Text tx="schedule.WEEK.post" />
                     </Text>
                   </View>
                 </TouchableOpacity>

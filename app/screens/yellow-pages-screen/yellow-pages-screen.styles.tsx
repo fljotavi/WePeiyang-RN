@@ -1,4 +1,4 @@
-import {Dimensions, ImageStyle, TextStyle, ViewStyle} from "react-native"
+import { Dimensions, ImageStyle, TextStyle, ViewStyle } from "react-native"
 import { color, layoutParam } from "../../theme"
 
 let availableWidth = Dimensions.get("window").width
@@ -44,6 +44,7 @@ export default {
     color: color.module.yellowPages[0],
     fontWeight: "bold",
     marginTop: availableWidth * 0.47,
+    textTransform: "uppercase",
   } as TextStyle,
   p: {
     fontSize: 12,

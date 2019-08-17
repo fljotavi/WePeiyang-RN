@@ -126,13 +126,13 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
         />
 
         <View style={ss.container}>
-          <Text tx="settingsScreen.settings" preset="h2" style={ss.heading} />
+          <Text tx="settings.settings" preset="h2" style={ss.heading} />
 
-          <Text text="General" preset="lausanne" style={ss.sectionHead} />
+          <Text tx="settings.sections.general" preset="lausanne" style={ss.sectionHead} />
 
           <SettingsSnack
             style={ss.snack}
-            txTitle="settingsScreen.hideGpa"
+            txTitle="settings.hideGpa"
             preset="switch"
             on={pref.hideGpaOnHomeScreen}
             onPress={() => {
@@ -143,7 +143,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
           <SettingsSnack
             style={ss.snack}
             preset="enter"
-            txTitle="settingsScreen.language"
+            txTitle="settings.language"
             textSubtitle={languageFullnames[pref.language].common}
             onPress={() => this.props.navigation.navigate("language")}
           />
@@ -151,18 +151,18 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
           <SettingsSnack
             style={ss.snack}
             preset="enter"
-            textTitle={"Displayed Days Each Week"}
+            txTitle="settings.daysEachWeek.title"
             textSubtitle={pref.daysEachWeek}
             onPress={() => this.props.navigation.navigate("daysEachWeek")}
           />
 
-          <Text text="Elsewhere" preset="lausanne" style={ss.sectionHead} />
+          <Text tx="settings.sections.elsewhere" preset="lausanne" style={ss.sectionHead} />
 
           <SettingsSnack
             style={ss.snack}
             preset="enter"
-            textTitle={"WePeiyang on Github"}
-            textSubtitle="WePeiyang is an open-sourced project. Help make it better by contributing to our community."
+            txTitle="settings.wpyGithub.title"
+            txSubtitle="settings.wpyGithub.sub"
             onPress={() => {
               this.openUrlAttempt("https://github.com/Cyphexl/WePeiYang-RN")
             }}
@@ -171,15 +171,15 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
           <SettingsSnack
             style={ss.snack}
             preset="enter"
-            textTitle={"天外天用户社区 QQ/TIM Group"}
+            txTitle="settings.timGroup"
             textSubtitle="738068756"
           />
 
           <SettingsSnack
             style={ss.snack}
             preset="enter"
-            textTitle={"Help & Support"}
-            textSubtitle="Need help? Encountered a problem? Welcome to our support forum."
+            txTitle="settings.helpNSupport.title"
+            txSubtitle="settings.helpNSupport.sub"
             onPress={() => {
               this.openUrlAttempt("https://support.twtstudio.com/")
             }}

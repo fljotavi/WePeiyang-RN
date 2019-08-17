@@ -34,7 +34,7 @@
   "tjuScreen": {
     "header": "TJU 网络"
   },
-  "settingsScreen": {
+  "settings": {
     "settings": "设置",
     "displayGpa": "在主页显示 GPA",
     "language": "语言",

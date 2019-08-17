@@ -15,12 +15,8 @@ export function GpaInfo(props: GpaInfoProps) {
 
   return (
     <View style={predefinedStyle}>
-      <Text text="GPA Defs" preset="h2" />
-      <Text tx="common.lipsum.a" style={textStyle} />
-      <Text tx="common.lipsum.b" style={textStyle} />
-      <Text tx="common.lipsum.c" style={textStyle} />
-      <Text tx="common.lipsum.b" style={textStyle} />
-      <Text tx="common.lipsum.d" style={textStyle} />
+      <Text tx="gpa.info.title" preset="h2" />
+      <Text tx="gpa.info.content" style={textStyle} />
     </View>
   )
 }

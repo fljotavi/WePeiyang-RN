@@ -56,19 +56,9 @@ export class DaysEachWeekSettingsScreen extends React.Component<
         />
 
         <View style={ss.container}>
-          <Text text="Displayed Days Each Week" preset="h2" style={ss.heading} />
+          <Text tx="settings.daysEachWeek.title" preset="h2" style={ss.heading} />
 
-          <Text text="Choose your preferred weekdays interval." preset="small" style={ss.small} />
-
-          {/*<SettingsSnack*/}
-          {/*  style={ss.snack}*/}
-          {/*  preset={pref.daysEachWeek === "AUTOMATIC" ? "selected" : undefined}*/}
-          {/*  textTitle={"Automatic"}*/}
-          {/*  textSubtitle={*/}
-          {/*    "Setting this to automatic would display to the last scheduled day each week in your course table."*/}
-          {/*  }*/}
-          {/*  onPress={() => setPreference("daysEachWeek", "AUTOMATIC")}*/}
-          {/*/>*/}
+          <Text tx="settings.daysEachWeek.intro" preset="small" style={ss.small} />
 
           {availableDays.map((count, i) => (
             <SettingsSnack
@@ -76,7 +66,8 @@ export class DaysEachWeekSettingsScreen extends React.Component<
               style={ss.snack}
               preset={pref.daysEachWeek === count ? "selected" : undefined}
               textTitle={count}
-              textSubtitle={`Display ${count} days each week`}
+              txSubtitle="settings.daysEachWeek.options"
+              txOptionsSubtitle={{ count: count }}
               onPress={() => {
                 setPreference("daysEachWeek", count)
                 this.props.navigation.goBack()

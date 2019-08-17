@@ -165,23 +165,19 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                   <View style={ss.hint}>
                     <Text preset="i" text="info" style={ss.hintText} />
                     <Text preset="small" text=" " style={ss.hintText} />
-                    <Text
-                      style={ss.hintText}
-                      preset="small"
-                      text="The data shown here ranges to the day of your most recent bill."
-                    />
+                    <Text style={ss.hintText} preset="small" tx="ecard.rangeHint" />
                   </View>
                 )}
                 <View style={ss.stat}>
                   <View style={ss.statPair}>
-                    <Text text="Daily Expense" style={ss.statKey} />
+                    <Text tx="ecard.dailyExpense" style={ss.statKey} />
                     <Text style={ss.statVal} preset="h3">
                       <Text text="¥" style={ss.yen} />
                       <Text text={Number(ecard.total.total_day).toFixed(2)} />
                     </Text>
                   </View>
                   <View style={ss.statPair}>
-                    <Text text="Monthly Expense" style={ss.statKey} />
+                    <Text tx="ecard.monthlyExpense" style={ss.statKey} />
                     <Text style={ss.statVal} preset="h3">
                       <Text text="¥" style={ss.yen} />
                       <Text text={Number(ecard.total.total_30_days).toFixed(2)} />
@@ -192,7 +188,8 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             )}
 
             <Text style={ss.caption}>
-              <Text text="▼ billing details" preset="lausanne" />
+              <Text text="▼ " preset="lausanne" />
+              <Text tx="ecard.billingDetails" preset="lausanne" />
             </Text>
 
             <FlatList
@@ -215,9 +212,9 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                 <View style={ss.noTransaction}>
                   <Text style={ss.noTransactionIcon} text="accessibility" preset="i" />
                   <Text style={ss.noTransactionText}>
-                    <Text text="No transaction record found in the last " />
+                    <Text tx="ecard.noTransaction.pre" />
                     <Text text={this.state.daysToLoad} />
-                    <Text text=" days" />
+                    <Text tx="ecard.noTransaction.post" />
                   </Text>
                 </View>
               )}
@@ -232,7 +229,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                 color={color.module.ecard[0]}
                 size={ssGlobal.loadingSize}
               />
-              <Text text="Load One More Week" style={ss.loadMoreText} />
+              <Text tx="ecard.loadMore" style={ss.loadMoreText} />
             </Button>
           </View>
         </ScrollView>

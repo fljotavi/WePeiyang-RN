@@ -8,6 +8,7 @@ import Color from "color"
 export interface SettingsSnackProps {
   txTitle?
   txSubtitle?
+  txOptionsSubtitle?
   textTitle?
   textSubtitle?
   preset?
@@ -18,7 +19,17 @@ export interface SettingsSnackProps {
 
 export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
   render() {
-    let { txTitle, txSubtitle, textTitle, textSubtitle, onPress, preset, on, style } = this.props
+    let {
+      txTitle,
+      txSubtitle,
+      txOptionsSubtitle,
+      textTitle,
+      textSubtitle,
+      onPress,
+      preset,
+      on,
+      style,
+    } = this.props
     const ss = {
       SettingsSnack: {
         flexDirection: "row",
@@ -91,13 +102,17 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
             <View style={ss.text}>
               <Text tx={txTitle} text={textTitle} style={ss.title} />
               {(txSubtitle || textSubtitle) && (
-                <Text tx={txSubtitle} text={textSubtitle} preset="small" style={ss.subtitle} />
+                <Text
+                  tx={txSubtitle}
+                  text={textSubtitle}
+                  txOptions={txOptionsSubtitle}
+                  preset="small"
+                  style={ss.subtitle}
+                />
               )}
             </View>
           </View>
-          <View style={ss.right}>
-            {right}
-          </View>
+          <View style={ss.right}>{right}</View>
         </View>
       </Touchable>
     )

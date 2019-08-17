@@ -148,7 +148,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             showsVerticalScrollIndicator={false}
           >
             <GpaInfo />
-            <Button text="Close" onPress={this.toggleModal} />
+            <Button tx="common.gotIt" onPress={this.toggleModal} />
           </ScrollView>
         </Modal>
 
@@ -218,8 +218,12 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               <TouchableOpacity style={ss.orderTouchable} onPress={this.toggleOrderType}>
                 <View style={ss.orderTexts}>
                   <Text text="shuffle" preset="i" style={ss.orderIcon} />
-                  <Text text="ORDERED BY" preset="lausanne" style={ss.orderTextPrefix} />
-                  <Text text={this.props.gpaOrderBy} preset="lausanne" style={ss.orderTextSuffix} />
+                  <Text tx="gpa.order.orderedBy" preset="lausanne" style={ss.orderTextPrefix} />
+                  <Text
+                    tx={"gpa.order." + this.props.gpaOrderBy}
+                    preset="lausanne"
+                    style={ss.orderTextSuffix}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
