@@ -64,7 +64,7 @@ export function unbindTjuAccount() {
 }
 
 export function unbindLibAccount() {
-  let path = `v1/auth/unbind/tju`
+  let path = `v1/auth/unbind/lib`
   return twtGet(path)
     .then(response => response.json())
     .then(responseJson => {
