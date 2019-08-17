@@ -1,0 +1,130 @@
+OK
+Confirm
+Cancel
+Back
+Close
+Got it!
+
+ Days Left
+Unknown
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus metus ac pellentesque pellentesque. Donec quis egestas purus. Donec ut ligula sit amet urna posuere vehicula ut laoreet dui. Fusce molestie, libero ut maximus euismod, ante dolor suscipit erat, a mattis nibh mauris quis ipsum. Mauris et bibendum sem, id scelerisque urna. Proin libero mi, sodales ac velit eu, elementum volutpat odio. Donec pharetra tempor vehicula.
+Maecenas efficitur consequat mi. In sit amet ornare est, nec sagittis magna. Donec quis sem ultrices, faucibus augue eget, fringilla sem.
+Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.
+Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus.
+Be prepared to leave WePeiyang...
+We provide this service in our web platform. Open Link in Browser?
+No available data
+Successfully loaded newest data
+Failed to refresh data due to some errors in the network fetching process.
+Checking Auth Status...
+Log In
+Sign Me Out
+Login Success
+Login Failed...
+Logout Success
+Failed to store token locally. Additional manual login may be need during the next start.
+Failed to delete local token. If the problem persists, we recommend you to clear App storage in system settings to ensure account safety.
+It's always nice to have you back.
+TWT Account Username
+Password
+Hello
+No cards bound
+Card
+Holder
+Expires by
+Today
+This Month
+Billing Details
+No transaction record found in the last
+ days
+Load one more week
+The data shown here ranges to the day of your most recent bill.
+News
+TJU Network
+Settings
+General
+Elsewhere
+Hide GPA On Homepage
+Displayed Days Each Week
+Choose your preferred weekdays interval.
+Display %{count} days each week
+WePeiyang on Github
+WePeiyang is an open-sourced project. Help make it better by contributing to our community.
+天外天用户社区 QQ/TIM Group
+Help & Support
+Need help? Encountered a problem? Welcome to our support forum.
+Language
+Language Settings
+Please note that only the texts within WePeiyang App level would be changed. Text that rely on external resources like course names and book names will not be translated.
+Connect your accounts. Discover more possibilities.
+Connect your accounts. Discover more possibilities.
+Connect your accounts. Discover more possibilities.
+Unbound
+Bound
+Bind
+Unbind
+Library account
+E-card account
+Portal account
+Your Student ID
+E-card password (Used on POS machines)
+Your e.tju.edu.cn Password
+Your library password
+Your library password is the password used on lib.tju.edu.cn. If you didn't know what it is, please try initial password 666666, or the 12th-17th digits of your National ID card. Please consult the information desk in Tianjin University Library for password reset of any further information.
+Successfully bound. Additional re-login may be needed.
+Successfully unbound. Additional re-login may be needed.
+This account is currently connected to WePeiyang.
+You can unbind this account anytime. After disconnecting, you wouldn't be able to use services relating to this account.
+To unbind your e-card, you just need to log out. Your e-card account would be unconnected when you log in again.
+Please note that your account binding status would be updated after the next login.
+Please note that your account binding status would be updated after the next login.
+WPY
+News
+TJU
+Bike
+Contact
+Learning
+Library
+E-card
+GPA
+GPA Curve
+Classroom
+Schedule
+News
+Mall
+Party
+Total Weighted
+Total GPA
+Credits Earned
+Weighted
+GPA
+Credits
+Credits
+Ordered by
+Credits
+Name
+Score
+About GPA
+The indicators, charts and scores calculated by WePeiyang are for reference only. Please consult the Tianjin University Academic Affairs Department for official algorithms, policies and grading results.
+No course today
+ID
+Logic No.
+Campus
+Location
+Weeks
+Time
+WEEK
+
+You didn't borrow any books
+Library account not bound
+Call No.
+Type
+Location
+Borrowed
+Return By
+Renew
+A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?
+Search keywords...
+Department
+No unit found in this department
+Info Source
