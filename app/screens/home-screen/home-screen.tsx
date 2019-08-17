@@ -66,7 +66,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   prepareData = async () => {
     let toFetch = [this.props.fetchUserData()]
 
-    await Promise.all(toFetch) // 首先获取用户信息，判定各账户绑定状态，以决定下一步所请求哪些借口
+    await Promise.all(toFetch) // 首先获取用户信息，判定各账户绑定状态，以决定下一步所请求哪些接口
       .then(() => {
         let toFetchFollows = []
         if (this.props.compData.userInfo.data.accounts.tju) {
