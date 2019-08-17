@@ -55,6 +55,7 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
   fetchEcardProfile?
 
   compData?
+  pref?
 }
 
 class HomeScreen extends React.Component<HomeScreenProps, {}> {
@@ -127,7 +128,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 
   render() {
     // Grab the props
-    const { compData } = this.props
+    const { compData, pref } = this.props
     console.log("HomeScreen compData", compData)
     if (compData.userInfo.status !== "VALID") {
       return <View />
@@ -197,17 +198,21 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
             </View>
             <LibraryList />
 
-            <View style={ss.sectionHead}>
-              <Text tx="modules.gpaCurve" preset="h5" />
-            </View>
-            <GpaCurve style={ss.curveView} animated={true} />
-            <GpaStat
-              style={ss.stat}
-              status={compData.gpa.status}
-              setScoreType={newType => this.props.setScoreType(newType)}
-              scores={compData.gpa.data.gpaOverall}
-              txs={["gpa.totalWeighted", "gpa.totalGpa", "gpa.creditsEarned"]}
-            />
+            {!pref.hideGpaOnHomeScreen && (
+              <View>
+                <View style={ss.sectionHead}>
+                  <Text tx="modules.gpaCurve" preset="h5" />
+                </View>
+                <GpaCurve style={ss.curveView} animated={true} />
+                <GpaStat
+                  style={ss.stat}
+                  status={compData.gpa.status}
+                  setScoreType={newType => this.props.setScoreType(newType)}
+                  scores={compData.gpa.data.gpaOverall}
+                  txs={["gpa.totalWeighted", "gpa.totalGpa", "gpa.creditsEarned"]}
+                />
+              </View>
+            )}
 
             <View style={ss.sectionHead}>
               <Text tx="modules.ecard" preset="h5" />
@@ -223,6 +228,7 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
 const mapStateToProps = state => {
   return {
     compData: state.dataReducer,
+    pref: state.preferenceReducer,
   }
 }
 

@@ -127,6 +127,8 @@ export const getCoursesByDay = (timestamp, data) => {
   return res
 }
 
+export const deleteTitle = str => str.replace(/\s*\(.*?\)\s*/g, "").replace(/\s*（.*?）\s*/g, "")
+
 export const dayOffActivities = (timestamp, hashParam) => {
   let activities = [
     "golf_course",

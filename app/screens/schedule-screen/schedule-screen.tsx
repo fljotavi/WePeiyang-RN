@@ -17,7 +17,7 @@ import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
-import { dayOffActivities, getFullSchedule, getWeek, WEEK_LIMIT } from "../../utils/schedule"
+import {dayOffActivities, deleteTitle, getFullSchedule, getWeek, WEEK_LIMIT} from "../../utils/schedule"
 import { TopBar } from "../../components/top-bar"
 import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
@@ -197,7 +197,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                       }}
                       backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
                       courseName={c.coursename}
-                      p1={c.teacher}
+                      p1={deleteTitle(c.teacher)}
                       p2={sanitizeLocation(c.activeArrange.room)}
                     />
                   </Touchable>

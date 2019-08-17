@@ -14,7 +14,8 @@
       "b": "Maecenas efficitur consequat mi. In sit amet ornare est, nec sagittis magna. Donec quis sem ultrices, faucibus augue eget, fringilla sem. ",
       "c": "Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.",
       "d": "Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus."
-    }
+    },
+    "prepareToLeave": "Be prepared to leave WePeiyang..."
   },
   "data": {
     "prepareDataSuccess": "Successfully loaded newest data",
@@ -51,7 +52,7 @@
   },
   "settingsScreen": {
     "settings": "Settings",
-    "displayGpa": "Display GPA On Homepage",
+    "hideGpa": "Hide GPA On Homepage",
     "language": "Language",
     "languageSetting": "Language Settings",
     "languageWarning": "Please note that only the texts within WePeiyang App level would be changed. Text that rely on external resources like course names and book names will not be translated."

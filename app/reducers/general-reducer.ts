@@ -16,6 +16,7 @@ export const preferenceReducer = (
     gpaOrderBy: "credits",
     language: "en",
     daysEachWeek: 6,
+    hideGpaOnHomeScreen: false,
   },
   action,
 ) => {
