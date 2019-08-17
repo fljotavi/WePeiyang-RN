@@ -28,7 +28,7 @@ export interface TjuBindScreenProps extends NavigationScreenProps<{}> {
 
 export class _TjuBindScreen extends React.Component<TjuBindScreenProps, {}> {
   state = {
-    tjuuname: "",
+    tjuuname: this.props.compData.userInfo.data.studentid,
     tjupasswd: "",
     loggingIn: false,
   }

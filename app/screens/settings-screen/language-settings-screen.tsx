@@ -34,9 +34,6 @@ const ss = {
 }
 
 export class LanguageSettingsScreen extends React.Component<LanguageSettingsScreenProps, {}> {
-  state = {
-    egSwOn: false,
-  }
 
   _keyExtractor = lang => lang
 
@@ -63,14 +60,6 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
           <Text tx="settingsScreen.languageSetting" preset="h2" style={ss.heading} />
 
           <Text tx="settingsScreen.languageWarning" preset="small" style={ss.small} />
-
-          <SettingsSnack
-            style={ss.snack}
-            textTitle="I prefer RTL Layout"
-            textSubtitle="RTL layout isn't necessarily language-specific. We respect your personal preference."
-            preset="switch"
-            on={false}
-          />
 
           <FlatList
             data={Object.keys(languageFullnames)}

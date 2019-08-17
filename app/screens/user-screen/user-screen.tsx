@@ -163,12 +163,32 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
             </View>
             <View style={[ss.shortcutModulePanel, shadowPresets.close]}>
               <Gradicon
-                onPress={() => this.props.navigation.navigate("gpa")}
+                onPress={() => {
+                  if (compData.userInfo.data.accounts.tju) {
+                    this.props.navigation.navigate("gpa")
+                  } else {
+                    this.props.navigation.navigate("tjuBind")
+                  }
+                }}
                 source={require("./gradicons/gradicon1.png")}
                 tx="modules.gpa"
               />
-              <Gradicon source={require("./gradicons/gradicon2.png")} tx="modules.library" />
-              <Gradicon source={require("./gradicons/gradicon3.png")} tx="modules.ecard" />
+              <Gradicon
+                onPress={() => this.props.navigation.navigate("home")}
+                source={require("./gradicons/gradicon2.png")}
+                tx="modules.library"
+              />
+              <Gradicon
+                onPress={() => {
+                  if (compData.ecard.auth.status === "BOUND") {
+                    this.props.navigation.navigate("ecard")
+                  } else {
+                    this.props.navigation.navigate("bind")
+                  }
+                }}
+                source={require("./gradicons/gradicon3.png")}
+                tx="modules.ecard"
+              />
             </View>
             <BindingBar
               onPress={() => {

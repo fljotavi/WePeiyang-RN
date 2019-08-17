@@ -63,29 +63,49 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
   }
 
   prepareData = async () => {
-    let toFetch = [
-      this.props.fetchUserData(),
-      this.props.fetchCourseData(),
-      this.props.fetchLibraryData(),
-      this.props.fetchGpaData(),
-    ]
-    if (this.props.compData.ecard.auth.status === "BOUND") {
-      toFetch.push(
-        this.props.fetchEcardProfile(
-          this.props.compData.ecard.auth.cardId,
-          this.props.compData.ecard.auth.password,
-        ),
-      )
-    }
-    await Promise.all(toFetch)
+    let toFetch = [this.props.fetchUserData()]
+
+    await Promise.all(toFetch) // 首先获取用户信息，判定各账户绑定状态，以决定下一步所请求哪些借口
       .then(() => {
+        let toFetchFollows = []
+        if (this.props.compData.userInfo.data.accounts.tju) {
+          // 已绑定办公网，可获取相关数据
+          toFetchFollows.push(this.props.fetchCourseData())
+          toFetchFollows.push(this.props.fetchGpaData())
+        }
+        if (this.props.compData.userInfo.data.accounts.lib) {
+          // 已绑定图书馆，可获取相关数据
+          toFetchFollows.push(this.props.fetchLibraryData())
+        }
+        if (this.props.compData.ecard.auth.status === "BOUND") {
+          // 已绑定校园卡，可获取相关数据
+          toFetchFollows.push(
+            this.props.fetchEcardProfile(
+              this.props.compData.ecard.auth.cardId,
+              this.props.compData.ecard.auth.password,
+            ),
+          )
+        }
+        Promise.all(toFetchFollows)
+          .then(() => {
+            DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
+          })
+          .catch(err => {
+            DeviceEventEmitter.emit(
+              "showToast",
+              <Toasti
+                text={`Part of the data wasn't successfully transmitted: Error ${err.message} in request ${err.origin}`}
+                preset="warning"
+              />,
+            )
+          })
         DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
       })
       .catch(err => {
         DeviceEventEmitter.emit(
           "showToast",
           <Toasti
-            text={`Part of the data wasn't successfully transmitted: Error ${err.message} in request ${err.origin}`}
+            text={`Cannot get user data (${err.message}). Please check your login status.`}
             preset="warning"
           />,
         )
