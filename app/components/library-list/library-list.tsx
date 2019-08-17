@@ -50,7 +50,7 @@ class _LibraryList extends React.Component<BookListProps, {}> {
     if (!compData.userInfo.data.accounts.lib) {
       return (
         <View style={[ss.predefinedStyle, style]}>
-          <Ian text="Library account not bound" />
+          <Ian tx="library.notBound" />
         </View>
       )
     }
@@ -95,23 +95,23 @@ class _LibraryList extends React.Component<BookListProps, {}> {
           <View>
             <View style={ss.bookAttrs}>
               <View style={ss.bookAttrPair}>
-                <Text text={"Call No."} style={ss.bookAttrKey} />
+                <Text tx="library.callNo" style={ss.bookAttrKey} />
                 <Text text={chosenBook.callno} style={ss.bookAttrValue} />
               </View>
               <View style={ss.bookAttrPair}>
-                <Text text={"Type"} style={ss.bookAttrKey} />
+                <Text tx="library.type" style={ss.bookAttrKey} />
                 <Text text={chosenBook.type} style={ss.bookAttrValue} />
               </View>
               <View style={ss.bookAttrPair}>
-                <Text text={"Location"} style={ss.bookAttrKey} />
+                <Text tx="library.location" style={ss.bookAttrKey} />
                 <Text text={chosenBook.local} style={ss.bookAttrValue} />
               </View>
               <View style={ss.bookAttrPair}>
-                <Text text={"Borrowed"} style={ss.bookAttrKey} />
+                <Text tx="library.borrowedTime" style={ss.bookAttrKey} />
                 <Text text={chosenBook.loanTime} style={ss.bookAttrValue} />
               </View>
               <View style={ss.bookAttrPair}>
-                <Text text={"Return By"} style={ss.bookAttrKey} />
+                <Text tx="library.returnBy" style={ss.bookAttrKey} />
                 <Text text={chosenBook.returnTime} style={ss.bookAttrValue} />
               </View>
             </View>
@@ -119,12 +119,7 @@ class _LibraryList extends React.Component<BookListProps, {}> {
         </View>
 
         <View style={ss.renewArea}>
-          {this.state.userInformed && (
-            <Text
-              style={ss.renewCaveat}
-              text="每本书只有三次续借机会，为避免浪费续借机会，建议在临近归还期限时续借。是否仍要继续？"
-            />
-          )}
+          {this.state.userInformed && <Text style={ss.renewCaveat} tx="library.renewCaveat" />}
           <Button
             preset="lite"
             style={ss.modalButton}
@@ -148,7 +143,11 @@ class _LibraryList extends React.Component<BookListProps, {}> {
                 style={ss.modalButtonIcon}
               />
               <Text text=" " preset="h6" />
-              <Text text={this.state.userInformed ? "CONFIRM" : "RENEW"} preset="h6" />
+              <Text
+                tx={this.state.userInformed ? "common.confirm" : "library.renew"}
+                preset="h6"
+                style={{ textTransform: "uppercase" }}
+              />
             </View>
           </Button>
         </View>

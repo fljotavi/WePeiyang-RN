@@ -75,7 +75,7 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
           useNativeDriver={true}
         >
           <Alert
-            heading="We provide this service in our web platform. Open Link in Browser?"
+            headingTx="common.providedInWebHint"
             content={this.state.selectedUrl}
             buttons={[
               {

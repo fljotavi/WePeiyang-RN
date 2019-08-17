@@ -1,6 +1,6 @@
 {
   "common": {
-    "ok": "OK!",
+    "ok": "OK",
     "confirm": "Confirm",
     "cancel": "Cancel",
     "back": "Back",
@@ -15,9 +15,11 @@
       "c": "Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.",
       "d": "Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus."
     },
-    "prepareToLeave": "Be prepared to leave WePeiyang..."
+    "prepareToLeave": "Be prepared to leave WePeiyang...",
+    "providedInWebHint": "We provide this service in our web platform. Open Link in Browser?"
   },
   "data": {
+    "noAvailableData": "No available data",
     "prepareDataSuccess": "Successfully loaded newest data",
     "prepareDataFailed": "Failed to refresh data due to some errors in the network fetching process."
   },
@@ -38,11 +40,11 @@
   "homeScreen": {
     "greetings": "Hello"
   },
-  "gpaScreen": {
-
-  },
-  "ecardScreen": {
-
+  "ecard": {
+    "noCardsBound": "No cards bound",
+    "card": "Card",
+    "holder": "Holder",
+    "expiresBy": "Expires by"
   },
   "newsScreen": {
     "header": "News"
@@ -112,9 +114,23 @@
     "orderByScore": "Order by Score"
   },
   "schedule": {
-    "noCourseToday": "No course today"
+    "noCourseToday": "No course today",
+    "id": "ID",
+    "logicNo": "Logic No.",
+    "campus": "Campus",
+    "location": "Location",
+    "weeks": "Weeks",
+    "time": "Time"
   },
   "library": {
-    "noBooks": "You didn't borrow any books"
+    "noBooks": "You didn't borrow any books",
+    "notBound": "Library account not bound",
+    "callNo": "Call No.",
+    "type": "Type",
+    "location": "Location",
+    "borrowedTime": "Borrowed",
+    "returnBy": "Return By",
+    "renew": "Renew",
+    "renewCaveat": "A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?"
   }
 }

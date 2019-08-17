@@ -106,33 +106,33 @@ export function CourseModal(props: CourseModalProps) {
       <View>
         <View style={ss.courseAttrs}>
           <View style={ss.courseAttrPair}>
-            <Text text={"ID"} style={ss.courseAttrKey} />
+            <Text tx="schedule.id" style={ss.courseAttrKey} />
             <Text text={chosenCourse.courseid} style={ss.courseAttrValue} />
           </View>
           <View style={ss.courseAttrPair}>
-            <Text text={"逻辑班号"} style={ss.courseAttrKey} />
+            <Text tx="schedule.logicNo" style={ss.courseAttrKey} />
             <Text text={chosenCourse.classid} style={ss.courseAttrValue} />
           </View>
           <View style={ss.courseAttrPair}>
-            <Text text={"Campus"} style={ss.courseAttrKey} />
+            <Text tx="schedule.campus" style={ss.courseAttrKey} />
             <Text text={chosenCourse.campus} style={ss.courseAttrValue} />
           </View>
           <View style={ss.courseAttrPair}>
-            <Text text={"Location"} style={ss.courseAttrKey} />
+            <Text tx="schedule.location" style={ss.courseAttrKey} />
             <Text
               text={sanitizeLocation(chosenCourse.activeArrange.room)}
               style={ss.courseAttrValue}
             />
           </View>
           <View style={ss.courseAttrPair}>
-            <Text text={"Weeks"} style={ss.courseAttrKey} />
+            <Text tx="schedule.weeks" style={ss.courseAttrKey} />
             <Text
               text={`${chosenCourse.week.start}-${chosenCourse.week.end}`}
               style={ss.courseAttrValue}
             />
           </View>
           <View style={ss.courseAttrPair}>
-            <Text text={"Time"} style={ss.courseAttrKey} />
+            <Text tx="schedule.time" style={ss.courseAttrKey} />
             <Text
               text={getScheduledTimeFromArrangement(chosenCourse.activeArrange)}
               style={ss.courseAttrValue}

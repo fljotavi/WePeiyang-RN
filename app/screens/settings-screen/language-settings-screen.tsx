@@ -34,7 +34,6 @@ const ss = {
 }
 
 export class LanguageSettingsScreen extends React.Component<LanguageSettingsScreenProps, {}> {
-
   _keyExtractor = lang => lang
 
   render() {
@@ -72,7 +71,6 @@ export class LanguageSettingsScreen extends React.Component<LanguageSettingsScre
                 textSubtitle={languageFullnames[item].common}
                 onPress={() => {
                   setPreference("language", item)
-                  this.props.navigation.goBack()
                 }}
               />
             )}

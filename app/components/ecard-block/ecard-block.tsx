@@ -31,11 +31,11 @@ class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
     palette = palette || [color.lightGrey, color.background, color.background]
 
     if (ecard.auth.status !== "BOUND") {
-      return <Ian text="No cards bound" />
+      return <Ian tx="ecard.noCardsBound" />
     }
 
     if (ecard.status !== "VALID") {
-      return <Ian text="No available data" />
+      return <Ian tx="data.noAvailableData" />
     }
 
     // The current balance api returns "XX.XX元", which is ugly, and of course is going to,
@@ -94,6 +94,7 @@ class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
         color: palette[0],
         fontWeight: "bold",
         letterSpacing: 2,
+        textTransform: "uppercase",
       } as TextStyle,
       barTextSub: {
         fontSize: 11,
@@ -107,8 +108,7 @@ class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
       attrKey: {
         color: palette[2],
         fontSize: 8,
-        letterSpacing: 3,
-        marginRight: -1,
+        marginRight: -2,
       } as TextStyle,
       attrValue: {
         color: palette[1],
@@ -130,8 +130,8 @@ class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
           <View style={ss.top}>
             <View style={ss.bar}>
               <Text>
-                <Text text="CARD " style={ss.barTextPre} />
-                <Text text={"NO." + ecard.profile.cardnum} style={ss.barTextSub} />
+                <Text tx="ecard.card" style={ss.barTextPre} />
+                <Text text={" NO." + ecard.profile.cardnum} style={ss.barTextSub} />
               </Text>
             </View>
             <Text>
@@ -141,11 +141,11 @@ class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
           </View>
           <View style={ss.bottom}>
             <View style={ss.pair}>
-              <Text text="HOLDER" style={ss.attrKey} />
+              <Text tx="ecard.holder" style={ss.attrKey} preset="lausanne" />
               <Text text={ecard.profile.name} style={ss.attrValue} />
             </View>
             <View style={ss.pair}>
-              <Text text="EXPIRES BY" style={ss.attrKey} />
+              <Text tx="ecard.expiresBy" style={ss.attrKey} preset="lausanne" />
               <Text text={ecard.profile.expiry} style={ss.attrValue} />
             </View>
           </View>
