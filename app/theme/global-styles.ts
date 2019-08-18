@@ -78,9 +78,17 @@ export const ssGlobal = {
     } as ViewStyle,
     button: {
       paddingHorizontal: 45,
+      marginRight: 12,
+    } as ViewStyle,
+    buttonSecondary: {
+      paddingHorizontal: 45,
+      backgroundColor: color.washed,
     } as ViewStyle,
     buttonText: {
       color: color.background,
+    } as TextStyle,
+    buttonSecondaryText: {
+      color: color.lightGrey,
     } as TextStyle,
     heading: {
       marginTop: 8,

@@ -25,7 +25,7 @@ const barStyle: ViewStyle = {
   overflow: "visible",
   alignItems: "center",
   borderTopWidth: 0,
-  display: "none", // TODO: Uncomment this line after implementing relevant modules
+  // display: "none", // TODO: Uncomment this line after implementing relevant modules
 }
 const textStyle: TextStyle = {
   color: color.primary,

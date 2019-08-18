@@ -100,7 +100,11 @@ export class BindScreen extends React.Component<BindScreenProps, {}> {
                 secureTextEntry={true}
                 autoCorrect={false}
               />
-
+              <Text preset="small" style={ssGlobal.login.hint}>
+                <Text text="info" preset="i" />
+                <Text text=" " />
+                <Text tx="accountBinding.ecardHint" />
+              </Text>
               <View style={ssGlobal.login.buttonRow}>
                 <Button style={ssGlobal.login.button} onPress={this.attemptToBind}>
                   <ActivityIndicator

@@ -46,6 +46,13 @@ const dataReducerInitialState = {
     lineChart: undefined,
     total: undefined,
   },
+  network: {
+    auth: {
+      status: "NOT_BOUND",
+      username: "",
+      password: "",
+    },
+  },
   yellowPages: {
     status: "NOT_RECEIVED",
     data: undefined,
@@ -146,6 +153,20 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
           ...state.library,
           status: "VALID",
           data: action.payload,
+        },
+      }
+      break
+
+    case "SET_NETWORK_AUTH":
+      state = {
+        ...state,
+        network: {
+          ...state.network,
+          auth: {
+            status: "BOUND",
+            username: action.payload.username,
+            password: action.payload.password,
+          },
         },
       }
       break

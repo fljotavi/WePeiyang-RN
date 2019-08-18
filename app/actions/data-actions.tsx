@@ -287,3 +287,10 @@ export function setEcardAuth(cardId, password) {
     payload: { cardId, password },
   }
 }
+
+export function setNetworkAuth(username, password) {
+  return {
+    type: "SET_NETWORK_AUTH",
+    payload: { username, password },
+  }
+}
