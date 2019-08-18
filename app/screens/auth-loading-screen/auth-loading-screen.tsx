@@ -49,7 +49,7 @@ export class AuthLoadingScreen extends React.Component<AuthLoadingScreenProps, {
       <Screen preset="scroll">
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <View style={ss.container}>
-          <Text tx="auth.checkingAuthStatus" preset="h2" />
+          <Text tx="homeScreen.greetings" preset="h2" />
         </View>
       </Screen>
     )

@@ -656,6 +656,7 @@
 			baseConfigurationReference = B802D3BA523AE7077CA51A36 /* Pods-WePeiyang.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = N422Y4FP4J;
@@ -678,6 +679,7 @@
 			baseConfigurationReference = 8F7C9B64CCE482A46661DE36 /* Pods-WePeiyang.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N422Y4FP4J;
 				INFOPLIST_FILE = WePeiyang/Info.plist;
