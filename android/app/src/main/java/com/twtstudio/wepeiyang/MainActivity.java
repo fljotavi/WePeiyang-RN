@@ -1,4 +1,4 @@
-package com.wepeiyang;
+package com.twtstudio.wepeiyang;
 
 import com.facebook.react.ReactActivity;
 

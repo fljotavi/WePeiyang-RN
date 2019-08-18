@@ -17,7 +17,13 @@ import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import { Dotmap } from "./dotmap"
-import {dayOffActivities, deleteTitle, getFullSchedule, getWeek, WEEK_LIMIT} from "../../utils/schedule"
+import {
+  dayOffActivities,
+  deleteTitle,
+  getFullSchedule,
+  getWeek,
+  WEEK_LIMIT,
+} from "../../utils/schedule"
 import { TopBar } from "../../components/top-bar"
 import { CourseBlockInner } from "../../components/course-block-inner"
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
