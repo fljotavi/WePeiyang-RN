@@ -101,7 +101,6 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               />,
             )
           })
-        DeviceEventEmitter.emit("showToast", <Toasti tx="data.prepareDataSuccess" />)
       })
       .catch(err => {
         DeviceEventEmitter.emit(

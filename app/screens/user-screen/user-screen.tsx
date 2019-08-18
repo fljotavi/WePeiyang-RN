@@ -183,7 +183,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                   if (compData.ecard.auth.status === "BOUND") {
                     this.props.navigation.navigate("ecard")
                   } else {
-                    this.props.navigation.navigate("bind")
+                    this.props.navigation.navigate("ecardBind")
                   }
                 }}
                 source={require("./gradicons/gradicon3.png")}
@@ -225,7 +225,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
                     this.toggleModal,
                   )
                 } else {
-                  this.props.navigation.navigate("bind")
+                  this.props.navigation.navigate("ecardBind")
                 }
               }}
               style={ss.bindingBar}

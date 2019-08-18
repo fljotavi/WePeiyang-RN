@@ -18,7 +18,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { TopBar } from "../../components/top-bar"
-import { ByTwt } from "../../components/by-twt/by-twt"
+import { ByTwt } from "../../components/by-twt"
 import { Toasti } from "../../components/toasti"
 import { bindLibAccount } from "../../actions/data-actions"
 

@@ -1,5 +1,9 @@
 import * as React from "react"
 import { connect } from "react-redux"
+import { NavigationScreenProps } from "react-navigation"
+import Touchable from "react-native-platform-touchable"
+import { format, isSameDay } from "date-fns"
+import Modal from "react-native-modal"
 
 import {
   DeviceEventEmitter,
@@ -11,12 +15,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native"
+
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
-import { NavigationScreenProps } from "react-navigation"
-import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
+import { TopBar } from "../../components/top-bar"
+import { CourseBlockInner } from "../../components/course-block-inner"
+import { CourseModal } from "../../components/course-modal"
+import { Toasti } from "../../components/toasti"
+import { DateIndicator } from "./date-indicator"
 import { Dotmap } from "./dotmap"
+
 import {
   dayOffActivities,
   deleteTitle,
@@ -24,16 +32,12 @@ import {
   getWeek,
   WEEK_LIMIT,
 } from "../../utils/schedule"
-import { TopBar } from "../../components/top-bar"
-import { CourseBlockInner } from "../../components/course-block-inner"
+
 import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
-import Touchable from "react-native-platform-touchable"
-import { format, isSameDay } from "date-fns"
+
+import { color, layoutParam } from "../../theme"
+import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import ss from "./schedule-screen.style"
-import Modal from "react-native-modal"
-import { CourseModal } from "../../components/course-modal"
-import { Toasti } from "../../components/toasti"
-import { DateIndicator } from "./date-indicator"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
@@ -72,7 +76,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
       chosenWeek: currentWeek,
       currentWeek: currentWeek,
       currentTimestamp: timestamp,
-    })
+    }) // ESLint give warning here, but according to React official docs, this pattern is acceptable.
   }
 
   getNewDimensions = event => {
@@ -326,10 +330,8 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                       style={ss.dotmap}
                       matrix={item.matrix}
                     />
-                    <Text
-                      style={ss.dotmapText}
-                    >
-                      {this.state.currentWeek === item.week && <Text text="● " />}
+                    <Text style={ss.dotmapText}>
+                      {this.state.currentWeek === item.week && <Text text="• " />}
                       <Text tx="schedule.WEEK.pre" />
                       <Text text={item.week} />
                       <Text tx="schedule.WEEK.post" />

@@ -56,7 +56,11 @@ class _LibraryList extends React.Component<BookListProps, {}> {
     }
 
     if (compData.library.status !== "VALID") {
-      return <View />
+      return (
+        <View style={[ss.predefinedStyle, style]}>
+          <Ian tx="data.noAvailableData" />
+        </View>
+      )
     }
 
     const data = compData.library.data

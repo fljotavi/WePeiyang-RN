@@ -66,6 +66,11 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
         color: color.lightGrey,
         fontSize: 30,
       },
+      checkmate: {
+        color: color.lightGrey,
+        fontSize: 18,
+        marginRight: 10,
+      },
       text: {
         marginLeft: 10,
       },
@@ -93,7 +98,7 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
         right = <Text text="navigate_next" style={ss.switz} preset="i" />
         break
       case "selected":
-        right = <Text text="check" style={ss.switz} preset="i" />
+        right = <Text text="check" style={ss.checkmate} preset="i" />
     }
     return (
       <Touchable style={[ss.SettingsSnackContainer, style]} onPress={onPress} delayPressIn={0}>

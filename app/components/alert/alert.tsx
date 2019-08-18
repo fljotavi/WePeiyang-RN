@@ -1,9 +1,10 @@
 /*
- * Module Button List
+ * Alert
  * Created by Tzingtao Chow
  * ---
  *
- * Module Button List 是显示在主页上方的模块按钮条。
+ * Alert 用于创建弹出的固定格式对话框。
+ * 可以传入标题、正文、配色调色板和一个包含了各自操作的按钮数组。
  *
  */
 

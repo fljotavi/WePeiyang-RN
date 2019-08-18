@@ -38,7 +38,7 @@ export function DateIndicator(props: DateIndicatorProps) {
       ]}
     >
       <Text
-        text={active ? "● " + text : text}
+        text={active ? "• " + text : text}
         style={{
           color: active ? color.lightGrey : color.lightGrey,
           fontWeight: "bold",

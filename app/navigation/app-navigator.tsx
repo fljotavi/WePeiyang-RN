@@ -16,11 +16,11 @@ import { connectedScheduleScreen } from "../screens/schedule-screen"
 import { connectedLibraryScreen } from "../screens/library-screen"
 import { connectedUserScreen } from "../screens/user-screen"
 import { connectedGpaScreen } from "../screens/gpa-screen"
-import { connectedBindScreen } from "../screens/bind-screen"
 import { connectedEcardScreen } from "../screens/ecard-screen"
 import { connectedDepartmentScreen } from "../screens/yellow-pages-screen/department-screen"
 import { TjuBindScreen } from "../screens/bind-screen/tju-bind-screen"
 import { LibBindScreen } from "../screens/bind-screen/lib-bind-screen"
+import { EcardBindScreen } from "../screens/bind-screen/ecard-bind-screen"
 
 export const AppNavigator = createStackNavigator(
   {
@@ -32,7 +32,7 @@ export const AppNavigator = createStackNavigator(
     library: connectedLibraryScreen,
     ecard: connectedEcardScreen,
 
-    bind: connectedBindScreen,
+    ecardBind: EcardBindScreen,
     tjuBind: TjuBindScreen,
     libBind: LibBindScreen,
 

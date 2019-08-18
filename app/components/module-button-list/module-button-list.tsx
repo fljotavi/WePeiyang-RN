@@ -99,7 +99,7 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
           if (compData.ecard.auth.status === "BOUND") {
             navigation.navigate("ecard")
           } else {
-            navigation.navigate("bind")
+            navigation.navigate("ecardBind")
           }
         },
       },

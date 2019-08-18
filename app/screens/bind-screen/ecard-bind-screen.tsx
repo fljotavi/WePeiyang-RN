@@ -3,7 +3,7 @@
  * Created by Tzingtao Chow
  * ---
  *
- * Bind Screen 目前是用来绑定校园卡的页面。
+ * Ecard Bind Screen 目前是用来绑定校园卡的页面。
  *
  */
 
@@ -19,16 +19,16 @@ import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
 import { fetchEcardProfile, setEcardAuth } from "../../actions/data-actions"
 import { TopBar } from "../../components/top-bar"
-import { ByTwt } from "../../components/by-twt/by-twt"
+import { ByTwt } from "../../components/by-twt"
 import { Toasti } from "../../components/toasti"
 
-export interface BindScreenProps extends NavigationScreenProps<{}> {
+export interface EcardBindScreenProps extends NavigationScreenProps<{}> {
   fetchEcardProfile?
   setEcardAuth?
   compData?
 }
 
-export class BindScreen extends React.Component<BindScreenProps, {}> {
+export class _EcardBindScreen extends React.Component<EcardBindScreenProps, {}> {
   state = {
     cardId: this.props.compData.userInfo.data.studentid,
     password: "",
@@ -145,7 +145,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedBindScreen = connect(
+export const EcardBindScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BindScreen)
+)(_EcardBindScreen)

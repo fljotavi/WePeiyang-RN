@@ -1,10 +1,10 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { Linking, StatusBar, TextStyle, View, ViewStyle } from "react-native"
+import { Linking, StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { color } from "../../theme"
 import { NavigationActions, NavigationScreenProps } from "react-navigation"
 import { SettingsSnack } from "./settings-snack"
 import { TopBar } from "../../components/top-bar"
@@ -12,29 +12,11 @@ import { languageFullnames } from "../../i18n/i18n"
 import Modal from "react-native-modal"
 import { Alert } from "../../components/alert"
 import { setPreference } from "../../actions/preference-actions"
+import ss from "./settings-screen.styles"
 
 export interface SettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
   setPreference?
-}
-
-const ss = {
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical,
-  } as ViewStyle,
-  heading: {
-    marginBottom: 20,
-  } as TextStyle,
-  sectionHead: {
-    marginTop: 16,
-    marginBottom: 12,
-    fontWeight: "bold",
-    color: color.primary,
-  } as TextStyle,
-  snack: {
-    marginBottom: 10,
-  } as ViewStyle,
 }
 
 export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {

@@ -1,35 +1,19 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { StatusBar, TextStyle, View, ViewStyle } from "react-native"
+import { StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
-import { color, layoutParam } from "../../theme"
+import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setPreference } from "../../actions/preference-actions"
 import { SettingsSnack } from "./settings-snack"
 import { TopBar } from "../../components/top-bar"
+import ss from "./settings-screen.styles"
 
 export interface ScheduleTextSizeSettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
   setPreference?
-}
-
-const ss = {
-  container: {
-    paddingHorizontal: layoutParam.paddingHorizontal,
-    paddingVertical: layoutParam.paddingVertical,
-  } as ViewStyle,
-  heading: {
-    marginBottom: 20,
-  } as TextStyle,
-  small: {
-    marginBottom: 20,
-    color: color.lightGrey,
-  } as TextStyle,
-  snack: {
-    marginBottom: 10,
-  } as ViewStyle,
 }
 
 export class ScheduleTextSizeSettingsScreen extends React.Component<
