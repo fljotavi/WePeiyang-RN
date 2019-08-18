@@ -26,11 +26,10 @@ import { GpaSnack } from "./gpa-snack"
 import { Text } from "../../components/text"
 
 import Modal from "react-native-modal"
-import { Button } from "../../components/button"
-import { GpaInfo } from "./gpa-info"
 import { Toasti } from "../../components/toasti"
 
 import { TopBar } from "../../components/top-bar"
+import { Alert } from "../../components/alert"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   scoreType?
@@ -141,15 +140,21 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           onBackButtonPress={this.toggleModal}
           onBackdropPress={this.toggleModal}
           useNativeDriver={true}
+          key={"0"}
         >
-          <ScrollView
-            style={ss.modal}
-            contentContainerStyle={ss.gpaInfoContent}
-            showsVerticalScrollIndicator={false}
-          >
-            <GpaInfo />
-            <Button tx="common.gotIt" onPress={this.toggleModal} />
-          </ScrollView>
+          <Alert
+            headingTx="gpa.info.title"
+            contentTx="gpa.info.content"
+            palette={[color.module.gpa[0], color.module.gpa[1]]}
+            buttons={[
+              {
+                tx: "common.gotIt",
+                onPress: () => {
+                  this.toggleModal()
+                },
+              },
+            ]}
+          />
         </Modal>
 
         <ScrollView

@@ -79,8 +79,7 @@ export class _LibBindScreen extends React.Component<LibBindScreenProps, {}> {
                 style={ssGlobal.login.input}
                 placeholder={this.props.compData.userInfo.data.studentid}
                 autoCorrect={false}
-                disabled
-                pointerEvents="none"
+                editable={false}
               />
               <TextField
                 placeholderTx="accountBinding.libPassword"

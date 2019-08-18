@@ -75,10 +75,10 @@
       "sub": "Reconnect to TJU-WLAN network when disconnected"
     },
     "wpyGithub": {
-      "title": "WePeiyang on Github",
+      "title": "WePeiyang on GitHub",
       "sub": "WePeiyang is an open-sourced project. Help make it better by contributing to our community."
     },
-    "timGroup": "天外天用户社区 QQ/TIM Group",
+    "timGroup": "TWT Community QQ/TIM Group",
     "helpNSupport": {
       "title": "Help & Support",
       "sub": "Need help? Encountered a problem? Welcome to our support forum."
@@ -159,7 +159,7 @@
       "score": "Score"
     },
     "info": {
-      "title": "About GPA",
+      "title": "Disclaimer",
       "content": "The indicators, charts and scores calculated by WePeiyang are for reference only. Please consult the Tianjin University Academic Affairs Department for official algorithms, policies and grading results."
     }
   },
@@ -192,9 +192,9 @@
     "logout": "Board",
     "yourUsername": "Your student ID",
     "yourPassword": "Your g.tju.edu.cn password",
-    "greetings": "And God Said, “Let There Be The Internet.”",
+    "greetings": "And God Said, “Let There Be Internet.”",
     "connected": "And there was internet.",
-    "bugHint": "Sometimes sending a correct password could also return an message of wrong password. This bug is caused of Tianjin University Network Centre, and occurs on the native login page too. In that case, you might want to additionally try several times."
+    "bugHint": "Sometimes sending a correct password could also return a message of wrong password. This bug is caused by Tianjin University Network Centre and occurs on the native login page too. In that case, you might want to additionally try several times."
   },
   "contact": {
     "searchBar": "Search keywords...",

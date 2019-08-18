@@ -11,16 +11,6 @@ let json = {
       daysLeft: " Days Left",
     },
     unknown: "Unknown",
-    lipsum: {
-      a:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus metus ac pellentesque pellentesque. Donec quis egestas purus. Donec ut ligula sit amet urna posuere vehicula ut laoreet dui. Fusce molestie, libero ut maximus euismod, ante dolor suscipit erat, a mattis nibh mauris quis ipsum. Mauris et bibendum sem, id scelerisque urna. Proin libero mi, sodales ac velit eu, elementum volutpat odio. Donec pharetra tempor vehicula.",
-      b:
-        "Maecenas efficitur consequat mi. In sit amet ornare est, nec sagittis magna. Donec quis sem ultrices, faucibus augue eget, fringilla sem. ",
-      c:
-        "Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.",
-      d:
-        "Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus.",
-    },
     prepareToLeave: "Be prepared to leave WePeiyang...",
     providedInWebHint: "We provide this service in our web platform. Open Link in Browser?",
   },
@@ -82,12 +72,16 @@ let json = {
       intro: "Choose your preferred weekdays interval.",
       options: "Display %{count} days each week",
     },
+    autoReconnect: {
+      title: "Auto reconnect",
+      sub: "Reconnect to TJU-WLAN network when disconnected",
+    },
     wpyGithub: {
-      title: "WePeiyang on Github",
+      title: "WePeiyang on GitHub",
       sub:
         "WePeiyang is an open-sourced project. Help make it better by contributing to our community.",
     },
-    timGroup: "天外天用户社区 QQ/TIM Group",
+    timGroup: "TWT Community QQ/TIM Group",
     helpNSupport: {
       title: "Help & Support",
       sub: "Need help? Encountered a problem? Welcome to our support forum.",
@@ -129,11 +123,16 @@ let json = {
       "Please note that your account binding status would be updated after the next login.",
     tjuLatencyHint:
       "Please note that your account binding status would be updated after the next login.",
+    ecardHint:
+      "For security reasons, the binding action for e-card is only for current session. Your e-card account would be immediately disconnected once you log out.",
+    networkHint:
+      "For security reasons, the binding action for TJU network is only for current session. Your network account would be immediately unbound once you log out.",
   },
   tab: {
     wpy: "WPY",
     news: "News",
-    tju: "TJU",
+    network: "TJU",
+    modules: "Drawer",
   },
   modules: {
     bike: "Bike",
@@ -148,6 +147,13 @@ let json = {
     news: "News",
     mall: "Mall",
     party: "Party",
+    network: "Network",
+    vote: "Vote",
+    survey: "Survey",
+    bbs: "BBS",
+    docs: "Docs",
+    career: "Career",
+    socialPractice: "Volunteer",
   },
   gpa: {
     totalWeighted: "Total Weighted",
@@ -194,6 +200,16 @@ let json = {
     renewCaveat:
       "A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?",
   },
+  network: {
+    login: "Surf",
+    logout: "Board",
+    yourUsername: "Your student ID",
+    yourPassword: "Your g.tju.edu.cn password",
+    greetings: "And God Said, “Let There Be Internet.”",
+    connected: "And there was internet.",
+    bugHint:
+      "Sometimes sending a correct password could also return a message of wrong password. This bug is caused by Tianjin University Network Centre and occurs on the native login page too. In that case, you might want to additionally try several times.",
+  },
   contact: {
     searchBar: "Search keywords...",
     department: "Department",
@@ -202,136 +218,151 @@ let json = {
   },
 }
 
-let es = `حسنا
-أكد
-إلغاء
-إلى الوراء
-قريب
-حصلت عليه!
+let es = `好
+确认
+取消
+背部
+关
+得到它了！
 
- أيام
-غير معروف
-أبجد هوز دولور الجلوس امات، consectetur adipiscing إيليت. الخوف والحداد غدا، والاطفال التغذية. حتى الذين يريدون الفلفل الحار. عدد صحيح بورتا تكشيرة quis ligula الجلوس امات URNA الاستفسار vehicula التحرير laoreet آخرون pretium. التلفزيون السريري، مجانا لتكون أكبر شبكة، قبل أن يحصل المستهلك الكثير من nibh الرجل نفسه. وللشرب في mauris ووزارة شؤون المرأة، والهوية الشوكولاته جرة. خالية من منتصف، أعضاء لكرة القدم في الهواء الطلق، في نهاية الأسبوع عنصر الكراهية. جعبة الوقت حتى المركبات.
-Maecenas عن بلدي والتصوير الفوتوغرافي. والجلوس امات بتوقيت شرق الولايات المتحدة ornare، غير المصنفة في موضع sagittis ماجنا. حتى كرة السلة سلطة واحدة، والدعاية الحلق تحتاج التلفزيون فرزها.
-في الواقع، consectetur imperdiet URNA، في convallis إيليت consequat الهوية. حتى بلدي صلاد العنصر الجماهيري والجزر، ودرجة الحرارة تنورة كرة القدم. Duis السيرة velit سابين. لا توجد حياة، والضحك من البطاريات، malesuada ماجنا في، ultrices بقطر. الأداء والأداء هو حاجة المنزلية تعقيمها. لا عقوبة. أقصى قطر أكبر بلد مستهلك، وليس لها بهار الموز كرة القدم. ياسمين سحب الكثير من الأعضاء.
-السيرة Aenean خوستو ماسا. ولكن يخشى البعض من الموز أبجد والاستثمار التغذية والإجهاد. Mauris vehicula، بلاي ستيشن، وبعض من الفيضانات، tortor بوابة البحيرة، وأحيانا أكثر من sagittis velit adipiscing إيليت. ليست هناك حاجة من أي نوع. الحاضر في mauris condimentum، pretium eget tortor اللجنة الوطنية للانتخابات، شحم سمبر arcu وقت ممكن. لProin eget الجلوس امات، feugiat augue الجلوس امات، ullamcorper quam. الواجبات المنزلية من الميزانية لانحني اجلالا واكبارا لشبكة وأسد. يجب Curabitur ماجنا هوز دولور، ولا خميرة يكون، وهو مؤلف من الأرض.
-تكون على استعداد لترك WePeiyang ...
-ونحن نقدم هذه الخدمة على منصة على شبكة الانترنت. فتح الروابط في المتصفح؟
-لا توجد بيانات
-تحميل بنجاح أحدث البيانات
-فشل تحديث البيانات بسبب بعض الأخطاء في عملية جلب الشبكة.
-فحص مقدم البلاغ ...
-تسجيل الدخول
-تسجيل البيانات خارج
-النجاح في تسجيل الدخول
-فشل تسجيل الدخول ...
-خروج النجاح
-فشل في متجر اتخذت محليا. يمكن استخدام إضافي تسجيل الدخول خلال دليل بدء المقبل.
-فشل لحذف رمز المحلي. إذا استمرت المشكلة، نوصي لمسح إعدادات نظام تخزين التطبيق لضمان سلامة الحساب.
-انها دائما من الجميل أن يكون لك مرة أخرى.
-اسم المستخدم حساب TWT
-كلمة المرور
-مرحبا
-لا بطاقات كلب
-بطاقة
-حائز
-تنتهي قبل
-اليوم
-هذا الشهر
-تفاصيل الفواتير
-لا سجلات المعاملات وجدت في الماضي
- أيام
-الحمل لمدة أسبوع
-البيانات التي تظهر هنا ويتراوح ليوم الفاتورة الأخير.
-أخبار
-شبكة TJU
-إعدادات
-عام
-في مكان آخر
-المناقصات قائمة على الصفحة الرئيسية
-عرض أيام من كل أسبوع
-اختيار فاصل أيام الأسبوع المفضلة.
-عرض٪ {count} من أيام كل أسبوع
-WePeiyang على جيثب
-WePeiyang هو مشروع مفتوح المصدر. مساعدة جعله أفضل من خلال المساهمة في مجتمعنا.
-天 外 天 用户 社区 Q / المجموعة TIM
-مساعدة ودعم
-هل تحتاج إلى مساعدة؟ اجه مشكلة؟ مرحبا بكم في منتدى الدعم الخاص بنا.
-لغة
-إعدادات اللغة
-يرجى ملاحظة أنه ليس هناك سوى النصوص في مستوى التطبيق WePeiyang سيتم تغيير. لن تترجم النص التي تعتمد على الموارد الخارجية مثل أسماء وأسماء الكتاب بالطبع.
-ربط حساباتك. اكتشاف المزيد من الاحتمالات.
-ربط حساباتك. اكتشاف المزيد من الاحتمالات.
-ربط حساباتك. اكتشاف المزيد من الاحتمالات.
-غير مقيد
-جولة
-مأزق
-حل قيد
-حسابى على موقع مكتبة
-حساب بطاقة بريدية
-حساب البابي
-الطالب ID
-كلمة بطاقة E (المستخدم على أجهزة POS)
-كلمة المرور الخاصة بك e.tju.edu.cn
-كلمة مكتبتك
-كلمة المكتبة الخاصة بك هي كلمة السر المستخدمة في lib.tju.edu.cn. إذا كنت لا تعرف ما هو عليه، يرجى المحاولة كلمة السر الأولي 666666، أو الأرقام ال12-17 من بطاقة الهوية الوطنية الخاصة بك. يرجى الرجوع إلى مكتب المعلومات في مكتبة جامعة تيانجين لإعادة تعيين كلمة المرور من أي معلومات إضافية.
-ملزمة بنجاح. قد تكون هناك حاجة إضافية إعادة تسجيل الدخول.
-غير منضم بنجاح. قد تكون هناك حاجة إضافية إعادة تسجيل الدخول.
-ويرتبط هذا الحساب حاليا إلى WePeiyang.
-يمكنك إلغاء ربط هذا الحساب في أي وقت. بعد فصل، فإنك لن تكون قادرا على استخدام الخدمات المتعلقة بهذا الحساب.
-إلغاء توثيق بطاقتك الإلكترونية، وتحتاج فقط إلى تسجيل الخروج. سوف حساب البطاقة الإلكترونية الخاصة بك يكون لا صلة عند تسجيل الدخول مرة أخرى.
-يرجى ملاحظة أن وضع ملزمة حسابك سيتم تحديثه بعد تسجيل الدخول المقبل.
-يرجى ملاحظة أن وضع ملزمة حسابك سيتم تحديثه بعد تسجيل الدخول المقبل.
+ 剩下的日子
+未知
+准备离开WePeiyang ......
+我们在网络平台上提供此服务。在浏览器中打开链接？
+没有可用的数据
+成功加载了最新数据
+由于网络提取过程中的某些错误，无法刷新数据。
+检查验证状态...
+登录
+给我签名
+登录成功
+登录失败...
+退出成功
+无法在本地存储令牌。下次启动时可能需要额外的手动登录。
+无法删除本地令牌。如果问题仍然存在，我们建议您清除系统设置中的App存储，以确保帐户安全。
+让你回来总是很好。
+TWT帐户用户名
+密码
+你好
+没有卡绑定
+卡
+持有人
+过期
+今天
+这个月
+结算明细
+最后没有找到交易记录
+ 天
+再加载一周
+此处显示的数据范围为您最近的帐单日期。
+新闻
+TJU网络
+设置
+一般
+别处
+在主页上隐藏GPA
+每周显示的天数
+选择您喜欢的工作日间隔。
+每周显示％{count}天
+自动重新连接
+断开连接后重新连接到TJU-WLAN网络
+WePeiyang在GitHub上
+WePeiyang是一个开源项目。通过为社区做出贡献，帮助改善它。
+TWT社区QQ / TIM集团
+帮助支持
+需要帮忙？遇到了问题？欢迎来到我们的支持论坛。
+语言
+语言设定
+请注意，只有WePeiyang App级别的文本会被更改。依赖于课程名称和书名等外部资源的文本将不会被翻译。
+连接您的帐户。发现更多可能性。
+连接您的帐户。发现更多可能性。
+连接您的帐户。发现更多可能性。
+不作承诺
+界
+捆绑
+解除绑定
+图书馆帐户
+电子卡帐户
+门户帐户
+您的学生证
+电子贺卡密码（用于POS机）
+你的e.tju.edu.cn密码
+你的图书馆密码
+您的图书馆密码是lib.tju.edu.cn上使用的密码。如果您不知道它是什么，请尝试使用初始密码666666，或国民身份证的第12至17位数字。请咨询天津大学图书馆的咨询台，了解更多信息的密码重置。
+成功绑定。可能需要额外的重新登录。
+成功解除绑定。可能需要额外的重新登录。
+此帐户目前与WePeiyang相关联。
+您可以随时取消绑定此帐户。断开连接后，您将无法使用与此帐户相关的服务。
+要取消绑定您的电子贺卡，您只需要退出即可。再次登录时，您的电子卡帐户将被取消连接。
+请注意，您的帐户绑定状态将在下次登录后更新。
+请注意，您的帐户绑定状态将在下次登录后更新。
+出于安全原因，电子卡的绑定操作仅适用于当前会话。退出后，您的电子卡帐户将立即断开连接。
+出于安全原因，TJU网络的绑定操作仅适用于当前会话。注销后，您的网络帐户将立即解除绑定。
 WPY
-أخبار
+新闻
 TJU
-دراجة هوائية
-اتصال
-تعلم
-مكتبة
-بطاقة E
-المناقصات
-المناقصات كيرف
-حجرة الدراسة
-جدول
-أخبار
-مول
-حزب
-المجموع المرجح
-إجمالي المناقصات
-الاعتمادات حصل
-موزون
-المناقصات
-قروض
-قروض
-التي أمر بها
-قروض
-اسم
-نتيجة
-معلومات عن المناقصات
-المؤشرات والرسوم البيانية وعشرات تحسب WePeiyang هي للإشارة فقط. يرجى الرجوع إلى إدارة الشؤون الأكاديمية جامعة تيانجين للخوارزميات الرسمية والسياسات والنتائج الدرجات.
-لا طبعا اليوم
-الهوية
-المنطق رقم
-حرم الجامعة
-موقع
-أسابيع
-وقت
-WEEK
+抽屉
+自行车
+联系
+学习
+图书馆
+电子贺卡
+GPA
+GPA曲线
+课堂
+时间表
+新闻
+购物中心
+派对
+网络
+投票
+调查
+BBS
+文件
+事业
+志愿者
+总加权
+总GPA
+获得的学分
+加权
+GPA
+积分
+积分
+订购
+积分
+名称
+得分了
+关于GPA
+WePeiyang计算的指标，图表和分数仅供参考。有关官方算法，政策和评分结果，请咨询天津大学教务处。
+今天没有课程
+ID
+逻辑号
+校园
+地点
+周
+时间
+周
 
-لم تقترض أي الكتب
-حسابى على موقع مكتبة يست ملزمة
-دعوة
-نوع
-موقع
-اقترضت
-العودة من قبل
-مراجعة
-كتاب واحد يمكن تجديدها لثلاث مرات فقط. نوصي تجديد كتابك عند تاريخ الاستحقاق يقترب. المتابعة؟
-البحث الكلمات الرئيسية ...
-قسم
-لم يتم العثور في هذه الدائرة وحدة
-معلومات المصادر`
+你没有借书
+图书馆帐户没有约束
+来电号码
+类型
+地点
+借用
+回归
+更新
+一本书只能更新三次。我们建议您在截止日期临近时续订图书。继续？
+冲浪
+板
+你的学生证
+你的g.tju.edu.cn密码
+上帝说，“让互联网吧。”
+有互联网。
+有时发送正确的密码也可能会返回错误密码的消息。此错误是由天津大学网络中心引起的，也发生在本地登录页面上。在这种情况下，您可能需要多次尝试。
+搜索关键字......
+部门
+在这个部门找不到任何单位
+信息来源`
 
 let esList = es.split(`
 `)

@@ -46,18 +46,19 @@ class _Text extends React.PureComponent<TextProps, {}> {
     } = this.props
 
     // figure out which content to use
-    const i18nText = tx && translate(tx, lang, txOptions)
+    let i18nText = tx && translate(tx, lang, txOptions)
 
     // Spacing between languages
-    if (text) {
+    let toSpace = i18nText || text
+    if (toSpace) {
       if (spacing === undefined) {
-        if (text.length < 100) text = pangu.spacing(text)
+        if (toSpace.length < 500) toSpace = pangu.spacing(toSpace)
       } else if (spacing === true) {
-        text = pangu.spacing(text)
+        toSpace = pangu.spacing(toSpace)
       }
     }
 
-    let content = i18nText || text || children
+    let content = toSpace || children
     if (customTranslationMethod && tx) {
       content = customTranslationMethod(lang, tx)
     }

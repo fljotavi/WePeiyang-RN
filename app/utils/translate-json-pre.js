@@ -11,16 +11,6 @@ let json = {
       daysLeft: " Days Left",
     },
     unknown: "Unknown",
-    lipsum: {
-      a:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus metus ac pellentesque pellentesque. Donec quis egestas purus. Donec ut ligula sit amet urna posuere vehicula ut laoreet dui. Fusce molestie, libero ut maximus euismod, ante dolor suscipit erat, a mattis nibh mauris quis ipsum. Mauris et bibendum sem, id scelerisque urna. Proin libero mi, sodales ac velit eu, elementum volutpat odio. Donec pharetra tempor vehicula.",
-      b:
-        "Maecenas efficitur consequat mi. In sit amet ornare est, nec sagittis magna. Donec quis sem ultrices, faucibus augue eget, fringilla sem. ",
-      c:
-        "Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.",
-      d:
-        "Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus.",
-    },
     prepareToLeave: "Be prepared to leave WePeiyang...",
     providedInWebHint: "We provide this service in our web platform. Open Link in Browser?",
   },
@@ -82,12 +72,16 @@ let json = {
       intro: "Choose your preferred weekdays interval.",
       options: "Display %{count} days each week",
     },
+    autoReconnect: {
+      title: "Auto reconnect",
+      sub: "Reconnect to TJU-WLAN network when disconnected",
+    },
     wpyGithub: {
-      title: "WePeiyang on Github",
+      title: "WePeiyang on GitHub",
       sub:
         "WePeiyang is an open-sourced project. Help make it better by contributing to our community.",
     },
-    timGroup: "天外天用户社区 QQ/TIM Group",
+    timGroup: "TWT Community QQ/TIM Group",
     helpNSupport: {
       title: "Help & Support",
       sub: "Need help? Encountered a problem? Welcome to our support forum.",
@@ -129,11 +123,16 @@ let json = {
       "Please note that your account binding status would be updated after the next login.",
     tjuLatencyHint:
       "Please note that your account binding status would be updated after the next login.",
+    ecardHint:
+      "For security reasons, the binding action for e-card is only for current session. Your e-card account would be immediately disconnected once you log out.",
+    networkHint:
+      "For security reasons, the binding action for TJU network is only for current session. Your network account would be immediately unbound once you log out.",
   },
   tab: {
     wpy: "WPY",
     news: "News",
-    tju: "TJU",
+    network: "TJU",
+    modules: "Drawer",
   },
   modules: {
     bike: "Bike",
@@ -148,6 +147,13 @@ let json = {
     news: "News",
     mall: "Mall",
     party: "Party",
+    network: "Network",
+    vote: "Vote",
+    survey: "Survey",
+    bbs: "BBS",
+    docs: "Docs",
+    career: "Career",
+    socialPractice: "Volunteer",
   },
   gpa: {
     totalWeighted: "Total Weighted",
@@ -193,6 +199,16 @@ let json = {
     renew: "Renew",
     renewCaveat:
       "A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?",
+  },
+  network: {
+    login: "Surf",
+    logout: "Board",
+    yourUsername: "Your student ID",
+    yourPassword: "Your g.tju.edu.cn password",
+    greetings: "And God Said, “Let There Be Internet.”",
+    connected: "And there was internet.",
+    bugHint:
+      "Sometimes sending a correct password could also return a message of wrong password. This bug is caused by Tianjin University Network Centre and occurs on the native login page too. In that case, you might want to additionally try several times.",
   },
   contact: {
     searchBar: "Search keywords...",

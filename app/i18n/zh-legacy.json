@@ -1,0 +1,88 @@
+{
+  "common": {
+    "ok": "好的",
+    "cancel": "取消",
+    "back": "返回",
+    "time": {
+      "remaining": "还剩 ",
+      "daysLeft": " 天"
+    },
+    "unknown": "未知"
+  },
+  "data": {
+    "prepareDataSuccess": "成功获取最新数据",
+    "prepareDataFailed": "由于网络请求失败，可能有部分数据未成功更新..."
+  },
+  "auth": {
+    "login": "登录",
+    "logout": "注销用户",
+    "loginSuccess": "登录成功",
+    "loginFailure": "登陆失败...",
+    "logoutSuccess": "已登出用户"
+  },
+  "loginScreen": {
+    "greetings": "又一次见到你回来，总是好的",
+    "username": "天外天帐号用户名",
+    "password": "天外天帐号密码"
+  },
+  "homeScreen": {
+    "greetings": "你好"
+  },
+  "newsScreen": {
+    "header": "新闻"
+  },
+  "tjuScreen": {
+    "header": "TJU 网络"
+  },
+  "settings": {
+    "settings": "设置",
+    "displayGpa": "在主页显示 GPA",
+    "language": "语言",
+    "languageSetting": "语言设置",
+    "languageWarning": "请注意，只有微北洋内部的界面语言与操作语言会被改变。依赖于外部资源的文字，如课程名称、图书名称等将保持其原有语言。"
+  },
+  "accountBinding": {
+    "bicycleAccount": "自行车帐号",
+    "libraryAccount": "图书馆帐号",
+    "ecardAccount": "校园一卡通帐号",
+    "portalAccount": "办公网帐号",
+    "unbound": "尚未绑定",
+    "bound": "已绑定",
+    "greetings": "连接你的帐户，发现更多可能",
+    "ecardId": "你的学号",
+    "ecardPassword": "你的 6 位校园卡密码（通常用于 POS 机）",
+    "bind": "绑定",
+    "bindSuccess": "帐号绑定成功"
+  },
+  "tab": {
+    "wpy": "WPY",
+    "news": "新闻",
+    "tju": "TJU"
+  },
+  "modules": {
+    "bike": "自行车",
+    "contact": "黄页",
+    "learning": "刷题",
+    "library": "图书馆",
+    "ecard": "校园卡",
+    "gpa": "GPA",
+    "classroom": "自习室",
+    "news": "新闻",
+    "coffee": "咖啡",
+    "buses": "公交车"
+  },
+  "gpa": {
+    "totalWeighted": "总加权",
+    "totalGpa": "总绩点",
+    "creditsEarned": "已修学分",
+    "semestralWeighted": "学期加权",
+    "semestralGpa": "学期绩点",
+    "semestralCredits": "阶段学分"
+  },
+  "schedule": {
+    "noCourseToday": "阁下今日无课"
+  },
+  "library": {
+    "noBooks": "你还没有借阅书籍"
+  }
+}

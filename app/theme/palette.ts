@@ -15,6 +15,7 @@ export const palette = {
   angry: "#dd3333",
 
   twt: "#1c94dd",
+  matcha: "#626d3d",
 
   paper: "#e6ddc9",
   rouge: "#bf705e",

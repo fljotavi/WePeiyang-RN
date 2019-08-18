@@ -1,32 +1,56 @@
 {
   "common": {
     "ok": "好的",
+    "confirm": "确认",
     "cancel": "取消",
     "back": "返回",
+    "close": "关闭",
+    "gotIt": "了解",
     "time": {
       "remaining": "还剩 ",
-      "daysLeft": " 天"
+      "daysLeft": " 天"
     },
-    "unknown": "未知"
+    "unknown": "未知",
+    "prepareToLeave": "准备离开微北洋 App",
+    "providedInWebHint": "我们在 Web 平台上提供此服务，继续操作将会打开您的浏览器。"
   },
   "data": {
-    "prepareDataSuccess": "成功获取最新数据",
+    "noAvailableData": "没有可用数据",
+    "prepareDataSuccess": "已获取最新数据",
     "prepareDataFailed": "由于网络请求失败，可能有部分数据未成功更新..."
   },
   "auth": {
+    "checkingAuthStatus": "检查登录状态中...",
     "login": "登录",
     "logout": "注销用户",
     "loginSuccess": "登录成功",
-    "loginFailure": "登陆失败...",
-    "logoutSuccess": "已登出用户"
+    "loginFailure": "登录失败...",
+    "logoutSuccess": "已登出用户",
+    "tokenStoreFailure": "无法在本地存储 token。下次启动时可能仍需要额外的手动登录。",
+    "tokenDeleteFailure": "无法删除本地 token。如果重试后问题仍然存在，我们建议您在设置中清除 App 存储空间，以确保帐户安全。"
   },
   "loginScreen": {
-    "greetings": "又一次见到你回来，总是好的",
-    "username": "天外天帐号用户名",
-    "password": "天外天帐号密码"
+    "greetings": "看到你再次回来，总是很开心。",
+    "username": "天外天账号用户名",
+    "password": "密码"
   },
   "homeScreen": {
-    "greetings": "你好"
+    "greetings": "Hello"
+  },
+  "ecard": {
+    "noCardsBound": "未绑定校园卡",
+    "card": "Card",
+    "holder": "持卡人",
+    "expiresBy": "有效期",
+    "dailyExpense": "今日消费",
+    "monthlyExpense": "本月消费",
+    "billingDetails": "流水明细",
+    "noTransaction": {
+      "pre": "最近 ",
+      "post": " 天内未发现交易记录"
+    },
+    "loadMore": "加载更多",
+    "rangeHint": "此处统计截止到您最近一次消费的所在日。"
   },
   "newsScreen": {
     "header": "新闻"
@@ -36,53 +60,146 @@
   },
   "settings": {
     "settings": "设置",
-    "displayGpa": "在主页显示 GPA",
+    "sections": {
+      "general": "通用",
+      "elsewhere": "更多"
+    },
+    "hideGpa": "主页隐藏 GPA 模块",
+    "daysEachWeek": {
+      "title": "每周显示的天数",
+      "intro": "选择您喜欢的工作日间隔。",
+      "options": "每周显示 %{count} 天"
+    },
+    "autoReconnect": {
+      "title": "自动重新连接",
+      "sub": "断开连接后重新连接到TJU-WLAN网络"
+    },
+    "wpyGithub": {
+      "title": "WePeiyang在GitHub上",
+      "sub": "WePeiyang是一个开源项目。通过为社区做出贡献，帮助改善它。"
+    },
+    "timGroup": "TWT社区QQ / TIM集团",
+    "helpNSupport": {
+      "title": "帮助支持",
+      "sub": "需要帮忙？遇到了问题？欢迎来到我们的支持论坛。"
+    },
     "language": "语言",
-    "languageSetting": "语言设置",
-    "languageWarning": "请注意，只有微北洋内部的界面语言与操作语言会被改变。依赖于外部资源的文字，如课程名称、图书名称等将保持其原有语言。"
+    "languageSetting": "语言设定",
+    "languageWarning": "请注意，只有WePeiyang App级别的文本会被更改。依赖于课程名称和书名等外部资源的文本将不会被翻译。"
   },
   "accountBinding": {
-    "bicycleAccount": "自行车帐号",
-    "libraryAccount": "图书馆帐号",
-    "ecardAccount": "校园一卡通帐号",
-    "portalAccount": "办公网帐号",
-    "unbound": "尚未绑定",
-    "bound": "已绑定",
-    "greetings": "连接你的帐户，发现更多可能",
-    "ecardId": "你的学号",
-    "ecardPassword": "你的 6 位校园卡密码（通常用于 POS 机）",
-    "bind": "绑定",
-    "bindSuccess": "帐号绑定成功"
+    "greetings": {
+      "ecard": "连接您的帐户。发现更多可能性。",
+      "tju": "连接您的帐户。发现更多可能性。",
+      "lib": "连接您的帐户。发现更多可能性。"
+    },
+    "unbound": "不作承诺",
+    "bound": "界",
+    "bind": "捆绑",
+    "unbind": "解除绑定",
+    "libraryAccount": "图书馆帐户",
+    "ecardAccount": "电子卡帐户",
+    "portalAccount": "门户帐户",
+    "yourStudentId": "您的学生证",
+    "ecardPassword": "电子贺卡密码（用于POS机）",
+    "etjuPassword": "你的e.tju.edu.cn密码",
+    "libPassword": "你的图书馆密码",
+    "libPasswordHint": "您的图书馆密码是lib.tju.edu.cn上使用的密码。如果您不知道它是什么，请尝试使用初始密码666666，或国民身份证的第12至17位数字。请咨询天津大学图书馆的咨询台，了解更多信息的密码重置。",
+    "bindSuccess": "成功绑定。可能需要额外的重新登录。",
+    "unbindSuccess": "成功解除绑定。可能需要额外的重新登录。",
+    "unbindModal": {
+      "heading": "此帐户目前与WePeiyang相关联。",
+      "content": "您可以随时取消绑定此帐户。断开连接后，您将无法使用与此帐户相关的服务。"
+    },
+    "unbindEcardHint": "要取消绑定您的电子贺卡，您只需要退出即可。再次登录时，您的电子卡帐户将被取消连接。",
+    "libLatencyHint": "请注意，您的帐户绑定状态将在下次登录后更新。",
+    "tjuLatencyHint": "请注意，您的帐户绑定状态将在下次登录后更新。",
+    "ecardHint": "出于安全原因，电子卡的绑定操作仅适用于当前会话。退出后，您的电子卡帐户将立即断开连接。",
+    "networkHint": "出于安全原因，TJU网络的绑定操作仅适用于当前会话。注销后，您的网络帐户将立即解除绑定。"
   },
   "tab": {
     "wpy": "WPY",
     "news": "新闻",
-    "tju": "TJU"
+    "network": "TJU",
+    "modules": "抽屉"
   },
   "modules": {
     "bike": "自行车",
-    "contact": "黄页",
-    "learning": "刷题",
+    "contact": "联系",
+    "learning": "学习",
     "library": "图书馆",
-    "ecard": "校园卡",
+    "ecard": "电子贺卡",
     "gpa": "GPA",
-    "classroom": "自习室",
+    "gpaCurve": "GPA曲线",
+    "classroom": "课堂",
+    "schedule": "时间表",
     "news": "新闻",
-    "coffee": "咖啡",
-    "buses": "公交车"
+    "mall": "购物中心",
+    "party": "派对",
+    "network": "网络",
+    "vote": "投票",
+    "survey": "调查",
+    "bbs": "BBS",
+    "docs": "文件",
+    "career": "事业",
+    "socialPractice": "志愿者"
   },
   "gpa": {
     "totalWeighted": "总加权",
-    "totalGpa": "总绩点",
-    "creditsEarned": "已修学分",
-    "semestralWeighted": "学期加权",
-    "semestralGpa": "学期绩点",
-    "semestralCredits": "阶段学分"
+    "totalGpa": "总GPA",
+    "creditsEarned": "获得的学分",
+    "semestralWeighted": "加权",
+    "semestralGpa": "GPA",
+    "semestralCredits": "积分",
+    "credits": "积分",
+    "order": {
+      "orderedBy": "订购",
+      "credits": "积分",
+      "name": "名称",
+      "score": "得分了"
+    },
+    "info": {
+      "title": "关于GPA",
+      "content": "WePeiyang计算的指标，图表和分数仅供参考。有关官方算法，政策和评分结果，请咨询天津大学教务处。"
+    }
   },
   "schedule": {
-    "noCourseToday": "阁下今日无课"
+    "noCourseToday": "今天没有课程",
+    "id": "ID",
+    "logicNo": "逻辑号",
+    "campus": "校园",
+    "location": "地点",
+    "weeks": "周",
+    "time": "时间",
+    "WEEK": {
+      "pre": "周",
+      "post": ""
+    }
   },
   "library": {
-    "noBooks": "你还没有借阅书籍"
+    "noBooks": "你没有借书",
+    "notBound": "图书馆帐户没有约束",
+    "callNo": "来电号码",
+    "type": "类型",
+    "location": "地点",
+    "borrowedTime": "借用",
+    "returnBy": "回归",
+    "renew": "更新",
+    "renewCaveat": "一本书只能更新三次。我们建议您在截止日期临近时续订图书。继续？"
+  },
+  "network": {
+    "login": "冲浪",
+    "logout": "板",
+    "yourUsername": "你的学生证",
+    "yourPassword": "你的g.tju.edu.cn密码",
+    "greetings": "上帝说，“让互联网吧。”",
+    "connected": "有互联网。",
+    "bugHint": "有时发送正确的密码也可能会返回错误密码的消息。此错误是由天津大学网络中心引起的，也发生在本地登录页面上。在这种情况下，您可能需要多次尝试。"
+  },
+  "contact": {
+    "searchBar": "搜索关键字......",
+    "department": "部门",
+    "noUnit": "在这个部门找不到任何单位",
+    "infoSource": "信息来源"
   }
 }

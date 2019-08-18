@@ -1,5 +1,5 @@
 import * as React from "react"
-import {ActivityIndicator, DeviceEventEmitter, ScrollView, StatusBar, View} from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -11,7 +11,6 @@ import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
 import { ByTwt } from "../../components/by-twt"
 import { Toasti } from "../../components/toasti"
-import {TopBar} from "../../components/top-bar";
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {}
 

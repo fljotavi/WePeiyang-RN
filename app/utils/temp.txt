@@ -7,10 +7,6 @@ Got it!
 
  Days Left
 Unknown
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus metus ac pellentesque pellentesque. Donec quis egestas purus. Donec ut ligula sit amet urna posuere vehicula ut laoreet dui. Fusce molestie, libero ut maximus euismod, ante dolor suscipit erat, a mattis nibh mauris quis ipsum. Mauris et bibendum sem, id scelerisque urna. Proin libero mi, sodales ac velit eu, elementum volutpat odio. Donec pharetra tempor vehicula.
-Maecenas efficitur consequat mi. In sit amet ornare est, nec sagittis magna. Donec quis sem ultrices, faucibus augue eget, fringilla sem.
-Nam consectetur imperdiet urna, at convallis elit consequat id. Donec mi massa, elementum et sem sit amet, ornare lacinia tortor. Duis vitae velit sapien. Nulla vitae risus gravida, malesuada magna in, ultrices diam. Duis venenatis leo eget enim euismod euismod. Nulla facilisi. Mauris maximus diam dolor, eu aliquet nulla lobortis a. Aenean mattis sodales viverra.
-Aenean vitae justo massa. Aliquam sed lorem aliquet metus placerat pellentesque sed ac lacus. Mauris vehicula, sapien et aliquam finibus, tortor ipsum porta lacus, a interdum quam sem id arcu. Nulla eget aliquam quam. Praesent sapien mauris, pretium eget tortor nec, condimentum mollis quam. Proin eget enim vulputate, feugiat augue sit amet, ullamcorper quam. Duis a nibh ut arcu malesuada euismod ut et leo. Curabitur magna augue, suscipit ac fermentum non, auctor quis tellus.
 Be prepared to leave WePeiyang...
 We provide this service in our web platform. Open Link in Browser?
 No available data
@@ -48,9 +44,11 @@ Hide GPA On Homepage
 Displayed Days Each Week
 Choose your preferred weekdays interval.
 Display %{count} days each week
-WePeiyang on Github
+Auto reconnect
+Reconnect to TJU-WLAN network when disconnected
+WePeiyang on GitHub
 WePeiyang is an open-sourced project. Help make it better by contributing to our community.
-天外天用户社区 QQ/TIM Group
+TWT Community QQ/TIM Group
 Help & Support
 Need help? Encountered a problem? Welcome to our support forum.
 Language
@@ -78,9 +76,12 @@ You can unbind this account anytime. After disconnecting, you wouldn't be able t
 To unbind your e-card, you just need to log out. Your e-card account would be unconnected when you log in again.
 Please note that your account binding status would be updated after the next login.
 Please note that your account binding status would be updated after the next login.
+For security reasons, the binding action for e-card is only for current session. Your e-card account would be immediately disconnected once you log out.
+For security reasons, the binding action for TJU network is only for current session. Your network account would be immediately unbound once you log out.
 WPY
 News
 TJU
+Drawer
 Bike
 Contact
 Learning
@@ -93,6 +94,13 @@ Schedule
 News
 Mall
 Party
+Network
+Vote
+Survey
+BBS
+Docs
+Career
+Volunteer
 Total Weighted
 Total GPA
 Credits Earned
@@ -124,6 +132,13 @@ Borrowed
 Return By
 Renew
 A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?
+Surf
+Board
+Your student ID
+Your g.tju.edu.cn password
+And God Said, “Let There Be Internet.”
+And there was internet.
+Sometimes sending a correct password could also return a message of wrong password. This bug is caused by Tianjin University Network Centre and occurs on the native login page too. In that case, you might want to additionally try several times.
 Search keywords...
 Department
 No unit found in this department

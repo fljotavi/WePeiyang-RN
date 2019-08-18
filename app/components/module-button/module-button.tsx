@@ -50,6 +50,7 @@ export function ModuleButton(props: ModuleButtonProps) {
   return (
     <Touchable
       style={[predefinedStyle, shadowPresets.float, style]}
+      background={Touchable.Ripple(color.background)}
       onPress={onPress}
       delayPressIn={0}
       onLongPress={onLongPress}
