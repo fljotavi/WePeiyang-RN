@@ -11,7 +11,7 @@
 import * as React from "react"
 import { createBottomTabNavigator } from "react-navigation"
 import HomeScreen from "../screens/home-screen"
-import { NewsScreen } from "../screens/news-screen"
+import { ModulesScreen } from "../screens/modules-screen"
 import { TjuLoginScreen } from "../screens/tju-login-screen"
 import { Text } from "../components/text"
 import { TextStyle, ViewStyle } from "react-native"
@@ -35,8 +35,8 @@ const textStyle: TextStyle = {
 export const HomeNavigator = createBottomTabNavigator(
   {
     wpy: { screen: HomeScreen },
-    news: { screen: NewsScreen },
-    tju: { screen: TjuLoginScreen },
+    modules: { screen: ModulesScreen },
+    network: { screen: TjuLoginScreen },
   },
   {
     defaultNavigationOptions: ({ navigation }) => {

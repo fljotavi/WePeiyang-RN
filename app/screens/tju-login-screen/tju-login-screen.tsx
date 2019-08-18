@@ -102,8 +102,8 @@ export class _TjuLoginScreen extends React.Component<TjuLoginScreenProps, {}> {
           elements={{
             left: [
               {
-                iconText: "arrow_back",
-                action: () => this.props.navigation.goBack(),
+                iconText: "public",
+                action: () => {},
               },
             ],
             right: [],

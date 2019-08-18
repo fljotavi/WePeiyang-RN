@@ -70,6 +70,10 @@
       "intro": "Choose your preferred weekdays interval.",
       "options": "Display %{count} days each week"
     },
+    "autoReconnect": {
+      "title": "Auto reconnect",
+      "sub": "Reconnect to TJU-WLAN network when disconnected"
+    },
     "wpyGithub": {
       "title": "WePeiyang on Github",
       "sub": "WePeiyang is an open-sourced project. Help make it better by contributing to our community."
@@ -111,12 +115,13 @@
     "libLatencyHint": "Please note that your account binding status would be updated after the next login.",
     "tjuLatencyHint": "Please note that your account binding status would be updated after the next login.",
     "ecardHint": "For security reasons, the binding action for e-card is only for current session. Your e-card account would be immediately disconnected once you log out.",
-    "networkHint": "For security reasons, the binding action for TJU network is only for current session. Your network account would be immediately disconnected once you log out."
+    "networkHint": "For security reasons, the binding action for TJU network is only for current session. Your network account would be immediately unbound once you log out."
   },
   "tab": {
     "wpy": "WPY",
     "news": "News",
-    "tju": "TJU"
+    "network": "TJU",
+    "modules": "Drawer"
   },
   "modules": {
     "bike": "Bike",
@@ -130,7 +135,14 @@
     "schedule": "Schedule",
     "news": "News",
     "mall": "Mall",
-    "party": "Party"
+    "party": "Party",
+    "network": "Network",
+    "vote": "Vote",
+    "survey": "Survey",
+    "bbs": "BBS",
+    "docs": "Docs",
+    "career": "Career",
+    "socialPractice": "Volunteer"
   },
   "gpa": {
     "totalWeighted": "Total Weighted",

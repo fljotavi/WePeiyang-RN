@@ -53,4 +53,14 @@ export default {
     marginTop: 26,
     alignSelf: "stretch",
   } as ViewStyle,
+
+  horiScrollSelf: {
+    overflow: "visible",
+  } as ViewStyle,
+  horiScroll: {
+    alignSelf: "stretch",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    overflow: "visible",
+  } as ViewStyle,
 }

@@ -17,6 +17,7 @@ export const preferenceReducer = (
     language: "en",
     daysEachWeek: 6,
     hideGpaOnHomeScreen: false,
+    autoReconnect: true,
   },
   action,
 ) => {

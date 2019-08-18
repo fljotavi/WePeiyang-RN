@@ -132,6 +132,14 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
 
           <SettingsSnack
             style={ss.snack}
+            preset="enter"
+            txTitle="settings.language"
+            textSubtitle={languageFullnames[pref.language].common}
+            onPress={() => this.props.navigation.navigate("language")}
+          />
+
+          <SettingsSnack
+            style={ss.snack}
             txTitle="settings.hideGpa"
             preset="switch"
             on={pref.hideGpaOnHomeScreen}
@@ -143,17 +151,20 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
           <SettingsSnack
             style={ss.snack}
             preset="enter"
-            txTitle="settings.language"
-            textSubtitle={languageFullnames[pref.language].common}
-            onPress={() => this.props.navigation.navigate("language")}
+            txTitle="settings.daysEachWeek.title"
+            textSubtitle={pref.daysEachWeek}
+            onPress={() => this.props.navigation.navigate("daysEachWeek")}
           />
 
           <SettingsSnack
             style={ss.snack}
-            preset="enter"
-            txTitle="settings.daysEachWeek.title"
-            textSubtitle={pref.daysEachWeek}
-            onPress={() => this.props.navigation.navigate("daysEachWeek")}
+            txTitle="settings.autoReconnect.title"
+            txSubtitle="settings.autoReconnect.sub"
+            preset="switch"
+            on={pref.autoReconnect}
+            onPress={() => {
+              setPreference("autoReconnect", !pref.autoReconnect)
+            }}
           />
 
           <Text tx="settings.sections.elsewhere" preset="lausanne" style={ss.sectionHead} />
