@@ -19,10 +19,12 @@ export interface ModuleButtonProps {
   icon?: string
   style?: ViewStyle
   onPress?: any
+  onLongPress?
+  onPressOut?
 }
 
 export function ModuleButton(props: ModuleButtonProps) {
-  const { tx, icon, style, onPress } = props
+  const { tx, icon, style, onPress, onLongPress, onPressOut } = props
   const textStyle: TextStyle = {
     color: color.lightGrey,
     fontSize: 12,
@@ -50,6 +52,8 @@ export function ModuleButton(props: ModuleButtonProps) {
       style={[predefinedStyle, shadowPresets.float, style]}
       onPress={onPress}
       delayPressIn={0}
+      onLongPress={onLongPress}
+      onPressOut={onPressOut}
     >
       <View style={containerStyle} pointerEvents="box-only">
         <Text text={icon} preset="i" style={iconStyle} />

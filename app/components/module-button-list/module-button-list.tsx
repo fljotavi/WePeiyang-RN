@@ -18,10 +18,19 @@ import Modal from "react-native-modal"
 import { color } from "../../theme"
 import { Alert } from "../alert"
 
+import DraggableFlatList from "react-native-draggable-flatlist"
+import { setPreference } from "../../actions/preference-actions"
+
 export interface ModuleButtonListProps {
+  style?
   blockStyle?: ViewStyle
-  compData?
   navigation?
+
+  pref?
+  setPreference?
+  compData?
+
+  allowDrag?
 }
 
 class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
@@ -47,7 +56,137 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
   }
 
   render() {
-    let { blockStyle, compData, navigation } = this.props
+    let { blockStyle, pref, compData, navigation, style, allowDrag, ...rest } = this.props
+    let moduleOrder = pref.moduleOrder
+    let moduleProps = {
+      schedule: {
+        tx: "modules.schedule",
+        icon: "event",
+        onPress: () => {
+          if (compData.userInfo.data.accounts.tju) {
+            navigation.navigate("schedule")
+          } else {
+            navigation.navigate("tjuBind")
+          }
+        },
+      },
+      gpa: {
+        tx: "modules.gpa",
+        icon: "timeline",
+        onPress: () => {
+          if (compData.userInfo.data.accounts.tju) {
+            navigation.navigate("gpa")
+          } else {
+            navigation.navigate("tjuBind")
+          }
+        },
+      },
+      contact: {
+        tx: "modules.contact",
+        icon: "call",
+        onPress: () => {
+          if (compData.userInfo.data.accounts.tju) {
+            navigation.navigate("yellowPages")
+          } else {
+            navigation.navigate("tjuBind")
+          }
+        },
+      },
+      ecard: {
+        tx: "modules.ecard",
+        icon: "credit_card",
+        onPress: () => {
+          if (compData.ecard.auth.status === "BOUND") {
+            navigation.navigate("ecard")
+          } else {
+            navigation.navigate("bind")
+          }
+        },
+      },
+      network: {
+        tx: "modules.network",
+        icon: "wifi",
+        onPress: () => navigation.navigate("network"),
+      },
+      learning: {
+        tx: "modules.learning",
+        icon: "assignment_turned_in",
+        onPress: () => {
+          this.openUrlAttempt("https://exam.twtstudio.com/")
+        },
+      },
+      docs: {
+        tx: "modules.docs",
+        icon: "library_books",
+        onPress: () => {
+          this.openUrlAttempt("https://learning.twtstudio.com/")
+        },
+      },
+      library: {
+        tx: "modules.library",
+        icon: "local_library",
+        onPress: () => {
+          this.openUrlAttempt("http://lib.tju.edu.cn/")
+        },
+      },
+      mall: {
+        tx: "modules.mall",
+        icon: "store",
+        onPress: () => {
+          this.openUrlAttempt("https://mall.twt.edu.cn/")
+        },
+      },
+      news: {
+        tx: "modules.news",
+        icon: "public",
+        onPress: () => {
+          this.openUrlAttempt("https://news.twt.edu.cn/news")
+        },
+      },
+      bbs: {
+        tx: "modules.bbs",
+        icon: "forum",
+        onPress: () => {
+          this.openUrlAttempt("http://bbs.tju.edu.cn/")
+        },
+      },
+      career: {
+        tx: "modules.career",
+        icon: "work",
+        onPress: () => {
+          this.openUrlAttempt("http://job.tju.edu.cn/")
+        },
+      },
+      party: {
+        tx: "modules.party",
+        icon: "star",
+        onPress: () => {
+          this.openUrlAttempt("https://www.twt.edu.cn/party/")
+        },
+      },
+      vote: {
+        tx: "modules.vote",
+        icon: "check_box",
+        onPress: () => {
+          this.openUrlAttempt("https://vote.twtstudio.com/")
+        },
+      },
+      survey: {
+        tx: "modules.survey",
+        icon: "edit",
+        onPress: () => {
+          this.openUrlAttempt("https://survey.twtstudio.com/")
+        },
+      },
+      socialPractice: {
+        tx: "modules.socialPractice",
+        icon: "group_add",
+        onPress: () => {
+          this.openUrlAttempt("https://www.twt.edu.cn/shijian/")
+        },
+      },
+    }
+
     return [
       <Modal
         isVisible={this.state.isModalVisible}
@@ -75,164 +214,28 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
           ]}
         />
       </Modal>,
-
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.schedule"
-        icon="event"
-        onPress={() => {
-          if (compData.userInfo.data.accounts.tju) {
-            navigation.navigate("schedule")
-          } else {
-            navigation.navigate("tjuBind")
-          }
+      <DraggableFlatList
+        data={moduleOrder}
+        style={style}
+        renderItem={({ item, move, moveEnd }) => {
+          return (
+            <ModuleButton
+              style={blockStyle}
+              tx={moduleProps[item].tx}
+              icon={moduleProps[item].icon}
+              onPress={moduleProps[item].onPress}
+              key={moduleProps[item].tx}
+              onLongPress={allowDrag ? move : () => {}}
+              onPressOut={moveEnd}
+            />
+          )
         }}
-        key="modules.schedule"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.gpa"
-        icon="timeline"
-        onPress={() => {
-          if (compData.userInfo.data.accounts.tju) {
-            navigation.navigate("gpa")
-          } else {
-            navigation.navigate("tjuBind")
-          }
+        key={"1"}
+        onMoveEnd={({ data }) => {
+          moduleOrder = data
+          this.props.setPreference("moduleOrder", data)
         }}
-        key="modules.gpa"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.contact"
-        icon="call"
-        onPress={() => {
-          if (compData.userInfo.data.accounts.tju) {
-            navigation.navigate("yellowPages")
-          } else {
-            navigation.navigate("tjuBind")
-          }
-        }}
-        key="modules.contact"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.ecard"
-        icon="credit_card"
-        onPress={() => {
-          if (compData.ecard.auth.status === "BOUND") {
-            navigation.navigate("ecard")
-          } else {
-            navigation.navigate("bind")
-          }
-        }}
-        key="modules.ecard"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.network"
-        icon="wifi"
-        onPress={() => navigation.navigate("network")}
-        key="modules.network"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.learning"
-        icon="assignment_turned_in"
-        onPress={() => {
-          this.openUrlAttempt("https://exam.twtstudio.com/")
-        }}
-        key="modules.learning"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.docs"
-        icon="library_books"
-        onPress={() => {
-          this.openUrlAttempt("https://learning.twtstudio.com/")
-        }}
-        key="modules.docs"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.library"
-        icon="local_library"
-        onPress={() => {
-          this.openUrlAttempt("http://lib.tju.edu.cn/")
-        }}
-        key="modules.library"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.mall"
-        icon="store"
-        onPress={() => {
-          this.openUrlAttempt("https://mall.twt.edu.cn/")
-        }}
-        key="modules.mall"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.news"
-        icon="public"
-        onPress={() => {
-          this.openUrlAttempt("https://news.twt.edu.cn/news")
-        }}
-        key="modules.news"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.bbs"
-        icon="forum"
-        onPress={() => {
-          this.openUrlAttempt("http://bbs.tju.edu.cn/")
-        }}
-        key="modules.bbs"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.career"
-        icon="work"
-        onPress={() => {
-          this.openUrlAttempt("http://job.tju.edu.cn/")
-        }}
-        key="modules.career"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.party"
-        icon="star"
-        onPress={() => {
-          this.openUrlAttempt("https://www.twt.edu.cn/party/")
-        }}
-        key="modules.party"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.vote"
-        icon="check_box"
-        onPress={() => {
-          this.openUrlAttempt("https://vote.twtstudio.com/")
-        }}
-        key="modules.vote"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.survey"
-        icon="edit"
-        onPress={() => {
-          this.openUrlAttempt("https://survey.twtstudio.com/")
-        }}
-        key="modules.survey"
-      />,
-      <ModuleButton
-        style={blockStyle}
-        tx="modules.socialPractice"
-        icon="group_add"
-        onPress={() => {
-          this.openUrlAttempt("https://www.twt.edu.cn/shijian/")
-        }}
-        key="modules.socialPractice"
+        {...rest}
       />,
     ]
   }
@@ -240,14 +243,18 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
 
 const mapStateToProps = state => {
   return {
+    pref: state.preferenceReducer,
     compData: state.dataReducer,
   }
 }
 
-const mapDispatchToProps = () => {
-  return {}
+const mapDispatchToProps = dispatch => {
+  return {
+    setPreference: (key, value) => {
+      dispatch(setPreference(key, value))
+    },
+  }
 }
-
 export const ModuleButtonList = connect(
   mapStateToProps,
   mapDispatchToProps,

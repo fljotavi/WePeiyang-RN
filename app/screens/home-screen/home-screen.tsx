@@ -175,17 +175,15 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
               </TouchableOpacity>
             </View>
 
-            <ScrollView
+            <ModuleButtonList
+              navigation={this.props.navigation}
+              blockStyle={ss.blockWithMarginRight}
               style={ss.horiScrollSelf}
               contentContainerStyle={ss.horiScroll}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-            >
-              <ModuleButtonList
-                navigation={this.props.navigation}
-                blockStyle={ss.blockWithMarginRight}
-              />
-            </ScrollView>
+              allowDrag={true}
+            />
 
             <View style={ss.sectionHead}>
               <Text

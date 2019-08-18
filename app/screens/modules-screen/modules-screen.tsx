@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { ScrollView, StatusBar, View, ViewStyle } from "react-native"
+import { StatusBar, ViewStyle } from "react-native"
 import { Screen } from "../../components/screen"
 import { layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -14,7 +14,6 @@ const ss = {
     paddingTop: layoutParam.statusBarHeight,
     justifyContent: "center",
   } as ViewStyle,
-  scroll: {} as ViewStyle,
   container: {
     width: 230,
     flexDirection: "row",
@@ -33,11 +32,12 @@ export class _ModulesScreen extends React.Component<ModulesScreenProps, {}> {
     return (
       <Screen>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-        <ScrollView showsVerticalScrollIndicator={false} style={ss.scroll}>
-          <View style={ss.container}>
-            <ModuleButtonList navigation={this.props.navigation} blockStyle={ss.block} />
-          </View>
-        </ScrollView>
+        <ModuleButtonList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={ss.container}
+          navigation={this.props.navigation}
+          blockStyle={ss.block}
+        />
       </Screen>
     )
   }
