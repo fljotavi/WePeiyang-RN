@@ -93,6 +93,7 @@ export const ssGlobal = {
     heading: {
       marginTop: 8,
       fontWeight: "normal",
+      width: 240,
     } as TextStyle,
     subhead: {
       marginLeft: 4,

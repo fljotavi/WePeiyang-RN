@@ -47,8 +47,8 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   state = {
     refreshing: false,
     isModalVisible: false,
-    chosenWeek: 1,
-    currentWeek: 1,
+    chosenWeek: undefined,
+    currentWeek: undefined,
     currentTimestamp: 0,
     windowWidth: Dimensions.get("window").width,
     screenHeight: Dimensions.get("screen").height,
@@ -57,8 +57,8 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   }
 
   componentDidMount = () => {
-    let timestamp = new Date(Date.now()).getTime()
-    let currentWeek = getWeek(timestamp, 1520179200 * 1000)
+    let timestamp = new Date("2019-09-09").getTime()
+    let currentWeek = getWeek(timestamp, this.props.course.data.term_start * 1000)
     if (currentWeek < 1) currentWeek = 1
     if (isNaN(currentWeek)) {
       currentWeek = 1
@@ -113,6 +113,10 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   _keyExtractor = (item, index) => String(index)
 
   render() {
+    if (!(this.state.chosenWeek && this.state.currentWeek)) {
+      return <Screen />
+    }
+
     const { course } = this.props
     const studentId = Number(this.props.userInfo.data.studentid)
     let daysEachWeek = this.state.daysEachWeek
@@ -144,7 +148,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     let dayWidth = (renderWidth - (daysEachWeek - 1) * dayMargin) / daysEachWeek
 
     // When styles are strongly connected to programmatic process,
-    // usage of inline styles are not avoidable.
+    // usage of inline styles are unavoidable.
     let columns = days.map((day, i) => {
       let crashIndex = 0
       return (
@@ -287,7 +291,15 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
           />
 
           <View style={ss.container} onLayout={this.getNewDimensions}>
-            <Text tx="modules.schedule" preset="h2" />
+            <Text>
+              <Text tx="modules.schedule" style={ss.title} preset="h2" />
+              <Text text=" " preset="h2" />
+              <Text style={ss.titleWeek}>
+                <Text tx="schedule.WEEK.pre" />
+                <Text text={this.state.chosenWeek} />
+                <Text tx="schedule.WEEK.post" />
+              </Text>
+            </Text>
 
             <FlatList
               horizontal={true}
@@ -313,9 +325,14 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                       style={ss.dotmap}
                       matrix={item.matrix}
                     />
-                    <Text style={ss.dotmapText}>
+                    <Text
+                      style={
+                        this.state.chosenWeek === item.week ? ss.dotmapTextActive : ss.dotmapText
+                      }
+                    >
+                      {this.state.currentWeek === item.week && <Text text="● " />}
                       <Text tx="schedule.WEEK.pre" />
-                      {this.state.currentWeek !== item.week && <Text text={item.week} />}
+                      <Text text={item.week} />
                       <Text tx="schedule.WEEK.post" />
                     </Text>
                   </View>

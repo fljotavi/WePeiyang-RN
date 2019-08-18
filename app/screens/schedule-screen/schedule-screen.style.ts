@@ -9,12 +9,21 @@ export default {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingVertical: layoutParam.paddingVertical,
   } as ViewStyle,
+  title: {} as TextStyle,
+  titleWeek: {
+    color: color.lightGrey,
+  } as TextStyle,
   dotmapContainer: {
     alignItems: "center",
     marginRight: 25,
   } as ViewStyle,
   dotmapText: {
     color: color.lightGrey,
+    fontSize: 10,
+    fontWeight: "bold",
+  } as TextStyle,
+  dotmapTextActive: {
+    color: color.primary,
     fontSize: 10,
     fontWeight: "bold",
   } as TextStyle,

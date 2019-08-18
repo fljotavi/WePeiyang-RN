@@ -21,7 +21,6 @@ import Toast from "react-native-easy-toast"
 
 const AppContainer = createAppContainer(RootNavigator)
 const { persistor, store } = configureStore()
-import SplashScreen from 'react-native-splash-screen'
 
 interface AppState {}
 
