@@ -117,7 +117,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
       return <Screen />
     }
 
-    const { course } = this.props
+    const { course, pref } = this.props
     const studentId = Number(this.props.userInfo.data.studentid)
     let daysEachWeek = this.state.daysEachWeek
     let weeks
@@ -135,7 +135,8 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
     // For height, you need to specify height of a single components,
     // and the total renderHeight would span
-    let timeSlotHeight = this.state.screenHeight / (18 - daysEachWeek)
+    let timeSlotHeight =
+      (this.state.screenHeight * pref.scheduleHeight) / ((18 - daysEachWeek) * 100)
     let dateIndicatorHeight = 30
     let timeSlotMargin = 12 - daysEachWeek
     let nTimeSlots = 12
@@ -326,9 +327,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                       matrix={item.matrix}
                     />
                     <Text
-                      style={
-                        this.state.chosenWeek === item.week ? ss.dotmapTextActive : ss.dotmapText
-                      }
+                      style={ss.dotmapText}
                     >
                       {this.state.currentWeek === item.week && <Text text="● " />}
                       <Text tx="schedule.WEEK.pre" />

@@ -36,6 +36,8 @@ export const preferenceReducer = (
       "survey",
       "socialPractice",
     ],
+    scheduleHeight: 100,
+    scheduleTextSize: 100,
   },
   action,
 ) => {

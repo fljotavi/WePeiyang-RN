@@ -15,6 +15,7 @@ import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
+import { connect } from "react-redux"
 
 export interface CourseBlockInnerProps {
   style?: ViewStyle
@@ -23,13 +24,15 @@ export interface CourseBlockInnerProps {
   p2?: string
   credits?
   backgroundColor?
+  pref?
 }
 
-export function CourseBlockInner(props: CourseBlockInnerProps) {
-  const { style, courseName, p1, p2, backgroundColor } = props
+export function _CourseBlockInner(props: CourseBlockInnerProps) {
+  const { style, courseName, p1, p2, backgroundColor, pref } = props
   const height = Number(style.height)
   const width = Number(style.width)
   const scale = Math.min(height, width) / 12 + 5.8
+  const textScale = (scale * pref.scheduleTextSize) / 100
   const predefinedStyle: ViewStyle = {
     backgroundColor: backgroundColor,
     borderRadius: layoutParam.borderRadius / 1.5,
@@ -39,8 +42,13 @@ export function CourseBlockInner(props: CourseBlockInnerProps) {
   const BASE: TextStyle = {
     color: color.background,
   }
-  const h1: TextStyle = { ...BASE, fontSize: scale, fontWeight: "bold", marginBottom: scale * 0.3 }
-  const small: TextStyle = { ...BASE, fontSize: scale * 0.8, marginBottom: scale * 0.2 }
+  const h1: TextStyle = {
+    ...BASE,
+    fontSize: textScale,
+    fontWeight: "bold",
+    marginBottom: textScale * 0.3,
+  }
+  const small: TextStyle = { ...BASE, fontSize: textScale * 0.8, marginBottom: textScale * 0.2 }
   let info: ViewStyle = {
     flexDirection: "column",
   }
@@ -62,3 +70,18 @@ export function CourseBlockInner(props: CourseBlockInnerProps) {
     </View>
   )
 }
+
+const mapStateToProps = state => {
+  return {
+    pref: state.preferenceReducer,
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export const CourseBlockInner = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(_CourseBlockInner)

@@ -12,12 +12,14 @@ import { createStackNavigator } from "react-navigation"
 import { connectedSettingsScreen } from "../screens/settings-screen"
 import { connectedLanguageSettingsScreen } from "../screens/settings-screen/language-settings-screen"
 import { connectedDaysEachWeekSettingsScreen } from "../screens/settings-screen/days-each-week-settings-screen"
+import { connectedScheduleTextSizeSettingsScreen } from "../screens/settings-screen/schedule-text-size-settings"
 
 export const SettingsNavigator = createStackNavigator(
   {
     settings: connectedSettingsScreen,
     language: connectedLanguageSettingsScreen,
     daysEachWeek: connectedDaysEachWeekSettingsScreen,
+    scheduleTextSize: connectedScheduleTextSizeSettingsScreen,
   },
   {
     initialRouteName: "settings",

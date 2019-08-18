@@ -158,6 +158,14 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
 
           <SettingsSnack
             style={ss.snack}
+            preset="enter"
+            txTitle="settings.scheduleTextSize.title"
+            textSubtitle={pref.scheduleTextSize + "%"}
+            onPress={() => this.props.navigation.navigate("scheduleTextSize")}
+          />
+
+          <SettingsSnack
+            style={ss.snack}
             txTitle="settings.autoReconnect.title"
             txSubtitle="settings.autoReconnect.sub"
             preset="switch"
