@@ -33,4 +33,5 @@ export interface ButtonProps extends TouchableOpacityProps {
   children?: React.ReactNode
 
   palette?
+  rippleColor?
 }

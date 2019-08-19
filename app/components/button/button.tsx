@@ -16,7 +16,7 @@ import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
 import Touchable from "react-native-platform-touchable"
 import { TextStyle, View, ViewStyle } from "react-native"
-import {color} from "../../theme";
+import { color } from "../../theme"
 
 /**
  * For your text displaying needs.
@@ -33,6 +33,7 @@ export function Button(props: ButtonProps) {
     textStyle: textStyleOverride,
     children,
     palette,
+    rippleColor,
     ...rest
   } = props
 
@@ -51,7 +52,15 @@ export function Button(props: ButtonProps) {
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 
   return (
-    <Touchable style={viewStyle} {...rest} delayPressIn={0}>
+    <Touchable
+      style={viewStyle}
+      {...rest}
+      foreground={Touchable.Ripple(
+        rippleColor || (textStyle && textStyle.color) || color.background,
+        false,
+      )}
+      delayPressIn={0}
+    >
       <View pointerEvents="box-only">{content}</View>
     </Touchable>
   )

@@ -220,7 +220,11 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
               )}
             />
 
-            <Button style={ss.loadMoreTouchable} onPress={this._loadMore}>
+            <Button
+              style={ss.loadMoreTouchable}
+              onPress={this._loadMore}
+              rippleColor={color.module.ecard[0]}
+            >
               <ActivityIndicator
                 style={[
                   ssGlobal.buttonLoadingIndicator,

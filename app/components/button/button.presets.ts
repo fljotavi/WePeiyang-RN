@@ -51,7 +51,7 @@ export const viewPresets = {
 }
 
 export const textPresets = {
-  primary: { ...BASE_TEXT, fontSize: 15, color: color.palette.white } as TextStyle,
+  primary: { ...BASE_TEXT, fontSize: 15, color: color.background } as TextStyle,
   link: {
     ...BASE_TEXT,
     color: color.text,

@@ -102,6 +102,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
 
   render() {
     const { gpa, scoreType, setScoreType, semesterIndex } = this.props
+    if (gpa.status !== "VALID") return <View />
 
     // data for GpaStat component
     let semestralStat = {}

@@ -153,7 +153,11 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
 
           <View style={ss.container}>
             <View style={ss.userInfoPanel}>
-              <Image source={{ uri: compData.userInfo.data.avatar }} style={ss.avatar} />
+              <Image
+                loadingIndicatorSource={require("../../assets/loading.png")}
+                source={{ uri: compData.userInfo.data.avatar }}
+                style={ss.avatar}
+              />
               <Text text={compData.userInfo.data.twtuname} style={ss.userName} preset="h4" />
               <Text
                 text={`${compData.userInfo.data.studentid} / ${compData.userInfo.data.realname}`}
