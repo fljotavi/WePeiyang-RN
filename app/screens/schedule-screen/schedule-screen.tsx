@@ -61,7 +61,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   }
 
   componentDidMount = () => {
-    let timestamp = new Date("2019-09-09").getTime()
+    let timestamp = new Date(Date.now()).getTime()
     let currentWeek = getWeek(timestamp, this.props.course.data.term_start * 1000)
     if (currentWeek < 1) currentWeek = 1
     if (isNaN(currentWeek)) {

@@ -103,6 +103,7 @@ export function fetchCourseData() {
     return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
+        console.log("CD", responseJson)
         if (responseJson.error_code === -1) {
           dispatch({
             type: "SET_COURSE_DATA",
@@ -130,6 +131,7 @@ export function fetchUserData() {
     return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
+        console.log("UI", responseJson)
         // Inconsistent response formatting here, no error_code. Bad server-side api design, yet there's nothing I can do about it.
         if (responseJson.twtuname) {
           dispatch({
