@@ -57,7 +57,7 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
   }
 
   render() {
-    let { blockStyle, pref, compData, navigation, style, allowDrag, ...rest } = this.props
+    let { blockStyle, compData, navigation, style, allowDrag, ...rest } = this.props
     let moduleOrder = this.state.moduleOrder
     let moduleProps = {
       schedule: {

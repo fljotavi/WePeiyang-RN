@@ -32,9 +32,9 @@ At that time, the previous major version of WePeiyang, functionally mature and t
 
 ### Status 状态
 
-The project is currently under experimental stage with several primary modules finished.
+Most major modules are developed.
 
-本项目整体目前仍处于实验阶段，部分主要模块已经开发完成。
+项目各个主要模块已经开发完成。
 
 ### New Features to Expect 功能性改进
 
@@ -42,7 +42,7 @@ The project is currently under experimental stage with several primary modules f
 
 | Feature                                                     | 特性                         | Status              |
 | ----------------------------------------------------------- | ---------------------------- | ------------------- |
-| Custom layout order on homepage                             | 主页自定义模块布局顺序       |                     |
+| Custom layout order on homepage                             | 主页自定义模块布局顺序       | ✔                    |
 | I18n & multilingual support                                 | 多语言支持                   | ✔                   |
 | Data persistent storage & conditional update                | 数据持久性存储与选择性更新   | ✔                   |
 | Scroll down to update                                       | 下拉刷新                     | ✔                   |
