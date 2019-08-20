@@ -20,6 +20,7 @@
     "prepareDataFailed": "Failed to refresh data due to some errors in the network fetching process."
   },
   "auth": {
+    "guestMode": "Guest Mode",
     "checkingAuthStatus": "Checking Auth Status...",
     "login": "Log In",
     "logout": "Sign Me Out",

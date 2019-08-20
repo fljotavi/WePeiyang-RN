@@ -19,6 +19,13 @@ export function clearAllData() {
   }
 }
 
+export function setRequestMode(mode) {
+  return {
+    type: "SET_REQUEST_MODE",
+    payload: mode,
+  }
+}
+
 export function bindTjuAccount(tjuuname, tjupasswd) {
   let path = `v1/auth/bind/tju`
 
@@ -128,7 +135,12 @@ export function fetchUserData() {
   let path = "v2/auth/self"
   return dispatch => {
     return twtGet(path)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status)
+        }
+        return response.json()
+      })
       .then(responseJson => {
         // Inconsistent response formatting here, no error_code. Bad server-side api design, yet there's nothing I can do about it.
         if (responseJson.twtuname) {

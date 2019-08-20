@@ -12,6 +12,7 @@ import { digitsFromScoreType } from "../utils/common"
 
 const dataReducerInitialState = {
   status: "INIT",
+  mode: "STANDARD",
   userInfo: {
     status: "NOT_RECEIVED",
     data: {},
@@ -64,6 +65,13 @@ export const dataReducer = (state = dataReducerInitialState, action) => {
   switch (action.type) {
     case "CLEAR_ALL_DATA":
       state = dataReducerInitialState
+      break
+
+    case "SET_REQUEST_MODE":
+      state = {
+        ...state,
+        mode: action.payload,
+      }
       break
 
     case "SET_USER_DATA":

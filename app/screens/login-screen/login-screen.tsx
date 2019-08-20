@@ -11,8 +11,12 @@ import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
 import { ByTwt } from "../../components/by-twt"
 import { Toasti } from "../../components/toasti"
+import { setRequestMode } from "../../actions/data-actions"
 
-export interface LoginScreenProps extends NavigationScreenProps<{}> {}
+export interface LoginScreenProps extends NavigationScreenProps<{}> {
+  setRequestMode?
+  compData?
+}
 
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   state = {
@@ -27,6 +31,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   login = () => {
+    this.props.setRequestMode("STANDARD")
+    console.log("Login Comp", this.props.compData)
     this.setState({ loggingIn: true })
     twtGet("v1/auth/token/get", { twtuname: this.state.username, twtpasswd: this.state.password })
       .then(response => response.json())
@@ -57,6 +63,12 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       .then(() => {
         this.setState({ loggingIn: false })
       })
+  }
+
+  loginAsGuest = () => {
+    this.props.setRequestMode("MOCK")
+    console.log("Login Comp", this.props.compData)
+    this.props.navigation.navigate("app")
   }
 
   render() {
@@ -97,6 +109,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                   />
                   <Text tx="auth.login" style={ssGlobal.login.buttonText} />
                 </Button>
+                <Button style={ssGlobal.login.buttonSecondary} onPress={this.loginAsGuest}>
+                  <Text tx="auth.guestMode" style={ssGlobal.login.buttonSecondaryText} />
+                </Button>
               </View>
             </View>
           </View>
@@ -110,17 +125,16 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = state => {
+  return {
+    compData: state.dataReducer,
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNewLoginStatus: newStatus => {
-      dispatch({
-        action: "LOGIN_SUCCESS",
-        payload: newStatus,
-      })
+    setRequestMode: mode => {
+      dispatch(setRequestMode(mode))
     },
   }
 }

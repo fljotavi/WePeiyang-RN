@@ -136,11 +136,12 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
     }
 
     let days = weeks[this.state.chosenWeek - 1].days
+    console.log(pref)
 
     // For height, you need to specify height of a single components,
     // and the total renderHeight would span
     let timeSlotHeight =
-      (this.state.screenHeight * pref.scheduleHeight) / ((18 - daysEachWeek) * 100)
+      (this.state.screenHeight * (pref.scheduleHeight || 100)) / ((18 - daysEachWeek) * 100)
     let dateIndicatorHeight = 30
     let timeSlotMargin = 12 - daysEachWeek
     let nTimeSlots = 12

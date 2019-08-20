@@ -17,6 +17,7 @@ import AsyncStorage from "@react-native-community/async-storage"
 import configureStore from "../../store"
 
 const TWT_BASE_URL = "https://open.twtstudio.com/api/"
+const TWT_BASE_URL_MOCK = "https://vote.twtstudio.com/open-mock/"
 const TWT_APP = { key: "8UuaoZs2TNLFfqnmyllp", secret: "vOl62dPR2k8BeVTPxLrtuyDcx0AQhm" }
 const { store } = configureStore()
 
@@ -50,6 +51,10 @@ export const processAuthStatus = async () => {
 }
 
 export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded = true) => {
+  console.log("Store in FETCH", store.getState())
+  const CHOSEN_BASE_URL =
+    store.getState().dataReducer.mode === "MOCK" ? TWT_BASE_URL_MOCK : TWT_BASE_URL
+
   let para = parameters
   para.t = String(Date.now())
   let keys = Object.keys(para).sort()
@@ -63,7 +68,8 @@ export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded
   para.sign = sign.toUpperCase()
   para.app_key = TWT_APP.key
 
-  let fullUrl = TWT_BASE_URL + url + "?" + query(para)
+  let fullUrl = CHOSEN_BASE_URL + url + "?" + query(para)
+  console.log(fullUrl)
 
   if (tokenNeeded) {
     let tokenValue = `Bearer { ${store.getState().authReducer.token} }`
