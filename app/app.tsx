@@ -20,7 +20,7 @@ import { PersistGate } from "redux-persist/integration/react"
 import Toast from "react-native-easy-toast"
 
 const AppContainer = createAppContainer(RootNavigator)
-const { persistor, store } = configureStore()
+const { persistor, store } = configureStore
 
 interface AppState {}
 

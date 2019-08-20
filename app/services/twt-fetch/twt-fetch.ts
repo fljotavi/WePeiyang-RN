@@ -19,7 +19,7 @@ import configureStore from "../../store"
 const TWT_BASE_URL = "https://open.twtstudio.com/api/"
 const TWT_BASE_URL_MOCK = "https://vote.twtstudio.com/open-mock/"
 const TWT_APP = { key: "8UuaoZs2TNLFfqnmyllp", secret: "vOl62dPR2k8BeVTPxLrtuyDcx0AQhm" }
-const { store } = configureStore()
+const { store } = configureStore
 
 let query = params =>
   Object.keys(params)

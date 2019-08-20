@@ -30,8 +30,6 @@ const topLevelReducer = combineReducers({
 })
 const persistedReducer = persistReducer(persistConfig, topLevelReducer)
 
-export default () => {
-  let store = createStore(persistedReducer, {}, applyMiddleware(thunk))
-  let persistor = persistStore(store)
-  return { store, persistor }
-}
+let store = createStore(persistedReducer, {}, applyMiddleware(thunk))
+let persistor = persistStore(store)
+export default { store, persistor }
