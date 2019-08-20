@@ -17,6 +17,7 @@ import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import { TjuBadge } from "../tju-badge"
 import { getScheduledTimeFromArrangement } from "../../utils/schedule"
 import { Tag } from "../tag"
+import Color from "color"
 
 export interface CourseModalProps {
   chosenCourse?
@@ -75,13 +76,17 @@ export function CourseModal(props: CourseModalProps) {
   }
 
   const { chosenCourse, style } = props
+  const hashedColor = color.hash.course[colorHashByCredits(chosenCourse.credit)]
 
   return (
     <View
       style={[
         ss.modalCard,
         {
-          backgroundColor: color.hash.course[colorHashByCredits(chosenCourse.credit)],
+          backgroundColor: Color(color.background).mix(
+            Color(hashedColor).opaquer(100),
+            Color(hashedColor).alpha(),
+          ), // Make it opaque, while still remaining the display color
         },
         style,
       ]}
