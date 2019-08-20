@@ -137,6 +137,10 @@ export function CourseModal(props: CourseModalProps) {
             />
           </View>
           <View style={ss.courseAttrPair}>
+            <Text tx="gpa.credits" style={ss.courseAttrKey} />
+            <Text text={chosenCourse.credit} style={ss.courseAttrValue} />
+          </View>
+          <View style={ss.courseAttrPair}>
             <Text tx="schedule.time" style={ss.courseAttrKey} />
             <Text
               text={getScheduledTimeFromArrangement(chosenCourse.activeArrange)}
