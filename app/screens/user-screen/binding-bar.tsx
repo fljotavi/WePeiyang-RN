@@ -1,3 +1,12 @@
+/*
+ * Binding Bar
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Binding Bar 用于显示 User Screen 中一个模块的绑定状态条。
+ *
+ */
+
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"

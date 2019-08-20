@@ -1,3 +1,12 @@
+/*
+ * Login Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 根登录页。
+ *
+ */
+
 import * as React from "react"
 import { ActivityIndicator, DeviceEventEmitter, Keyboard, StatusBar, View } from "react-native"
 import { connect } from "react-redux"

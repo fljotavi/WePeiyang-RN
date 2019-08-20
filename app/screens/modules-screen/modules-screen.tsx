@@ -1,3 +1,13 @@
+/*
+ * Modules Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Modules Screen 是显示所有模块入口的应用抽屉。
+ * 严格来说，它其实就包含一个 Module Buttons List。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

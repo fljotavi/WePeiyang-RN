@@ -1,3 +1,13 @@
+/*
+ * Department Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Department Screen 是在黄页的搜索结果中，点击进入的单个部门页面。
+ * 每个部门可能有数个 Unit，每个 Unit 显示为一个办公室名称及电话号码。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

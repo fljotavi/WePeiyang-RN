@@ -1,3 +1,13 @@
+/*
+ * Unit Snack
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Unit Snack 是黄页的 Department Screen 中
+ * 所显示的单个办公室（Unit）的办公室名称和电话号码条。
+ *
+ */
+
 import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "../../theme"
 import { Text } from "../../components/text"

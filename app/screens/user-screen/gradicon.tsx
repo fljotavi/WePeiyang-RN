@@ -1,3 +1,12 @@
+/*
+ * Gradicon
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Gradicons 是 User Screen 中，位于用户头像下方、Binding Bars 上方的精美图标们。
+ *
+ */
+
 import * as React from "react"
 import { Image, ImageStyle, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"

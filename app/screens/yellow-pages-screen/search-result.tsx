@@ -3,7 +3,7 @@
  * Created by Tzingtao Chow
  * ---
  *
- *
+ * Search Result 渲染由 Search Snacks 组成的搜索结果列表。
  *
  */
 

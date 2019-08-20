@@ -1,3 +1,13 @@
+/*
+ * Settings Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Settings Screen 是所有设置页面的根页面。
+ * 请注意，考虑到模块本身可能会变得复杂且庞大，Settings 模块单独独立出一个了 Navigator 栈。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

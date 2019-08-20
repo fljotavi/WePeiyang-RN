@@ -1,3 +1,12 @@
+/*
+ * Search Snack
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Search Snack 渲染单条搜索结果。
+ *
+ */
+
 import { TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { color } from "../../theme"
 import { Text } from "../../components/text"

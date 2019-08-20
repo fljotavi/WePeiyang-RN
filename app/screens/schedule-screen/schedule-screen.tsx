@@ -1,3 +1,14 @@
+/*
+ * Schedule Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 这就是整个微北洋 App 中最复杂、最棘手的页面了 —— 是的，课程表页面。
+ * 它绘制的过程很复杂，以下代码中，我已经尽量在难以理解处添加了注释，并尽量保证命名时完整、可理解的语义。
+ * 如果你在尝试阅读它，Best of luck to you。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 import { NavigationScreenProps } from "react-navigation"

@@ -1,3 +1,12 @@
+/*
+ * Info Source
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Info Source 是黄页模块中位于页面底部的信息来源。
+ *
+ */
+
 import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "../../theme"
 import { Text } from "../../components/text"

@@ -1,3 +1,17 @@
+/*
+ * Yellow Pages Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Yellow Pages Screen 是黄页模块的首页（搜索页面）。
+ * 此页面中包含了模块下的搜索逻辑。
+ *
+ * 黄页的搜索会在各 Department 的关键字（部门名称）和各 Unit 的关键字（单位名称和其所属的部门名称）中同时搜索，
+ * 并返回最多 5 个部门结果和最多 20 个单位结果。
+ * 这些数量将计划做成可自定义的。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

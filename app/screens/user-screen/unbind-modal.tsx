@@ -1,3 +1,12 @@
+/*
+ * Unbind Modal
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Unbind Modal 用于显示解绑确认提示的对话框遮罩层。
+ *
+ */
+
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"

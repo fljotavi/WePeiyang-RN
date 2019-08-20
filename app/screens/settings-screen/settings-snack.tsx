@@ -1,3 +1,21 @@
+/*
+ * Settings Snack
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Settings Snack 定义了设置页面中的一个设置条。
+ * 它具有高度的可配置性，
+ * 包含了一个标题，一个可选的副标题，
+ * 同时可以选择其类型（Preset）。
+ *
+ * 当 Preset 为 Switch 时，它的右侧会是一个开关，并接受一个 on 属性控制开关的开启和闭合。
+ * 当 Preset 为 Enter 时，它会渲染一个箭头，代表点击后可能会导航 / 进入至一个新的屏幕。
+ * 当 Preset 为 Selected 时，它会渲染一个 ☑️，代表多个选项中的已选中选项。
+ *
+ * 更多的 Presets 正在它们的路上。
+ *
+ */
+
 import * as React from "react"
 import { Switch, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"

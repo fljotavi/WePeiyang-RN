@@ -1,3 +1,13 @@
+/*
+ * User Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * User Screen 是点击主页个人头像后进入的个人信息页面。
+ * 它包含了用户头像、基本信息、账号绑定状态和登出按钮。
+ *
+ */
+
 import * as React from "react"
 import { DeviceEventEmitter, Image, ScrollView, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
