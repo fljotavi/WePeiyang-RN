@@ -10,7 +10,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, Keyboard, StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
@@ -33,6 +33,7 @@ export class _LibBindScreen extends React.Component<LibBindScreenProps, {}> {
   }
 
   attemptToBind = () => {
+    Keyboard.dismiss()
     this.setState({ loggingIn: true })
     bindLibAccount(this.state.libpasswd)
       .then(() => {

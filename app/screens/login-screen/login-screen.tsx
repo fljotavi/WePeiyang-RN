@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, Keyboard, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -31,8 +31,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   login = () => {
+    Keyboard.dismiss()
     this.props.setRequestMode("STANDARD")
-    console.log("Login Comp", this.props.compData)
     this.setState({ loggingIn: true })
     twtGet("v1/auth/token/get", { twtuname: this.state.username, twtpasswd: this.state.password })
       .then(response => response.json())
@@ -66,8 +66,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   loginAsGuest = () => {
+    Keyboard.dismiss()
     this.props.setRequestMode("MOCK")
-    console.log("Login Comp", this.props.compData)
     this.props.navigation.navigate("app")
   }
 

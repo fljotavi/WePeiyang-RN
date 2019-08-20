@@ -10,7 +10,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, ScrollView, StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
@@ -98,86 +98,88 @@ export class _TjuLoginScreen extends React.Component<TjuLoginScreenProps, {}> {
       <Screen style={ssGlobal.login.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-        <TopBar
-          elements={{
-            left: [
-              {
-                iconText: "public",
-                action: () => {},
-              },
-            ],
-            right: [],
-          }}
-          color={color.primary}
-        />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <TopBar
+            elements={{
+              left: [
+                {
+                  iconText: "public",
+                  action: () => {},
+                },
+              ],
+              right: [],
+            }}
+            color={color.primary}
+          />
 
-        <View style={ssGlobal.login.container}>
-          <View>
-            <View style={ssGlobal.login.headerBar}>
-              <Text tx="network.greetings" preset="h2" style={ssGlobal.login.heading} />
-            </View>
+          <View style={ssGlobal.login.container}>
             <View>
-              <TextField
-                placeholderTx="network.yourUsername"
-                style={ssGlobal.login.input}
-                onChangeText={text => this.setState({ username: text })}
-                value={this.state.username}
-                autoCorrect={false}
-              />
-              <TextField
-                placeholderTx="network.yourPassword"
-                style={ssGlobal.login.input}
-                onChangeText={text => this.setState({ password: text })}
-                value={this.state.password}
-                secureTextEntry={true}
-                autoCorrect={false}
-              />
-              <View style={ssGlobal.login.buttonRow}>
-                <Button style={ssGlobal.login.button} onPress={this.surf}>
-                  <ActivityIndicator
-                    style={[
-                      ssGlobal.buttonLoadingIndicator,
-                      { opacity: this.state.loggingIn ? 1 : 0 },
-                    ]}
-                    color={color.background}
-                    size={ssGlobal.loadingSize}
-                  />
-                  <Text tx="network.login" style={ssGlobal.login.buttonText} />
-                </Button>
-                <Button style={ssGlobal.login.buttonSecondary} onPress={this.board}>
-                  <ActivityIndicator
-                    style={[
-                      ssGlobal.buttonLoadingIndicator,
-                      { opacity: this.state.loggingOut ? 1 : 0 },
-                    ]}
-                    color={color.lightGrey}
-                    size={ssGlobal.loadingSize}
-                  />
-                  <Text tx="network.logout" style={ssGlobal.login.buttonSecondaryText} />
-                </Button>
+              <View style={ssGlobal.login.headerBar}>
+                <Text tx="network.greetings" preset="h2" style={ssGlobal.login.heading} />
               </View>
-              <Text preset="small" style={ssGlobal.login.hint}>
-                <Text text="info" preset="i" />
-                <Text text=" " />
-                <Text tx="accountBinding.networkHint" />
-              </Text>
-              <Text preset="small" style={ssGlobal.login.hint}>
-                <Text text="warning" preset="i" />
-                <Text text=" " />
-                <Text tx="network.bugHint" />
-              </Text>
-              <Text preset="small" style={ssGlobal.login.hint}>
-                <Text text="subject" preset="i" />
-                <Text text=" " />
-                <Text text={this.state.info} />
-              </Text>
+              <View>
+                <TextField
+                  placeholderTx="network.yourUsername"
+                  style={ssGlobal.login.input}
+                  onChangeText={text => this.setState({ username: text })}
+                  value={this.state.username}
+                  autoCorrect={false}
+                />
+                <TextField
+                  placeholderTx="network.yourPassword"
+                  style={ssGlobal.login.input}
+                  onChangeText={text => this.setState({ password: text })}
+                  value={this.state.password}
+                  secureTextEntry={true}
+                  autoCorrect={false}
+                />
+                <View style={ssGlobal.login.buttonRow}>
+                  <Button style={ssGlobal.login.button} onPress={this.surf}>
+                    <ActivityIndicator
+                      style={[
+                        ssGlobal.buttonLoadingIndicator,
+                        { opacity: this.state.loggingIn ? 1 : 0 },
+                      ]}
+                      color={color.background}
+                      size={ssGlobal.loadingSize}
+                    />
+                    <Text tx="network.login" style={ssGlobal.login.buttonText} />
+                  </Button>
+                  <Button style={ssGlobal.login.buttonSecondary} onPress={this.board}>
+                    <ActivityIndicator
+                      style={[
+                        ssGlobal.buttonLoadingIndicator,
+                        { opacity: this.state.loggingOut ? 1 : 0 },
+                      ]}
+                      color={color.lightGrey}
+                      size={ssGlobal.loadingSize}
+                    />
+                    <Text tx="network.logout" style={ssGlobal.login.buttonSecondaryText} />
+                  </Button>
+                </View>
+                <Text preset="small" style={ssGlobal.login.hint}>
+                  <Text text="info" preset="i" />
+                  <Text text=" " />
+                  <Text tx="accountBinding.networkHint" />
+                </Text>
+                <Text preset="small" style={ssGlobal.login.hint}>
+                  <Text text="warning" preset="i" />
+                  <Text text=" " />
+                  <Text tx="network.bugHint" />
+                </Text>
+                <Text preset="small" style={ssGlobal.login.hint}>
+                  <Text text="subject" preset="i" />
+                  <Text text=" " />
+                  <Text text={this.state.info} />
+                </Text>
+              </View>
             </View>
-          </View>
 
-          <ByTwt fill={color.black(0.07)} style={ssGlobal.login.by}>
-            <Text text="SecureAuth™" style={ssGlobal.login.byText} />
-          </ByTwt>
-        </View>
+            <ByTwt fill={color.black(0.07)} style={ssGlobal.login.by}>
+              <Text text="SecureAuth™" style={ssGlobal.login.byText} />
+            </ByTwt>
+          </View>
+        </ScrollView>
       </Screen>
     )
   }

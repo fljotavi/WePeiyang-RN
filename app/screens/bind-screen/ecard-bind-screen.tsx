@@ -10,7 +10,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { ActivityIndicator, DeviceEventEmitter, StatusBar, View } from "react-native"
+import { ActivityIndicator, DeviceEventEmitter, Keyboard, StatusBar, View } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
@@ -36,6 +36,7 @@ export class _EcardBindScreen extends React.Component<EcardBindScreenProps, {}> 
   }
 
   attemptToBind = () => {
+    Keyboard.dismiss()
     this.setState({ loggingIn: true })
     this.props
       .fetchEcardProfile(this.state.cardId, this.state.password)

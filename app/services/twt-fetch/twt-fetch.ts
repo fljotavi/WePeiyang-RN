@@ -51,7 +51,6 @@ export const processAuthStatus = async () => {
 }
 
 export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded = true) => {
-  console.log("Store in FETCH", store.getState())
   const CHOSEN_BASE_URL =
     store.getState().dataReducer.mode === "MOCK" ? TWT_BASE_URL_MOCK : TWT_BASE_URL
 
@@ -69,7 +68,6 @@ export const twtGet = (url, parameters: any = {}, options: any = {}, tokenNeeded
   para.app_key = TWT_APP.key
 
   let fullUrl = CHOSEN_BASE_URL + url + "?" + query(para)
-  console.log(fullUrl)
 
   if (tokenNeeded) {
     let tokenValue = `Bearer { ${store.getState().authReducer.token} }`
