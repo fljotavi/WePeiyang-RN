@@ -4,7 +4,7 @@
  * ---
  *
  * Module Button List 返回包含了一个 Modal 的模块按钮数组。
- * 点击模块按钮后的导航、对话框弹出等逻辑也包含在此组件中，使用时要传入父组件但 navigation。
+ * 点击模块按钮后的导航、对话框弹出与拖拽重排序等逻辑也包含在此组件中，使用时要传入父组件但 navigation。
  * 它目前显示在主页上方和 Modules 导航页。
  *
  */
@@ -37,6 +37,7 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
   state = {
     isModalVisible: false,
     selectedUrl: "",
+    moduleOrder: this.props.pref.moduleOrder,
   }
 
   openModal = url => {
@@ -57,7 +58,7 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
 
   render() {
     let { blockStyle, pref, compData, navigation, style, allowDrag, ...rest } = this.props
-    let moduleOrder = pref.moduleOrder
+    let moduleOrder = this.state.moduleOrder
     let moduleProps = {
       schedule: {
         tx: "modules.schedule",
@@ -232,7 +233,9 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
         }}
         key={"1"}
         onMoveEnd={({ data }) => {
-          moduleOrder = data
+          this.setState({
+            moduleOrder: data,
+          })
           this.props.setPreference("moduleOrder", data)
         }}
         {...rest}
