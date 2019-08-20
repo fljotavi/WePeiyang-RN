@@ -14,13 +14,23 @@ import { UnitSnack } from "./unit-snack"
 import { Tag } from "../../components/tag"
 import { Linking } from "react-native"
 import { InfoSource } from "./info-source"
+import Modal from "react-native-modal"
+import { Alert } from "../../components/alert"
 
 export interface DepartmentScreenProps extends NavigationScreenProps<{}> {
   yellowPages?
 }
 
 export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}> {
+  state = {
+    isModalVisible: false,
+  }
+
   _keyExtractor = (item, index) => String(index)
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
+  }
 
   render() {
     const { yellowPages } = this.props
@@ -29,6 +39,28 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
     return (
       <Screen style={ss.screenInvert}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.screenInvert.backgroundColor}
+          onBackButtonPress={this.toggleModal}
+          onBackdropPress={this.toggleModal}
+          useNativeDriver={true}
+        >
+          <Alert
+            headingTx="contact.info.title"
+            contentTx="contact.info.content"
+            palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+            buttons={[
+              {
+                tx: "common.gotIt",
+                onPress: () => {
+                  this.toggleModal()
+                },
+              },
+            ]}
+          />
+        </Modal>
 
         <TopBar
           elements={{
@@ -41,7 +73,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
             right: [
               {
                 iconText: "info",
-                action: () => {},
+                action: this.toggleModal,
               },
             ],
           }}

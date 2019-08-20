@@ -142,10 +142,6 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
             ],
             right: [
               {
-                iconText: "info",
-                action: () => {},
-              },
-              {
                 iconText: "sync",
                 action: this._onRefresh,
               },

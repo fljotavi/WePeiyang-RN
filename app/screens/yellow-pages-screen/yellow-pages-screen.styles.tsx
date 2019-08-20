@@ -21,9 +21,8 @@ export default {
   input: {
     backgroundColor: color.transparent,
     paddingHorizontal: 0,
-    fontSize: 40,
+    fontSize: 35,
     color: color.module.yellowPages[1],
-    fontWeight: "bold",
   } as TextStyle,
 
   poweredBy: {} as ViewStyle,

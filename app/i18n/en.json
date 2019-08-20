@@ -206,6 +206,10 @@
     "searchBar": "Search keywords...",
     "department": "Department",
     "noUnit": "No unit found in this department",
-    "infoSource": "Info Source"
+    "infoSource": "Info Source",
+    "info": {
+      "title": "About",
+      "content": "Information provided by e.tju.edu.cn. To publish new contacts or report a mistake, please consult Tianjin University Network Centre."
+    }
   }
 }
