@@ -188,6 +188,7 @@
     "location": "Location",
     "borrowedTime": "Borrowed",
     "returnBy": "Return By",
+    "overdue": "Overdue",
     "renew": "Renew",
     "renewCaveat": "A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?"
   },

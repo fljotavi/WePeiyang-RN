@@ -52,21 +52,32 @@ export function LibraryBlock(props: LibraryBlockProps) {
 
   const h1: TextStyle = { ...BASE, fontSize: 14, height: 77, fontWeight: "bold" }
   const small: TextStyle = { ...BASE, fontSize: 10 }
-  const additionalInfo: TextStyle = { height: 16 }
+  const icon: TextStyle = { ...small, top: 1 }
+  const additionalInfo: ViewStyle = { flexDirection: "row", alignItems: "center" }
+
+  const dayDiff = differenceInCalendarDays(new Date(returnTime), Date.now())
+  const adText =
+    dayDiff >= 0 ? (
+      <View style={additionalInfo}>
+        <Text tx={"common.time.remaining"} style={small} />
+        <Text text={String(dayDiff)} style={small} />
+        <Text tx={"common.time.daysLeft"} style={small} />
+      </View>
+    ) : (
+      <View style={additionalInfo}>
+        <Text text="thumb_down" preset="i" style={icon} />
+        <Text text=" " style={small} />
+        <Text tx={"library.overdue"} style={small} />
+      </View>
+    )
+
   return (
     <View style={[predefinedStyle, style]} pointerEvents="box-only">
       <View style={decoStripStyle} />
       <View style={mainContentStyle}>
         <Text numberOfLines={3} text={bookName} style={h1} />
         <Text text={local} numberOfLines={1} style={small} />
-        <Text style={additionalInfo}>
-          <Text tx={"common.time.remaining"} style={small} />
-          <Text
-            text={String(differenceInCalendarDays(new Date(returnTime), Date.now()))}
-            style={small}
-          />
-          <Text tx={"common.time.daysLeft"} style={small} />
-        </Text>
+        {adText}
       </View>
     </View>
   )
