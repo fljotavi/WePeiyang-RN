@@ -173,6 +173,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
       Animated.timing(this.state.fadeAnim, {
         toValue: 1, // Animate to opacity: 1 (opaque)
         duration: 1000, // Make it take a while
+        useNativeDriver: true,
       }).start()
     }, 1)
   }
