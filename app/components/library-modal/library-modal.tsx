@@ -15,7 +15,7 @@ import { Text } from "../text"
 import { Button } from "../button"
 import { twtGet } from "../../services/twt-fetch"
 import { Toasti } from "../toasti"
-import {colorHashByBookName} from "../../utils/common";
+import { colorHashByBookName } from "../../utils/common"
 
 export interface LibraryModalProps {
   chosenBook?
@@ -27,7 +27,6 @@ export class LibraryModal extends React.PureComponent<LibraryModalProps, {}> {
   state = {
     userInformed: false,
   }
-
 
   render() {
     const { chosenBook, style, closeModal } = this.props
@@ -108,71 +107,73 @@ export class LibraryModal extends React.PureComponent<LibraryModalProps, {}> {
       } as ViewStyle,
     }
 
-    return [
-      <View style={[ss.modalCard, shadowPresets.large, style]} key={0}>
-        <View>
-          <Text text={chosenBook.title} style={ss.bookTitle} selectable={true} />
-          <Text text={chosenBook.author} style={ss.bookAuthor} selectable={true} />
-        </View>
+    return (
+      <>
+        <View style={[ss.modalCard, shadowPresets.large, style]}>
+          <View>
+            <Text text={chosenBook.title} style={ss.bookTitle} selectable={true} />
+            <Text text={chosenBook.author} style={ss.bookAuthor} selectable={true} />
+          </View>
 
-        <View>
-          <View style={ss.bookAttrs}>
-            <View style={ss.bookAttrPair}>
-              <Text tx="library.callNo" style={ss.bookAttrKey} />
-              <Text text={chosenBook.callno} style={ss.bookAttrValue} />
-            </View>
-            <View style={ss.bookAttrPair}>
-              <Text tx="library.type" style={ss.bookAttrKey} />
-              <Text text={chosenBook.type} style={ss.bookAttrValue} />
-            </View>
-            <View style={ss.bookAttrPair}>
-              <Text tx="library.location" style={ss.bookAttrKey} />
-              <Text text={chosenBook.local} style={ss.bookAttrValue} />
-            </View>
-            <View style={ss.bookAttrPair}>
-              <Text tx="library.borrowedTime" style={ss.bookAttrKey} />
-              <Text text={chosenBook.loanTime} style={ss.bookAttrValue} />
-            </View>
-            <View style={ss.bookAttrPair}>
-              <Text tx="library.returnBy" style={ss.bookAttrKey} />
-              <Text text={chosenBook.returnTime} style={ss.bookAttrValue} />
+          <View>
+            <View style={ss.bookAttrs}>
+              <View style={ss.bookAttrPair}>
+                <Text tx="library.callNo" style={ss.bookAttrKey} />
+                <Text text={chosenBook.callno} style={ss.bookAttrValue} />
+              </View>
+              <View style={ss.bookAttrPair}>
+                <Text tx="library.type" style={ss.bookAttrKey} />
+                <Text text={chosenBook.type} style={ss.bookAttrValue} />
+              </View>
+              <View style={ss.bookAttrPair}>
+                <Text tx="library.location" style={ss.bookAttrKey} />
+                <Text text={chosenBook.local} style={ss.bookAttrValue} />
+              </View>
+              <View style={ss.bookAttrPair}>
+                <Text tx="library.borrowedTime" style={ss.bookAttrKey} />
+                <Text text={chosenBook.loanTime} style={ss.bookAttrValue} />
+              </View>
+              <View style={ss.bookAttrPair}>
+                <Text tx="library.returnBy" style={ss.bookAttrKey} />
+                <Text text={chosenBook.returnTime} style={ss.bookAttrValue} />
+              </View>
             </View>
           </View>
         </View>
-      </View>,
-      <View style={ss.renewArea} key={1}>
-        {this.state.userInformed && <Text style={ss.renewCaveat} tx="library.renewCaveat" />}
-        <Button
-          preset="lite"
-          style={ss.modalButton}
-          onPress={() => {
-            if (this.state.userInformed) {
-              twtGet(`v1/library/renew${chosenBook.barcode}`)
-                .then(response => response.json())
-                .then(responseJson => {
-                  closeModal()
-                  DeviceEventEmitter.emit("showToast", <Toasti text={responseJson.message} />)
-                })
-            } else {
-              this.setState({ userInformed: true })
-            }
-          }}
-        >
-          <View style={ss.modalButtonContent}>
-            <Text
-              text={this.state.userInformed ? "check" : "update"}
-              preset="i"
-              style={ss.modalButtonIcon}
-            />
-            <Text text=" " preset="h6" />
-            <Text
-              tx={this.state.userInformed ? "common.confirm" : "library.renew"}
-              preset="h6"
-              style={{ textTransform: "uppercase" }}
-            />
-          </View>
-        </Button>
-      </View>,
-    ]
+        <View style={ss.renewArea}>
+          {this.state.userInformed && <Text style={ss.renewCaveat} tx="library.renewCaveat" />}
+          <Button
+            preset="lite"
+            style={ss.modalButton}
+            onPress={() => {
+              if (this.state.userInformed) {
+                twtGet(`v1/library/renew${chosenBook.barcode}`)
+                  .then(response => response.json())
+                  .then(responseJson => {
+                    closeModal()
+                    DeviceEventEmitter.emit("showToast", <Toasti text={responseJson.message} />)
+                  })
+              } else {
+                this.setState({ userInformed: true })
+              }
+            }}
+          >
+            <View style={ss.modalButtonContent}>
+              <Text
+                text={this.state.userInformed ? "check" : "update"}
+                preset="i"
+                style={ss.modalButtonIcon}
+              />
+              <Text text=" " preset="h6" />
+              <Text
+                tx={this.state.userInformed ? "common.confirm" : "library.renew"}
+                preset="h6"
+                style={{ textTransform: "uppercase" }}
+              />
+            </View>
+          </Button>
+        </View>
+      </>
+    )
   }
 }

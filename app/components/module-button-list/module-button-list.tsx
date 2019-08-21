@@ -188,59 +188,59 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
       },
     }
 
-    return [
-      <Modal
-        isVisible={this.state.isModalVisible}
-        backdropColor={color.background}
-        onBackButtonPress={this.closeModal}
-        onBackdropPress={this.closeModal}
-        useNativeDriver={true}
-        key={"0"}
-      >
-        <Alert
-          headingTx="common.providedInWebHint"
-          content={this.state.selectedUrl}
-          buttons={[
-            {
-              tx: "common.ok",
-              onPress: () => {
-                this.closeModal()
-                Linking.openURL(this.state.selectedUrl).catch(err => console.log(err))
+    return (
+      <>
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={color.background}
+          onBackButtonPress={this.closeModal}
+          onBackdropPress={this.closeModal}
+          useNativeDriver={true}
+        >
+          <Alert
+            headingTx="common.providedInWebHint"
+            content={this.state.selectedUrl}
+            buttons={[
+              {
+                tx: "common.ok",
+                onPress: () => {
+                  this.closeModal()
+                  Linking.openURL(this.state.selectedUrl).catch(err => console.log(err))
+                },
               },
-            },
-            {
-              tx: "common.cancel",
-              onPress: this.closeModal,
-            },
-          ]}
+              {
+                tx: "common.cancel",
+                onPress: this.closeModal,
+              },
+            ]}
+          />
+        </Modal>
+        <DraggableFlatList
+          data={moduleOrder}
+          style={style}
+          renderItem={({ item, move, moveEnd }) => {
+            return (
+              <ModuleButton
+                style={blockStyle}
+                tx={moduleProps[item].tx}
+                icon={moduleProps[item].icon}
+                onPress={moduleProps[item].onPress}
+                key={moduleProps[item].tx}
+                onLongPress={allowDrag ? move : () => {}}
+                onPressOut={moveEnd}
+              />
+            )
+          }}
+          onMoveEnd={({ data }) => {
+            this.setState({
+              moduleOrder: data,
+            })
+            this.props.setPreference("moduleOrder", data)
+          }}
+          {...rest}
         />
-      </Modal>,
-      <DraggableFlatList
-        data={moduleOrder}
-        style={style}
-        renderItem={({ item, move, moveEnd }) => {
-          return (
-            <ModuleButton
-              style={blockStyle}
-              tx={moduleProps[item].tx}
-              icon={moduleProps[item].icon}
-              onPress={moduleProps[item].onPress}
-              key={moduleProps[item].tx}
-              onLongPress={allowDrag ? move : () => {}}
-              onPressOut={moveEnd}
-            />
-          )
-        }}
-        key={"1"}
-        onMoveEnd={({ data }) => {
-          this.setState({
-            moduleOrder: data,
-          })
-          this.props.setPreference("moduleOrder", data)
-        }}
-        {...rest}
-      />,
-    ]
+      </>
+    )
   }
 }
 
