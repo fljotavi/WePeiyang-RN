@@ -28,7 +28,7 @@ export function IanBorderless(props: IanBorderlessProps) {
   const ss = {
     c: {
       alignItems: "center",
-      marginVertical: 30,
+      margin: 30,
     } as ViewStyle,
     i: {
       color: color,

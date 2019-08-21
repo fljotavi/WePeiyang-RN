@@ -26,7 +26,7 @@ import {
 import Svg, { G, Text as Svgtext, TSpan } from "react-native-svg"
 import { shuffleData } from "../../utils/common"
 import { connect } from "react-redux"
-import { Ian } from "../ian"
+import { IanBorderless } from "../ian-borderless"
 
 export interface GpaPolarLabelProps {
   x?: number
@@ -179,17 +179,6 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
 
   render() {
     const { style, gpa } = this.props
-    let shuffled = shuffleData([...gpa.data.gpaDetailed[this.state.semesterIndex].data])
-    let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
-    let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
-
-    if (!(gpa.status === "VALID" && gpa.data && gpa.data.gpaSemestral.weighted.length)) {
-      return <View />
-    }
-
-    if (processed.length <= 2) {
-      return <Ian tx="gpa.noRadar" />
-    }
 
     const predefinedStyle: ViewStyle = {
       flex: 1,
@@ -197,6 +186,31 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
       justifyContent: "center",
       height: 300,
     } as ViewStyle
+
+    if (!(gpa.status === "VALID" && gpa.data && gpa.data.gpaSemestral.weighted.length)) {
+      return (
+        <View style={[predefinedStyle, style]}>
+          <IanBorderless
+            icon="insert_chart"
+            tx="data.noAvailableData"
+            color={color.module.gpa[2]}
+          />
+        </View>
+      )
+    }
+
+    let shuffled = shuffleData([...gpa.data.gpaDetailed[this.state.semesterIndex].data])
+    let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
+    let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
+
+    if (processed.length <= 2) {
+      return (
+        <View style={[predefinedStyle, style]}>
+          <IanBorderless icon="insert_chart" tx="gpa.noRadar" color={color.module.gpa[2]} />
+        </View>
+      )
+    }
+
     return (
       <TouchableOpacity style={[predefinedStyle, style]} onPress={() => this.forceUpdate()}>
         <Animated.View style={{ opacity: this.state.fadeAnim }}>

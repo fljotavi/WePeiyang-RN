@@ -154,6 +154,7 @@
     "semestralGpa": "GPA",
     "semestralCredits": "Credits",
     "credits": "Credits",
+    "noRadar": "Radar & rose chart is not available with semesters of less than three courses.",
     "order": {
       "orderedBy": "Ordered by",
       "credits": "Credits",
