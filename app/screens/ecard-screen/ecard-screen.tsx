@@ -30,6 +30,7 @@ import { Button } from "../../components/button"
 
 import ss from "./ecard-screen-style"
 import { Toasti } from "../../components/toasti"
+import { IanBorderless } from "../../components/ian-borderless"
 
 export interface EcardScreenProps extends NavigationScreenProps<{}> {
   ecard?
@@ -209,14 +210,12 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                 />
               )}
               ListEmptyComponent={() => (
-                <View style={ss.noTransaction}>
-                  <Text style={ss.noTransactionIcon} text="accessibility" preset="i" />
-                  <Text style={ss.noTransactionText}>
-                    <Text tx="ecard.noTransaction.pre" />
-                    <Text text={this.state.daysToLoad} />
-                    <Text tx="ecard.noTransaction.post" />
-                  </Text>
-                </View>
+                <IanBorderless
+                  icon="accessibility"
+                  tx="ecard.noTransaction"
+                  txOptions={{ days: this.state.daysToLoad }}
+                  color={color.white(0.1)}
+                />
               )}
             />
 

@@ -70,19 +70,6 @@ export default {
     marginRight: 10,
   } as TextStyle,
 
-  noTransaction: {
-    alignItems: "center",
-    marginVertical: 30,
-  } as ViewStyle,
-  noTransactionText: {
-    color: color.white(0.1),
-  } as TextStyle,
-  noTransactionIcon: {
-    color: color.white(0.1),
-    fontSize: 130,
-    marginBottom: 20,
-  } as TextStyle,
-
   hint: {
     flexDirection: "row",
     alignItems: "center",

@@ -46,10 +46,7 @@
     "dailyExpense": "Today",
     "monthlyExpense": "This Month",
     "billingDetails": "Billing Details",
-    "noTransaction": {
-      "pre": "No transaction record found in the last ",
-      "post": " days"
-    },
+    "noTransaction": "No transaction record found in the last %{days} days",
     "loadMore": "Load one more week",
     "rangeHint": "The data shown here ranges to the day of your most recent bill."
   },
