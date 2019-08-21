@@ -49,7 +49,7 @@ Most major modules are developed.
 | Global custom identity font                                 | 全局自定义品牌字体           | ✔                   |
 | Latitude of custom theming                                  | 更加完善的主题定制系统       |                     |
 | Proper spacing between latin letters & ideograph characters | 中西文混排时自动添加空格间距 | ✔                   |
-| Guest login | 体验版账号登入 |                   |
+| Guest login | 体验版账号登入 | ✔                  |
 | ......                                                      |                              |                     |
 
 ##### GPA
@@ -140,9 +140,9 @@ cd ..
 react-native run-ios
 ```
 
-Note that to run the above commands, you need to ensure several prerequisites in your building environment. Please refer to [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for the most up-to-date building indications.
+Note that to run the above commands, you need to ensure several prerequisites in your building environment. Please refer to [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for the most up-to-date building indications. React-Native CLI is used here.
 
-请注意，为了使上述命令顺利运行，你的构建环境需要满足一些前提条件。请参考 [React Native: 开始构建](https://facebook.github.io/react-native/docs/getting-started.html) 以获取最新版本的构建要求和步骤。
+请注意，为了使上述命令顺利运行，你的构建环境需要满足一些前提条件。请参考 [React Native: 开始构建](https://facebook.github.io/react-native/docs/getting-started.html) 以获取最新版本的构建要求和步骤。本项目使用的是 React Native CLI 而非 Expo CLI。
 
 　
 
@@ -166,6 +166,7 @@ WePeiyang-RN
 │   ├── screens
 │   ├── services
 │   ├── theme
+│   ├── utils
 │   ├── app.tsx
 │   ├── environment-variables.ts
 ├── __test__
@@ -174,43 +175,54 @@ WePeiyang-RN
 └── package.json
 ```
 
-### ./app directory
+### I18n
 
-**components**
-This is where your React components will live. Each component will have a directory containing the `.tsx` file, along with a story file, and optionally `.presets`, and `.props` files for larger components. The app will come with some commonly used components like Button.
+Files related to i18n and multilingual support, such as translation logics and string resources, live here.
 
-**i18n**
-This is where your translations will live.
+此处放置和多语言支持有关的文件，如翻译逻辑、字符串资源等。
 
-**actions**
-This is where your app's redux actions will live.
+### Store.ts, Actions & Reducers
 
-**reducers**
-This is where your app's redux reducers will live.
+Files related to Redux structure live here. For information about store, actions & reducers in Redux, please refer to Redux official docs.
 
-**navigation**
-This is where your `react-navigation` navigators will live.
+这些文件夹和文件与 Redux 有关。了解它们的具体用途，请参见 Redux 官方文档或 Flux 设计架构说明。
 
-**screens**
-This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.tsx` file, along with any assets or other helper files.
+### Components
 
-**services**
-Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
+This is where the global components live. It includes several HOC over native components as well as normal presentational components. Note that when a component is designed to use in one particular module, put that in the corresponding module folder in `/screens` instead.
 
-**theme**
-Here lives the theme for your application, including spacing, colors, and typography.
+此处放置所有的全局组件。它包含了文本、按钮、输入框等原生 React-Native 组件的 HOC，也包括了一些全局的展示型组件。注意，当一个组件在设计上仅可能被某一个模块使用时，应该放置在对应的模块 Screens 的文件夹中。
 
-**utils**
-This is a great place to put miscellaneous helpers and utilities. Things like date helpers, formatters, etc. are often found here. However, it should only be used for things that are truly shared across your application. If a helper or utility is only used by a specific component or model, consider co-locating your helper with that component or model.
+### Navigation
 
-**app.tsx**
-This is the entry point to your app. This is where you will find the main App component which renders the rest of the application.
+This is where the navigators live. Navigators define the navigation structure of the app.
 
-### ./test directory
+此处定义了用于定义应用页面之间导航结构的 Navigators。
 
-This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
+### Services
 
-　
+This is where the related services live. Currently it contains `TWTFetch`, the network request service under the TWT Open API request standard.
+
+此文件夹包含了应用内的服务模块。目前，它主要提供基于 TWT Open 接口请求标准的网络请求服务。
+
+### Screens
+
+This is where the screens live. A screen defines a page of the app, and usually contains several components. Screens of the same module should be placed under the same subdirectory. Local components, resources and other module-specific files can be found here, too.
+
+此处定义了应用内的各个屏幕。通常，一个屏幕由许多组件组成。属于同一模块的 Screen 应该归至相同的文件夹中，该文件夹内也可能包含局部的组件、资源和其他文件。
+
+### Theme
+
+Files in this folder define all parameters and methods related to visual identity & styling.
+
+此处定义了所有和应用视觉样式有关的参数，如颜色、字体与 Spacing 等。
+
+### Utils
+
+Files in this folder define some tool functions or variables, or files that could not be categorized into other directories.
+
+此处定义一些工具类变量和函数，或一些很难分到其它类别中的内容。
+
 
 # Elsewhere 别处
 
