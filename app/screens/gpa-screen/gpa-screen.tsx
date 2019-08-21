@@ -2,7 +2,6 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 import {
-  Animated,
   DeviceEventEmitter,
   FlatList,
   RefreshControl,
@@ -20,7 +19,7 @@ import { GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
 import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import ss from "./gpa-screen.style"
-import { connectedGpaRadar as GpaRadar } from "../../components/gpa-radar"
+import { GpaRadar } from "../../components/gpa-radar"
 import { GpaSnack } from "./gpa-snack"
 
 import { Text } from "../../components/text"
@@ -48,18 +47,6 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   state = {
     refreshing: false,
     isModalVisible: false,
-    renderChart: false, // Defer chart render for better entry performance
-    fadeAnim: new Animated.Value(0),
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ renderChart: true })
-      Animated.timing(this.state.fadeAnim, {
-        toValue: 1, // Animate to opacity: 1 (opaque)
-        duration: 1000, // Make it take a while
-      }).start()
-    }, 1)
   }
 
   prepareData = async () => {
@@ -191,9 +178,9 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
             color={color.module.gpa[1]}
           />
 
-          <Animated.View style={{ ...ss.radarContainer, opacity: this.state.fadeAnim }}>
-            {this.state.renderChart && <GpaRadar />}
-          </Animated.View>
+          <View style={ss.radarContainer}>
+            <GpaRadar />
+          </View>
 
           <View style={ss.container}>
             <GpaStat

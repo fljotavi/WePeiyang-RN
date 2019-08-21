@@ -9,10 +9,12 @@
  * 请注意，Gpa Radar 是一个非常 Costly 的图表。
  * 在 Victory Native 实现显著的性能提升之前，在任何时候调用它，都应当考虑延迟渲染以优化加载体验。
  *
+ * Update: 目前延迟渲染的逻辑已经写进这个组件本身。
+ *
  */
 
 import * as React from "react"
-import { TouchableOpacity, View, ViewStyle } from "react-native"
+import { Animated, TouchableOpacity, View, ViewStyle } from "react-native"
 import { color, typography } from "../../theme"
 import {
   VictoryChart,
@@ -24,6 +26,7 @@ import {
 import Svg, { G, Text as Svgtext, TSpan } from "react-native-svg"
 import { shuffleData } from "../../utils/common"
 import { connect } from "react-redux"
+import { Ian } from "../ian"
 
 export interface GpaPolarLabelProps {
   x?: number
@@ -129,15 +132,63 @@ export interface GpaRadarProps {
   semesterIndex?
 }
 
-export class GpaRadar extends React.Component<GpaRadarProps, {}> {
+class _GpaRadar extends React.Component<GpaRadarProps, {}> {
+  state = {
+    renderChart: false, // Defer chart render for better entry performance
+    fadeAnim: new Animated.Value(0),
+    semesterIndex: 0,
+  }
+
+  // After React deprecated the use of ComponentWillReceiveProps,
+  // This pattern becomes surprisingly complicated.
+  // I did my best to make things clear here.
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.semesterIndex !== state.semesterIndex) {
+      return {
+        ...state,
+        renderChart: false,
+        fadeAnim: new Animated.Value(0),
+        semesterIndex: props.semesterIndex,
+      }
+    }
+    return null
+  }
+
+  componentDidUpdate() {
+    if (this.state.renderChart === false) {
+      this.revealTheShit()
+    }
+  }
+
+  componentDidMount() {
+    if (this.state.renderChart === false) {
+      this.revealTheShit()
+    }
+  }
+
+  async revealTheShit() {
+    await setTimeout(() => {
+      this.setState({ renderChart: true })
+      Animated.timing(this.state.fadeAnim, {
+        toValue: 1, // Animate to opacity: 1 (opaque)
+        duration: 1000, // Make it take a while
+      }).start()
+    }, 1)
+  }
+
   render() {
     const { style, gpa } = this.props
-    let shuffled = shuffleData([...this.props.gpa.data.gpaDetailed[this.props.semesterIndex].data])
+    let shuffled = shuffleData([...gpa.data.gpaDetailed[this.state.semesterIndex].data])
     let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
     let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
 
     if (!(gpa.status === "VALID" && gpa.data && gpa.data.gpaSemestral.weighted.length)) {
       return <View />
+    }
+
+    if (processed.length <= 2) {
+      return <Ian tx="gpa.noRadar" />
     }
 
     const predefinedStyle: ViewStyle = {
@@ -148,50 +199,54 @@ export class GpaRadar extends React.Component<GpaRadarProps, {}> {
     } as ViewStyle
     return (
       <TouchableOpacity style={[predefinedStyle, style]} onPress={() => this.forceUpdate()}>
-        <Svg>
-          <VictoryChart domain={{ y: [0, 100] }} polar>
-            <VictoryGroup colorScale={[color.module.gpa[1]]}>
-              <VictoryArea
-                style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
-                data={processed}
-                labelComponent={<G />}
-              />
-              <VictoryBar
-                style={{
-                  data: {
-                    fill: color.module.gpa[1],
-                    fillOpacity: 0.07,
-                  },
-                }}
-                data={processedCredits}
-                labelComponent={<G />}
-              />
-            </VictoryGroup>
-            {processed.map((key, i) => {
-              return (
+        <Animated.View style={{ opacity: this.state.fadeAnim }}>
+          {this.state.renderChart && (
+            <Svg>
+              <VictoryChart domain={{ y: [0, 100] }} polar>
+                <VictoryGroup colorScale={[color.module.gpa[1]]}>
+                  <VictoryArea
+                    style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
+                    data={processed}
+                    labelComponent={<G />}
+                  />
+                  <VictoryBar
+                    style={{
+                      data: {
+                        fill: color.module.gpa[1],
+                        fillOpacity: 0.07,
+                      },
+                    }}
+                    data={processedCredits}
+                    labelComponent={<G />}
+                  />
+                </VictoryGroup>
+                {processed.map((key, i) => {
+                  return (
+                    <VictoryPolarAxis
+                      key={i}
+                      dependentAxis
+                      style={{
+                        axis: { stroke: "none" },
+                      }}
+                      label="foo"
+                      axisLabelComponent={<GpaPolarLabel courseName={key.x} />}
+                      tickLabelComponent={<G />}
+                      axisValue={i + 1}
+                    />
+                  )
+                })}
                 <VictoryPolarAxis
-                  key={i}
-                  dependentAxis
+                  labelPlacement="parallel"
+                  tickFormat={() => ""}
                   style={{
                     axis: { stroke: "none" },
+                    grid: { stroke: color.module.gpa[1], opacity: 0.5, strokeWidth: 0.25 },
                   }}
-                  label="foo"
-                  axisLabelComponent={<GpaPolarLabel courseName={key.x} />}
-                  tickLabelComponent={<G />}
-                  axisValue={i + 1}
                 />
-              )
-            })}
-            <VictoryPolarAxis
-              labelPlacement="parallel"
-              tickFormat={() => ""}
-              style={{
-                axis: { stroke: "none" },
-                grid: { stroke: color.module.gpa[1], opacity: 0.5, strokeWidth: 0.25 },
-              }}
-            />
-          </VictoryChart>
-        </Svg>
+              </VictoryChart>
+            </Svg>
+          )}
+        </Animated.View>
       </TouchableOpacity>
     )
   }
@@ -208,7 +263,7 @@ const mapDispatchToProps = () => {
   return {}
 }
 
-export const connectedGpaRadar = connect(
+export const GpaRadar = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GpaRadar)
+)(_GpaRadar)
