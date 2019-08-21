@@ -14,6 +14,7 @@ import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, layoutParam } from "../../theme"
 import { differenceInCalendarDays } from "date-fns"
+import { colorHashByBookName } from "../../utils/common"
 
 export interface LibraryBlockProps {
   style?: ViewStyle
@@ -24,10 +25,7 @@ export interface LibraryBlockProps {
 
 export function LibraryBlock(props: LibraryBlockProps) {
   const { style, bookName, local, returnTime } = props
-  const colorHash = (str: string) => {
-    return str.length % color.hash.bookStrip.length
-  }
-  const bookColor: number = colorHash(bookName)
+  const bookColor: number = colorHashByBookName(bookName)
   const predefinedStyle: ViewStyle = {
     width: 110,
     height: 158,

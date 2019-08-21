@@ -11,17 +11,14 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { DeviceEventEmitter, FlatList, View, ViewStyle } from "react-native"
+import { FlatList, View, ViewStyle } from "react-native"
 import { LibraryBlock } from "../library-block"
 import { Ian } from "../ian"
 import Touchable from "react-native-platform-touchable"
 import { color, shadowPresets } from "../../theme"
 import Modal from "react-native-modal"
-import { Text } from "../text"
-import { Button } from "../button"
 import ss from "./library-list.style"
-import { twtGet } from "../../services/twt-fetch"
-import { Toasti } from "../toasti"
+import { LibraryModal } from "../library-modal"
 
 export interface BookListProps {
   style?: ViewStyle
@@ -90,71 +87,7 @@ class _LibraryList extends React.Component<BookListProps, {}> {
         useNativeDriver={true}
         style={ss.modal}
       >
-        <View style={[ss.modalCard, shadowPresets.large]}>
-          <View>
-            <Text text={chosenBook.title} style={ss.bookTitle} selectable={true} />
-            <Text text={chosenBook.author} style={ss.bookAuthor} selectable={true} />
-          </View>
-
-          <View>
-            <View style={ss.bookAttrs}>
-              <View style={ss.bookAttrPair}>
-                <Text tx="library.callNo" style={ss.bookAttrKey} />
-                <Text text={chosenBook.callno} style={ss.bookAttrValue} />
-              </View>
-              <View style={ss.bookAttrPair}>
-                <Text tx="library.type" style={ss.bookAttrKey} />
-                <Text text={chosenBook.type} style={ss.bookAttrValue} />
-              </View>
-              <View style={ss.bookAttrPair}>
-                <Text tx="library.location" style={ss.bookAttrKey} />
-                <Text text={chosenBook.local} style={ss.bookAttrValue} />
-              </View>
-              <View style={ss.bookAttrPair}>
-                <Text tx="library.borrowedTime" style={ss.bookAttrKey} />
-                <Text text={chosenBook.loanTime} style={ss.bookAttrValue} />
-              </View>
-              <View style={ss.bookAttrPair}>
-                <Text tx="library.returnBy" style={ss.bookAttrKey} />
-                <Text text={chosenBook.returnTime} style={ss.bookAttrValue} />
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={ss.renewArea}>
-          {this.state.userInformed && <Text style={ss.renewCaveat} tx="library.renewCaveat" />}
-          <Button
-            preset="lite"
-            style={ss.modalButton}
-            onPress={() => {
-              if (this.state.userInformed) {
-                twtGet(`v1/library/renew${chosenBook.barcode}`)
-                  .then(response => response.json())
-                  .then(responseJson => {
-                    this.closeModal()
-                    DeviceEventEmitter.emit("showToast", <Toasti text={responseJson.message} />)
-                  })
-              } else {
-                this.setState({ userInformed: true })
-              }
-            }}
-          >
-            <View style={ss.modalButtonContent}>
-              <Text
-                text={this.state.userInformed ? "check" : "update"}
-                preset="i"
-                style={ss.modalButtonIcon}
-              />
-              <Text text=" " preset="h6" />
-              <Text
-                tx={this.state.userInformed ? "common.confirm" : "library.renew"}
-                preset="h6"
-                style={{ textTransform: "uppercase" }}
-              />
-            </View>
-          </Button>
-        </View>
+        <LibraryModal chosenBook={chosenBook} closeModal={this.closeModal} />
       </Modal>
     )
 
