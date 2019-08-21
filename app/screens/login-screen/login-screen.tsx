@@ -32,6 +32,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     username: "",
     password: "",
     loggingIn: false,
+    loggingInAsGuest: false,
   }
 
   storeToken = async token => {
@@ -77,7 +78,20 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   loginAsGuest = () => {
     Keyboard.dismiss()
     this.props.setRequestMode("MOCK")
-    this.props.navigation.navigate("app")
+    this.setState({ loggingInAsGuest: true })
+    twtGet("v2/auth/self")
+      .then(response => response.json())
+      .then(() => {
+        this.storeToken("MOCK")
+        this.props.navigation.navigate("app")
+      })
+      .catch(err => {
+        DeviceEventEmitter.emit("showToast", <Toasti text={err.message} preset="error" />)
+        console.log(err)
+      })
+      .then(() => {
+        this.setState({ loggingInAsGuest: false })
+      })
   }
 
   render() {
@@ -119,6 +133,14 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                   <Text tx="auth.login" style={ssGlobal.login.buttonText} />
                 </Button>
                 <Button style={ssGlobal.login.buttonSecondary} onPress={this.loginAsGuest}>
+                  <ActivityIndicator
+                    style={[
+                      ssGlobal.buttonLoadingIndicator,
+                      { opacity: this.state.loggingInAsGuest ? 1 : 0 },
+                    ]}
+                    color={color.lightGrey}
+                    size={ssGlobal.loadingSize}
+                  />
                   <Text tx="auth.guestMode" style={ssGlobal.login.buttonSecondaryText} />
                 </Button>
               </View>
