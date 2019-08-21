@@ -26,14 +26,13 @@ const ss = {
   } as ViewStyle,
   container: {
     width: 230,
-    flexDirection: "row",
     justifyContent: "space-between",
-    flexWrap: "wrap",
     alignSelf: "center",
     paddingVertical: 50,
   } as ViewStyle,
   block: {
     marginBottom: 25,
+    marginRight: 32,
   } as ViewStyle,
 }
 
@@ -43,10 +42,12 @@ export class _ModulesScreen extends React.Component<ModulesScreenProps, {}> {
       <Screen>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
         <ModuleButtonList
+          numColumns={2}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={ss.container}
           navigation={this.props.navigation}
           blockStyle={ss.block}
+          allowDrag
         />
       </Screen>
     )
