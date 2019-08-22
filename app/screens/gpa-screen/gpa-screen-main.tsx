@@ -16,6 +16,7 @@ export interface GpaScreenMainProps {
 }
 
 class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
+
   _keyExtractor = item => String(item.no)
 
   render() {

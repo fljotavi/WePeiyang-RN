@@ -54,26 +54,27 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     })
   }
 
+  mainViewRoute = () => (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh}
+          tintColor={color.module.gpa[1]}
+          colors={[color.module.gpa[0]]}
+        />
+      }
+    >
+      <GpaScreenMain />
+    </ScrollView>
+  )
+
+  expViewRoute = () => <View />
+
   _keyExtractor = item => String(item.no)
 
   render() {
-    const mainView = (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-            tintColor={color.module.gpa[1]}
-            colors={[color.module.gpa[0]]}
-          />
-        }
-      >
-        <GpaScreenMain />
-      </ScrollView>
-    )
-    const expView = <View />
-
     return (
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
@@ -127,8 +128,8 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           navigationState={this.state}
           renderScene={
             SceneMap({
-              main: () => mainView,
-              exp: () => expView,
+              main: this.mainViewRoute,
+              exp: this.expViewRoute,
             }) as any
           }
           renderTabBar={() => null}
@@ -140,7 +141,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {}
 }
 
