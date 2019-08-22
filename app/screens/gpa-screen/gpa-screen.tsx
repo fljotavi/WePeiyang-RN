@@ -7,10 +7,11 @@ import {
   RefreshControl,
   ScrollView,
   StatusBar,
+  TouchableOpacity,
   View,
 } from "react-native"
 import { Screen } from "../../components/screen"
-import { color } from "../../theme"
+import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchGpaData } from "../../actions/data-actions"
 import ss from "./gpa-screen.style"
@@ -20,6 +21,8 @@ import { TopBar } from "../../components/top-bar"
 import { Alert } from "../../components/alert"
 import { TabView, SceneMap } from "react-native-tab-view"
 import GpaScreenMain from "./gpa-screen-main"
+import { Text } from "../../components/text"
+import GpaScreenExp from "./gpa-screen-exp"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
   fetchGpaData?
@@ -28,7 +31,7 @@ export interface GpaScreenProps extends NavigationScreenProps<{}> {
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   state = {
     index: 0,
-    routes: [{ key: "main", title: "Main" }, { key: "exp", title: "Exp" }],
+    routes: [{ key: "main", titleTx: "gpa.tab.main" }, { key: "exp", titleTx: "gpa.tab.exp" }],
     refreshing: false,
     isModalVisible: false,
   }
@@ -54,25 +57,32 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
     })
   }
 
-  mainViewRoute = () => (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      refreshControl={
-        <RefreshControl
-          refreshing={this.state.refreshing}
-          onRefresh={this._onRefresh}
-          tintColor={color.module.gpa[1]}
-          colors={[color.module.gpa[0]]}
-        />
-      }
-    >
-      <GpaScreenMain />
-    </ScrollView>
-  )
+  mainViewRoute = () => <GpaScreenMain />
 
-  expViewRoute = () => <View />
+  expViewRoute = () => <GpaScreenExp />
 
   _keyExtractor = item => String(item.no)
+
+  _renderTabBar = props => {
+    return (
+      <View style={ssGlobal.tabBar.tabBar}>
+        {props.navigationState.routes.map((route, i) => {
+          return (
+            <TouchableOpacity
+              style={ssGlobal.tabBar.tabItem}
+              onPress={() => this.setState({ index: i })}
+            >
+              <Text
+                tx={route.titleTx}
+                preset="lausanne"
+                style={[ssGlobal.tabBar.tabText, { color: color.module.gpa[1] }]}
+              />
+            </TouchableOpacity>
+          )
+        })}
+      </View>
+    )
+  }
 
   render() {
     return (
@@ -102,40 +112,52 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           />
         </Modal>
 
-        <TopBar
-          elements={{
-            left: [
-              {
-                iconText: "arrow_back",
-                action: () => this.props.navigation.goBack(),
-              },
-            ],
-            right: [
-              {
-                iconText: "info_outline",
-                action: this.toggleModal,
-              },
-              {
-                iconText: "sync",
-                action: this._onRefresh,
-              },
-            ],
-          }}
-          color={color.module.gpa[1]}
-        />
-
-        <TabView
-          navigationState={this.state}
-          renderScene={
-            SceneMap({
-              main: this.mainViewRoute,
-              exp: this.expViewRoute,
-            }) as any
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              tintColor={color.module.gpa[1]}
+              colors={[color.module.gpa[0]]}
+            />
           }
-          renderTabBar={() => null}
-          onIndexChange={index => this.setState({ index })}
-          initialLayout={{ width: Dimensions.get("window").width }}
-        />
+        >
+          <TopBar
+            elements={{
+              left: [
+                {
+                  iconText: "arrow_back",
+                  action: () => this.props.navigation.goBack(),
+                },
+              ],
+              right: [
+                {
+                  iconText: "info_outline",
+                  action: this.toggleModal,
+                },
+                {
+                  iconText: "sync",
+                  action: this._onRefresh,
+                },
+              ],
+            }}
+            color={color.module.gpa[1]}
+          />
+
+          <TabView
+            navigationState={this.state}
+            renderScene={
+              SceneMap({
+                main: this.mainViewRoute,
+                exp: this.expViewRoute,
+              }) as any
+            }
+            renderTabBar={() => null}
+            onIndexChange={index => this.setState({ index })}
+            initialLayout={{ width: Dimensions.get("window").width }}
+          />
+        </ScrollView>
       </Screen>
     )
   }

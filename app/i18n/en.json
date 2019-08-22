@@ -164,6 +164,15 @@
     "info": {
       "title": "Disclaimer",
       "content": "The indicators, charts and scores calculated by WePeiyang are for reference only. Please consult Tianjin University Academic Affairs Department for the official algorithms, policies and grading results."
+    },
+    "tab": {
+      "main": "Main",
+      "exp": "Data"
+    },
+    "kachi": {
+      "what": "In Chinese, Kachi (卡绩, literally “Stuck on GPA”) means acquiring a highest score among a fixed GPA section, e.g. 89. The official mapping algorithm between scores and GPAs is not continuous, therefore some students might get a lower overall GPA than he deserve with his scores. This is what Kachi index describes - the inconsistency between GPA and weighted score.",
+      "how": "We used regression to determine a sigmoid equation that maps GPAs and scores in a continuous manner, then calculate the difference between the continuous version of GPA and the discrete (official) version of GPA for each course involved. This difference is the prototype of Kachi index. A Kachi'd score would output a more positive value, and vice versa. The final result is a weighted average of all computed Kachi-indices.",
+      "howBad": "A normal Kachi index typically falls between -3.0 and 1.0. Students are more likely to have negative Kachi indices because teachers sometimes give rounded-up scores. If you find your Kachi index greater than 1, it probably indicates that you're pretty badly Kachi'd."
     }
   },
   "schedule": {

@@ -65,6 +65,21 @@ export const ssGlobal = {
     } as TextStyle,
   },
 
+  tabBar: {
+    tabBar: {
+      flexDirection: "row",
+      paddingHorizontal: 30,
+    } as ViewStyle,
+    tabItem: {
+      flex: 1,
+      alignItems: "center",
+      padding: 16,
+    } as ViewStyle,
+    tabText: {
+      fontWeight: "bold",
+    } as TextStyle,
+  },
+
   login: {
     screen: {} as ViewStyle,
     container: {

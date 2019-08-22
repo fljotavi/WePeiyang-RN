@@ -1,5 +1,5 @@
 import { color, layoutParam } from "../../theme"
-import { TextStyle, ViewStyle } from "react-native"
+import {ImageStyle, TextStyle, ViewStyle} from "react-native"
 
 export default {
   screen: {
@@ -68,5 +68,43 @@ export default {
   } as ViewStyle,
   snackStyle: {
     marginBottom: 10,
+  } as ViewStyle,
+
+  kachiHead: {
+    color: color.module.gpa[0],
+    marginBottom: 3,
+  } as TextStyle,
+  kachiPara: {
+    color: color.module.gpa[0],
+  } as TextStyle,
+  kachiHugo: {
+    color: color.module.gpa[0],
+    marginTop: 10,
+    marginBottom: 6,
+  } as TextStyle,
+  kachiImg: {
+    width: 300,
+    height: 200,
+  } as ImageStyle,
+  kachiComic: {
+    width: 300,
+    height: 200,
+  } as ImageStyle,
+  kachiSection: {
+    marginBottom: 20,
+    alignSelf: "stretch",
+  } as ViewStyle,
+  kachiList: {
+    marginVertical: 8,
+  } as ViewStyle,
+  kachiBoard: {
+    marginTop: 50,
+    marginBottom: 30,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    width: 300,
+    borderRadius: layoutParam.borderRadius,
+    backgroundColor: color.module.gpa[1],
+    alignItems: "flex-start",
   } as ViewStyle,
 }
