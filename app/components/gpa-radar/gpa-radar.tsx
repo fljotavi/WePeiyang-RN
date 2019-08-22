@@ -201,10 +201,14 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
     }
 
     let shuffled = shuffleData([...gpa.data.gpaDetailed[this.state.semesterIndex].data])
-    let processed = shuffled.map(course => ({ x: course.name, y: course.score * 2.5 - 150 }))
+    let processed = shuffled.map(course => ({
+      x: course.name,
+      y: course.score * course.score * course.score * course.score * 0.000001, // That's right, y = 0.000001 * x^4, perfect score mapping
+    }))
+
     let processedCredits = shuffled.map(course => ({ x: course.name, y: course.credit * 25 }))
 
-    if (processed.length <= 2) {
+    if (processed && processed.length <= 2) {
       return (
         <View style={[predefinedStyle, style]}>
           <IanBorderless icon="insert_chart" tx="gpa.noRadar" color={color.module.gpa[2]} />
