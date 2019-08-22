@@ -30,6 +30,8 @@ target 'WePeiyang' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'WePeiyangTests' do
     inherit! :search_paths
     # Pods for testing
