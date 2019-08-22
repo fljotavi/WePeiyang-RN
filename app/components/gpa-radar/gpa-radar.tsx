@@ -136,7 +136,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
   state = {
     renderChart: false, // Defer chart render for better entry performance
     fadeAnim: new Animated.Value(0),
-    semesterIndex: 0,
+    semesterIndex: this.props.semesterIndex,
   }
 
   // After React deprecated the use of ComponentWillReceiveProps,
@@ -145,8 +145,9 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
 
   static getDerivedStateFromProps(props, state) {
     if (props.semesterIndex !== state.semesterIndex) {
+      console.log("Change detected")
+      console.log(props, state)
       return {
-        ...state,
         renderChart: false,
         fadeAnim: new Animated.Value(0),
         semesterIndex: props.semesterIndex,
@@ -156,6 +157,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
   }
 
   componentDidUpdate() {
+    console.log("Didupdate")
     if (this.state.renderChart === false) {
       this.revealTheShit()
     }

@@ -3,48 +3,32 @@ import { connect } from "react-redux"
 
 import {
   DeviceEventEmitter,
-  FlatList,
+  Dimensions,
   RefreshControl,
   ScrollView,
   StatusBar,
-  TouchableOpacity,
   View,
 } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { setGpaOrderBy, setScoreType, setSemesterIndex } from "../../actions/preference-actions"
 import { fetchGpaData } from "../../actions/data-actions"
-import { GpaCurve } from "../../components/gpa-curve"
-import { digitsFromScoreType } from "../../utils/common"
-import { GpaStat } from "../../components/gpa-stat/gpa-stat"
 import ss from "./gpa-screen.style"
-import { GpaRadar } from "../../components/gpa-radar"
-import { GpaSnack } from "./gpa-snack"
-
-import { Text } from "../../components/text"
-
 import Modal from "react-native-modal"
 import { Toasti } from "../../components/toasti"
-
 import { TopBar } from "../../components/top-bar"
 import { Alert } from "../../components/alert"
+import { TabView, SceneMap } from "react-native-tab-view"
+import GpaScreenMain from "./gpa-screen-main"
 
 export interface GpaScreenProps extends NavigationScreenProps<{}> {
-  scoreType?
-  setScoreType?
-
-  gpa?
   fetchGpaData?
-
-  semesterIndex?
-
-  gpaOrderBy?
-  setGpaOrderBy?
 }
 
 export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   state = {
+    index: 0,
+    routes: [{ key: "main", title: "Main" }, { key: "exp", title: "Exp" }],
     refreshing: false,
     isModalVisible: false,
   }
@@ -57,21 +41,6 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
       .catch(err => {
         DeviceEventEmitter.emit("showToast", <Toasti text={err.message} preset="error" />)
       })
-  }
-
-  toggleOrderType = () => {
-    let current = this.props.gpaOrderBy
-    switch (current) {
-      case "credits":
-        this.props.setGpaOrderBy("name")
-        break
-      case "name":
-        this.props.setGpaOrderBy("score")
-        break
-      case "score":
-        this.props.setGpaOrderBy("credits")
-        break
-    }
   }
 
   toggleModal = () => {
@@ -88,35 +57,22 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   _keyExtractor = item => String(item.no)
 
   render() {
-    const { gpa, scoreType, setScoreType, semesterIndex } = this.props
-    if (gpa.status !== "VALID") return <View />
-
-    // data for GpaStat component
-    let semestralStat = {}
-    for (let key in gpa.data.gpaSemestral) {
-      semestralStat[key] = gpa.data.gpaSemestral[key][semesterIndex].y.toFixed(
-        digitsFromScoreType(key),
-      )
-    }
-
-    let sortedScores = [...gpa.data.gpaDetailed[semesterIndex].data].sort((courseA, courseB) => {
-      switch (this.props.gpaOrderBy) {
-        case "credits":
-          return courseA.credit < courseB.credit ? 1 : -1
-        case "name":
-          return courseA.name.localeCompare(courseB.name, "zh")
-        case "score":
-          return courseA.score < courseB.score ? 1 : -1
-      }
-      DeviceEventEmitter.emit(
-        "showToast",
-        <Toasti
-          text="Sort failed: Unknown sorting key. Please check your code spelling."
-          preset="warning"
-        />,
-      )
-      return 1
-    })
+    const mainView = (
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+            tintColor={color.module.gpa[1]}
+            colors={[color.module.gpa[0]]}
+          />
+        }
+      >
+        <GpaScreenMain />
+      </ScrollView>
+    )
+    const expView = <View />
 
     return (
       <Screen style={ss.screen}>
@@ -145,126 +101,53 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           />
         </Modal>
 
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh}
-              tintColor={color.module.gpa[1]}
-              colors={[color.module.gpa[0]]}
-            />
+        <TopBar
+          elements={{
+            left: [
+              {
+                iconText: "arrow_back",
+                action: () => this.props.navigation.goBack(),
+              },
+            ],
+            right: [
+              {
+                iconText: "info_outline",
+                action: this.toggleModal,
+              },
+              {
+                iconText: "sync",
+                action: this._onRefresh,
+              },
+            ],
+          }}
+          color={color.module.gpa[1]}
+        />
+
+        <TabView
+          navigationState={this.state}
+          renderScene={
+            SceneMap({
+              main: () => mainView,
+              exp: () => expView,
+            }) as any
           }
-        >
-          <TopBar
-            elements={{
-              left: [
-                {
-                  iconText: "arrow_back",
-                  action: () => this.props.navigation.goBack(),
-                },
-              ],
-              right: [
-                {
-                  iconText: "info_outline",
-                  action: this.toggleModal,
-                },
-                {
-                  iconText: "sync",
-                  action: this._onRefresh,
-                },
-              ],
-            }}
-            color={color.module.gpa[1]}
-          />
-
-          <View style={ss.radarContainer}>
-            <GpaRadar />
-          </View>
-
-          <View style={ss.container}>
-            <GpaStat
-              style={ss.stat}
-              status={gpa.status}
-              setScoreType={scoreType => setScoreType(scoreType)}
-              scores={semestralStat}
-              txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
-              palette={[color.module.gpa[2], color.module.gpa[1]]}
-            />
-
-            <GpaCurve
-              style={ss.curve}
-              data={gpa.data.gpaSemestral[scoreType]}
-              status={gpa.status}
-              scoreToFixed={digitsFromScoreType(scoreType)}
-              animated={false}
-              palette={[
-                color.module.gpa[3],
-                color.module.gpa[1],
-                color.module.gpa[3],
-                color.module.gpa[1],
-                color.module.gpa[0],
-              ]}
-            />
-
-            <View style={ss.orderTab}>
-              <TouchableOpacity style={ss.orderTouchable} onPress={this.toggleOrderType}>
-                <View style={ss.orderTexts}>
-                  <Text text="shuffle" preset="i" style={ss.orderIcon} />
-                  <Text tx="gpa.order.orderedBy" preset="lausanne" style={ss.orderTextPrefix} />
-                  <Text
-                    tx={"gpa.order." + this.props.gpaOrderBy}
-                    preset="lausanne"
-                    style={ss.orderTextSuffix}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <FlatList
-              style={ss.list}
-              contentContainerStyle={ss.listContainer}
-              data={sortedScores}
-              keyExtractor={this._keyExtractor}
-              renderItem={({ item }) => (
-                <GpaSnack
-                  style={ss.snackStyle}
-                  score={item.score}
-                  courseName={item.name}
-                  courseType={item.classType}
-                  credits={item.credit}
-                />
-              )}
-            />
-          </View>
-        </ScrollView>
+          renderTabBar={() => null}
+          onIndexChange={index => this.setState({ index })}
+          initialLayout={{ width: Dimensions.get("window").width }}
+        />
       </Screen>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return {
-    scoreType: state.preferenceReducer.scoreType,
-    gpaOrderBy: state.preferenceReducer.gpaOrderBy,
-    gpa: state.dataReducer.gpa,
-    semesterIndex: state.dataReducer.gpa.semesterIndex,
-  }
+  return {}
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setScoreType: newType => {
-      dispatch(setScoreType(newType))
-    },
-    setSemesterIndex: newType => {
-      dispatch(setSemesterIndex(newType))
-    },
     fetchGpaData: async () => {
       await dispatch(fetchGpaData())
-    },
-    setGpaOrderBy: newType => {
-      dispatch(setGpaOrderBy(newType))
     },
   }
 }
