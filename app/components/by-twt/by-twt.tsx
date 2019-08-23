@@ -34,6 +34,7 @@ export function ByTwt(props: ByTwtProps) {
   const textStyle: TextStyle = {
     color: fill,
     marginLeft: 5,
+    fontWeight: "bold",
   }
 
   return (

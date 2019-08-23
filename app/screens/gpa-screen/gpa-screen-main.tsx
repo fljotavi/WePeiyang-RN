@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { View } from "react-native"
+import { ScrollView, View } from "react-native"
 import { color } from "../../theme"
 import { GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
@@ -22,7 +22,7 @@ class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
     const { gpa, scoreType } = this.props
 
     return (
-      <>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={ss.radarContainer}>
           <GpaRadar />
         </View>
@@ -47,7 +47,7 @@ class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
 
           <GpaSnackList />
         </View>
-      </>
+      </ScrollView>
     )
   }
 }
