@@ -12,7 +12,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { Linking, ViewStyle } from "react-native"
+import { Linking, Vibration, ViewStyle } from "react-native"
 import { ModuleButton } from "../module-button"
 import Modal from "react-native-modal"
 import { color } from "../../theme"
@@ -226,7 +226,14 @@ class _ModuleButtonList extends React.PureComponent<ModuleButtonListProps, {}> {
                 icon={moduleProps[item].icon}
                 onPress={moduleProps[item].onPress}
                 key={moduleProps[item].tx}
-                onLongPress={allowDrag ? move : () => {}}
+                onLongPress={
+                  allowDrag
+                    ? () => {
+                        Vibration.vibrate(5, false)
+                        move()
+                      }
+                    : () => {}
+                }
                 onPressOut={moveEnd}
               />
             )

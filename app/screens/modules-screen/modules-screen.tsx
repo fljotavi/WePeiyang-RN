@@ -47,7 +47,6 @@ export class _ModulesScreen extends React.Component<ModulesScreenProps, {}> {
           contentContainerStyle={ss.container}
           navigation={this.props.navigation}
           blockStyle={ss.block}
-          allowDrag
         />
       </Screen>
     )
