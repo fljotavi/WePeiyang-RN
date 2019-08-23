@@ -128,11 +128,11 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   _keyExtractor = (item, index) => String(index)
 
   render() {
-    if (!(this.state.chosenWeek && this.state.currentWeek)) {
+    const { course, pref } = this.props
+    if (!(this.state.chosenWeek && this.state.currentWeek && course.status === "VALID")) {
       return <Screen />
     }
 
-    const { course, pref } = this.props
     const studentId = Number(this.props.userInfo.data.studentid)
     let daysEachWeek = this.state.daysEachWeek
     let weeks
