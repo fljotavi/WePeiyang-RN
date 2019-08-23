@@ -99,76 +99,63 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ flex: 1 }}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh}
-              tintColor={color.module.gpa[1]}
-              colors={[color.module.gpa[0]]}
-            />
-          }
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={ss.screen.backgroundColor}
+          onBackButtonPress={this.toggleModal}
+          onBackdropPress={this.toggleModal}
+          useNativeDriver={true}
+          key={"0"}
         >
-          <Modal
-            isVisible={this.state.isModalVisible}
-            backdropColor={ss.screen.backgroundColor}
-            onBackButtonPress={this.toggleModal}
-            onBackdropPress={this.toggleModal}
-            useNativeDriver={true}
-            key={"0"}
-          >
-            <Alert
-              headingTx="gpa.info.title"
-              contentTx="gpa.info.content"
-              palette={[color.module.gpa[0], color.module.gpa[1]]}
-              buttons={[
-                {
-                  tx: "common.gotIt",
-                  onPress: () => {
-                    this.toggleModal()
-                  },
+          <Alert
+            headingTx="gpa.info.title"
+            contentTx="gpa.info.content"
+            palette={[color.module.gpa[0], color.module.gpa[1]]}
+            buttons={[
+              {
+                tx: "common.gotIt",
+                onPress: () => {
+                  this.toggleModal()
                 },
-              ]}
-            />
-          </Modal>
-
-          <TopBar
-            elements={{
-              left: [
-                {
-                  iconText: "arrow_back",
-                  action: () => this.props.navigation.goBack(),
-                },
-              ],
-              right: [
-                {
-                  iconText: "info_outline",
-                  action: this.toggleModal,
-                },
-                {
-                  iconText: "sync",
-                  action: this._onRefresh,
-                },
-              ],
-            }}
-            color={color.module.gpa[1]}
+              },
+            ]}
           />
+        </Modal>
 
-          <TabView
-            navigationState={this.state}
-            renderScene={
-              SceneMap({
-                main: this.mainViewRoute,
-                exp: this.expViewRoute,
-              }) as any
-            }
-            renderTabBar={() => null}
-            onIndexChange={index => this.setState({ index })}
-            initialLayout={{ width: Dimensions.get("window").width }}
-          />
-        </ScrollView>
+        <TopBar
+          elements={{
+            left: [
+              {
+                iconText: "arrow_back",
+                action: () => this.props.navigation.goBack(),
+              },
+            ],
+            right: [
+              {
+                iconText: "info_outline",
+                action: this.toggleModal,
+              },
+              {
+                iconText: "sync",
+                action: this._onRefresh,
+              },
+            ],
+          }}
+          color={color.module.gpa[1]}
+        />
+
+        <TabView
+          navigationState={this.state}
+          renderScene={
+            SceneMap({
+              main: this.mainViewRoute,
+              exp: this.expViewRoute,
+            }) as any
+          }
+          renderTabBar={() => null}
+          onIndexChange={index => this.setState({ index })}
+          initialLayout={{ width: Dimensions.get("window").width }}
+        />
       </Screen>
     )
   }
