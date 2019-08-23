@@ -14,8 +14,6 @@ import { connect } from "react-redux"
 import {
   DeviceEventEmitter,
   Dimensions,
-  RefreshControl,
-  ScrollView,
   StatusBar,
   TouchableOpacity,
   View,

@@ -73,6 +73,9 @@
       "intro": "Choose your preferred weekdays interval.",
       "options": "Display %{count} days each week"
     },
+    "displayNotThisWeek": {
+      "title": "Display not-this-week courses",
+    },
     "scheduleTextSize": {
       "title": "Schedule Table Text Size",
       "intro": "Font size for courses in schedule tables are automatically adjusted to fit the size of course blocks. "

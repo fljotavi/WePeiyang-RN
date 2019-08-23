@@ -40,6 +40,7 @@ export const preferenceReducer = (
     scheduleHeight: 100,
     scheduleTextSize: 100,
     owlIndex: 21,
+    displayNotThisWeek: true,
   },
   action,
 ) => {

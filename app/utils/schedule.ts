@@ -90,36 +90,29 @@ export const getCoursesByDay = (timestamp, data) => {
   let currentWeek = getWeek(timestamp, semesterStart)
   let res = []
   data.courses.forEach(course => {
-    if (course.week.start <= currentWeek && currentWeek <= course.week.end) {
-      course.arrange.forEach(arrangement => {
-        let dayOfWeek = now.getDay()
-        if (arrangement.day === "7") {
-          arrangement.day = "0"
-        }
-        if (Number(arrangement.day) === dayOfWeek) {
-          let arrangedThisWeek = true
-          switch (arrangement.week) {
-            case "单周":
-              if (currentWeek % 2 === 0) {
-                arrangedThisWeek = false
-              }
-              break
-            case "双周":
-              if (currentWeek % 2 === 1) {
-                arrangedThisWeek = false
-              }
-              break
-          }
-          if (arrangedThisWeek) {
-            // Finally
+    course.arrange.forEach(arrangement => {
+      let dayOfWeek = now.getDay()
+      if (arrangement.day === "7") arrangement.day = "0"
+      if (Number(arrangement.day) === dayOfWeek) {
+        // 星期几符合
+        if (course.week.start <= currentWeek && currentWeek <= course.week.end) {
+          // 在开始结束周数之内
+          if (
+            !(
+              (arrangement.week === "单周" && currentWeek % 2 === 0) ||
+              (arrangement.week === "双周" && currentWeek % 2 === 1)
+            )
+          ) {
+            // 没有被卡单双周
+            // Arranged this week!
             res.push({
               ...course,
               activeArrange: arrangement,
             })
           }
         }
-      })
-    }
+      }
+    })
   })
   res.sort((a, b) => {
     return a.activeArrange.start - b.activeArrange.start
