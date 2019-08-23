@@ -64,7 +64,6 @@ export const getFullSchedule = (data, daysEachWeek) => {
         timestamp: thisDay,
         courses: courses,
       })
-
       let column = [0, 0, 0, 0, 0]
       courses.forEach(course => {
         let start = Number(course.activeArrange.start)
@@ -81,6 +80,7 @@ export const getFullSchedule = (data, daysEachWeek) => {
       matrix,
     })
   }
+  console.log("Full schedd", weeks)
   return weeks
 }
 
@@ -108,12 +108,38 @@ export const getCoursesByDay = (timestamp, data) => {
             res.push({
               ...course,
               activeArrange: arrangement,
+              thisWeek: true,
             })
           }
+        } else {
+          // 符合显示非本周课程定义
+          res.push({
+            ...course,
+            activeArrange: arrangement,
+            thisWeek: false,
+          })
         }
       }
     })
   })
+  // 额外一步检查：是否选定的"非本周"课程中，有无和本周课程当天时间安排完全一样的？
+  // 如果有，应当去除，因为它会完全和本周课程重叠绘制，从而无需绘制
+  res = res.filter(course => {
+    if (!course.thisWeek) {
+      for (let i = 0; i < res.length; i++) {
+        let anotherCourse = res[i]
+        if (
+          anotherCourse.thisWeek &&
+          anotherCourse.activeArrange.start === course.activeArrange.start &&
+          anotherCourse.activeArrange.end === course.activeArrange.end
+        ) {
+          return false
+        }
+      }
+    }
+    return true
+  })
+  // 排序结果，保证开始时间靠后的课程总是后渲染，避免重叠或冲突课程时，先渲染的课程被完全覆盖而无法触发点按
   res.sort((a, b) => {
     return a.activeArrange.start - b.activeArrange.start
   })

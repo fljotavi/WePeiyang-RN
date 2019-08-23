@@ -62,7 +62,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
     }
 
     const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - pref.owlIndex) // Display tomorrow's schedule by 9:00 PM?
-    let courseDaily = getCoursesByDay(timestampOwl, data)
+    let courseDaily = getCoursesByDay(timestampOwl, data).filter(course => course.thisWeek)
     let modal
 
     if (courseDaily.length <= 0) {
