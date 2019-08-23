@@ -19,7 +19,7 @@
 import * as React from "react"
 import { Switch, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
-import { color, layoutParam } from "../../theme"
+import { color, layoutParam, ssGlobal } from "../../theme"
 import Touchable from "react-native-platform-touchable"
 import Color from "color"
 
@@ -109,6 +109,7 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
               true: Color(color.primary).fade(0.5),
             }}
             thumbColor={color.primary}
+            style={ssGlobal.switch}
           />
         )
         break

@@ -40,6 +40,16 @@ export const shadowPresets = {
 }
 
 export const ssGlobal = {
+  switch: {
+    transform: [
+      {
+        scale: Platform.select({
+          ios: 0.7,
+          android: 1,
+        }),
+      },
+    ],
+  },
   loadingSize: Platform.select({ ios: 10, android: 12 }),
   buttonLoadingIndicator: {
     position: "absolute",

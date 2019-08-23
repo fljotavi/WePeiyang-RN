@@ -120,7 +120,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
         <View style={ss.container}>
           <Text tx="settings.settings" preset="h2" style={ss.heading} />
 
-          <Text tx="settings.sections.general" preset="lausanne" style={ss.sectionHead} />
+          <Text tx="settings.sections.homepage" preset="lausanne" style={ss.sectionHead} />
 
           <SettingsSnack
             style={ss.snack}
@@ -152,6 +152,8 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
             }}
           />
 
+          <Text tx="modules.schedule" preset="lausanne" style={ss.sectionHead} />
+
           <SettingsSnack
             style={ss.snack}
             preset="enter"
@@ -167,6 +169,8 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
             textSubtitle={pref.scheduleTextSize + "%"}
             onPress={() => this.props.navigation.navigate("scheduleTextSize")}
           />
+
+          <Text tx="modules.network" preset="lausanne" style={ss.sectionHead} />
 
           <SettingsSnack
             style={ss.snack}

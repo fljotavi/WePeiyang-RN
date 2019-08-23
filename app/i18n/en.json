@@ -59,7 +59,7 @@
   "settings": {
     "settings": "Settings",
     "sections": {
-      "general": "General",
+      "homepage": "Homepage",
       "elsewhere": "Elsewhere"
     },
     "hideGpa": "Hide GPA On Homepage",
