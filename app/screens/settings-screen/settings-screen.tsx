@@ -142,6 +142,18 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
 
           <SettingsSnack
             style={ss.snack}
+            txTitle="settings.owlMode.title"
+            txSubtitle={pref.owlIndex === 21 ? "settings.owlMode.on" : "settings.owlMode.off"}
+            preset="switch"
+            on={pref.owlIndex === 21}
+            onPress={() => {
+              if (pref.owlIndex === 24) setPreference("owlIndex", 21)
+              else setPreference("owlIndex", 24)
+            }}
+          />
+
+          <SettingsSnack
+            style={ss.snack}
             preset="enter"
             txTitle="settings.daysEachWeek.title"
             textSubtitle={pref.daysEachWeek}

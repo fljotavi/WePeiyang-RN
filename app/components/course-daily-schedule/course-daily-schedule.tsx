@@ -26,9 +26,8 @@ export interface CourseDailyScheduleProps {
   style?: ViewStyle
   compData?
   timestamp
+  pref?
 }
-
-const OWL_CONSTANT = 21
 
 class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}> {
   state = {
@@ -47,7 +46,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
   _keyExtractor = (item, index) => String(index)
 
   render() {
-    const { style, compData, timestamp } = this.props
+    const { style, compData, timestamp, pref } = this.props
     const data = compData.course.data
 
     if (!compData.userInfo.data.accounts.tju) {
@@ -62,7 +61,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
       return <View />
     }
 
-    const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - OWL_CONSTANT) // Display tomorrow's schedule by 9:00 PM
+    const timestampOwl = timestamp + 1000 * 60 * 60 * (24 - pref.owlIndex) // Display tomorrow's schedule by 9:00 PM?
     let courseDaily = getCoursesByDay(timestampOwl, data)
     let modal
 
@@ -131,6 +130,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
 const mapStateToProps = state => {
   return {
     compData: state.dataReducer,
+    pref: state.preferenceReducer,
   }
 }
 

@@ -63,6 +63,11 @@
       "elsewhere": "Elsewhere"
     },
     "hideGpa": "Hide GPA On Homepage",
+    "owlMode": {
+      "title": "Enable Owl Mode",
+      "on": "Display tomorrow's schedule after 21:00",
+      "off": "Always display today's schedule"
+    },
     "daysEachWeek": {
       "title": "Displayed Days Each Week",
       "intro": "Choose your preferred weekdays interval.",
