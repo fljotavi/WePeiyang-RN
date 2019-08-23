@@ -66,10 +66,12 @@ export const getFullSchedule = (data, daysEachWeek) => {
       })
       let column = [0, 0, 0, 0, 0]
       courses.forEach(course => {
-        let start = Number(course.activeArrange.start)
-        let end = Number(course.activeArrange.end)
-        for (let timeSlot = start; timeSlot <= end; timeSlot++) {
-          column[mapTimeSlotToFlatIndex(timeSlot)] += 1
+        if (course.thisWeek) {
+          let start = Number(course.activeArrange.start)
+          let end = Number(course.activeArrange.end)
+          for (let timeSlot = start; timeSlot <= end; timeSlot++) {
+            column[mapTimeSlotToFlatIndex(timeSlot)] += 1
+          }
         }
       })
       matrix.push(column)

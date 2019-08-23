@@ -170,10 +170,14 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
             onPress={() => this.props.navigation.navigate("scheduleTextSize")}
           />
 
-
           <SettingsSnack
             style={ss.snack}
             txTitle="settings.displayNotThisWeek.title"
+            txSubtitle={
+              pref.displayNotThisWeek
+                ? "settings.displayNotThisWeek.on"
+                : "settings.displayNotThisWeek.off"
+            }
             preset="switch"
             on={pref.displayNotThisWeek}
             onPress={() => {

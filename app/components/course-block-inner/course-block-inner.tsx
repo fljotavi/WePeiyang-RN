@@ -25,14 +25,18 @@ export interface CourseBlockInnerProps {
   credits?
   backgroundColor?
   pref?
+  notThisWeek?
 }
 
 export function _CourseBlockInner(props: CourseBlockInnerProps) {
-  const { style, courseName, p1, p2, backgroundColor, pref } = props
+  const { style, courseName, p1, p2, backgroundColor, pref, notThisWeek } = props
+
+  const wideLayout = style.width > 90
   const height = Number(style.height)
   const width = Number(style.width)
   const scale = Math.min(height, width) / 12 + 5.8
   const textScale = (scale * pref.scheduleTextSize) / 100
+
   const predefinedStyle: ViewStyle = {
     backgroundColor: backgroundColor,
     borderRadius: layoutParam.borderRadius / 1.5,
@@ -40,7 +44,8 @@ export function _CourseBlockInner(props: CourseBlockInnerProps) {
     justifyContent: "center",
   }
   const BASE: TextStyle = {
-    color: color.background,
+    color: notThisWeek ? color.lightGrey : color.background,
+    textAlign: wideLayout ? "auto" : "center",
   }
   const h1: TextStyle = {
     ...BASE,
@@ -52,8 +57,12 @@ export function _CourseBlockInner(props: CourseBlockInnerProps) {
   let info: ViewStyle = {
     flexDirection: "column",
   }
-
-  if (style.width > 90) {
+  const icon: TextStyle = {
+    ...BASE,
+    fontSize: textScale * 1.8,
+    marginBottom: textScale * 0.3,
+  }
+  if (wideLayout) {
     info = {
       flexDirection: "row",
       justifyContent: "space-between",
@@ -62,11 +71,18 @@ export function _CourseBlockInner(props: CourseBlockInnerProps) {
 
   return (
     <View style={[predefinedStyle, style]} pointerEvents="box-only">
+      {notThisWeek && !wideLayout && <Text text="lock" style={icon} preset="i" />}
       <Text numberOfLines={height > 62 ? 3 : 2} text={courseName} style={h1} />
-      <View style={info}>
-        <Text text={p1} style={small} />
-        <Text text={p2} style={small} />
-      </View>
+      {notThisWeek ? (
+        <View style={info}>
+          <Text text="非本周" style={small} />
+        </View>
+      ) : (
+        <View style={info}>
+          <Text text={p1} style={small} />
+          <Text text={p2} style={small} />
+        </View>
+      )}
     </View>
   )
 }

@@ -176,60 +176,109 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
             active={isSameDay(new Date(day.timestamp), new Date(this.state.currentTimestamp))}
           />
 
-          {/*Begin a daily schedule column*/}
-          <View style={[ss.column, { width: dayWidth, height: scheduleRenderHeight }]} key={i}>
-            {day.courses.length > 0 ? (
-              day.courses.map((c, j, arr) => {
-                let start = Number(c.activeArrange.start) - 1
-                let end = Number(c.activeArrange.end)
-                let duration = end - start
-
-                // If detected 2 courses with the same start time, translate the late rendered one
-                let verticalPosition = start * (timeSlotHeight + timeSlotMargin)
-                if (j > 0) {
-                  if (arr[j].activeArrange.start === arr[j - 1].activeArrange.start) {
-                    crashIndex += 1
-                    verticalPosition += crashIndex * 20
-                  } else {
-                    crashIndex = 0
-                  }
-                }
-                return (
-                  <Touchable
-                    style={{
-                      position: "absolute",
-                      top: verticalPosition,
-                    }}
-                    key={j}
-                    delayPressIn={0}
-                    onPress={() => {
-                      this.setState(
-                        {
-                          courseIndex: [i, j],
-                        },
-                        () => {
-                          this.openModal()
-                        },
-                      )
-                    }}
-                    foreground={Touchable.Ripple(color.background)}
-                  >
-                    <CourseBlockInner
+          {/*Begin a NOT-THIS-WEEK courses daily schedule column*/}
+          {pref.displayNotThisWeek && (
+            <View
+              style={[
+                ss.column,
+                {
+                  width: dayWidth,
+                  height: scheduleRenderHeight,
+                  position: "absolute",
+                  top: dateIndicatorHeight + timeSlotMargin,
+                },
+              ]}
+            >
+              {day.courses
+                .filter(c => !c.thisWeek)
+                .map((c, j) => {
+                  let start = Number(c.activeArrange.start) - 1
+                  let end = Number(c.activeArrange.end)
+                  let duration = end - start
+                  let verticalPosition = start * (timeSlotHeight + timeSlotMargin)
+                  return (
+                    <View
                       style={{
-                        width: dayWidth,
-                        height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
-                        alignSelf: "stretch",
+                        position: "absolute",
+                        top: verticalPosition,
                       }}
-                      backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
-                      courseName={c.coursename}
-                      p1={deleteTitle(c.teacher)}
-                      p2={sanitizeLocation(c.activeArrange.room)}
-                    />
-                  </Touchable>
-                )
-              })
-            ) : (
-              // Ian and this view here have more differences than styles in common, so plain view.
+                      key={j}
+                    >
+                      <CourseBlockInner
+                        style={{
+                          width: dayWidth,
+                          height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
+                          alignSelf: "stretch",
+                        }}
+                        backgroundColor={color.washed}
+                        courseName={c.coursename}
+                        p1={deleteTitle(c.teacher)}
+                        p2={sanitizeLocation(c.activeArrange.room)}
+                        notThisWeek
+                      />
+                    </View>
+                  )
+                })}
+            </View>
+          )}
+          {/*End a NOT-THIS-WEEK courses schedule column*/}
+
+          {/*Begin a daily schedule column*/}
+          <View style={[ss.column, { width: dayWidth, height: scheduleRenderHeight }]}>
+            {day.courses.filter(c => c.thisWeek).length > 0 ? (
+              day.courses
+                .filter(c => c.thisWeek)
+                .map((c, j, arr) => {
+                  let start = Number(c.activeArrange.start) - 1
+                  let end = Number(c.activeArrange.end)
+                  let duration = end - start
+
+                  // If detected 2 courses with the same start time, translate the late rendered one
+                  let verticalPosition = start * (timeSlotHeight + timeSlotMargin)
+                  if (j > 0) {
+                    if (arr[j].activeArrange.start === arr[j - 1].activeArrange.start) {
+                      crashIndex += 1
+                      verticalPosition += crashIndex * 20
+                    } else {
+                      crashIndex = 0
+                    }
+                  }
+                  return (
+                    <Touchable
+                      style={{
+                        position: "absolute",
+                        top: verticalPosition,
+                      }}
+                      key={j}
+                      delayPressIn={0}
+                      onPress={() => {
+                        this.setState(
+                          {
+                            courseIndex: [i, j],
+                          },
+                          () => {
+                            this.openModal()
+                          },
+                        )
+                      }}
+                      foreground={Touchable.Ripple(color.background)}
+                    >
+                      <CourseBlockInner
+                        style={{
+                          width: dayWidth,
+                          height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
+                          alignSelf: "stretch",
+                        }}
+                        backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
+                        courseName={c.coursename}
+                        p1={deleteTitle(c.teacher)}
+                        p2={sanitizeLocation(c.activeArrange.room)}
+                      />
+                    </Touchable>
+                  )
+                })
+            ) : // Ian and this view here have more differences than styles in common, so plain view.
+            pref.displayNotThisWeek ? null : (
               <View style={ss.scheduleIan}>
                 <Text
                   style={ss.scheduleIanText}

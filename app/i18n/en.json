@@ -75,6 +75,8 @@
     },
     "displayNotThisWeek": {
       "title": "Display not-this-week courses",
+      "on": "Display courses. Note that in cases where several not-this-week courses occupy the same time period, they will be rendered overlapped.",
+      "off": "Display random activities."
     },
     "scheduleTextSize": {
       "title": "Schedule Table Text Size",
