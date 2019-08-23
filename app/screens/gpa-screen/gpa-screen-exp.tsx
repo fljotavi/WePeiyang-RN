@@ -35,7 +35,7 @@ class _GpaScreenExp extends React.Component<GpaScreenExpProps, {}> {
           <Image source={require("./assets/kachiindex.png")} style={ss.kachiImg} />
           <View style={ss.kachiBoard}>
             <View style={ss.kachiSection}>
-              <Text text="Your Kachi Index" style={ss.kachiHead} preset="h5" />
+              <Text tx="gpa.kachi.yourKachiIndex" style={ss.kachiHead} preset="h5" />
               <View style={{ alignItems: "center", alignSelf: "stretch" }}>
                 <Text text={(kachi * 100).toFixed(2)} style={ss.kachiHugo} preset="h1" />
                 <View style={ss.kachiList}>
@@ -49,24 +49,24 @@ class _GpaScreenExp extends React.Component<GpaScreenExpProps, {}> {
               </View>
             </View>
             <View style={ss.kachiSection}>
-              <Text text="What is Kachi Index?" style={ss.kachiHead} preset="h5" />
-              <Text tx="gpa.kachi.what" style={ss.kachiPara} preset="small" />
+              <Text tx="gpa.kachi.what.title" style={ss.kachiHead} preset="h5" />
+              <Text tx="gpa.kachi.what.content" style={ss.kachiPara} preset="small" />
             </View>
             <View style={ss.kachiSection}>
-              <Text text="How is Kachi Index computed?" style={ss.kachiHead} preset="h5" />
+              <Text tx="gpa.kachi.how.title" style={ss.kachiHead} preset="h5" />
               <Image
                 source={require("./assets/kachi-comic-a.png")}
                 style={{ width: 260, height: 180, opacity: 0.5, alignSelf: "center" }}
               />
-              <Text tx="gpa.kachi.how" style={ss.kachiPara} preset="small" />
+              <Text tx="gpa.kachi.how.content" style={ss.kachiPara} preset="small" />
             </View>
             <View style={ss.kachiSection}>
-              <Text text="How badly am I Kachi'd?" style={ss.kachiHead} preset="h5" />
+              <Text tx="gpa.kachi.howBad.title" style={ss.kachiHead} preset="h5" />
               <Image
                 source={require("./assets/kachi-comic-b.png")}
                 style={{ width: 250, height: 78, opacity: 0.5, alignSelf: "center" }}
               />
-              <Text tx="gpa.kachi.howBad" style={ss.kachiPara} preset="small" />
+              <Text tx="gpa.kachi.howBad.content" style={ss.kachiPara} preset="small" />
             </View>
           </View>
           <ByTwt fill={color.module.gpa[2]}>
