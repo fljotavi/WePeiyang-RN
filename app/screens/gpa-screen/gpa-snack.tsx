@@ -1,3 +1,12 @@
+/*
+ * GPA Snack
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 GPA Snack 绘制一个学科成绩条。
+ *
+ */
+
 import { TextStyle, View, ViewStyle } from "react-native"
 import { color, layoutParam } from "../../theme"
 import { Text } from "../../components/text"

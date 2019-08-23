@@ -59,6 +59,7 @@ Most major modules are developed.
 | GPA Rose Chart                                              | GPA 玫瑰图                   | ✔                   |
 | GPA order by course name                                    | GPA 按照课程名称排序         | ✔                   |
 | Toggle your curves                                          | 切换绩点 / 学分 / 加权曲线   | ✔                   |
+| Kachi Index                                          | 卡绩指数   | ✔                   |
 
 
 ##### E-card

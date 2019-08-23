@@ -1,3 +1,12 @@
+/*
+ * Ecard Snack
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Ecard Snack 绘制校园卡界面中的一条流水记录。
+ *
+ */
+
 import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "../../theme"
 import { Text } from "../../components/text"

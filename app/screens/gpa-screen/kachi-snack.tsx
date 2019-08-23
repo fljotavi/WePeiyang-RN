@@ -1,8 +1,16 @@
+/*
+ * Kachi Snack
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 Kachi Snack 绘制一个学期的学期名、加权、绩点和卡绩指数。
+ *
+ */
+
 import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "../../theme"
 import { Text } from "../../components/text"
 import * as React from "react"
-import Touchable from "react-native-platform-touchable"
 
 export interface KachiSnackProps {
   cols?

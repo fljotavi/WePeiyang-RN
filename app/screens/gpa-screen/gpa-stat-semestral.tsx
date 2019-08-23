@@ -1,3 +1,15 @@
+/*
+ * GPA Stat Semestral
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 GPA Stat Semestral 绘制 GPA 主页中的学期成绩统计。
+ * 它的本质就是 GPA Stat，但是此处将它单独抽离出来，
+ * 为了避免将 Connect 至 Store 的模块写在主页中。
+ * （经测试，这样会导致主页因被 Connect 而容易触发重新渲染的性能问题。）
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

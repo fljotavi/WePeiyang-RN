@@ -1,3 +1,13 @@
+/*
+ * GPA Screen Main
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * GPA Screen Main 是 GPA Screen 中的主 Tab。
+ * 它包含了成绩曲线、雷达图和各科成绩等。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

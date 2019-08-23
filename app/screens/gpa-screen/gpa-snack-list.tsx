@@ -1,3 +1,12 @@
+/*
+ * GPA Snack List
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * 一个 GPA Snack List 绘制一个学期所有学科的成绩条。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

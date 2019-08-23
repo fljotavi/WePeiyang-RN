@@ -1,3 +1,13 @@
+/*
+ * GPA Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * GPA Screen 是 GPA 模块的主页。
+ * 它目前包含两个 Tab，每个 Tab 的内容分别绘制在各自的 gpa-screen-{tabname}.tsx 文件中。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 

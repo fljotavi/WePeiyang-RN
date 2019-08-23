@@ -1,3 +1,12 @@
+/*
+ * Ecard Screen
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * Ecard Screen 是校园卡界面的主页。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 import {

@@ -1,3 +1,13 @@
+/*
+ * GPA Screen Exp
+ * Created by Tzingtao Chow
+ * ---
+ *
+ * GPA Screen Exp 是 GPA Screen 中的一个 Tab。
+ * 它用于放置一些实验性 Feature，目前包含了卡绩指数页面。
+ *
+ */
+
 import * as React from "react"
 import { connect } from "react-redux"
 import { ScrollView, View } from "react-native"
