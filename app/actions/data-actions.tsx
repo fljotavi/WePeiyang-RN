@@ -180,6 +180,18 @@ export function fetchLibraryData() {
   }
 }
 
+export function renewBook(barcode) {
+  let path = `v1/library/renew${barcode}`
+  return () => {
+    return twtGet(path)
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log(responseJson)
+        return responseJson // TODO: Fix after fixing API Malfunction
+      })
+  }
+}
+
 export function fetchYellowPagesData() {
   let path = "v1/yellowpage/data3"
   return dispatch => {
@@ -198,17 +210,6 @@ export function fetchYellowPagesData() {
           responseJson.message = "Failed to fetch yellow pages data..."
           throw responseJson
         }
-      })
-  }
-}
-
-export function renewBook(barcode) {
-  let path = `v1/library/renew${barcode}`
-  return () => {
-    return twtGet(path)
-      .then(response => response.json())
-      .then(responseJson => {
-        return responseJson // TODO: Fix after fixing API Malfunction
       })
   }
 }

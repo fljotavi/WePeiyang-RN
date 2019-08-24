@@ -297,7 +297,9 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
     if (this.state.courseIndex) {
       let idx = this.state.courseIndex
-      let chosenCourse = weeks[this.state.chosenWeek - 1].days[idx[0]].courses[idx[1]]
+      let chosenCourse = weeks[this.state.chosenWeek - 1].days[idx[0]].courses.filter(
+        c => c.thisWeek,
+      )[idx[1]]
 
       modal = (
         <Modal

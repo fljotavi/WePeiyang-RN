@@ -17,7 +17,7 @@ import { Text } from "../components/text"
 import { TextStyle, ViewStyle } from "react-native"
 import { color, layoutParam } from "../theme"
 import Touchable from "react-native-platform-touchable"
-import { shadowPresets } from "../theme";
+import { shadowPresets } from "../theme"
 
 const barStyle: ViewStyle = {
   height: layoutParam.footerHeight,
