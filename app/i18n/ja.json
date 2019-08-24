@@ -97,7 +97,7 @@
     },
     "language": "言語",
     "languageSetting": "言語設定",
-    "languageWarning": "Micro Beiyang内のインターフェイス言語と操作言語のみが変更されることに注意してください。コース名、書籍名、エラープロンプトなどの外部リソースに依存するテキストは、元の言語を保持します。翻訳の修正やGitHubの改善に貢献できます。"
+    "languageWarning": "WePeiyang内のインターフェイス言語と操作言語のみが変更されることに注意してください。コース名、書籍名、エラープロンプトなどの外部リソースに依存するテキストは、元の言語を保持します。翻訳の修正やGitHubの改善に貢献できます。"
   },
   "accountBinding": {
     "greetings": {
@@ -133,7 +133,7 @@
     "wpy": "WPY",
     "news": "ニュース",
     "network": "TJU",
-    "modules": "モジュールナビゲーション"
+    "modules": "Drawer"
   },
   "modules": {
     "bike": "自転車",
@@ -159,10 +159,10 @@
   "gpa": {
     "totalWeighted": "総加重",
     "totalGpa": "GPA",
-    "creditsEarned": "クレジットを獲得する",
-    "semestralWeighted": "セメスターの重み付け",
-    "semestralGpa": "セメスターグレードポイント",
-    "semestralCredits": "クレジットを獲得する",
+    "creditsEarned": "クレジット",
+    "semestralWeighted": "加重",
+    "semestralGpa": "GPA",
+    "semestralCredits": "クレジット",
     "credits": "クレジット",
     "noRadar": "GPAレーダーチャートは、3学期未満の学期には適用されません。",
     "order": {

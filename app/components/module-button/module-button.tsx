@@ -38,6 +38,7 @@ export function ModuleButton(props: ModuleButtonProps) {
   const containerStyle: ViewStyle = {
     paddingVertical: 14,
     width: 99,
+    height: 71,
     borderRadius: layoutParam.borderRadius,
     alignItems: "center",
     justifyContent: "center",
@@ -58,7 +59,7 @@ export function ModuleButton(props: ModuleButtonProps) {
     >
       <View style={containerStyle} pointerEvents="box-only">
         <Text text={icon} preset="i" style={iconStyle} />
-        <Text tx={tx} style={textStyle} />
+        <Text tx={tx} style={textStyle} numberOfLines={1} />
       </View>
     </Touchable>
   )

@@ -15,6 +15,7 @@ const ja = require("./ja")
 const zh = require("./zh")
 const es = require("./es")
 const ar = require("./ar")
+const th = require("./th")
 
 export const languageFullnames = {
   en: {
@@ -37,7 +38,11 @@ export const languageFullnames = {
     native: "عربى",
     common: "Arabic",
   },
+  th: {
+    native: "ไทย",
+    common: "Thai",
+  },
 }
 
 i18n.fallbacks = true
-i18n.translations = { en, ja, zh, es, ar }
+i18n.translations = { en, ja, zh, es, ar, th }
