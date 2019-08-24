@@ -1,1 +1,242 @@
-{"common":{"ok":"bueno","confirm":"confirmar","cancel":"cancelar","back":"espalda","close":"cerca","gotIt":"¡Gracias!","time":{"remaining":"","daysLeft":" días"},"unknown":"desconocido","lipsum":{"a":"Lorem ipsum dolor sit amet, elit consectetur adipiscing. El miedo y el duelo de mañana, los niños nutrición. Hasta que quieren chile. Entero porta RISUS quis sit amet ligula urna posuere vehicula ut et laoreet Pretium. televisión clínica, libre para ser el más grande de rejilla, antes de que el consumidor recibe mucho de sí mismo nibh hombre. Y para beber en mauris SEM, urna de chocolate Identificación. -Mediados libre, los miembros del fútbol al aire libre, fin de semana elemento de odio. Temblar tiempo hasta que los vehículos.","b":"Mecenas sobre mi fotografía. El sit amet est ornare, magna ncp sagittis. Hasta que un baloncesto ensalada, la propaganda garganta necesita la televisión ordenada.","c":"De hecho, consectetur imperdiet urna, en convallis elit consequat ID. Hasta que mi ensalada y las zanahorias elemento de masa, temperatura falda de fútbol. DUIs vitae velita sapiens. No hay vida, la risa de baterías, magna malesuada está en, ultrices diam. Rendimiento El rendimiento es una tarea necesidad esterilizado. Nulla. diámetro máximo mayor consumidor, no tienen ningún condimento plátanos fútbol. Jasmine tirar de una gran cantidad de miembros.","d":"vitae Aenean Justo Massa. Pero algunos temen los plátanos lorem e invertir la nutrición y el estrés. vehicula mauris, Playstation, y parte de la inundación, tortor la puerta del lago, y, a veces más de una elit adipiscing sagittis velita. No hay necesidad de ningún tipo. En la actualidad mauris condimentum, pretium eget tortor nec, pulvinar semper arcu como sea posible. Para Proin eget sit amet, augue feugiat sit amet, Ullamcorper quam. La tarea económicos y de proa a la red y un león. Curabitur magna ipsum dolor, y sin levadura será, que es el autor de la tierra."},"prepareToLeave":"Esté preparado para dejar WePeiyang ...","providedInWebHint":"Proporcionamos este servicio en nuestra plataforma Web. Abrir enlaces en el navegador?"},"data":{"noAvailableData":"No hay datos disponibles","prepareDataSuccess":"Ha cargado satisfactoriamente datos más recientes","prepareDataFailed":"Error al actualizar los datos debido a algunos errores en el proceso de recuperación de la red."},"auth":{"checkingAuthStatus":"Comprobación de los estados de autor ...","login":"acceder","logout":"Firmar Me Out","loginSuccess":"El éxito de inicio de sesión","loginFailure":"La conexión falló ...","logoutSuccess":"Salir éxito","tokenStoreFailure":"No se pudo almacenar tomada a nivel local. entrada manual adicional se puede utilizar durante el siguiente arranque.","tokenDeleteFailure":"No se pudo eliminar símbolo local. Si el problema persiste, le recomendamos que desactive la configuración del sistema de almacenamiento de aplicaciones para garantizar la seguridad cuenta."},"loginScreen":{"greetings":"Siempre es bueno tenerte de vuelta.","username":"Cuenta TWT nombre de usuario","password":"contraseña"},"homeScreen":{"greetings":"¡Hola"},"ecard":{"noCardsBound":"Sin tarjetas de perro","card":"tarjeta","holder":"titular","expiresBy":"expira a","dailyExpense":"hoy","monthlyExpense":"este Mes","billingDetails":"Detalles de facturación","noTransaction":{"pre":"No hay registros de transacciones que se encuentran en la última","post":" días"},"loadMore":"Cargar una más semana","rangeHint":"Los datos que se muestra aquí oscila hasta el día de su factura más reciente."},"newsScreen":{"header":"noticias"},"tjuScreen":{"header":"TJU Red"},"settings":{"settings":"ajustes","sections":{"general":"general","elsewhere":"en otra parte"},"hideGpa":"Lista subasta electrónica inversa en la página principal","daysEachWeek":{"title":"días que se muestran a la semana","intro":"Elija su intervalo de días de la semana preferido.","options":"Pantalla% {count} días a la semana"},"wpyGithub":{"title":"WePeiyang en GitHub","sub":"WePeiyang es un proyecto de código abierto. Ayudar a que sea mejor, contribuyendo a nuestra comunidad."},"timGroup":"天 外 天 用户 社区 Q / Grupo TIM","helpNSupport":{"title":"Ayuda y soporte","sub":"¿Necesita ayuda? Encontrado un problema? Bienvenido a nuestro foro de soporte."},"language":"idioma","languageSetting":"configuración de idioma","languageWarning":"Tenga en cuenta que sólo los textos dentro de nivel de aplicación WePeiyang serían cambiados. El texto que dependen de los recursos externos, como nombres y nombres de libros supuesto que no será traducido."},"accountBinding":{"greetings":{"ecard":"Conectar sus cuentas. Descubre más posibilidades.","tju":"Conectar sus cuentas. Descubre más posibilidades.","lib":"Conectar sus cuentas. Descubre más posibilidades."},"unbound":"sin consolidar","bound":"ronda","bind":"lazo","unbind":"desatar","libraryAccount":"cuenta de la biblioteca","ecardAccount":"Cuenta de correo de tarjetas","portalAccount":"cuenta en el portal","yourStudentId":"Su identificación del estudiante","ecardPassword":"contraseña E-tarjeta (utilizado en las máquinas de punto de venta)","etjuPassword":"Su contraseña e.tju.edu.cn","libPassword":"Su contraseña de la biblioteca","libPasswordHint":"Su contraseña de la biblioteca es la contraseña utilizada en lib.tju.edu.cn. Si no sabe lo que es, por favor, intente contraseña inicial 666666, o los dígitos 12 al 17 de su tarjeta nacional de identidad. Por favor consulte el mostrador de información en la biblioteca de la Universidad de Tianjin para el restablecimiento de la contraseña de cualquier información adicional.","bindSuccess":"Éxito atado. adicional puede ser necesaria la re-entrada.","unbindSuccess":"Éxito no unido. adicional puede ser necesaria la re-entrada.","unbindModal":{"heading":"Esta cuenta está conectado actualmente a WePeiyang.","content":"Puede desvincular esta cuenta en cualquier momento. Después de desconectar, no sería capaz de utilizar los servicios relacionados con esta cuenta."},"unbindEcardHint":"Para desvincular su tarjeta electrónica, sólo tiene que cerrar la sesión. Su cuenta de correo tarjeta sería desconectada cuando se conecte de nuevo.","libLatencyHint":"Tenga en cuenta que el estado de su unión a cuenta se actualiza después de que el siguiente inicio de sesión.","tjuLatencyHint":"Tenga en cuenta que el estado de su unión a cuenta se actualiza después de que el siguiente inicio de sesión."},"tab":{"wpy":"WPY","news":"noticias","tju":"TJU"},"modules":{"bike":"bicicleta","contact":"contacto","learning":"aprendizaje","library":"biblioteca","ecard":"E-Card","gpa":"SEI","gpaCurve":"curva de la SEI","classroom":"aula","schedule":"horario","news":"noticias","mall":"Mull","party":"partido"},"gpa":{"totalWeighted":"total ponderado","totalGpa":"SEI totales","creditsEarned":"créditos obtenidos","semestralWeighted":"ponderado","semestralGpa":"SEI","semestralCredits":"créditos","credits":"créditos","order":{"orderedBy":"ordenado por","credits":"créditos","name":"nombre","score":"puntuación"},"info":{"title":"Acerca de la SEI","content":"Los indicadores, gráficos y puntuaciones calculadas por WePeiyang son sólo para referencia. Por favor, consulte con el Departamento de Asuntos Académicos de la Universidad de Tianjin de algoritmos oficiales, las políticas y los resultados de las clasificaciones."}},"schedule":{"noCourseToday":"Sin supuesto hoy","id":"identificación","logicNo":"Nº lógica","campus":"campus","location":"ubicación","weeks":"semana","time":"tiempo","WEEK":{"pre":"SEMANA","post":""}},"library":{"noBooks":"Usted no pide prestado algún libro","notBound":"cuenta de la biblioteca no encuadernado","callNo":"llamada","type":"tipo","location":"ubicación","borrowedTime":"prestado","returnBy":"volver por","renew":"revisión","renewCaveat":"Un solo libro puede ser renovada por sólo tres veces. Le recomendamos que renueve su libro cuando la fecha de vencimiento se aproxima. Proceder?"},"contact":{"searchBar":"Buscar en las palabras ...","department":"departamento","noUnit":"No se han encontrado en este departamento unidad","infoSource":"Fuentes de información"}}
+{
+  "common": {
+    "ok": "Okay",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "back": "atrás",
+    "close": "Cerca",
+    "gotIt": "¡Lo tengo!",
+    "time": {
+      "remaining": "",
+      "daysLeft": " Días restantes"
+    },
+    "unknown": "Desconocido",
+    "prepareToLeave": "Prepárate para dejar WePeiyang ...",
+    "providedInWebHint": "Brindamos este servicio en nuestra plataforma web. Abrir enlace en el navegador?"
+  },
+  "data": {
+    "noAvailableData": "No hay datos disponibles.",
+    "prepareDataSuccess": "Datos nuevos cargados con éxito",
+    "prepareDataFailed": "Error al actualizar los datos debido a algunos errores en el proceso de recuperación de la red."
+  },
+  "auth": {
+    "guestMode": "Modo invitado",
+    "checkingAuthStatus": "Comprobación del estado de autenticación ...",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "loginSuccess": "Acceso exitoso",
+    "loginFailure": "Error de inicio de sesion...",
+    "logoutSuccess": "Logout Success",
+    "tokenStoreFailure": "Error al almacenar el token localmente. Es posible que se necesite un inicio de sesión manual adicional durante el próximo inicio.",
+    "tokenDeleteFailure": "Error al eliminar el token local. Si el problema persiste, le recomendamos que borre el almacenamiento de la aplicación en la configuración del sistema para garantizar la seguridad de la cuenta."
+  },
+  "loginScreen": {
+    "greetings": "Siempre es bueno tenerte de vuelta.",
+    "username": "Nombre de usuario de cuenta TWT",
+    "password": "Contraseña"
+  },
+  "homeScreen": {
+    "greetings": "Hola"
+  },
+  "ecard": {
+    "noCardsBound": "Sin tarjetas atadas",
+    "card": "Tarjeta",
+    "holder": "Poseedor",
+    "expiresBy": "Vence por",
+    "dailyExpense": "Hoy",
+    "monthlyExpense": "Este mes",
+    "billingDetails": "Detalles de facturación",
+    "noTransaction": "No se encontraron registros de transacciones en los últimos %{days} días",
+    "loadMore": "Cargue una semana más",
+    "rangeHint": "Los datos que se muestran aquí varían al día de su factura más reciente."
+  },
+  "newsScreen": {
+    "header": "Noticias"
+  },
+  "tjuScreen": {
+    "header": "Red TJU"
+  },
+  "settings": {
+    "settings": "Configuraciones",
+    "sections": {
+      "homepage": "Página principal",
+      "elsewhere": "En otra parte"
+    },
+    "hideGpa": "Ocultar GPA en la página de inicio",
+    "owlMode": {
+      "title": "Habilitar modo búho",
+      "on": "Mostrar el horario de mañana después de las 21:00",
+      "off": "Mostrar siempre el horario de hoy"
+    },
+    "daysEachWeek": {
+      "title": "Días mostrados cada semana",
+      "intro": "Elija su intervalo preferido de lunes a viernes.",
+      "options": "Muestra %{count} días cada semana"
+    },
+    "displayNotThisWeek": {
+      "title": "Mostrar cursos no esta semana",
+      "on": "Mostrar cursos. Tenga en cuenta que en los casos en que varios cursos que no sean de esta semana ocupen el mismo período de tiempo, se superpondrán.",
+      "off": "Mostrar actividades aleatorias."
+    },
+    "scheduleTextSize": {
+      "title": "Programar tamaño de texto de tabla",
+      "intro": "El tamaño de fuente para los cursos en las tablas de programación se ajusta automáticamente para adaptarse al tamaño de los bloques del curso."
+    },
+    "autoReconnect": {
+      "title": "Reconexión automática",
+      "sub": "Vuelva a conectarse a la red TJU-WLAN cuando esté desconectado"
+    },
+    "wpyGithub": {
+      "title": "WePeiyang en GitHub",
+      "sub": "WePeiyang es un proyecto de código abierto. Ayude a mejorarlo contribuyendo a nuestra comunidad."
+    },
+    "timGroup": "TWT Community QQ / TIM Group",
+    "helpNSupport": {
+      "title": "Servicio de asistencia",
+      "sub": "¿Necesitas ayuda? ¿Encontre un problema? Bienvenido a nuestro foro de soporte."
+    },
+    "language": "Idioma",
+    "languageSetting": "Configuraciones de idioma",
+    "languageWarning": "Tenga en cuenta que solo se modificarían los textos dentro del nivel de la aplicación WePeiyang. El texto que se base en recursos externos como los nombres de cursos y nombres de libros no se traducirá."
+  },
+  "accountBinding": {
+    "greetings": {
+      "ecard": "Conecta tus cuentas. Descubre más posibilidades.",
+      "tju": "Conecta tus cuentas. Descubre más posibilidades.",
+      "lib": "Conecta tus cuentas. Descubre más posibilidades."
+    },
+    "unbound": "Sin consolidar",
+    "bound": "Unido",
+    "bind": "Enlazar",
+    "unbind": "Desatar",
+    "libraryAccount": "Cuenta de la biblioteca",
+    "ecardAccount": "Cuenta de tarjeta electrónica",
+    "portalAccount": "Cuenta del portal",
+    "yourStudentId": "Su identificación de estudiante",
+    "ecardPassword": "Contraseña de tarjeta electrónica (utilizada en máquinas POS)",
+    "etjuPassword": "Su contraseña de e.tju.edu.cn",
+    "libPassword": "La contraseña de tu biblioteca",
+    "libPasswordHint": "La contraseña de su biblioteca es la contraseña utilizada en lib.tju.edu.cn. Si no sabía qué es, intente con la contraseña inicial 666666 o los dígitos 12-17 de su tarjeta de identificación nacional. Consulte el mostrador de información en la Biblioteca de la Universidad de Tianjin para restablecer la contraseña de cualquier información adicional.",
+    "bindSuccess": "Con éxito atado. Es posible que sea necesario volver a iniciar sesión.",
+    "unbindSuccess": "Con éxito sin consolidar. Es posible que sea necesario volver a iniciar sesión.",
+    "unbindModal": {
+      "heading": "Esta cuenta está actualmente conectada a WePeiyang.",
+      "content": "Puede separar esta cuenta en cualquier momento. Después de desconectarse, no podrá utilizar los servicios relacionados con esta cuenta."
+    },
+    "unbindEcardHint": "Para desvincular su tarjeta electrónica, solo necesita cerrar sesión. Su cuenta de tarjeta electrónica no estaría conectada cuando vuelva a iniciar sesión.",
+    "libLatencyHint": "Tenga en cuenta que el estado de enlace de su cuenta se actualizará después del próximo inicio de sesión.",
+    "tjuLatencyHint": "Tenga en cuenta que el estado de enlace de su cuenta se actualizará después del próximo inicio de sesión.",
+    "ecardHint": "Por razones de seguridad, la acción vinculante para la tarjeta electrónica solo está disponible para la sesión actual. Su cuenta de tarjeta electrónica se desconectará inmediatamente una vez que cierre la sesión.",
+    "networkHint": "Por razones de seguridad, la acción vinculante para la red TJU solo está disponible para la sesión actual. Su cuenta de red se desconectará inmediatamente una vez que cierre sesión."
+  },
+  "tab": {
+    "wpy": "WPY",
+    "news": "Noticias",
+    "network": "TJU",
+    "modules": "Cajón"
+  },
+  "modules": {
+    "bike": "Bicicleta",
+    "contact": "Contacto",
+    "learning": "Aprendizaje",
+    "library": "Biblioteca",
+    "ecard": "Tarjeta electrónica",
+    "gpa": "GPA",
+    "gpaCurve": "Curva GPA",
+    "classroom": "Salón de clases",
+    "schedule": "Programar",
+    "news": "Noticias",
+    "mall": "Centro comercial",
+    "party": "Partido",
+    "network": "Red",
+    "vote": "Votar",
+    "survey": "Encuesta",
+    "bbs": "BBS",
+    "docs": "Docs",
+    "career": "Carrera",
+    "socialPractice": "Voluntario"
+  },
+  "gpa": {
+    "totalWeighted": "Total ponderado",
+    "totalGpa": "Promedio total",
+    "creditsEarned": "Creditos ganados",
+    "semestralWeighted": "Ponderado",
+    "semestralGpa": "GPA",
+    "semestralCredits": "Créditos",
+    "credits": "Créditos",
+    "noRadar": "La tabla de radar y rosa no está disponible con semestres de menos de tres cursos.",
+    "order": {
+      "orderedBy": "Ordenado por",
+      "credits": "Créditos",
+      "name": "Nombre",
+      "score": "Puntuación"
+    },
+    "info": {
+      "title": "Renuncia",
+      "content": "Los indicadores, gráficos y puntajes calculados por WePeiyang son solo de referencia. Consulte el Departamento de Asuntos Académicos de la Universidad de Tianjin para conocer los algoritmos, políticas y resultados de calificación oficiales."
+    },
+    "tab": {
+      "main": "Principal",
+      "exp": "Datos"
+    },
+    "kachi": {
+      "yourKachiIndex": "Tu índice Kachi",
+      "what": {
+        "title": "¿Qué es el índice Kachi?",
+        "content": "En chino, Kachi (卡绩, literalmente \"Atascado en el GPA\") significa obtener una puntuación más alta entre una sección fija de GPA, p. 89. El algoritmo oficial de mapeo entre puntajes y GPA no es continuo, por lo tanto, algunos estudiantes pueden obtener un GPA general más bajo de lo que se merece con sus puntajes. Esto es lo que describe el índice de Kachi: la inconsistencia entre el GPA y la puntuación ponderada."
+      },
+      "how": {
+        "title": "¿Cómo se calcula el índice Kachi?",
+        "content": "Utilizamos la regresión para determinar una ecuación sigmoidea que mapea los GPA y las puntuaciones de manera continua, luego calculamos la diferencia entre la versión continua de GPA y la versión discreta (oficial) de GPA para cada curso involucrado. Esta diferencia es el prototipo del índice Kachi. Un puntaje de Kachi daría un valor más positivo, y viceversa. El resultado final es un promedio ponderado de todos los índices Kachi calculados."
+      },
+      "howBad": {
+        "title": "¿Qué tan mal soy Kachi'd?",
+        "content": "Un índice de Kachi normal generalmente cae entre -3.0 y 1.0. Es más probable que los estudiantes tengan índices negativos de Kachi porque los maestros a veces dan puntajes redondeados. Si encuentra que su índice de Kachi es mayor que 1, probablemente indica que está bastante mal de Kachi."
+      }
+    }
+  },
+  "schedule": {
+    "noCourseToday": "No hay curso hoy",
+    "id": "CARNÉ DE IDENTIDAD",
+    "logicNo": "Lógica No.",
+    "campus": "Campus",
+    "location": "Habitación",
+    "weeks": "Semanas",
+    "time": "Hora",
+    "WEEK": {
+      "pre": "SEMANA",
+      "post": ""
+    }
+  },
+  "library": {
+    "noBooks": "No tomaste prestado ningún libro",
+    "notBound": "Cuenta de biblioteca no vinculada",
+    "callNo": "Llamada No.",
+    "type": "Tipo",
+    "location": "Ubicación",
+    "borrowedTime": "Prestado",
+    "returnBy": "Volver por",
+    "overdue": "Atrasado",
+    "renew": "Renovar",
+    "renewCaveat": "Un solo libro puede renovarse solo tres veces. Le recomendamos que renueve sus libros cuando se acerca la fecha de vencimiento. ¿Proceder?"
+  },
+  "network": {
+    "login": "Navegar",
+    "logout": "Tablero",
+    "yourUsername": "Tu identificación de estudiante",
+    "yourPassword": "Tu contraseña de g.tju.edu.cn",
+    "greetings": "Y Dios dijo: \"Que haya Internet\".",
+    "connected": "Y estaba internet.",
+    "bugHint": "En ocasiones, enviar una contraseña correcta también puede devolver un mensaje de contraseña incorrecta. Este error es causado por el Centro de Red de la Universidad de Tianjin y también ocurre en la página de inicio de sesión nativa. En ese caso, es posible que desee probar varias veces más."
+  },
+  "contact": {
+    "searchBar": "Buscar palabras clave...",
+    "department": "Departamento",
+    "noUnit": "No se ha encontrado ninguna unidad en este departamento.",
+    "infoSource": "Fuente de información",
+    "info": {
+      "title": "Acerca de",
+      "content": "Información proporcionada por e.tju.edu.cn. Para publicar nuevos contactos o informar un error, consulte el Centro de redes de la Universidad de Tianjin."
+    }
+  }
+}

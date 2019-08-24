@@ -12,6 +12,7 @@ We provide this service in our web platform. Open Link in Browser?
 No available data
 Successfully loaded newest data
 Failed to refresh data due to some errors in the network fetching process.
+Guest Mode
 Checking Auth Status...
 Log In
 Sign Me Out
@@ -31,19 +32,26 @@ Expires by
 Today
 This Month
 Billing Details
-No transaction record found in the last
- days
+No transaction record found in the last %{days} days
 Load one more week
 The data shown here ranges to the day of your most recent bill.
 News
 TJU Network
 Settings
-General
+Homepage
 Elsewhere
 Hide GPA On Homepage
+Enable Owl Mode
+Display tomorrow's schedule after 21:00
+Always display today's schedule
 Displayed Days Each Week
 Choose your preferred weekdays interval.
 Display %{count} days each week
+Display not-this-week courses
+Display courses. Note that in cases where several not-this-week courses occupy the same time period, they will be rendered overlapped.
+Display random activities.
+Schedule Table Text Size
+Font size for courses in schedule tables are automatically adjusted to fit the size of course blocks.
 Auto reconnect
 Reconnect to TJU-WLAN network when disconnected
 WePeiyang on GitHub
@@ -72,12 +80,12 @@ Your library password is the password used on lib.tju.edu.cn. If you didn't know
 Successfully bound. Additional re-login may be needed.
 Successfully unbound. Additional re-login may be needed.
 This account is currently connected to WePeiyang.
-You can unbind this account anytime. After disconnecting, you wouldn't be able to use services relating to this account.
+You can detach this account anytime. After disconnecting, you wouldn't be able to use services relating to this account.
 To unbind your e-card, you just need to log out. Your e-card account would be unconnected when you log in again.
 Please note that your account binding status would be updated after the next login.
 Please note that your account binding status would be updated after the next login.
-For security reasons, the binding action for e-card is only for current session. Your e-card account would be immediately disconnected once you log out.
-For security reasons, the binding action for TJU network is only for current session. Your network account would be immediately unbound once you log out.
+For security reasons, the binding action for e-card is only available for the current session. Your e-card account would be immediately detached once you log out.
+For security reasons, the binding action for TJU network is only available for the current session. Your network account would be immediately detached once you log out.
 WPY
 News
 TJU
@@ -108,17 +116,27 @@ Weighted
 GPA
 Credits
 Credits
+Radar & rose chart is not available with semesters of less than three courses.
 Ordered by
 Credits
 Name
 Score
-About GPA
-The indicators, charts and scores calculated by WePeiyang are for reference only. Please consult the Tianjin University Academic Affairs Department for official algorithms, policies and grading results.
+Disclaimer
+The indicators, charts and scores calculated by WePeiyang are for reference only. Please consult Tianjin University Academic Affairs Department for the official algorithms, policies and grading results.
+Main
+Data
+Your Kachi Index
+What is Kachi Index?
+In Chinese, Kachi (卡绩, literally “Stuck on GPA”) means acquiring a highest score among a fixed GPA section, e.g. 89. The official mapping algorithm between scores and GPAs is not continuous, therefore some students might get a lower overall GPA than he deserve with his scores. This is what Kachi index describes - the inconsistency between GPA and weighted score.
+How is Kachi Index computed?
+We used regression to determine a sigmoid equation that maps GPAs and scores in a continuous manner, then calculate the difference between the continuous version of GPA and the discrete (official) version of GPA for each course involved. This difference is the prototype of Kachi index. A Kachi'd score would output a more positive value, and vice versa. The final result is a weighted average of all computed Kachi-indices.
+How badly am I Kachi'd?
+A normal Kachi index typically falls between -3.0 and 1.0. Students are more likely to have negative Kachi indices because teachers sometimes give rounded-up scores. If you find your Kachi index greater than 1, it probably indicates that you're pretty badly Kachi'd.
 No course today
 ID
 Logic No.
 Campus
-Location
+Room
 Weeks
 Time
 WEEK
@@ -130,16 +148,19 @@ Type
 Location
 Borrowed
 Return By
+Overdue
 Renew
 A single book can be renewed for only three times. We recommend that you renew your books when the due date is approaching. Proceed?
 Surf
 Board
 Your student ID
 Your g.tju.edu.cn password
-And God Said, “Let There Be Internet.”
-And there was internet.
+And God Said, “Let There Be The Internet.”
+And there was the internet.
 Sometimes sending a correct password could also return a message of wrong password. This bug is caused by Tianjin University Network Centre and occurs on the native login page too. In that case, you might want to additionally try several times.
 Search keywords...
 Department
 No unit found in this department
 Info Source
+About
+Information provided by e.tju.edu.cn. To publish new contacts or report a mistake, please consult Tianjin University Network Centre.

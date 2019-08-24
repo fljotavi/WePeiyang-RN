@@ -1,1 +1,242 @@
-{"common":{"ok":"OK","confirm":"確かめます","cancel":"キャンセル","back":"バック","close":"近いです","gotIt":"それです！","time":{"remaining":"","daysLeft":" 日"},"unknown":"不明","lipsum":{"a":"Loremのイプサムの嘆き、AMET consecteturのadipiscingのELIT座ります。恐怖と喪明日、子供の栄養。唐辛子をしたい人まで。整数ポルタrisus QUIS ligula白毫お問い合わせ今vehicula UT laoreetらpretium AMET座ります。消費者がNIBHの男自身の多くを受け取る前臨床テレビ、無料のは、最大のグリッドであることを。そしてmauris SEM、IDチョコレート骨壷に飲みます。ミッド無料、屋外のサッカーのメンバーは、要素の週末を憎みます。車までの時間を震えます。","b":"私の写真撮影についてマエケナス。 ornare EST、NEC sagittisマグナをAMET座ります。 1つのサラダまではバスケットボール、喉の宣伝は、ソートされたテレビが必要です。","c":"実際には、consectetur imperdiet白毫、convallisのELITのconsequatのIDで。私の質量要素のサラダやニンジン、サッカーのスカートの温度まで。 Duis履歴書velitのSAPIEN。何の生活、電池の笑いはmalesuadaマグナは、であるDIAMをultrices、ありません。パフォーマンスパフォーマンスは、滅菌の必要性の宿題です。 NULLA。最大直径最大の消費者、何のバナナサッカー調味料を持っていません。ジャスミンは、メンバーの多くを引き出します。","d":"Aenean履歴書はフストマッサ。しかし、いくつかはLoremのバナナを恐れ、栄養やストレスを投資しています。 Maurisのvehicula、プレイステーション、および洪水の一部、tortor湖のゲート、およびsagittisのvelitのadipiscingのELITより時々より。あらゆる種類の必要はありません。できるだけ視床枕ゼ​​ンパーARCU condimentumのmauris、pretiumのegetのtortorのNEC、に存在します。 Proin egetはAMET座るために、feugiatのaugueはQUAM ullamcorper、AMET座ります。予算からの宿題は、グリッドやライオンにお辞儀します。 Curabiturマグナイプサム嘆き、そして何のパン種は、地球の作者が誰であるか、あってはなりません。"},"prepareToLeave":"WePeiyangを残すように調製することが...","providedInWebHint":"当社は、当社のWebプラットフォーム上でこのサービスを提供しています。ブラウザでリンクを開きますか？"},"data":{"noAvailableData":"データなし","prepareDataSuccess":"正常にロードされた最新データ","prepareDataFailed":"ネットワークフェッチプロセスにおけるいくつかのエラーに起因するデータを更新できませんでした。"},"auth":{"checkingAuthStatus":"著者の状態を確認しています...","login":"ログイン","logout":"私をサイン","loginSuccess":"ログイン成功","loginFailure":"ログインに失敗しました...","logoutSuccess":"ログアウト成功","tokenStoreFailure":"ローカルに取ら保存に失敗しました。追加の手動ログインは次回の起動時に使用することができます。","tokenDeleteFailure":"ローカルトークンの削除に失敗しました。問題が解決しない場合、我々は、アカウントの安全性を確保するために、アプリケーション、ストレージシステムの設定をクリアすることをお勧めいたします。"},"loginScreen":{"greetings":"それはあなたが戻って持っていることは常に良いことです。","username":"TWTアカウントのユーザー名","password":"パスワード"},"homeScreen":{"greetings":"もしもし"},"ecard":{"noCardsBound":"いいえカードハウンドありません","card":"カード","holder":"ホルダー","expiresBy":"で期限切れになります","dailyExpense":"今日","monthlyExpense":"今月","billingDetails":"請求の詳細","noTransaction":{"pre":"最後に見つかりませトランザクション・レコードません","post":" 日"},"loadMore":"負荷1以上週間","rangeHint":"ここに示したデータは最新の法案の一日の範囲です。"},"newsScreen":{"header":"ニュース"},"tjuScreen":{"header":"TJUネットワーク"},"settings":{"settings":"[設定]","sections":{"general":"一般的な","elsewhere":"他の場所"},"hideGpa":"ホームページ上のリストのERA","daysEachWeek":{"title":"表示された日ごと、週","intro":"お好みの平日の間隔を選択します。","options":"ディスプレイ％{回数}日毎週"},"wpyGithub":{"title":"GitHubの上WePeiyang","sub":"WePeiyangはオープンソースプロジェクトです。私たちのコミュニティに貢献することにより、それを改善するのに役立ちます。"},"timGroup":"天外天用户社区Q / TIMグループ","helpNSupport":{"title":"ヘルプ＆サポート","sub":"ヘルプが必要ですか？問題が発生しましたか？弊社のサポートフォーラムへようこそ。"},"language":"言語","languageSetting":"言語設定","languageWarning":"WePeiyangアプリレベル内のテキストのみが変更されますのでご注意ください。名前とコースブック名などの外部リソースに依存しているテキストは翻訳されません。"},"accountBinding":{"greetings":{"ecard":"アカウントを接続します。より多くの可能性を発見してください。","tju":"アカウントを接続します。より多くの可能性を発見してください。","lib":"アカウントを接続します。より多くの可能性を発見してください。"},"unbound":"結合していません","bound":"ラウンド","bind":"バインド","unbind":"バインド解除","libraryAccount":"ライブラリーアカウント","ecardAccount":"E-カード口座","portalAccount":"ポータルアカウント","yourStudentId":"学生証","ecardPassword":"（POSマシンで使用）E-カードのパスワード","etjuPassword":"あなたのパスワードe.tju.edu.cn","libPassword":"あなたのライブラリーパスワード","libPasswordHint":"あなたのライブラリーパスワードがlib.tju.edu.cn.に使用するパスワードですあなたはそれが何であるかを知らなかった場合は、初期パスワード666666、またはあなたの国民IDカードの12〜17桁の数字を試してみてください。任意の更なる情報のパスワードリセットのために天津大学図書館で情報デスクにご相談ください。","bindSuccess":"正常にバインド。追加の再ログインが必要になることがあります。","unbindSuccess":"首尾よく結合していません。追加の再ログインが必要になることがあります。","unbindModal":{"heading":"このアカウントは現在、WePeiyangに接続されています。","content":"あなたはいつでもこのアカウントをバインド解除することができます。切断した後、このアカウントに関連するサービスを利用することができません。"},"unbindEcardHint":"あなたのEカードをバインド解除するには、あなただけログアウトする必要があります。再度ログインするときあなたのeカードのアカウントが接続されていないだろう。","libLatencyHint":"アカウント結合状態は次回のログイン後に更新されますのでご注意ください。","tjuLatencyHint":"アカウント結合状態は次回のログイン後に更新されますのでご注意ください。"},"tab":{"wpy":"WPY","news":"ニュース","tju":"TJU"},"modules":{"bike":"自転車","contact":"接触","learning":"ラーニング","library":"ライブラリー","ecard":"Eカード","gpa":"ERA","gpaCurve":"ERA曲線","classroom":"教室","schedule":"スケジュール","news":"ニュース","mall":"マル","party":"パーティー"},"gpa":{"totalWeighted":"加重合計","totalGpa":"合計のERA","creditsEarned":"獲得したクレジット","semestralWeighted":"加重","semestralGpa":"ERA","semestralCredits":"クレジット","credits":"クレジット","order":{"orderedBy":"順","credits":"クレジット","name":"名前","score":"スコア"},"info":{"title":"ERAについて","content":"WePeiyangによって算出指標、チャート、スコアは参考のためのものです。公式のアルゴリズム、政策や採点結果のために天津大学学務課に相談してください。"}},"schedule":{"noCourseToday":"ノーもちろん今日","id":"ID","logicNo":"ロジック号","campus":"キャンパス","location":"場所","weeks":"週間","time":"時間","WEEK":{"pre":"WEEK","post":""}},"library":{"noBooks":"あなたはどんな本を借りていませんでした","notBound":"ライブラリアカウントバインドされていません","callNo":"コール","type":"タイプ","location":"場所","borrowedTime":"借り","returnBy":"によって返します","renew":"レビュー","renewCaveat":"単一本は3回だけのために更新することができます。私たちは、期日が近づいているとき、あなたはあなたの本を更新することをお勧めします。続行しますか？"},"contact":{"searchBar":"検索キーワード...","department":"部門","noUnit":"この部門では見つかりませんユニット","infoSource":"情報ソース"}}
+{
+  "common": {
+    "ok": "わかった",
+    "confirm": "確認する",
+    "cancel": "キャンセルする",
+    "back": "戻る",
+    "close": "閉じる",
+    "gotIt": "それについて学ぶ！",
+    "time": {
+      "remaining": "残り",
+      "daysLeft": "日"
+    },
+    "unknown": "不明",
+    "prepareToLeave": "マイクロ北陽を離れます",
+    "providedInWebHint": "このサービスはWebで利用でき、ブラウザでリンクを開き続けます。"
+  },
+  "data": {
+    "noAvailableData": "データがありません",
+    "prepareDataSuccess": "最新のデータに正常にアクセスする",
+    "prepareDataFailed": "ネットワーク要求の失敗により、一部のデータが正常に更新されない可能性があります..."
+  },
+  "auth": {
+    "guestMode": "ゲストモード",
+    "checkingAuthStatus": "ユーザー認証ステータスを確認...",
+    "login": "ログイン",
+    "logout": "ログアウトユーザー",
+    "loginSuccess": "ログイン成功",
+    "loginFailure": "ログインに失敗しました...",
+    "logoutSuccess": "ログアウトしたユーザー",
+    "tokenStoreFailure": "ログイン情報をローカルに保存できません。次回起動時に追加の手動ログインが必要になる場合があります。",
+    "tokenDeleteFailure": "ローカルログイン情報を削除できません。問題が解決しない場合は、システム設定でApp Storeをクリアして、アカウントが安全であることを確認することをお勧めします。"
+  },
+  "loginScreen": {
+    "greetings": "またお会いできてうれしいです。",
+    "username": "Tianwaitianアカウントのユーザー名",
+    "password": "Tiantiantianアカウントのパスワード"
+  },
+  "homeScreen": {
+    "greetings": "こんにちは"
+  },
+  "ecard": {
+    "noCardsBound": "バインドされていないキャンパスカード",
+    "card": "カード",
+    "holder": "カード所持者",
+    "expiresBy": "有効期限",
+    "dailyExpense": "今日の消費",
+    "monthlyExpense": "今月の消費",
+    "billingDetails": "請求の詳細",
+    "noTransaction": "過去 %{days} 日間に取引履歴はありません",
+    "loadMore": "さらに読み込む",
+    "rangeHint": "ここに表示される統計は、最新の消費記録の日付のものです。"
+  },
+  "newsScreen": {
+    "header": "ニュース"
+  },
+  "tjuScreen": {
+    "header": "TJUネットワーク"
+  },
+  "settings": {
+    "settings": "セッティング",
+    "sections": {
+      "homepage": "ホームページ",
+      "elsewhere": "他の場所"
+    },
+    "hideGpa": "ホームページでGPAを非表示にする",
+    "owlMode": {
+      "title": "フクロウモードを有効にする",
+      "on": "毎晩21:00以降の明日のスケジュールを表示する",
+      "off": "その日のスケジュールを常に表示する"
+    },
+    "daysEachWeek": {
+      "title": "週ごとの日数を表示",
+      "intro": "週次スケジュールで非稼働日を表示するかどうかを選択できます。",
+      "options": "週あたり %{count} 日"
+    },
+    "displayNotThisWeek": {
+      "title": "週単位以外のコースを描く",
+      "on": "まだ開始していないコースを表示します。ただし、特定の期間に異なる週で異なる今週以外のコースがある場合、それらは重複することに注意してください。",
+      "off": "放課後のアクティビティの候補をランダムに表示します。"
+    },
+    "scheduleTextSize": {
+      "title": "文字サイズ",
+      "intro": "一般に、カリキュラムのフォントサイズは画面サイズに合わせて自動的に調整されます。それでも問題が解決しない場合は、ここで目的のフォントサイズに手動で調整できます。"
+    },
+    "autoReconnect": {
+      "title": "自動再接続",
+      "sub": "TJU-WLANを切断した後、ネットワークに再接続しようとしていることがわかりました"
+    },
+    "wpyGithub": {
+      "title": "GitHubのWePeiyang",
+      "sub": "WePeiyangは、質問をしたり、話し合ったり、翻訳を手伝ったり、ドキュメントを書いたり、独自のコードを提供したりできるオープンソースプロジェクトです。一緒に改善してください！"
+    },
+    "timGroup": "Tian WaitianユーザーコミュニティQQ / TIMグループ",
+    "helpNSupport": {
+      "title": "技術サポート",
+      "sub": "助けが必要ですか？問題が見つかりましたか？ Tiantiantianテクニカルサポートコミュニティに投稿することを歓迎します。"
+    },
+    "language": "言語",
+    "languageSetting": "言語設定",
+    "languageWarning": "Micro Beiyang内のインターフェイス言語と操作言語のみが変更されることに注意してください。コース名、書籍名、エラープロンプトなどの外部リソースに依存するテキストは、元の言語を保持します。翻訳の修正やGitHubの改善に貢献できます。"
+  },
+  "accountBinding": {
+    "greetings": {
+      "ecard": "アカウントに接続して、より多くの可能性を発見してください",
+      "tju": "アカウントに接続して、より多くの可能性を発見してください",
+      "lib": "アカウントに接続して、より多くの可能性を発見してください"
+    },
+    "unbound": "まだバインドされていません",
+    "bound": "バインド",
+    "bind": "バインディング",
+    "unbind": "バインド解除",
+    "libraryAccount": "図書館口座",
+    "ecardAccount": "キャンパスカードアカウント",
+    "portalAccount": "オフィスアカウント",
+    "yourStudentId": "学生IDまたはキャンパスID",
+    "ecardPassword": "6桁のキャンパスカードパスワード（通常はPOSに使用）",
+    "etjuPassword": "あなたのオフィスのパスワード",
+    "libPassword": "ライブラリのパスワード",
+    "libPasswordHint": "ライブラリパスワードは、lib.tju.edu.cnで使用されるログインパスワードです。わからない場合は、初期パスワード666666、またはID番号の12〜17桁目を使用してみてください。パスワードのリセットについては、天津大学図書館のヘルプデスクに相談することもできます。",
+    "bindSuccess": "バインドに成功しました。追加の再ログインが必要になる場合があります。",
+    "unbindSuccess": "バインドを解除しました。追加の再ログインが必要になる場合があります。",
+    "unbindModal": {
+      "heading": "このアカウントは現在、WePeiyangに関連付けられています。",
+      "content": "このアカウントはいつでも解除できます。バインドを解除すると、このアカウントに関連付けられたサービスを使用できなくなります。"
+    },
+    "unbindEcardHint": "キャンパスカードのバインドを解除するには、ログアウトするだけです。再度ログインすると、キャンパスカードは自動的に解かれます。",
+    "libLatencyHint": "アカウントのバインドステータスは、次回のログイン後に更新されることに注意してください。",
+    "tjuLatencyHint": "アカウントのバインドステータスは、次回のログイン後に更新されることに注意してください。",
+    "ecardHint": "セキュリティ上の理由から、デバイスからログアウトすると、キャンパスカードは自動的にバンドル解除されます。",
+    "networkHint": "セキュリティ上の理由から、デバイスからログアウトすると、キャンパスネットワークアカウントは自動的にバンドル解除されます。"
+  },
+  "tab": {
+    "wpy": "WPY",
+    "news": "ニュース",
+    "network": "TJU",
+    "modules": "モジュールナビゲーション"
+  },
+  "modules": {
+    "bike": "自転車",
+    "contact": "イエローページ",
+    "learning": "ブラシの問題",
+    "library": "図書館",
+    "ecard": "キャンパスカード",
+    "gpa": "GPA",
+    "gpaCurve": "GPA曲線",
+    "classroom": "自習室",
+    "schedule": "コーススケジュール",
+    "news": "ニュース",
+    "mall": "モール",
+    "party": "パーティービル",
+    "network": "キャンパスネットワーク",
+    "vote": "投票する",
+    "survey": "アンケート",
+    "bbs": "掲示板",
+    "docs": "学習プラットフォーム",
+    "career": "雇用",
+    "socialPractice": "社会的実践"
+  },
+  "gpa": {
+    "totalWeighted": "総加重",
+    "totalGpa": "GPA",
+    "creditsEarned": "クレジットを獲得する",
+    "semestralWeighted": "セメスターの重み付け",
+    "semestralGpa": "セメスターグレードポイント",
+    "semestralCredits": "クレジットを獲得する",
+    "credits": "クレジット",
+    "noRadar": "GPAレーダーチャートは、3学期未満の学期には適用されません。",
+    "order": {
+      "orderedBy": "並べ替え",
+      "credits": "クレジット",
+      "name": "コース名",
+      "score": "グレード"
+    },
+    "info": {
+      "title": "声明",
+      "content": "正確で直観的な情報を提供するよう努めていますが、これらは参照専用です。公式のアルゴリズム、ポリシー、およびGPAトランスクリプトについては、大学の学務部に相談してください。"
+    },
+    "tab": {
+      "main": "ホームページ",
+      "exp": "研究所"
+    },
+    "kachi": {
+      "yourKachiIndex": "あなたのカード性能指標",
+      "what": {
+        "title": "パフォーマンスインデックスとは何ですか？",
+        "content": "中国語では、Kachiは通常、89ポイントなどの固定GPA間隔で最高のスコアを取得することを意味します。スコアとGPAの間の公式のマッピングアルゴリズムは連続的ではないため、一部の学生のGPAは著しく落ち込んでいる場合があります。これは、カードパフォーマンスインデックスで示されるインジケーターです。"
+      },
+      "how": {
+        "title": "パフォーマンスインデックスの計算方法",
+        "content": "シグモイド回帰を使用して連続的なGPAスコアマッピング関係を決定し、パフォーマンスインデックスのプロトタイプとして、結果のGPAと公式アルゴリズムのGPAの差を計算します。カードスコアのスコアは正の値を出力し、そうでない場合は負の値を出力します。最終的なパフォーマンスインデックスは、すべてのコースのパフォーマンススコアの加重平均です。"
+      },
+      "howBad": {
+        "title": "私はひどく立ち往生していますか？",
+        "content": "通常のパフォーマンスインデックスは、通常-4.0〜2.0です。教師はしばしば分裂する傾向があるため、生徒はパフォーマンス指標がマイナスになる可能性が高くなります。カードのパフォーマンスインデックスが2より大きい場合は、より深刻であることを示している可能性があります。"
+      }
+    }
+  },
+  "schedule": {
+    "noCourseToday": "今日は何もしません",
+    "id": "ID",
+    "logicNo": "論理クラス番号",
+    "campus": "キャンパス",
+    "location": "クラスの場所",
+    "weeks": "週の開始と終了",
+    "time": "時間",
+    "WEEK": {
+      "pre": "最初に",
+      "post": " 週"
+    }
+  },
+  "library": {
+    "noBooks": "まだ本を借りていません。",
+    "notBound": "ライブラリアカウントはバインドされていません",
+    "callNo": "電話番号",
+    "type": "書誌タイプ",
+    "location": "場所",
+    "borrowedTime": "貸す",
+    "returnBy": "まだあるはず",
+    "overdue": "期限切れ",
+    "renew": "更新する",
+    "renewCaveat": "本は3回しか更新できません。機会を無駄にしないために、締め切りが近づくと本を更新することをお勧めします。続行しますか？"
+  },
+  "network": {
+    "login": "サーフィン",
+    "logout": "浜辺",
+    "yourUsername": "学生IDまたはキャンパスID",
+    "yourPassword": "g.tju.edu.cnのパスワード",
+    "greetings": "神は「あなたは網を持たなければならない」と言われました。",
+    "connected": "それからネットがあります。",
+    "bugHint": "正しいパスワードを入力した場合でも、間違ったパスワードでメッセージを返すことがあります。このエラーは、天津大学ネットワークセンターが原因で発生し、場合によっては独自のログインページで発生しました。この場合、複数回試行する必要がある場合があります。"
+  },
+  "contact": {
+    "searchBar": "検索キーワード",
+    "department": "部門",
+    "noUnit": "部門の下にユニットがない",
+    "infoSource": "情報源",
+    "info": {
+      "title": "について",
+      "content": "情報は天津大学のオフィスネットワークによって提供されます。連絡先の詳細を投稿したり、バグを報告するには、天津大学情報ネットワークセンターにお問い合わせください。"
+    }
+  }
+}
