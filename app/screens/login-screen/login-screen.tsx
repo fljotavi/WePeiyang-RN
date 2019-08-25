@@ -20,11 +20,12 @@ import { passTokenToStore, twtGet } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
 import { ByTwt } from "../../components/by-twt"
 import { Toasti } from "../../components/toasti"
-import { setRequestMode } from "../../actions/data-actions"
+import {setEcardAuth, setRequestMode} from "../../actions/data-actions"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
   setRequestMode?
   compData?
+  setEcardAuth?
 }
 
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
@@ -83,6 +84,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       .then(response => response.json())
       .then(() => {
         this.storeToken("MOCK")
+        this.props.setEcardAuth("", "")
         this.props.navigation.navigate("app")
       })
       .catch(err => {
@@ -166,6 +168,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setRequestMode: mode => {
       dispatch(setRequestMode(mode))
+    },
+    setEcardAuth: (cardId, password) => {
+      dispatch(setEcardAuth(cardId, password))
     },
   }
 }
