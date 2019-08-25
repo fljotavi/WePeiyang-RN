@@ -37,7 +37,6 @@ import { EcardSnack } from "./ecard-snack"
 import { EcardBar } from "./ecard-bar"
 import { Button } from "../../components/button"
 
-import ss from "./ecard-screen-style"
 import { Toasti } from "../../components/toasti"
 import { IanBorderless } from "../../components/ian-borderless"
 
@@ -122,6 +121,7 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
 
   render() {
     const { ecard } = this.props
+    const ss = require("./ecard-screen-style").default
 
     return (
       <Screen style={ss.screen}>

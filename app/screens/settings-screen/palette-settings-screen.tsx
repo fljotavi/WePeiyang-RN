@@ -23,7 +23,9 @@ export interface ColorSnackProps {
 export class ColorSnack extends React.Component<ColorSnackProps, {}> {
   state = {
     isModalVisible: false,
-    colorSelected: `rgb(${Math.ceil(Math.random() * 255)},122,122)`,
+    colorSelected: `rgb(${Math.ceil(Math.random() * 255)},${Math.ceil(
+      Math.random() * 255,
+    )},${Math.ceil(Math.random() * 255)})`,
   }
   openModal = () => {
     this.setState({ isModalVisible: true })

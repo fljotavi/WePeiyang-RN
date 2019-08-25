@@ -14,7 +14,6 @@ import { connect } from "react-redux"
 import { FlatList, ScrollView, StatusBar, View, Image } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
-import ss from "./yellow-pages-screen.styles"
 import { NavigationScreenProps } from "react-navigation"
 import { TopBar } from "../../components/top-bar"
 import { fetchYellowPagesData } from "../../actions/data-actions"
@@ -43,6 +42,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
   }
 
   render() {
+    const ss = require("./yellow-pages-screen.styles").default
     const { yellowPages } = this.props
     const indices = this.props.navigation.getParam("indices" as never, 0 as never) // TODO: Find out what the fuck is happening, either with this library, or its type definition, or TSLint, something
     const dep = this.props.yellowPages.data[indices[0]].department_list[indices[1]]

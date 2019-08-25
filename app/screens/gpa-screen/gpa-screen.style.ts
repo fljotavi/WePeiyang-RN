@@ -1,14 +1,11 @@
 import { color, layoutParam } from "../../theme"
 import { ImageStyle, TextStyle, ViewStyle } from "react-native"
 
-const getBgColor = () => {
-  console.log("received in ss", color.module())
-  return color.module().gpa[0]
-}
+const palette = color.module().gpa
 
 export default {
   screen: {
-    backgroundColor: getBgColor(),
+    backgroundColor: palette[0],
   },
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
@@ -27,7 +24,7 @@ export default {
     marginBottom: 50,
   },
   modal: {
-    backgroundColor: color.module().gpa[1],
+    backgroundColor: palette[1],
     borderRadius: layoutParam.borderRadius,
     marginHorizontal: 20,
     marginVertical: 50,
@@ -36,7 +33,7 @@ export default {
     padding: 20,
   } as ViewStyle,
   modalText: {
-    color: color.module().gpa[0],
+    color: palette[0],
   } as TextStyle,
   orderTab: {
     marginBottom: 15,
@@ -53,15 +50,15 @@ export default {
     alignItems: "center",
   } as ViewStyle,
   orderIcon: {
-    color: color.module().gpa[2],
+    color: palette[2],
     marginRight: 5,
   } as TextStyle,
   orderTextPrefix: {
-    color: color.module().gpa[2],
+    color: palette[2],
     marginRight: 4,
   } as TextStyle,
   orderTextSuffix: {
-    color: color.module().gpa[2],
+    color: palette[2],
     fontWeight: "bold",
   } as TextStyle,
 
@@ -76,14 +73,14 @@ export default {
   } as ViewStyle,
 
   kachiHead: {
-    color: color.module().gpa[0],
+    color: palette[0],
     marginBottom: 3,
   } as TextStyle,
   kachiPara: {
-    color: color.module().gpa[0],
+    color: palette[0],
   } as TextStyle,
   kachiHugo: {
-    color: color.module().gpa[0],
+    color: palette[0],
     marginTop: 10,
     marginBottom: 6,
   } as TextStyle,
@@ -109,7 +106,7 @@ export default {
     paddingTop: 20,
     width: 300,
     borderRadius: layoutParam.borderRadius,
-    backgroundColor: color.module().gpa[1],
+    backgroundColor: palette[1],
     alignItems: "flex-start",
   } as ViewStyle,
 }

@@ -25,7 +25,6 @@ import {
 } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
-import ss from "./yellow-pages-screen.styles"
 import { NavigationScreenProps } from "react-navigation"
 import { TopBar } from "../../components/top-bar"
 import { fetchYellowPagesData } from "../../actions/data-actions"
@@ -142,6 +141,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
   _keyExtractor = item => String(item.no)
 
   render() {
+    const ss = require("./yellow-pages-screen.styles").default
     return (
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
