@@ -62,6 +62,10 @@
       "homepage": "Homepage",
       "elsewhere": "Elsewhere"
     },
+    "palette": {
+      "title": "Palette",
+      "intro": "Create your own color theme for GPA, E-card and Contact modules."
+    },
     "hideGpa": "Hide GPA On Homepage",
     "owlMode": {
       "title": "Enable Owl Mode",
