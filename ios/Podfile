@@ -32,6 +32,8 @@ target 'WePeiyang' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'RCTRestart', :path => '../node_modules/react-native-restart'
+
   target 'WePeiyangTests' do
     inherit! :search_paths
     # Pods for testing

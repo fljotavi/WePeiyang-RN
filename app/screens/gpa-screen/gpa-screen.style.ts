@@ -1,9 +1,14 @@
 import { color, layoutParam } from "../../theme"
 import { ImageStyle, TextStyle, ViewStyle } from "react-native"
 
+const getBgColor = () => {
+  console.log("received in ss", color.module())
+  return color.module().gpa[0]
+}
+
 export default {
   screen: {
-    backgroundColor: color.module().gpa[0],
+    backgroundColor: getBgColor(),
   },
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,

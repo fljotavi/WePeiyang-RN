@@ -6,12 +6,6 @@ const { store } = configureStore
 const white = alpha => `rgba(255,255,255,${alpha})`
 const black = alpha => `rgba(0,0,0,${alpha})`
 
-let moduleColors = {
-  gpa: store.getState().preferenceReducer.palette.gpa,
-  ecard: store.getState().preferenceReducer.palette.ecard,
-  yellowPages: store.getState().preferenceReducer.palette.yellowPages,
-}
-
 export const color = {
   /**
    * The palette is available to use, but prefer using the name.
@@ -75,7 +69,13 @@ export const color = {
    * Module-specific colors.
    */
   module: () => {
-    return moduleColors
+    let res = {
+      gpa: [...store.getState().preferenceReducer.palette.gpa],
+      ecard: store.getState().preferenceReducer.palette.ecard,
+      yellowPages: store.getState().preferenceReducer.palette.yellowPages,
+    }
+    console.log("returned in color.ts module()", res)
+    return res
   },
 
   /**

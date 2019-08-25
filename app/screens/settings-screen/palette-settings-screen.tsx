@@ -11,6 +11,8 @@ import { TopBar } from "../../components/top-bar"
 import Touchable from "react-native-platform-touchable"
 import ss from "./settings-screen.styles"
 import Modal from "react-native-modal"
+import RNRestart from "react-native-restart"
+import { SettingsSnack } from "./settings-snack"
 
 export interface ColorSnackProps {
   color
@@ -130,6 +132,10 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
             color={pref.palette.yellowPages[2]}
             sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 2)}
           />
+
+          <Text text="reload" preset="lausanne" style={ss.sectionHead} />
+
+          <SettingsSnack preset="enter" onPress={() => RNRestart.Restart()} />
         </View>
       </Screen>
     )
