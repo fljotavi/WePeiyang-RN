@@ -1,12 +1,13 @@
 import { TextStyle, ViewStyle, Platform } from "react-native"
 import { color } from "./color"
+import { getStatusBarHeight } from "react-native-status-bar-height"
 
 export const layoutParam = {
   paddingHorizontal: 22,
   paddingVertical: 22,
   footerHeight: 55,
   borderRadius: 10,
-  statusBarHeight: Platform.select({ ios: 0, android: 26 }), // TODO: Change to device-specific calculations
+  statusBarHeight: Platform.select({ ios: 0, android: getStatusBarHeight() }), // TODO: Change to device-specific calculations
 }
 
 export const shadowPresets = {
