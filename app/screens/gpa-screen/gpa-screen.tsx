@@ -11,13 +11,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {
-  DeviceEventEmitter,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-  View,
-} from "react-native"
+import { DeviceEventEmitter, Dimensions, StatusBar, TouchableOpacity, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
