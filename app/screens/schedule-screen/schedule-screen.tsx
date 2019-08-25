@@ -49,6 +49,7 @@ import { colorHashByCredits, sanitizeLocation } from "../../utils/common"
 import { color, layoutParam } from "../../theme"
 import { fetchCourseData, setGeneratedSchedule } from "../../actions/data-actions"
 import ss from "./schedule-screen.style"
+import { BottomBar } from "./bottom-bar"
 
 export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   course?
@@ -145,6 +146,10 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
       weeks = getFullSchedule(course.data, daysEachWeek)
       this.props.setGeneratedSchedule(weeks)
     }
+
+    // These are used to calculate the FreeTime Bar Ratio below the schedule.
+    let occupied = weeks.reduce((accumulator, week) => accumulator + week.occupiedIndex, 0)
+    let TOTAL = weeks.length * 7 * 12
 
     let days = weeks[this.state.chosenWeek - 1].days
 
@@ -402,8 +407,8 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                 </TouchableOpacity>
               )}
             />
-
             <View style={[ss.main, { height: renderHeight }]}>{columns}</View>
+            <BottomBar ratio={[occupied, TOTAL]} />
           </View>
         </ScrollView>
       </Screen>

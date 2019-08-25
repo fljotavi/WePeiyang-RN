@@ -63,4 +63,5 @@ export default {
     width: 250,
     alignSelf: "center",
   } as ViewStyle,
+
 }

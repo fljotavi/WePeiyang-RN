@@ -206,7 +206,8 @@
     "WEEK": {
       "pre": "WEEK ",
       "post": ""
-    }
+    },
+    "totalClassHours": "Total Class Hours:"
   },
   "library": {
     "noBooks": "You didn't borrow any books",

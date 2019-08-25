@@ -206,7 +206,8 @@
     "WEEK": {
       "pre": "第 ",
       "post": " 周"
-    }
+    },
+    "totalClassHours": "学期总课时"
   },
   "library": {
     "noBooks": "你还没有借阅书籍",

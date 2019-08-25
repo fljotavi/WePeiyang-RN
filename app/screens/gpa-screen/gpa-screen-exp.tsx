@@ -50,8 +50,9 @@ class _GpaScreenExp extends React.Component<GpaScreenExpProps, {}> {
                 <Text text={(kachi * 100).toFixed(2)} style={ss.kachiHugo} preset="h1" />
                 <View style={ss.kachiList}>
                   <KachiSnack cols={["学期", "加权", "绩点", "卡绩指数"]} />
-                  {kachiIndices.map(sem => (
+                  {kachiIndices.map((sem, i) => (
                     <KachiSnack
+                      key={i}
                       cols={[sem.name, sem.stat.score, sem.stat.gpa, (sem.kachi * 100).toFixed(2)]}
                     />
                   ))}

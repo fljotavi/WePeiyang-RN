@@ -53,6 +53,7 @@ export const mapTimeSlotToFlatIndex = timeSlot => {
 export const getFullSchedule = (data, daysEachWeek) => {
   let weeks = []
   for (let week = 1; week <= WEEK_LIMIT; week++) {
+    let occupiedIndex = 0
     let days = []
     let matrix = []
     for (let day = 1; day < daysEachWeek + 1; day++) {
@@ -70,6 +71,7 @@ export const getFullSchedule = (data, daysEachWeek) => {
           let start = Number(course.activeArrange.start)
           let end = Number(course.activeArrange.end)
           for (let timeSlot = start; timeSlot <= end; timeSlot++) {
+            occupiedIndex += 1
             column[mapTimeSlotToFlatIndex(timeSlot)] += 1
           }
         }
@@ -80,6 +82,7 @@ export const getFullSchedule = (data, daysEachWeek) => {
       week,
       days,
       matrix,
+      occupiedIndex,
     })
   }
   console.log("Full schedd", weeks)
