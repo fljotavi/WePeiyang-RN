@@ -57,6 +57,14 @@ export const ssGlobal = {
     right: -18,
     top: 0,
     bottom: 0,
+    transform: [
+      {
+        scale: Platform.select({
+          ios: 0.5,
+          android: 1,
+        }),
+      },
+    ],
   } as ViewStyle,
 
   topBar: {
