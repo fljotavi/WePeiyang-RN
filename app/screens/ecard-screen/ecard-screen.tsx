@@ -133,8 +133,8 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={this._onRefresh}
-              tintColor={color.module.ecard[1]}
-              colors={[color.module.ecard[0]]}
+              tintColor={color.module().ecard[1]}
+              colors={[color.module().ecard[0]]}
             />
           }
         >
@@ -153,15 +153,15 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
                 },
               ],
             }}
-            color={color.module.ecard[1]}
+            color={color.module().ecard[1]}
           />
 
           <View style={ss.container}>
             <EcardBlock
               palette={[
-                Color(color.module.ecard[0]).mix(Color("white"), 0.02),
-                color.module.ecard[1],
-                color.module.ecard[1],
+                Color(color.module().ecard[0]).mix(Color("white"), 0.02),
+                color.module().ecard[1],
+                color.module().ecard[1],
               ]}
             />
 
@@ -231,14 +231,14 @@ export class EcardScreen extends React.Component<EcardScreenProps, {}> {
             <Button
               style={ss.loadMoreTouchable}
               onPress={this._loadMore}
-              rippleColor={color.module.ecard[0]}
+              rippleColor={color.module().ecard[0]}
             >
               <ActivityIndicator
                 style={[
                   ssGlobal.buttonLoadingIndicator,
                   { opacity: this.state.loadingMore ? 1 : 0 },
                 ]}
-                color={color.module.ecard[0]}
+                color={color.module().ecard[0]}
                 size={ssGlobal.loadingSize}
               />
               <Text tx="ecard.loadMore" style={ss.loadMoreText} />

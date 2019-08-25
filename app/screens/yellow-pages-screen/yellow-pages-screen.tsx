@@ -161,7 +161,7 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
               },
             ],
           }}
-          color={color.module.yellowPages[1]}
+          color={color.module().yellowPages[1]}
         />
 
         <ScrollView
@@ -170,19 +170,19 @@ export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={this._onRefresh}
-              tintColor={color.module.yellowPages[1]}
-              colors={[color.module.yellowPages[1]]}
+              tintColor={color.module().yellowPages[1]}
+              colors={[color.module().yellowPages[1]]}
             />
           }
         >
           <View style={ss.container}>
             <View style={ss.poweredBy}>
               <Text text="Powered by" preset="lausanne" style={ss.poweredByText} />
-              <FlexSearchLogo style={ss.poweredByLogo} fill={color.module.yellowPages[2]} />
+              <FlexSearchLogo style={ss.poweredByLogo} fill={color.module().yellowPages[2]} />
             </View>
             <TextField
               placeholderTx="contact.searchBar"
-              placeholderTextColor={color.module.yellowPages[1]}
+              placeholderTextColor={color.module().yellowPages[1]}
               onChangeText={text => this.goSearch(text)}
               style={ss.field}
               inputStyle={ss.input}

@@ -30,6 +30,7 @@
     "pangu": "^4.0.7",
     "ramda": "0.25.0",
     "react": "16.8.6",
+    "react-colorizer": "^1.1.1",
     "react-native": "0.60.4",
     "react-native-draggable-flatlist": "^1.1.7",
     "react-native-easy-toast": "^1.2.0",

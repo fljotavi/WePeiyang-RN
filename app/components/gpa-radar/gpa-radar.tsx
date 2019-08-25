@@ -116,7 +116,7 @@ export function GpaPolarLabel(props: GpaPolarLabelProps) {
         <Svgtext
           textAnchor="middle"
           fontSize={7}
-          fill={color.module.gpa[1]}
+          fill={color.module().gpa[1]}
           fontFamily={typography.primary}
         >
           {tgroup}
@@ -196,7 +196,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
           <IanBorderless
             icon="insert_chart"
             tx="data.noAvailableData"
-            color={color.module.gpa[2]}
+            color={color.module().gpa[2]}
           />
         </View>
       )
@@ -213,7 +213,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
     if (processed && processed.length <= 2) {
       return (
         <View style={[predefinedStyle, style]}>
-          <IanBorderless icon="insert_chart" tx="gpa.noRadar" color={color.module.gpa[2]} />
+          <IanBorderless icon="insert_chart" tx="gpa.noRadar" color={color.module().gpa[2]} />
         </View>
       )
     }
@@ -224,7 +224,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
           {this.state.renderChart && (
             <Svg>
               <VictoryChart domain={{ y: [0, 100] }} polar>
-                <VictoryGroup colorScale={[color.module.gpa[1]]}>
+                <VictoryGroup colorScale={[color.module().gpa[1]]}>
                   <VictoryArea
                     style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
                     data={processed}
@@ -233,7 +233,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
                   <VictoryBar
                     style={{
                       data: {
-                        fill: color.module.gpa[1],
+                        fill: color.module().gpa[1],
                         fillOpacity: 0.07,
                       },
                     }}
@@ -261,7 +261,7 @@ class _GpaRadar extends React.Component<GpaRadarProps, {}> {
                   tickFormat={() => ""}
                   style={{
                     axis: { stroke: "none" },
-                    grid: { stroke: color.module.gpa[1], opacity: 0.5, strokeWidth: 0.25 },
+                    grid: { stroke: color.module().gpa[1], opacity: 0.5, strokeWidth: 0.25 },
                   }}
                 />
               </VictoryChart>

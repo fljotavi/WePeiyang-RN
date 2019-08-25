@@ -1,10 +1,16 @@
 import { palette } from "./palette"
 import Color from "color"
-import configureStore from "../store";
+import configureStore from "../store"
 const { store } = configureStore
 
 const white = alpha => `rgba(255,255,255,${alpha})`
 const black = alpha => `rgba(0,0,0,${alpha})`
+
+let moduleColors = {
+  gpa: store.getState().preferenceReducer.palette.gpa,
+  ecard: store.getState().preferenceReducer.palette.ecard,
+  yellowPages: store.getState().preferenceReducer.palette.yellowPages,
+}
 
 export const color = {
   /**
@@ -68,10 +74,8 @@ export const color = {
   /**
    * Module-specific colors.
    */
-  module: {
-    gpa: [store.getState().preferenceReducer.palette.gpa[0], white(0.95), white(0.35), white(0.08)],
-    ecard: store.getState().preferenceReducer.palette.ecard,
-    yellowPages: store.getState().preferenceReducer.palette.yellowPages,
+  module: () => {
+    return moduleColors
   },
 
   /**

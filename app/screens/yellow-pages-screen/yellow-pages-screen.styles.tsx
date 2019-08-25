@@ -8,10 +8,10 @@ export default {
     paddingVertical: layoutParam.paddingVertical,
   } as ViewStyle,
   screen: {
-    backgroundColor: color.module.yellowPages[0],
+    backgroundColor: color.module().yellowPages[0],
   } as ViewStyle,
   screenInvert: {
-    backgroundColor: color.module.yellowPages[2],
+    backgroundColor: color.module().yellowPages[2],
   } as ViewStyle,
   field: {
     backgroundColor: color.transparent,
@@ -22,32 +22,32 @@ export default {
     backgroundColor: color.transparent,
     paddingHorizontal: 0,
     fontSize: 35,
-    color: color.module.yellowPages[1],
+    color: color.module().yellowPages[1],
   } as TextStyle,
 
   poweredBy: {} as ViewStyle,
   poweredByText: {
-    color: color.module.yellowPages[2],
+    color: color.module().yellowPages[2],
     marginRight: 5,
   } as TextStyle,
   poweredByLogo: {} as ViewStyle,
 
   screenHead: {
     fontSize: 40,
-    color: color.module.yellowPages[0],
+    color: color.module().yellowPages[0],
     lineHeight: 48,
     marginTop: 13,
   } as TextStyle,
   sectionHead: {
     fontSize: 18,
-    color: color.module.yellowPages[0],
+    color: color.module().yellowPages[0],
     fontWeight: "bold",
     marginTop: availableWidth * 0.47,
     textTransform: "uppercase",
   } as TextStyle,
   p: {
     fontSize: 12,
-    color: color.module.yellowPages[0],
+    color: color.module().yellowPages[0],
   } as TextStyle,
 
   unitList: {

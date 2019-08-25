@@ -29,7 +29,7 @@ export function InfoSource(props: InfoSourceProps) {
       marginHorizontal: 4,
     } as ViewStyle,
     text: {
-      color: color.module.yellowPages[0],
+      color: color.module().yellowPages[0],
       fontSize: 11,
       fontWeight: "bold",
     } as TextStyle,
@@ -38,7 +38,7 @@ export function InfoSource(props: InfoSourceProps) {
     <View style={[ss.container, style]}>
       <Text tx="contact.infoSource" style={ss.text} />
       <Text text="  /" style={ss.text} />
-      <TjuBadge fill={color.module.yellowPages[0]} height={20} width={15} style={ss.icon} />
+      <TjuBadge fill={color.module().yellowPages[0]} height={20} width={15} style={ss.icon} />
       <Text text="天津大学办公服务平台" style={ss.text} />
     </View>
   )

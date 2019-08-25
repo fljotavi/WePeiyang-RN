@@ -31,7 +31,7 @@ export function SearchResult(props: SearchResultProps) {
       marginTop: 20,
     } as ViewStyle,
     sectionHead: {
-      color: color.module.yellowPages[1],
+      color: color.module().yellowPages[1],
       marginVertical: 10,
     } as TextStyle,
     list: {} as ViewStyle,
@@ -68,7 +68,7 @@ export function SearchResult(props: SearchResultProps) {
         ListEmptyComponent={() => (
           <Ian
             text="No relating departments"
-            palette={[color.module.yellowPages[2], color.module.yellowPages[0]]}
+            palette={[color.module().yellowPages[2], color.module().yellowPages[0]]}
           />
         )}
       />
@@ -95,7 +95,7 @@ export function SearchResult(props: SearchResultProps) {
         ListEmptyComponent={() => (
           <Ian
             text="No relating offices"
-            palette={[color.module.yellowPages[2], color.module.yellowPages[0]]}
+            palette={[color.module().yellowPages[2], color.module().yellowPages[0]]}
           />
         )}
       />

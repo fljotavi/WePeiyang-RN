@@ -45,7 +45,7 @@ class _GpaStatSemestral extends React.Component<GpaStatSemestralProps, {}> {
         setScoreType={scoreType => setScoreType(scoreType)}
         scores={semestralStat}
         txs={["gpa.semestralWeighted", "gpa.semestralGpa", "gpa.semestralCredits"]}
-        palette={[color.module.gpa[2], color.module.gpa[1]]}
+        palette={[color.module().gpa[2], color.module().gpa[1]]}
       />
     )
   }

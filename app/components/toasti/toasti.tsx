@@ -46,16 +46,16 @@ export function Toasti(props: ToastiProps) {
     case undefined:
       break
     case "gpa":
-      v.backgroundColor = color.module.gpa[1]
-      t.color = color.module.gpa[0]
+      v.backgroundColor = color.module().gpa[1]
+      t.color = color.module().gpa[0]
       break
     case "ecard":
-      v.backgroundColor = color.module.ecard[1]
-      t.color = color.module.ecard[0]
+      v.backgroundColor = color.module().ecard[1]
+      t.color = color.module().ecard[0]
       break
     case "yellowPages":
-      v.backgroundColor = color.module.yellowPages[1]
-      t.color = color.module.yellowPages[0]
+      v.backgroundColor = color.module().yellowPages[1]
+      t.color = color.module().yellowPages[0]
       break
     case "error":
       v.backgroundColor = color.error

@@ -19,7 +19,7 @@ export interface KachiSnackProps {
 export function KachiSnack(props: KachiSnackProps) {
   const { cols } = props
   const textBase = {
-    color: color.module.gpa[0],
+    color: color.module().gpa[0],
     width: 50,
     textAlign: "center",
   }
@@ -45,7 +45,7 @@ export function KachiSnack(props: KachiSnackProps) {
   return (
     <View style={ss.snackContainer} pointerEvents="box-only">
       {cols.map((col, i) => (
-        <Text text={col} style={i === 3 ? ss.textBold : ss.text} preset="small" />
+        <Text text={col} key={i} style={i === 3 ? ss.textBold : ss.text} preset="small" />
       ))}
     </View>
   )

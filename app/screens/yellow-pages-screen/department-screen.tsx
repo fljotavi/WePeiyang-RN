@@ -60,7 +60,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
           <Alert
             headingTx="contact.info.title"
             contentTx="contact.info.content"
-            palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+            palette={[color.module().yellowPages[0], color.module().yellowPages[2]]}
             buttons={[
               {
                 tx: "common.gotIt",
@@ -87,7 +87,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               },
             ],
           }}
-          color={color.module.yellowPages[0]}
+          color={color.module().yellowPages[0]}
         />
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ss.unitScroll}>
@@ -99,12 +99,12 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               <Tag
                 text={yellowPages.data[indices[0]].category_name}
                 iconText="account_balance"
-                palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+                palette={[color.module().yellowPages[0], color.module().yellowPages[2]]}
               />
               <Tag
                 text={dep.unit_list.length + " 个办公室"}
                 iconText="subject"
-                palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+                palette={[color.module().yellowPages[0], color.module().yellowPages[2]]}
               />
             </View>
             <FlatList
@@ -123,7 +123,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               ListEmptyComponent={() => (
                 <Ian
                   tx="contact.noUnit"
-                  palette={[color.module.yellowPages[2], color.module.yellowPages[0]]}
+                  palette={[color.module().yellowPages[2], color.module().yellowPages[0]]}
                 />
               )}
             />

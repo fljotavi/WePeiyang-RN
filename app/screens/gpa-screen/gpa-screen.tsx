@@ -11,13 +11,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import {
-  DeviceEventEmitter,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-  View,
-} from "react-native"
+import { DeviceEventEmitter, Dimensions, StatusBar, TouchableOpacity, View } from "react-native"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -83,7 +77,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               <Text
                 tx={route.titleTx}
                 preset="lausanne"
-                style={[ssGlobal.tabBar.tabText, { color: color.module.gpa[1] }]}
+                style={[ssGlobal.tabBar.tabText, { color: color.module().gpa[1] }]}
               />
             </TouchableOpacity>
           )
@@ -108,7 +102,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           <Alert
             headingTx="gpa.info.title"
             contentTx="gpa.info.content"
-            palette={[color.module.gpa[0], color.module.gpa[1]]}
+            palette={[color.module().gpa[0], color.module().gpa[1]]}
             buttons={[
               {
                 tx: "common.gotIt",
@@ -139,7 +133,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               },
             ],
           }}
-          color={color.module.gpa[1]}
+          color={color.module().gpa[1]}
         />
 
         <TabView

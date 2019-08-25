@@ -45,11 +45,11 @@ class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
             scoreToFixed={digitsFromScoreType(scoreType)}
             animated={false}
             palette={[
-              color.module.gpa[3],
-              color.module.gpa[1],
-              color.module.gpa[3],
-              color.module.gpa[1],
-              color.module.gpa[0],
+              color.module().gpa[3],
+              color.module().gpa[1],
+              color.module().gpa[3],
+              color.module().gpa[1],
+              color.module().gpa[0],
             ]}
           />
 

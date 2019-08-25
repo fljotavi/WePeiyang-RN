@@ -80,7 +80,7 @@ class _GpaScreenExp extends React.Component<GpaScreenExpProps, {}> {
               <Text tx="gpa.kachi.howBad.content" style={ss.kachiPara} preset="small" />
             </View>
           </View>
-          <ByTwt fill={color.module.gpa[2]}>
+          <ByTwt fill={color.module().gpa[2]}>
             <Text text="ExperimentLab" />
           </ByTwt>
         </View>

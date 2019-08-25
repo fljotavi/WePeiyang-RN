@@ -12,6 +12,7 @@
 
 import { palette } from "../theme/palette"
 
+const white = alpha => `rgba(255,255,255,${alpha})`
 export const preferenceReducer = (
   state = {
     scoreType: "weighted",
@@ -44,7 +45,7 @@ export const preferenceReducer = (
     owlIndex: 21,
     displayNotThisWeek: true,
     palette: {
-      gpa: [palette.matcha],
+      gpa: [palette.matcha, white(0.95), white(0.35), white(0.08)],
       ecard: [palette.offBlack, palette.silver, palette.gold],
       yellowPages: [palette.paper, palette.ink, palette.rouge],
     },
