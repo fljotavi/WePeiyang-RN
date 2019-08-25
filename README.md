@@ -60,6 +60,7 @@ Most major modules are developed.
 | GPA order by course name                                    | GPA 按照课程名称排序         | ✔                   |
 | Toggle your curves                                          | 切换绩点 / 学分 / 加权曲线   | ✔                   |
 | Kachi Index                                          | 卡绩指数   | ✔                   |
+| *What If*                                          | 增加或删除自定义科目后计算结果   |                    |
 
 
 ##### E-card
@@ -108,10 +109,11 @@ Most major modules are developed.
 | Language (Native)                                            | Language | Status              |
 | ------------------------------------------------------------ | -------- | ------------------- |
 | [English](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/en.json) | English  | Supported           |
-| [简体中文](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/zh.json) | Chinese  | Partial translation |
+| [简体中文](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/zh.json) | Chinese  | Supported           |
 | [عربى](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/ar.json) | Arabic   | Partial translation |
 | [Espanol](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/es.json) | Spanish  | Partial translation |
 | [日本語](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/ja.json) | Japanese | Partial translation |
+| [ไทย](https://github.com/Cyphexl/WePeiYang-RN/blob/master/app/i18n/th.json) | Thai | Partial translation |
 
 More is coming, help is welcome.
 
