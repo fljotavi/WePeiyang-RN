@@ -5,15 +5,15 @@ import { color, layoutParam } from "../../theme"
  * All text will start off looking like this.
  */
 const BASE_VIEW: ViewStyle = {
-  paddingVertical: 15,
-  paddingHorizontal: 15,
+  paddingVertical: 13,
+  paddingHorizontal: 13,
   borderRadius: 999,
   justifyContent: "center",
   alignItems: "center",
 }
 
 const BASE_TEXT: TextStyle = {
-  paddingHorizontal: 15,
+  paddingHorizontal: 13,
 }
 
 /**
@@ -51,7 +51,7 @@ export const viewPresets = {
 }
 
 export const textPresets = {
-  primary: { ...BASE_TEXT, fontSize: 15, color: color.background } as TextStyle,
+  primary: { ...BASE_TEXT, fontSize: 14, color: color.background } as TextStyle,
   link: {
     ...BASE_TEXT,
     color: color.text,

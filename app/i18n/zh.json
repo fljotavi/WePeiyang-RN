@@ -225,8 +225,8 @@
     "login": "冲浪",
     "logout": "靠岸",
     "yourUsername": "你的学号或校园身份 ID",
-    "yourPassword": "你的g.tju.edu.cn密码",
-    "greetings": "上帝说，“要有网”",
+    "yourPassword": "你的 g.tju.edu.cn 密码",
+    "greetings": "上帝说，“要有网”。",
     "connected": "于是就有了网。",
     "bugHint": "有些时候，即便输入正确的密码也可能会返回密码错误的消息。此错误是由天津大学信网中心引起的，偶尔也发生在他们自己的登录页面上。在这种情况下，您可能需要多次尝试。"
   },

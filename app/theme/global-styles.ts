@@ -111,11 +111,11 @@ export const ssGlobal = {
       marginBottom: 13,
     } as ViewStyle,
     button: {
-      paddingHorizontal: 45,
+      paddingHorizontal: 30,
       marginRight: 12,
     } as ViewStyle,
     buttonSecondary: {
-      paddingHorizontal: 45,
+      paddingHorizontal: 30,
       backgroundColor: color.washed,
     } as ViewStyle,
     buttonText: {
