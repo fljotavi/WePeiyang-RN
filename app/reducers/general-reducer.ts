@@ -10,6 +10,8 @@
 
 // Preference Reducer 用于记录用户的偏好设置。
 
+import { palette } from "../theme/palette"
+
 export const preferenceReducer = (
   state = {
     scoreType: "weighted",
@@ -41,6 +43,11 @@ export const preferenceReducer = (
     scheduleTextSize: 100,
     owlIndex: 21,
     displayNotThisWeek: true,
+    palette: {
+      gpa: [palette.matcha],
+      ecard: [palette.offBlack, palette.silver, palette.gold],
+      yellowPages: [palette.paper, palette.ink, palette.rouge],
+    },
   },
   action,
 ) => {
@@ -56,6 +63,15 @@ export const preferenceReducer = (
         ...state,
         gpaOrderBy: action.payload,
       }
+      break
+    case "SET_PALETTE":
+      state = {
+        ...state,
+        palette: {
+          ...state.palette,
+        },
+      }
+      state.palette[action.payload.key] = action.payload.value
       break
     case "SET_PREFERENCE":
       state = {
