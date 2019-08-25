@@ -30,12 +30,21 @@ interface AppState {}
 export class App extends React.Component<{}, AppState> {
   listener
   toastRef
+  state = {
+    rehydrated: false,
+  }
 
   componentDidMount() {
     console.disableYellowBox = true // TODO: Comment this line when preparing for a release
     this.listener = DeviceEventEmitter.addListener("showToast", inner => {
       this.toastRef.show(inner)
     })
+  }
+
+  componentWillMount(): void {
+    setTimeout(() => {
+      this.setState({ rehydrated: true })
+    }, 2000)
   }
 
   componentWillUnmount() {

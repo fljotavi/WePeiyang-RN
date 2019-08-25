@@ -11,7 +11,6 @@
 import * as React from "react"
 import { connect } from "react-redux"
 import { ScrollView, View } from "react-native"
-import ss from "./gpa-screen.style"
 import { Image } from "react-native"
 import { Text } from "../../components/text"
 import { kachiIndexOverall, kachiIndexSemester } from "../../utils/kachi"
@@ -38,7 +37,7 @@ class _GpaScreenExp extends React.Component<GpaScreenExpProps, {}> {
     let kachi = kachiIndexOverall(kachiIndices)
 
     console.log(kachiIndices, kachi)
-
+    const ss = require("./gpa-screen.style.ts").default
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={ss.container}>

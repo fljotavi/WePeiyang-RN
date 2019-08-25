@@ -16,7 +16,6 @@ import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchGpaData } from "../../actions/data-actions"
-import ss from "./gpa-screen.style"
 import Modal from "react-native-modal"
 import { Toasti } from "../../components/toasti"
 import { TopBar } from "../../components/top-bar"
@@ -87,6 +86,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   }
 
   render() {
+    const ss = require("./gpa-screen.style.ts").default
     return (
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { StatusBar, View, ViewStyle } from "react-native"
+import { Platform, StatusBar, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
@@ -11,8 +11,10 @@ import { TopBar } from "../../components/top-bar"
 import Touchable from "react-native-platform-touchable"
 import ss from "./settings-screen.styles"
 import Modal from "react-native-modal"
-import RNRestart from "react-native-restart"
 import { SettingsSnack } from "./settings-snack"
+
+import RNRestart from "react-native-restart"
+import { NativeModules } from "react-native"
 
 export interface ColorSnackProps {
   color
@@ -21,7 +23,7 @@ export interface ColorSnackProps {
 export class ColorSnack extends React.Component<ColorSnackProps, {}> {
   state = {
     isModalVisible: false,
-    colorSelected: "red",
+    colorSelected: `rgb(${Math.ceil(Math.random() * 255)},122,122)`,
   }
   openModal = () => {
     this.setState({ isModalVisible: true })
@@ -75,6 +77,11 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
     existingPalette[index] = colorToSend
     this.props.setPalette(dest, existingPalette)
   }
+  reload = () => {
+    if (Platform.OS === "ios") NativeModules.DevSettings.reload()
+    else RNRestart.Restart()
+  }
+
   render() {
     const { pref } = this.props
     console.log(pref)
@@ -135,7 +142,7 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
 
           <Text text="reload" preset="lausanne" style={ss.sectionHead} />
 
-          <SettingsSnack preset="enter" onPress={() => RNRestart.Restart()} />
+          <SettingsSnack preset="enter" onPress={this.reload} />
         </View>
       </Screen>
     )
