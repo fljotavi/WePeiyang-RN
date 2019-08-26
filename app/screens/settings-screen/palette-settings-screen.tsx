@@ -2,13 +2,13 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 import {
-  Dimensions,
   Platform,
   ScrollView,
   StatusBar,
   TextStyle,
   View,
   ViewStyle,
+  TouchableOpacity as Touchable,
 } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -16,7 +16,6 @@ import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { setPalette } from "../../actions/preference-actions"
 import { TopBar } from "../../components/top-bar"
-import Touchable from "react-native-platform-touchable"
 import ss from "./settings-screen.styles"
 import Modal from "react-native-modal"
 
@@ -50,15 +49,16 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
   }
 
   render() {
-    const ss = {
+    const ssColorSnack = {
       panel: {
-        padding: 30,
+        padding: 40,
+        marginHorizontal: 30,
         backgroundColor: color.black(1),
+        borderRadius: layoutParam.borderRadius * 1.5,
       } as ViewStyle,
       window: {
-        alignSelf: "stretch",
+        width: "100%",
         aspectRatio: 1,
-        maxHeight: Dimensions.get("window").height * 0.5,
         backgroundColor: color.background,
         marginBottom: 20,
       } as ViewStyle,
@@ -83,8 +83,8 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
       } as TextStyle,
       hint: {
         color: screenPalette[1],
-        fontSize: 11,
-        marginBottom: 4,
+        fontSize: 10,
+        marginBottom: 3,
       } as TextStyle,
       button: {
         alignSelf: "flex-start",
@@ -105,40 +105,44 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
           useNativeDriver={true}
           backdropOpacity={0.8}
         >
-          <View style={ss.panel}>
-            <View style={ss.window}>
-              <View style={ss.fill} />
+          <View style={ssColorSnack.panel}>
+            <View style={ssColorSnack.window}>
+              <View style={ssColorSnack.fill} />
             </View>
-            <Text text="Input your color" preset="lausanne" style={textColor} />
+            <Text
+              tx="settings.palette.inputColor"
+              preset="lausanne"
+              style={[textColor, { fontWeight: "bold" }]}
+            />
             <TextField
               placeholder={this.props.color}
               placeholderTextColor={color.module().yellowPages[1]}
-              style={ss.field}
-              inputStyle={ss.input}
+              style={ssColorSnack.field}
+              inputStyle={ssColorSnack.input}
               value={this.state.colorSelected}
               onChangeText={text => this.setState({ colorSelected: text })}
               autoCorrect={false}
             />
-            <Text text="Accepted input formats are:" style={ss.hint} />
-            <Text text="• rgb(255, 255, 0)" style={ss.hint} />
-            <Text text="• rgba(255, 255, 0, 1)" style={ss.hint} />
-            <Text text="• #FFFF00" style={ss.hint} />
-            <Text text="• #FFFF00FF" style={ss.hint} />
+            <Text tx="settings.palette.formats" style={ssColorSnack.hint} />
+            <Text text="• rgb(255, 255, 0)" style={ssColorSnack.hint} />
+            <Text text="• rgba(255, 255, 0, 1)" style={ssColorSnack.hint} />
+            <Text text="• #FFFF00" style={ssColorSnack.hint} />
+            <Text text="• #FFFF00FF" style={ssColorSnack.hint} />
             <Button
               tx="common.confirm"
               onPress={() => {
                 this.emitColor()
                 this.closeModal()
               }}
-              style={ss.button}
+              style={ssColorSnack.button}
               preset="small"
               palette={screenPalette}
             />
           </View>
         </Modal>
         <Touchable onPress={this.openModal}>
-          <View style={ss.snack}>
-            <View style={ss.fill} />
+          <View style={ssColorSnack.snack}>
+            <View style={ssColorSnack.fill} />
           </View>
         </Touchable>
       </>

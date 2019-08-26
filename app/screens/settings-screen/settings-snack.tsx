@@ -61,7 +61,6 @@ export class SettingsSnack extends React.PureComponent<SettingsSnackProps, {}> {
         paddingRight: 10,
         paddingVertical: 10,
         width: "100%",
-        maxWidth: 500,
       } as ViewStyle,
       left: {
         flexDirection: "row",

@@ -47,7 +47,7 @@ Most major modules are developed.
 | Data persistent storage & conditional update                | 数据持久性存储与选择性更新   | ✔                   |
 | Scroll down to update                                       | 下拉刷新                     | ✔                   |
 | Global custom identity font                                 | 全局自定义品牌字体           | ✔                   |
-| Latitude of custom theming                                  | 更加完善的主题定制系统       |                     |
+| Latitude of custom theming                                  | 更加完善的主题定制系统       | ✔                   |
 | Proper spacing between latin letters & ideograph characters | 中西文混排时自动添加空格间距 | ✔                   |
 | Guest login | 体验版账号登入 | ✔                  |
 | ......                                                      |                              |                     |
