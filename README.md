@@ -48,6 +48,10 @@ Most major modules are developed.
 | Guest login | 体验版账号登入 | ✔                  |
 | ......                                                      |                              |                     |
 
+![theming-brazil.jpg](https://i.loli.net/2019/08/26/tvZz9VjnlIG3qLM.jpg)
+
+*Theming in GPA Module / 对 GPA 模块对主题自定义*
+
 ##### GPA
 
 | Feature                                                     | 特性                         | Status              |
