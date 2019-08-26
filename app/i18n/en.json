@@ -12,7 +12,8 @@
     },
     "unknown": "Unknown",
     "prepareToLeave": "Be prepared to leave WePeiyang...",
-    "providedInWebHint": "We provide this service in our web platform. Open Link in Browser?"
+    "providedInWebHint": "We provide this service in our web platform. Open Link in Browser?",
+    "saveChanges": "Save Changes"
   },
   "data": {
     "noAvailableData": "No available data",

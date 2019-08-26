@@ -1,7 +1,15 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { Platform, StatusBar, View, ViewStyle } from "react-native"
+import {
+  Dimensions,
+  Platform,
+  ScrollView,
+  StatusBar,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
@@ -11,10 +19,16 @@ import { TopBar } from "../../components/top-bar"
 import Touchable from "react-native-platform-touchable"
 import ss from "./settings-screen.styles"
 import Modal from "react-native-modal"
-import { SettingsSnack } from "./settings-snack"
 
 import RNRestart from "react-native-restart"
 import { NativeModules } from "react-native"
+import { TextField } from "../../components/text-field"
+import { Button } from "../../components/button"
+
+const screenPalette = [color.black(1), color.white(1)]
+const textColor = {
+  color: screenPalette[1],
+} as TextStyle
 
 export interface ColorSnackProps {
   color
@@ -23,9 +37,7 @@ export interface ColorSnackProps {
 export class ColorSnack extends React.Component<ColorSnackProps, {}> {
   state = {
     isModalVisible: false,
-    colorSelected: `rgb(${Math.ceil(Math.random() * 255)},${Math.ceil(
-      Math.random() * 255,
-    )},${Math.ceil(Math.random() * 255)})`,
+    colorSelected: this.props.color,
   }
   openModal = () => {
     this.setState({ isModalVisible: true })
@@ -38,16 +50,46 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
   }
 
   render() {
-    const snack = {
-      padding: 20,
-      marginBottom: 11,
-      backgroundColor: this.props.color,
-      borderRadius: layoutParam.borderRadius,
-    } as ViewStyle
-    const panel = {
-      padding: 20,
-      backgroundColor: color.black(1),
-    } as ViewStyle
+    const ss = {
+      panel: {
+        padding: 30,
+        backgroundColor: color.black(1),
+      } as ViewStyle,
+      window: {
+        alignSelf: "stretch",
+        aspectRatio: 1,
+        maxHeight: Dimensions.get("window").height * 0.5,
+        backgroundColor: this.state.colorSelected,
+        marginBottom: 20,
+      } as ViewStyle,
+      snack: {
+        padding: 20,
+        marginBottom: 11,
+        backgroundColor: this.props.color,
+        borderRadius: layoutParam.borderRadius,
+      } as ViewStyle,
+      field: {
+        backgroundColor: color.transparent,
+        padding: 0,
+        marginLeft: -1,
+      } as ViewStyle,
+      input: {
+        backgroundColor: color.transparent,
+        paddingHorizontal: 0,
+        fontSize: 35,
+        color: screenPalette[1],
+        marginBottom: 15,
+      } as TextStyle,
+      hint: {
+        color: screenPalette[1],
+        fontSize: 11,
+        marginBottom: 4,
+      } as TextStyle,
+      button: {
+        alignSelf: "flex-start",
+        marginTop: 20,
+      } as ViewStyle,
+    }
     return (
       <>
         <Modal
@@ -55,13 +97,39 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
           onBackButtonPress={this.closeModal}
           onBackdropPress={this.closeModal}
           useNativeDriver={true}
+          backdropOpacity={0.8}
         >
-          <Touchable onPress={this.emitColor}>
-            <View style={panel} />
-          </Touchable>
+          <View style={ss.panel}>
+            <View style={ss.window} />
+            <Text text="Input your color" preset="lausanne" style={textColor} />
+            <TextField
+              placeholder={this.props.color}
+              placeholderTextColor={color.module().yellowPages[1]}
+              style={ss.field}
+              inputStyle={ss.input}
+              value={this.state.colorSelected}
+              onChangeText={text => this.setState({ colorSelected: text })}
+              autoCorrect={false}
+            />
+            <Text text="Accepted input formats are:" style={ss.hint} />
+            <Text text="• rgb(255, 255, 0)" style={ss.hint} />
+            <Text text="• rgba(255, 255, 0, 1)" style={ss.hint} />
+            <Text text="• ##FFFF00" style={ss.hint} />
+            <Text text="• ##FFFF00FF" style={ss.hint} />
+            <Button
+              tx="common.confirm"
+              onPress={() => {
+                this.emitColor()
+                this.closeModal()
+              }}
+              style={ss.button}
+              preset="small"
+              palette={screenPalette}
+            />
+          </View>
         </Modal>
         <Touchable onPress={this.openModal}>
-          <View style={snack} />
+          <View style={ss.snack} />
         </Touchable>
       </>
     )
@@ -89,63 +157,74 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
     console.log(pref)
 
     return (
-      <Screen preset="scroll">
-        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-        <TopBar
-          elements={{
-            left: [
-              {
-                iconText: "arrow_back",
-                action: () => this.props.navigation.goBack(),
-              },
-            ],
-            right: [],
-          }}
-          color={color.primary}
-        />
-
-        <View style={ss.container}>
-          <Text tx="settings.palette.title" preset="h2" style={ss.heading} />
-          <Text tx="settings.palette.intro" preset="small" style={ss.small} />
-
-          <Text tx="modules.gpa" preset="lausanne" style={ss.sectionHead} />
-          <ColorSnack
-            color={pref.palette.gpa[0]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "gpa", 0)}
+      <Screen style={{ backgroundColor: screenPalette[0] }}>
+        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <TopBar
+            elements={{
+              left: [
+                {
+                  iconText: "arrow_back",
+                  action: () => this.props.navigation.goBack(),
+                },
+              ],
+              right: [],
+            }}
+            color={screenPalette[1]}
           />
 
-          <Text tx="modules.ecard" preset="lausanne" style={ss.sectionHead} />
-          <ColorSnack
-            color={pref.palette.ecard[0]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 0)}
-          />
-          <ColorSnack
-            color={pref.palette.ecard[1]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 1)}
-          />
-          <ColorSnack
-            color={pref.palette.ecard[2]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 2)}
-          />
+          <View style={ss.container}>
+            <Text tx="settings.palette.title" preset="h2" style={[ss.heading, textColor]} />
+            <Text tx="settings.palette.intro" preset="small" style={[ss.small, textColor]} />
 
-          <Text tx="modules.contact" preset="lausanne" style={ss.sectionHead} />
-          <ColorSnack
-            color={pref.palette.yellowPages[0]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 0)}
-          />
-          <ColorSnack
-            color={pref.palette.yellowPages[1]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 1)}
-          />
-          <ColorSnack
-            color={pref.palette.yellowPages[2]}
-            sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 2)}
-          />
+            <Text tx="modules.gpa" preset="lausanne" style={[ss.sectionHead, textColor]} />
+            <ColorSnack
+              color={pref.palette.gpa[0]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "gpa", 0)}
+            />
 
-          <Text text="reload" preset="lausanne" style={ss.sectionHead} />
+            <Text tx="modules.ecard" preset="lausanne" style={[ss.sectionHead, textColor]} />
+            <ColorSnack
+              color={pref.palette.ecard[0]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 0)}
+            />
+            <ColorSnack
+              color={pref.palette.ecard[1]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 1)}
+            />
+            <ColorSnack
+              color={pref.palette.ecard[2]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 2)}
+            />
 
-          <SettingsSnack preset="enter" onPress={this.reload} />
-        </View>
+            <Text tx="modules.contact" preset="lausanne" style={[ss.sectionHead, textColor]} />
+            <ColorSnack
+              color={pref.palette.yellowPages[0]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 0)}
+            />
+            <ColorSnack
+              color={pref.palette.yellowPages[1]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 1)}
+            />
+            <ColorSnack
+              color={pref.palette.yellowPages[2]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 2)}
+            />
+
+            <Button
+              palette={[screenPalette[1], color.white(0.1)]}
+              tx="common.saveChanges"
+              onPress={this.reload}
+              style={{
+                marginVertical: 15,
+              }}
+              textStyle={{
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            />
+          </View>
+        </ScrollView>
       </Screen>
     )
   }
