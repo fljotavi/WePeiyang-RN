@@ -190,7 +190,7 @@
       "yourKachiIndex": "Your Kachi Index",
       "what": {
         "title": "What is Kachi Index?",
-        "content": "In Chinese, Kachi (卡绩, literally “Stuck on GPA”) means acquiring a highest score among a fixed GPA section, e.g. 89. The official mapping algorithm between scores and GPAs is not continuous, therefore some students might get a lower overall GPA than he deserve with his scores. This is what Kachi index describes - the inconsistency between GPA and weighted score."
+        "content": "In Chinese, Kachi (卡绩, literally “Stuck GPA”) means acquiring a highest score among a fixed GPA section, e.g. 89. The official mapping algorithm between scores and GPAs is not continuous, therefore some students might get a lower overall GPA than he deserves with his scores. This is what Kachi index describes - the inconsistency between GPAs and weighted scores."
       },
       "how": {
         "title": "How is Kachi Index computed?",

@@ -140,6 +140,8 @@ class HomeScreen extends React.Component<HomeScreenProps, {}> {
       en: require("date-fns/locale/en"),
       es: require("date-fns/locale/es"),
       ar: require("date-fns/locale/ar"),
+      ja: require("date-fns/locale/ja"),
+      th: require("date-fns/locale/th"),
     }
 
     return (
