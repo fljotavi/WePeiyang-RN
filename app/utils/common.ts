@@ -26,10 +26,7 @@ export function colorHashByCredits(credits) {
   if (typeof credits === "string") {
     credits = Number(credits)
   }
-  if (credits > 6) {
-    return 6
-  }
-  if (credits >= 5) {
+  if (credits >= 6) {
     return 5
   }
   if (credits >= 4) {
@@ -41,7 +38,7 @@ export function colorHashByCredits(credits) {
   if (credits >= 2.5) {
     return 2
   }
-  if (credits >= 1.5) {
+  if (credits >= 2) {
     return 1
   } else {
     return 0

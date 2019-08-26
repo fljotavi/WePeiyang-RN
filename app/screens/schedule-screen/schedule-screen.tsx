@@ -274,7 +274,7 @@ export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
                           height: duration * timeSlotHeight + (duration - 1) * timeSlotMargin,
                           alignSelf: "stretch",
                         }}
-                        backgroundColor={color.hash.course[colorHashByCredits(c.credit)]}
+                        backgroundColor={color.module().schedule[colorHashByCredits(c.credit)]}
                         courseName={c.coursename}
                         p1={deleteTitle(c.teacher)}
                         p2={sanitizeLocation(c.activeArrange.room)}

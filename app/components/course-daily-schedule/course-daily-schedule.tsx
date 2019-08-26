@@ -114,7 +114,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
               }}
             >
               <CourseBlock
-                backgroundColor={color.hash.course[colorHashByCredits(item.credit)]}
+                backgroundColor={color.module().schedule[colorHashByCredits(item.credit)]}
                 courseName={item.coursename}
                 timeSlot={getScheduledTimeFromArrangement(item.activeArrange)}
                 location={sanitizeLocation(item.activeArrange.room)}

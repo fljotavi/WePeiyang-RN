@@ -12,7 +12,8 @@
     },
     "unknown": "未知",
     "prepareToLeave": "将要离开微北洋",
-    "providedInWebHint": "此服务在 Web 上提供，继续操作将在浏览器中打开链接。"
+    "providedInWebHint": "此服务在 Web 上提供，继续操作将在浏览器中打开链接。",
+    "saveChanges": "保存变更"
   },
   "data": {
     "noAvailableData": "没有可用的数据",
@@ -61,6 +62,10 @@
     "sections": {
       "homepage": "主页",
       "elsewhere": "Elsewhere"
+    },
+    "palette": {
+      "title": "调色盘",
+      "intro": "给微北洋的各个模块自己调色，支持含透明度的颜色表示法。"
     },
     "hideGpa": "在主页上隐藏GPA",
     "owlMode": {

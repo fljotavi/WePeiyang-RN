@@ -76,7 +76,7 @@ export function CourseModal(props: CourseModalProps) {
   }
 
   const { chosenCourse, style } = props
-  const hashedColor = color.hash.course[colorHashByCredits(chosenCourse.credit)]
+  const hashedColor = color.module().schedule[colorHashByCredits(chosenCourse.credit)]
 
   return (
     <View
@@ -98,7 +98,7 @@ export function CourseModal(props: CourseModalProps) {
           <Tag
             text={chosenCourse.ext}
             iconText="school"
-            palette={[color.background, color.hash.course[colorHashByCredits(chosenCourse.credit)]]}
+            palette={[color.background, color.module().schedule[colorHashByCredits(chosenCourse.credit)]]}
           />
         )}
 

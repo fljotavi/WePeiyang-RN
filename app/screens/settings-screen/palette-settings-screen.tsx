@@ -59,14 +59,15 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
         alignSelf: "stretch",
         aspectRatio: 1,
         maxHeight: Dimensions.get("window").height * 0.5,
-        backgroundColor: this.state.colorSelected,
+        backgroundColor: color.background,
         marginBottom: 20,
       } as ViewStyle,
       snack: {
-        padding: 20,
+        height: 40,
         marginBottom: 11,
-        backgroundColor: this.props.color,
+        backgroundColor: color.background,
         borderRadius: layoutParam.borderRadius,
+        overflow: "hidden",
       } as ViewStyle,
       field: {
         backgroundColor: color.transparent,
@@ -89,6 +90,11 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
         alignSelf: "flex-start",
         marginTop: 20,
       } as ViewStyle,
+      fill: {
+        alignSelf: "stretch",
+        flex: 1,
+        backgroundColor: this.state.colorSelected,
+      } as ViewStyle,
     }
     return (
       <>
@@ -100,7 +106,9 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
           backdropOpacity={0.8}
         >
           <View style={ss.panel}>
-            <View style={ss.window} />
+            <View style={ss.window}>
+              <View style={ss.fill} />
+            </View>
             <Text text="Input your color" preset="lausanne" style={textColor} />
             <TextField
               placeholder={this.props.color}
@@ -114,8 +122,8 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
             <Text text="Accepted input formats are:" style={ss.hint} />
             <Text text="• rgb(255, 255, 0)" style={ss.hint} />
             <Text text="• rgba(255, 255, 0, 1)" style={ss.hint} />
-            <Text text="• ##FFFF00" style={ss.hint} />
-            <Text text="• ##FFFF00FF" style={ss.hint} />
+            <Text text="• #FFFF00" style={ss.hint} />
+            <Text text="• #FFFF00FF" style={ss.hint} />
             <Button
               tx="common.confirm"
               onPress={() => {
@@ -129,7 +137,9 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
           </View>
         </Modal>
         <Touchable onPress={this.openModal}>
-          <View style={ss.snack} />
+          <View style={ss.snack}>
+            <View style={ss.fill} />
+          </View>
         </Touchable>
       </>
     )
@@ -174,27 +184,14 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
           />
 
           <View style={ss.container}>
-            <Text tx="settings.palette.title" preset="h2" style={[ss.heading, textColor]} />
+            <Text preset="h2" style={[ss.heading, textColor]}>
+              <Text tx="settings.palette.title" />
+            </Text>
             <Text tx="settings.palette.intro" preset="small" style={[ss.small, textColor]} />
-
             <Text tx="modules.gpa" preset="lausanne" style={[ss.sectionHead, textColor]} />
             <ColorSnack
               color={pref.palette.gpa[0]}
               sendColor={colorToSend => this.sendColor(colorToSend, "gpa", 0)}
-            />
-
-            <Text tx="modules.ecard" preset="lausanne" style={[ss.sectionHead, textColor]} />
-            <ColorSnack
-              color={pref.palette.ecard[0]}
-              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 0)}
-            />
-            <ColorSnack
-              color={pref.palette.ecard[1]}
-              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 1)}
-            />
-            <ColorSnack
-              color={pref.palette.ecard[2]}
-              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 2)}
             />
 
             <Text tx="modules.contact" preset="lausanne" style={[ss.sectionHead, textColor]} />
@@ -209,6 +206,46 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
             <ColorSnack
               color={pref.palette.yellowPages[2]}
               sendColor={colorToSend => this.sendColor(colorToSend, "yellowPages", 2)}
+            />
+
+            <Text tx="modules.schedule" preset="lausanne" style={[ss.sectionHead, textColor]} />
+            <ColorSnack
+              color={pref.palette.schedule[0]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "schedule", 0)}
+            />
+            <ColorSnack
+              color={pref.palette.schedule[1]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "schedule", 1)}
+            />
+            <ColorSnack
+              color={pref.palette.schedule[2]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "schedule", 2)}
+            />
+            <ColorSnack
+              color={pref.palette.schedule[3]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "schedule", 3)}
+            />
+            <ColorSnack
+              color={pref.palette.schedule[4]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "schedule", 4)}
+            />
+            <ColorSnack
+              color={pref.palette.schedule[5]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "schedule", 5)}
+            />
+
+            <Text tx="modules.ecard" preset="lausanne" style={[ss.sectionHead, textColor]} />
+            <ColorSnack
+              color={pref.palette.ecard[0]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 0)}
+            />
+            <ColorSnack
+              color={pref.palette.ecard[1]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 1)}
+            />
+            <ColorSnack
+              color={pref.palette.ecard[2]}
+              sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 2)}
             />
 
             <Button

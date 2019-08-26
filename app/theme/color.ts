@@ -1,5 +1,4 @@
 import { palette } from "./palette"
-import Color from "color"
 import configureStore from "../store"
 const { store } = configureStore
 
@@ -53,15 +52,6 @@ export const color = {
    * ColorHashes palette for books & course blocks.
    */
   hash: {
-    course: [
-      palette.offPale4,
-      palette.offPale3,
-      palette.offPale,
-      palette.offPale2,
-      palette.pale,
-      palette.offBlack,
-      palette.offBlack,
-    ].map(c => Color(c).fade(0.1)),
     bookStrip: [palette.washed, palette.lighterPale, palette.lighterAuthenticPale],
   },
 
@@ -73,6 +63,7 @@ export const color = {
       gpa: [...store.getState().preferenceReducer.palette.gpa],
       ecard: store.getState().preferenceReducer.palette.ecard,
       yellowPages: store.getState().preferenceReducer.palette.yellowPages,
+      schedule: store.getState().preferenceReducer.palette.schedule,
     }
     console.log("returned in color.ts module()", res)
     return res

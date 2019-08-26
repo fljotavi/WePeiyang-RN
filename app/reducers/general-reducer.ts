@@ -11,6 +11,7 @@
 // Preference Reducer 用于记录用户的偏好设置。
 
 import { palette } from "../theme/palette"
+import Color from "color"
 
 const white = alpha => `rgba(255,255,255,${alpha})`
 export const preferenceReducer = (
@@ -48,6 +49,14 @@ export const preferenceReducer = (
       gpa: [palette.matcha, white(0.95), white(0.35), white(0.08)],
       ecard: [palette.offBlack, palette.silver, palette.gold],
       yellowPages: [palette.paper, palette.ink, palette.rouge],
+      schedule: [
+        palette.offPale4,
+        palette.offPale3,
+        palette.offPale,
+        palette.offPale2,
+        palette.pale,
+        palette.offBlack,
+      ].map(c => Color(c).fade(0.1).toString()),
     },
   },
   action,
