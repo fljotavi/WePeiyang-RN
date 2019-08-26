@@ -22,13 +22,9 @@ At that time, the previous major version of WePeiyang, functionally mature and t
 在项目提出之前，上一版本的微北洋已经具有事实上完整的功能模块，也通过了数年的时间检验。它本身无需一次迫切的升级。但是，工作室的技术团队近期确实面临着一些问题，如生产力失衡、不一致的平台体验、欠佳的用户体验等。因此，这一新版本的开发将会侧重于平台一致性、架构设计、大胆的功能探索，并注入更多与体验和视觉相关的思考。
 
 
-![Main.png](https://i.loli.net/2019/08/10/NeVkmxZo3H8cFBO.png "Main module")
+![Showcase.jpg](assets/showcase.jpg "Showcase")
 
-*Main Module / 主模块*
-
-![Modules.PNG](https://i.loli.net/2019/08/06/1wguWQRlea4r9tY.png)
-
-*GPA & Ecard Module / GPA 与校园卡模块*
+*Runtime Screenshots / 运行时图片*
 
 ### Status 状态
 
