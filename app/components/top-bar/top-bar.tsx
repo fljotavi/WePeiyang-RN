@@ -46,7 +46,7 @@ export function TopBar(props: TopBarProps) {
       <View style={ss.side}>
         {elements.left.map((el, i) => (
           <Touchable
-            background={Touchable.Ripple(color, true)}
+            foreground={Touchable.Ripple(color, true)}
             onPress={el.action}
             delayPressIn={0}
             key={i}
@@ -58,7 +58,7 @@ export function TopBar(props: TopBarProps) {
       <View style={ss.side}>
         {elements.right.map((el, i) => (
           <Touchable
-            background={Touchable.Ripple(color, true)}
+            foreground={Touchable.Ripple(color, true)}
             onPress={el.action}
             delayPressIn={0}
             key={i}

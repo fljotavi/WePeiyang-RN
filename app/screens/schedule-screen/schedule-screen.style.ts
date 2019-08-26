@@ -63,5 +63,7 @@ export default {
     width: 250,
     alignSelf: "center",
   } as ViewStyle,
-
+  temp: {
+    color: "rgb(45,70,13)",
+  } as ViewStyle,
 }

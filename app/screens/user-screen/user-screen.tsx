@@ -142,7 +142,7 @@ export class UserScreen extends React.Component<UserScreenProps, {}> {
           <View style={ss.ambient2} />
         </View>
 
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <TopBar
             elements={{
               left: [

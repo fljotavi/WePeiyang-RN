@@ -47,7 +47,7 @@
     "dailyExpense": "今日消费",
     "monthlyExpense": "本月消费",
     "billingDetails": "结算明细",
-    "noTransaction": "在过去 ％{days} 天内无交易记录",
+    "noTransaction": "在过去 %{days} 天内无交易记录",
     "loadMore": "加载更多",
     "rangeHint": "此处显示的数据统计截止到您最近一次消费记录的所在日期。"
   },
@@ -78,7 +78,7 @@
     "daysEachWeek": {
       "title": "每周显示天数",
       "intro": "您可以选择是否要在每周课表中显示非工作日。",
-      "options": "每周显示 ％{count} 天"
+      "options": "每周显示 %{count} 天"
     },
     "displayNotThisWeek": {
       "title": "绘制非本周课程",

@@ -52,9 +52,8 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
     const ssColorSnack = {
       panel: {
         padding: 40,
-        marginHorizontal: 30,
+        marginHorizontal: 25,
         backgroundColor: color.black(1),
-        borderRadius: layoutParam.borderRadius * 1.5,
       } as ViewStyle,
       window: {
         width: "100%",
@@ -79,7 +78,8 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
         paddingHorizontal: 0,
         fontSize: 35,
         color: screenPalette[1],
-        marginBottom: 15,
+        marginBottom: 10,
+        marginTop: -10,
       } as TextStyle,
       hint: {
         color: screenPalette[1],
@@ -88,12 +88,23 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
       } as TextStyle,
       button: {
         alignSelf: "flex-start",
-        marginTop: 20,
+        marginRight: 10,
+        marginBottom: 10,
       } as ViewStyle,
-      fill: {
+      buttonRow: {
+        flexDirection: "row",
+        marginTop: 10,
+        flexWrap: "wrap",
+      } as ViewStyle,
+      fillSnack: {
         alignSelf: "stretch",
         flex: 1,
         backgroundColor: this.state.colorSelected,
+      } as ViewStyle,
+      fillWindow: {
+        alignSelf: "stretch",
+        flex: 1,
+        backgroundColor: this.props.color,
       } as ViewStyle,
     }
     return (
@@ -107,7 +118,7 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
         >
           <View style={ssColorSnack.panel}>
             <View style={ssColorSnack.window}>
-              <View style={ssColorSnack.fill} />
+              <View style={ssColorSnack.fillSnack} />
             </View>
             <Text
               tx="settings.palette.inputColor"
@@ -128,21 +139,32 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
             <Text text="• rgba(255, 255, 0, 1)" style={ssColorSnack.hint} />
             <Text text="• #FFFF00" style={ssColorSnack.hint} />
             <Text text="• #FFFF00FF" style={ssColorSnack.hint} />
-            <Button
-              tx="common.confirm"
-              onPress={() => {
-                this.emitColor()
-                this.closeModal()
-              }}
-              style={ssColorSnack.button}
-              preset="small"
-              palette={screenPalette}
-            />
+            <View style={ssColorSnack.buttonRow}>
+              <Button
+                tx="common.confirm"
+                onPress={() => {
+                  this.emitColor()
+                  this.closeModal()
+                }}
+                style={ssColorSnack.button}
+                preset="small"
+                palette={screenPalette}
+              />
+              <Button
+                tx="common.cancel"
+                onPress={() => {
+                  this.closeModal()
+                }}
+                style={ssColorSnack.button}
+                preset="small"
+                palette={[screenPalette[1], color.white(0.1)]}
+              />
+            </View>
           </View>
         </Modal>
         <Touchable onPress={this.openModal}>
           <View style={ssColorSnack.snack}>
-            <View style={ssColorSnack.fill} />
+            <View style={ssColorSnack.fillWindow} />
           </View>
         </Touchable>
       </>

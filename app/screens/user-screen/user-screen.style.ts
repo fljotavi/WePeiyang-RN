@@ -12,10 +12,11 @@ export default {
   } as ViewStyle,
   headPanel: {
     backgroundColor: color.primary,
-    height: 400,
+    height: 380,
     left: 0,
     right: 0,
     position: "absolute",
+    zIndex: -1,
   } as ViewStyle,
   ambient1: {
     width: abm1r,
