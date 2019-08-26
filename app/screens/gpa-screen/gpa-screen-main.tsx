@@ -15,7 +15,6 @@ import { ScrollView, View } from "react-native"
 import { color } from "../../theme"
 import { GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
-import ss from "./gpa-screen.style"
 import { GpaRadar } from "../../components/gpa-radar"
 import GpaSnackList from "./gpa-snack-list"
 import GpaStatSemestral from "./gpa-stat-semestral"
@@ -28,7 +27,7 @@ export interface GpaScreenMainProps {
 class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
   render() {
     const { gpa, scoreType } = this.props
-
+    const ss = require("./gpa-screen.style.ts").default
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={ss.radarContainer}>
@@ -45,11 +44,11 @@ class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
             scoreToFixed={digitsFromScoreType(scoreType)}
             animated={false}
             palette={[
-              color.module.gpa[3],
-              color.module.gpa[1],
-              color.module.gpa[3],
-              color.module.gpa[1],
-              color.module.gpa[0],
+              color.module().gpa[3],
+              color.module().gpa[1],
+              color.module().gpa[3],
+              color.module().gpa[1],
+              color.module().gpa[0],
             ]}
           />
 

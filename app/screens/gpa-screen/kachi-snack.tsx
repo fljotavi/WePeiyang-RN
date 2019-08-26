@@ -19,7 +19,7 @@ export interface KachiSnackProps {
 export function KachiSnack(props: KachiSnackProps) {
   const { cols } = props
   const textBase = {
-    color: color.module.gpa[0],
+    color: color.module().gpa[0],
     width: 50,
     textAlign: "center",
   }

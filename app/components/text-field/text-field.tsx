@@ -77,7 +77,7 @@ export class _TextField extends React.Component<TextFieldProps, {}> {
           placeholder={actualPlaceholder}
           placeholderTextColor={placeholderTextColor || color.lightGrey}
           underlineColorAndroid={color.transparent}
-          selectionColor={color.black(0.12)}
+          selectionColor={inputStyle.color || color.black(0.12)}
           {...rest}
           style={inputStyle}
           ref={forwardedRef}

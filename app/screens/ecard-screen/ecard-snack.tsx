@@ -46,20 +46,20 @@ export function EcardSnack(props: EcardSnackProps) {
       flex: 1,
     } as ViewStyle,
     title: {
-      color: color.module.ecard[1],
+      color: color.module().ecard[1],
     },
     icon: {
-      color: color.module.ecard[2],
+      color: color.module().ecard[2],
       fontSize: 25,
     },
     score: {
-      color: color.module.ecard[1],
+      color: color.module().ecard[1],
       fontSize: 30,
       textAlign: "right",
       width: 100,
     } as TextStyle,
     scoreGolden: {
-      color: color.module.ecard[2],
+      color: color.module().ecard[2],
       fontSize: 30,
       textAlign: "right",
       width: 100,
@@ -69,7 +69,7 @@ export function EcardSnack(props: EcardSnackProps) {
       width: 190,
     } as TextStyle,
     subtitle: {
-      color: color.module.ecard[1],
+      color: color.module().ecard[1],
     },
   }
 
@@ -104,7 +104,7 @@ export function EcardSnack(props: EcardSnackProps) {
   }
   return (
     <Touchable
-      background={Touchable.Ripple(type === 1 ? color.module.ecard[2] : color.white(0.05))}
+      background={Touchable.Ripple(type === 1 ? color.module().ecard[2] : color.white(0.05))}
       style={[ss.snack, style]}
       delayPressIn={0}
     >

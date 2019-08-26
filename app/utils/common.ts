@@ -1,5 +1,3 @@
-import { color } from "../theme"
-
 export function digitsFromScoreType(scoreType) {
   switch (scoreType) {
     case "weighted":
@@ -51,5 +49,5 @@ export function colorHashByCredits(credits) {
 }
 
 export function colorHashByBookName(str) {
-  return str.length % color.hash.bookStrip.length
+  return str.length % 3
 }

@@ -132,6 +132,14 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
 
           <SettingsSnack
             style={ss.snack}
+            preset="enter"
+            txTitle="settings.palette.title"
+            txSubtitle="settings.palette.intro"
+            onPress={() => this.props.navigation.navigate("palette")}
+          />
+
+          <SettingsSnack
+            style={ss.snack}
             txTitle="settings.hideGpa"
             preset="switch"
             on={pref.hideGpaOnHomeScreen}

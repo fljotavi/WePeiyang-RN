@@ -13,6 +13,7 @@ import { connectedSettingsScreen } from "../screens/settings-screen"
 import { connectedLanguageSettingsScreen } from "../screens/settings-screen/language-settings-screen"
 import { connectedDaysEachWeekSettingsScreen } from "../screens/settings-screen/days-each-week-settings-screen"
 import { connectedScheduleTextSizeSettingsScreen } from "../screens/settings-screen/schedule-text-size-settings"
+import { connectedPaletteSettingsScreen } from "../screens/settings-screen/palette-settings-screen"
 
 export const SettingsNavigator = createStackNavigator(
   {
@@ -20,6 +21,7 @@ export const SettingsNavigator = createStackNavigator(
     language: connectedLanguageSettingsScreen,
     daysEachWeek: connectedDaysEachWeekSettingsScreen,
     scheduleTextSize: connectedScheduleTextSizeSettingsScreen,
+    palette: connectedPaletteSettingsScreen,
   },
   {
     initialRouteName: "settings",

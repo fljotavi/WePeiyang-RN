@@ -16,7 +16,6 @@ import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { fetchGpaData } from "../../actions/data-actions"
-import ss from "./gpa-screen.style"
 import Modal from "react-native-modal"
 import { Toasti } from "../../components/toasti"
 import { TopBar } from "../../components/top-bar"
@@ -77,7 +76,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               <Text
                 tx={route.titleTx}
                 preset="lausanne"
-                style={[ssGlobal.tabBar.tabText, { color: color.module.gpa[1] }]}
+                style={[ssGlobal.tabBar.tabText, { color: color.module().gpa[1] }]}
               />
             </TouchableOpacity>
           )
@@ -87,6 +86,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
   }
 
   render() {
+    const ss = require("./gpa-screen.style.ts").default
     return (
       <Screen style={ss.screen}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
@@ -102,7 +102,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
           <Alert
             headingTx="gpa.info.title"
             contentTx="gpa.info.content"
-            palette={[color.module.gpa[0], color.module.gpa[1]]}
+            palette={[color.module().gpa[0], color.module().gpa[1]]}
             buttons={[
               {
                 tx: "common.gotIt",
@@ -133,7 +133,7 @@ export class GpaScreen extends React.Component<GpaScreenProps, {}> {
               },
             ],
           }}
-          color={color.module.gpa[1]}
+          color={color.module().gpa[1]}
         />
 
         <TabView

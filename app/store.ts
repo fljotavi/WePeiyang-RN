@@ -17,6 +17,7 @@ import { dataReducer } from "./reducers/data-reducer"
 import { persistStore, persistReducer } from "redux-persist"
 import thunk from "redux-thunk"
 import AsyncStorage from "@react-native-community/async-storage"
+import { interceptChangePrefColors } from "./middlewares/general-middlewares"
 
 const persistConfig = {
   key: "root",
@@ -30,6 +31,6 @@ const topLevelReducer = combineReducers({
 })
 const persistedReducer = persistReducer(persistConfig, topLevelReducer)
 
-let store = createStore(persistedReducer, {}, applyMiddleware(thunk))
+let store = createStore(persistedReducer, {}, applyMiddleware(thunk, interceptChangePrefColors))
 let persistor = persistStore(store)
 export default { store, persistor }

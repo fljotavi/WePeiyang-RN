@@ -1,17 +1,19 @@
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from "react-native"
 import { color, layoutParam } from "../../theme"
 
+const palette = color.module().yellowPages
 let availableWidth = Dimensions.get("window").width
+
 export default {
   container: {
     paddingHorizontal: layoutParam.paddingHorizontal,
     paddingVertical: layoutParam.paddingVertical,
   } as ViewStyle,
   screen: {
-    backgroundColor: color.module.yellowPages[0],
+    backgroundColor: palette[0],
   } as ViewStyle,
   screenInvert: {
-    backgroundColor: color.module.yellowPages[2],
+    backgroundColor: palette[2],
   } as ViewStyle,
   field: {
     backgroundColor: color.transparent,
@@ -22,32 +24,32 @@ export default {
     backgroundColor: color.transparent,
     paddingHorizontal: 0,
     fontSize: 35,
-    color: color.module.yellowPages[1],
+    color: palette[1],
   } as TextStyle,
 
   poweredBy: {} as ViewStyle,
   poweredByText: {
-    color: color.module.yellowPages[2],
+    color: palette[2],
     marginRight: 5,
   } as TextStyle,
   poweredByLogo: {} as ViewStyle,
 
   screenHead: {
     fontSize: 40,
-    color: color.module.yellowPages[0],
+    color: palette[0],
     lineHeight: 48,
     marginTop: 13,
   } as TextStyle,
   sectionHead: {
     fontSize: 18,
-    color: color.module.yellowPages[0],
+    color: palette[0],
     fontWeight: "bold",
     marginTop: availableWidth * 0.47,
     textTransform: "uppercase",
   } as TextStyle,
   p: {
     fontSize: 12,
-    color: color.module.yellowPages[0],
+    color: palette[0],
   } as TextStyle,
 
   unitList: {

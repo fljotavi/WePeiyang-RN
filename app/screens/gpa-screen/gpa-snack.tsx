@@ -33,7 +33,7 @@ export function GpaSnack(props: GpaSnackProps) {
       overflow: "hidden",
     } as ViewStyle,
     snackContainer: {
-      backgroundColor: color.module.gpa[3],
+      backgroundColor: color.module().gpa[3],
       paddingHorizontal: 18,
       paddingVertical: 14,
       width: "100%",
@@ -47,14 +47,14 @@ export function GpaSnack(props: GpaSnackProps) {
       flex: 1,
     } as ViewStyle,
     title: {
-      color: color.module.gpa[1],
+      color: color.module().gpa[1],
     },
     icon: {
-      color: color.module.gpa[2],
+      color: color.module().gpa[2],
       fontSize: 25,
     },
     score: {
-      color: color.module.gpa[1],
+      color: color.module().gpa[1],
       fontSize: 26,
       width: 60,
       textAlign: "right",
@@ -63,7 +63,7 @@ export function GpaSnack(props: GpaSnackProps) {
       marginLeft: 10,
     } as TextStyle,
     subtitle: {
-      color: color.module.gpa[2],
+      color: color.module().gpa[2],
     },
   }
   let iconText = "assignment_turned_in"
@@ -75,7 +75,7 @@ export function GpaSnack(props: GpaSnackProps) {
   }
   return (
     <Touchable
-      background={Touchable.Ripple(color.module.gpa[2])}
+      background={Touchable.Ripple(color.module().gpa[2])}
       style={[ss.snack, style]}
       delayPressIn={0}
     >

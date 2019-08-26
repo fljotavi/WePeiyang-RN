@@ -28,12 +28,12 @@ export function SearchSnack(props: SearchSnackProps) {
     } as ViewStyle,
     snack: {} as ViewStyle,
     title: {
-      color: color.module.yellowPages[2],
+      color: color.module().yellowPages[2],
       fontWeight: "bold",
       fontSize: 20,
     } as TextStyle,
     subtitle: {
-      color: color.module.yellowPages[2],
+      color: color.module().yellowPages[2],
       fontSize: 12,
     } as TextStyle,
   }

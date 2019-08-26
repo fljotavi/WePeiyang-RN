@@ -14,7 +14,6 @@ import { connect } from "react-redux"
 import { FlatList, ScrollView, StatusBar, View, Image } from "react-native"
 import { Screen } from "../../components/screen"
 import { color } from "../../theme"
-import ss from "./yellow-pages-screen.styles"
 import { NavigationScreenProps } from "react-navigation"
 import { TopBar } from "../../components/top-bar"
 import { fetchYellowPagesData } from "../../actions/data-actions"
@@ -43,6 +42,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
   }
 
   render() {
+    const ss = require("./yellow-pages-screen.styles").default
     const { yellowPages } = this.props
     const indices = this.props.navigation.getParam("indices" as never, 0 as never) // TODO: Find out what the fuck is happening, either with this library, or its type definition, or TSLint, something
     const dep = this.props.yellowPages.data[indices[0]].department_list[indices[1]]
@@ -60,7 +60,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
           <Alert
             headingTx="contact.info.title"
             contentTx="contact.info.content"
-            palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+            palette={[color.module().yellowPages[0], color.module().yellowPages[2]]}
             buttons={[
               {
                 tx: "common.gotIt",
@@ -87,7 +87,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               },
             ],
           }}
-          color={color.module.yellowPages[0]}
+          color={color.module().yellowPages[0]}
         />
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ss.unitScroll}>
@@ -99,12 +99,12 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               <Tag
                 text={yellowPages.data[indices[0]].category_name}
                 iconText="account_balance"
-                palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+                palette={[color.module().yellowPages[0], color.module().yellowPages[2]]}
               />
               <Tag
                 text={dep.unit_list.length + " 个办公室"}
                 iconText="subject"
-                palette={[color.module.yellowPages[0], color.module.yellowPages[2]]}
+                palette={[color.module().yellowPages[0], color.module().yellowPages[2]]}
               />
             </View>
             <FlatList
@@ -123,7 +123,7 @@ export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}>
               ListEmptyComponent={() => (
                 <Ian
                   tx="contact.noUnit"
-                  palette={[color.module.yellowPages[2], color.module.yellowPages[0]]}
+                  palette={[color.module().yellowPages[2], color.module().yellowPages[0]]}
                 />
               )}
             />

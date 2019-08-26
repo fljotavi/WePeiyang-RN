@@ -42,3 +42,10 @@ export function setPreference(key, value) {
     payload: { key, value },
   }
 }
+
+export function setPalette(key, value) {
+  return {
+    type: "SET_PALETTE",
+    payload: { key, value },
+  }
+}

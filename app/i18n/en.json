@@ -12,7 +12,8 @@
     },
     "unknown": "Unknown",
     "prepareToLeave": "Be prepared to leave WePeiyang...",
-    "providedInWebHint": "We provide this service in our web platform. Open Link in Browser?"
+    "providedInWebHint": "We provide this service in our web platform. Open Link in Browser?",
+    "saveChanges": "Save Changes"
   },
   "data": {
     "noAvailableData": "No available data",
@@ -61,6 +62,10 @@
     "sections": {
       "homepage": "Homepage",
       "elsewhere": "Elsewhere"
+    },
+    "palette": {
+      "title": "Palette",
+      "intro": "Create your own color theme for GPA, E-card and Contact modules."
     },
     "hideGpa": "Hide GPA On Homepage",
     "owlMode": {

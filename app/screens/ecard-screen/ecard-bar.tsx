@@ -79,7 +79,7 @@ export class EcardBar extends React.Component<EcardBarProps, {}> {
           <VictoryGroup height={chartHeight} width={chartWidth} padding={5}>
             <VictoryBar
               name="bar"
-              style={{ data: { fill: color.module.ecard[2] } }}
+              style={{ data: { fill: color.module().ecard[2] } }}
               data={barData}
             />
           </VictoryGroup>
