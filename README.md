@@ -84,6 +84,10 @@ Most major modules are developed.
 | Custom course scheduling & events                           | 自定义课程 / 事件            |                     |
 | Support of scheduling conflicts                             | 冲突课程显示                 | ✔                   |
 
+![Resp-sche.png](https://i.loli.net/2019/08/28/VoCHPqSKJj4bdwN.png)
+
+*Responsive course table layout / 响应式课表布局*
+
 ##### YellowPage
 
 | Feature                                                     | 特性                         | Status              |
