@@ -67,7 +67,11 @@
       "title": "Palette",
       "intro": "Create your own color theme for GPA, E-card and Contact modules.",
       "inputColor": "Input a color",
-      "formats": "Supported input formats are:"
+      "formats": "Supported input formats are:",
+      "restore": "Restore Palette",
+      "restoreConfirm": "Restore all colors to default?",
+      "actions": "Actions",
+      "actionsHint": "After each modification, save changes to see the immediate effect."
     },
     "hideGpa": "Hide GPA On Homepage",
     "owlMode": {

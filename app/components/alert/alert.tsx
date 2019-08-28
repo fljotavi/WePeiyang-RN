@@ -40,7 +40,7 @@ export class Alert extends React.PureComponent<AlertProps, {}> {
         textAlign: "center",
         color: colors[1],
         fontSize: 20,
-        marginBottom: 10,
+        marginBottom: 12,
         fontWeight: "bold",
       } as TextStyle,
       content: {
@@ -60,7 +60,7 @@ export class Alert extends React.PureComponent<AlertProps, {}> {
     return (
       <View style={[ss.predefinedStyle, style]}>
         <Text text={heading} tx={headingTx} style={ss.heading} />
-        <Text text={content} tx={contentTx} style={ss.content} />
+        {(content || contentTx) && <Text text={content} tx={contentTx} style={ss.content} />}
         <View style={ss.buttons}>
           {buttons.map((button, i) => (
             <Button

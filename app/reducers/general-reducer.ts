@@ -14,6 +14,24 @@ import { palette } from "../theme/palette"
 import Color from "color"
 
 const white = alpha => `rgba(255,255,255,${alpha})`
+const defaultPalette = {
+  gpa: [palette.matcha, white(0.95), white(0.35), white(0.08)],
+  ecard: [palette.offBlack, palette.silver, palette.gold],
+  yellowPages: [palette.paper, palette.ink, palette.rouge],
+  schedule: [
+    palette.offPale4,
+    palette.offPale3,
+    palette.offPale,
+    palette.offPale2,
+    palette.pale,
+    palette.offBlack,
+  ].map(c =>
+    Color(c)
+      .fade(0.1)
+      .toString(),
+  ),
+}
+
 export const preferenceReducer = (
   state = {
     scoreType: "weighted",
@@ -45,19 +63,7 @@ export const preferenceReducer = (
     scheduleTextSize: 100,
     owlIndex: 21,
     displayNotThisWeek: true,
-    palette: {
-      gpa: [palette.matcha, white(0.95), white(0.35), white(0.08)],
-      ecard: [palette.offBlack, palette.silver, palette.gold],
-      yellowPages: [palette.paper, palette.ink, palette.rouge],
-      schedule: [
-        palette.offPale4,
-        palette.offPale3,
-        palette.offPale,
-        palette.offPale2,
-        palette.pale,
-        palette.offBlack,
-      ].map(c => Color(c).fade(0.1).toString()),
-    },
+    palette: defaultPalette,
   },
   action,
 ) => {
@@ -82,6 +88,13 @@ export const preferenceReducer = (
         },
       }
       state.palette[action.payload.key] = action.payload.value
+      break
+    case "RESTORE_PALETTE":
+      console.log("DEF", defaultPalette)
+      state = {
+        ...state,
+        palette: defaultPalette,
+      }
       break
     case "SET_PREFERENCE":
       state = {

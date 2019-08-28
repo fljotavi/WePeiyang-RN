@@ -59,14 +59,12 @@ export const color = {
    * Module-specific colors.
    */
   module: () => {
-    let res = {
+    return {
       gpa: [...store.getState().preferenceReducer.palette.gpa],
       ecard: store.getState().preferenceReducer.palette.ecard,
       yellowPages: store.getState().preferenceReducer.palette.yellowPages,
       schedule: store.getState().preferenceReducer.palette.schedule,
     }
-    console.log("returned in color.ts module()", res)
-    return res
   },
 
   /**

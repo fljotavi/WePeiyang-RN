@@ -14,7 +14,7 @@ import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, layoutParam } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { setPalette } from "../../actions/preference-actions"
+import { restorePalette, setPalette } from "../../actions/preference-actions"
 import { TopBar } from "../../components/top-bar"
 import ss from "./settings-screen.styles"
 import Modal from "react-native-modal"
@@ -23,6 +23,7 @@ import RNRestart from "react-native-restart"
 import { NativeModules } from "react-native"
 import { TextField } from "../../components/text-field"
 import { Button } from "../../components/button"
+import { Alert } from "../../components/alert"
 
 const screenPalette = [color.black(1), color.white(1)]
 const textColor = {
@@ -175,9 +176,13 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
 export interface PaletteSettingsScreenProps extends NavigationScreenProps<{}> {
   pref?
   setPalette?
+  restorePalette?
 }
 
 export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreenProps, {}> {
+  state = {
+    isModalVisible: false,
+  }
   sendColor = (colorToSend, dest, index) => {
     let existingPalette = [...this.props.pref.palette[dest]]
     existingPalette[index] = colorToSend
@@ -187,6 +192,12 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
     if (Platform.OS === "ios") NativeModules.DevSettings.reload()
     else RNRestart.Restart()
   }
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
+  }
+  reset = () => {
+    this.toggleModal()
+  }
 
   render() {
     const { pref } = this.props
@@ -195,6 +206,28 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
     return (
       <Screen style={{ backgroundColor: screenPalette[0] }}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+        <Modal
+          isVisible={this.state.isModalVisible}
+          backdropColor={screenPalette[0]}
+          onBackButtonPress={this.toggleModal}
+          onBackdropPress={this.toggleModal}
+          useNativeDriver={true}
+        >
+          <Alert
+            headingTx="settings.palette.restoreConfirm"
+            palette={[screenPalette[0], screenPalette[1]]}
+            buttons={[
+              {
+                tx: "common.confirm",
+                onPress: () => {
+                  this.props.restorePalette()
+                  this.toggleModal()
+                },
+              },
+            ]}
+          />
+        </Modal>
+
         <ScrollView showsVerticalScrollIndicator={false}>
           <TopBar
             elements={{
@@ -274,12 +307,31 @@ export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreen
               sendColor={colorToSend => this.sendColor(colorToSend, "ecard", 2)}
             />
 
+            <Text
+              tx="settings.palette.actions"
+              preset="lausanne"
+              style={[ss.sectionHead, textColor]}
+            />
+            <Text tx="settings.palette.actionsHint" preset="small" style={[ss.small, textColor]} />
+            <Button
+              palette={[screenPalette[1], color.white(0.1)]}
+              tx="settings.palette.restore"
+              onPress={this.toggleModal}
+              style={{
+                marginBottom: 15,
+              }}
+              textStyle={{
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            />
+
             <Button
               palette={[screenPalette[1], color.white(0.1)]}
               tx="common.saveChanges"
               onPress={this.reload}
               style={{
-                marginVertical: 15,
+                marginBottom: 15,
               }}
               textStyle={{
                 fontWeight: "bold",
@@ -303,6 +355,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setPalette: (key, value) => {
       dispatch(setPalette(key, value))
+    },
+    restorePalette: () => {
+      dispatch(restorePalette())
     },
   }
 }
