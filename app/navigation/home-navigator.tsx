@@ -27,7 +27,6 @@ const barStyle: ViewStyle = {
   alignItems: "center",
   borderTopWidth: 0,
   ...shadowPresets.large,
-  // display: "none", // TODO: Uncomment this line after implementing relevant modules
 }
 const textStyle: TextStyle = {
   color: color.primary,
