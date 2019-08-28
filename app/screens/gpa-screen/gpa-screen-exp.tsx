@@ -26,6 +26,7 @@ class _GpaScreenExp extends React.Component<GpaScreenExpProps, {}> {
 
   render() {
     const { gpa } = this.props
+    if (gpa.status !== "VALID") return <View />
     let kachiIndices = gpa.data.gpaDetailed.map(sem => {
       return {
         kachi: kachiIndexSemester(sem),

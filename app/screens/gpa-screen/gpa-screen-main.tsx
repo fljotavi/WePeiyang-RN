@@ -27,6 +27,7 @@ export interface GpaScreenMainProps {
 class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
   render() {
     const { gpa, scoreType } = this.props
+    if (gpa.status !== "VALID") return <View />
     const ss = require("./gpa-screen.style.ts").default
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
