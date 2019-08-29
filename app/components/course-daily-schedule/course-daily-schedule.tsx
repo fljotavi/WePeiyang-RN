@@ -52,7 +52,7 @@ class _CourseDailySchedule extends React.Component<CourseDailyScheduleProps, {}>
     if (!compData.userInfo.data.accounts.tju) {
       return (
         <View style={[ss.predefinedStyle, style]}>
-          <Ian text="E-tju account not bound" />
+          <Ian tx="accountBinding.etjuNotBound" />
         </View>
       )
     }

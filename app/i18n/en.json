@@ -120,6 +120,7 @@
     "bound": "Bound",
     "bind": "Bind",
     "unbind": "Unbind",
+    "etjuNotBound": "E-tju account not bound",
     "libraryAccount": "Library account",
     "ecardAccount": "E-card account",
     "portalAccount": "Portal account",

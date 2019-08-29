@@ -76,7 +76,7 @@ export class _GpaCurve extends React.Component<GpaCurveProps, {}> {
     if (!compData.userInfo.data.accounts.tju) {
       return (
         <View style={[predefinedStyle, style]}>
-          <Ian text="E-tju account not bound" />
+          <Ian tx="accountBinding.etjuNotBound" />
         </View>
       )
     }

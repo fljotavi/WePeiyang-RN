@@ -120,6 +120,7 @@
     "bound": "已绑定",
     "bind": "绑定",
     "unbind": "解除绑定",
+    "etjuNotBound": "办公网帐号未绑定",
     "libraryAccount": "图书馆帐号",
     "ecardAccount": "校园一卡通帐号",
     "portalAccount": "办公网帐号",
