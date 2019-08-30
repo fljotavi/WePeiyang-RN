@@ -23,7 +23,7 @@ import Color from "color"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { EcardBlock as EcardBlock } from "../../components/ecard-block"
+import { EcardBlock } from "../../components/ecard-block"
 import { TopBar } from "../../components/top-bar"
 import { Text } from "../../components/text"
 

@@ -16,10 +16,7 @@ export interface DaysEachWeekSettingsScreenProps extends NavigationScreenProps<{
   setPreference?
 }
 
-class _DaysEachWeekSettingsScreen extends React.Component<
-  DaysEachWeekSettingsScreenProps,
-  {}
-> {
+class _DaysEachWeekSettingsScreen extends React.Component<DaysEachWeekSettingsScreenProps, {}> {
   render() {
     const { pref, setPreference } = this.props
     const availableDays = [4, 5, 6, 7]

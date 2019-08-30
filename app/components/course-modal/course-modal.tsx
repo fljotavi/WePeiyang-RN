@@ -98,7 +98,10 @@ export function CourseModal(props: CourseModalProps) {
           <Tag
             text={chosenCourse.ext}
             iconText="school"
-            palette={[color.background, color.module().schedule[colorHashByCredits(chosenCourse.credit)]]}
+            palette={[
+              color.background,
+              color.module().schedule[colorHashByCredits(chosenCourse.credit)],
+            ]}
           />
         )}
 

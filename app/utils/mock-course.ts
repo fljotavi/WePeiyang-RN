@@ -941,7 +941,7 @@ export const schedule1 = {
         college: "文学院",
         campus: "北洋园校区",
         ext: "",
-      }
+      },
     ],
     week: 3,
     term_start: 1520179200,
