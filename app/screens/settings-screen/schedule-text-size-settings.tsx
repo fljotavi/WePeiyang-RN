@@ -16,7 +16,7 @@ export interface ScheduleTextSizeSettingsScreenProps extends NavigationScreenPro
   setPreference?
 }
 
-export class ScheduleTextSizeSettingsScreen extends React.Component<
+class _ScheduleTextSizeSettingsScreen extends React.Component<
   ScheduleTextSizeSettingsScreenProps,
   {}
 > {
@@ -76,7 +76,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedScheduleTextSizeSettingsScreen = connect(
+export const ScheduleTextSizeSettingsScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ScheduleTextSizeSettingsScreen)
+)(_ScheduleTextSizeSettingsScreen)

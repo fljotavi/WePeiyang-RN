@@ -29,7 +29,7 @@ export interface GpaScreenProps extends NavigationScreenProps<{}> {
   fetchGpaData?
 }
 
-export class GpaScreen extends React.Component<GpaScreenProps, {}> {
+class _GpaScreen extends React.Component<GpaScreenProps, {}> {
   state = {
     index: 0,
     routes: [{ key: "main", titleTx: "gpa.tab.main" }, { key: "exp", titleTx: "gpa.tab.exp" }],
@@ -165,8 +165,8 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedGpaScreen = connect(
+export const GpaScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GpaScreen)
-export default connectedGpaScreen
+)(_GpaScreen)
+export default GpaScreen

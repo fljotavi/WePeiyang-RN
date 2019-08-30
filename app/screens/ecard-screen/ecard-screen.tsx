@@ -23,7 +23,7 @@ import Color from "color"
 import { Screen } from "../../components/screen"
 import { color, ssGlobal } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
+import { EcardBlock as EcardBlock } from "../../components/ecard-block"
 import { TopBar } from "../../components/top-bar"
 import { Text } from "../../components/text"
 
@@ -48,7 +48,7 @@ export interface EcardScreenProps extends NavigationScreenProps<{}> {
   fetchEcardLineChart?
 }
 
-export class EcardScreen extends React.Component<EcardScreenProps, {}> {
+class _EcardScreen extends React.Component<EcardScreenProps, {}> {
   state = {
     refreshing: false,
     loadingMore: false,
@@ -273,7 +273,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedEcardScreen = connect(
+export const EcardScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EcardScreen)
+)(_EcardScreen)

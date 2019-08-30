@@ -9,19 +9,19 @@
  */
 
 import { createStackNavigator } from "react-navigation"
-import { connectedSettingsScreen } from "../screens/settings-screen"
-import { connectedLanguageSettingsScreen } from "../screens/settings-screen/language-settings-screen"
-import { connectedDaysEachWeekSettingsScreen } from "../screens/settings-screen/days-each-week-settings-screen"
-import { connectedScheduleTextSizeSettingsScreen } from "../screens/settings-screen/schedule-text-size-settings"
-import { connectedPaletteSettingsScreen } from "../screens/settings-screen/palette-settings-screen"
+import { SettingsScreen } from "../screens/settings-screen"
+import { LanguageSettingsScreen } from "../screens/settings-screen/language-settings-screen"
+import { DaysEachWeekSettingsScreen } from "../screens/settings-screen/days-each-week-settings-screen"
+import { ScheduleTextSizeSettingsScreen } from "../screens/settings-screen/schedule-text-size-settings"
+import { PaletteSettingsScreen } from "../screens/settings-screen/palette-settings-screen"
 
 export const SettingsNavigator = createStackNavigator(
   {
-    settings: connectedSettingsScreen,
-    language: connectedLanguageSettingsScreen,
-    daysEachWeek: connectedDaysEachWeekSettingsScreen,
-    scheduleTextSize: connectedScheduleTextSizeSettingsScreen,
-    palette: connectedPaletteSettingsScreen,
+    settings: SettingsScreen,
+    language: LanguageSettingsScreen,
+    daysEachWeek: DaysEachWeekSettingsScreen,
+    scheduleTextSize: ScheduleTextSizeSettingsScreen,
+    palette: PaletteSettingsScreen,
   },
   {
     initialRouteName: "settings",

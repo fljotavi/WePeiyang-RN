@@ -29,7 +29,7 @@ export interface SettingsScreenProps extends NavigationScreenProps<{}> {
   setPreference?
 }
 
-export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
+class _SettingsScreen extends React.Component<SettingsScreenProps, {}> {
   state = {
     modal: {
       heading: undefined,
@@ -254,7 +254,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedSettingsScreen = connect(
+export const SettingsScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SettingsScreen)
+)(_SettingsScreen)

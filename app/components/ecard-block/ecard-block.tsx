@@ -25,7 +25,7 @@ export interface EcardBlockProps {
   onPress?
 }
 
-class EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
+class _EcardBlock extends React.PureComponent<EcardBlockProps, {}> {
   render() {
     let { ecard, style, palette, onPress } = this.props
     palette = palette || [color.lightGrey, color.background, color.background]
@@ -165,7 +165,7 @@ const mapDispatchToProps = () => {
   return {}
 }
 
-export const connectedEcardBlock = connect(
+export const EcardBlock = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EcardBlock)
+)(_EcardBlock)

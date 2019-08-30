@@ -179,7 +179,7 @@ export interface PaletteSettingsScreenProps extends NavigationScreenProps<{}> {
   restorePalette?
 }
 
-export class PaletteSettingsScreen extends React.Component<PaletteSettingsScreenProps, {}> {
+class _PaletteSettingsScreen extends React.Component<PaletteSettingsScreenProps, {}> {
   state = {
     isModalVisible: false,
   }
@@ -362,7 +362,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedPaletteSettingsScreen = connect(
+export const PaletteSettingsScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PaletteSettingsScreen)
+)(_PaletteSettingsScreen)

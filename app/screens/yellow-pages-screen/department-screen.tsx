@@ -30,7 +30,7 @@ export interface DepartmentScreenProps extends NavigationScreenProps<{}> {
   yellowPages?
 }
 
-export class DepartmentScreen extends React.Component<DepartmentScreenProps, {}> {
+class _DepartmentScreen extends React.Component<DepartmentScreenProps, {}> {
   state = {
     isModalVisible: false,
   }
@@ -150,7 +150,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedDepartmentScreen = connect(
+export const DepartmentScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DepartmentScreen)
+)(_DepartmentScreen)

@@ -39,7 +39,7 @@ export interface UserScreenProps extends NavigationScreenProps<{}> {
   fetchUserData?
 }
 
-export class UserScreen extends React.Component<UserScreenProps, {}> {
+class _UserScreen extends React.Component<UserScreenProps, {}> {
   state = {
     isModalVisible: false,
     selectedUnbindAction: () => {},
@@ -305,7 +305,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedUserScreen = connect(
+export const UserScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UserScreen)
+)(_UserScreen)

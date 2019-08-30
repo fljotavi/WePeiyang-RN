@@ -17,7 +17,7 @@ export interface LanguageSettingsScreenProps extends NavigationScreenProps<{}> {
   setPreference?
 }
 
-export class LanguageSettingsScreen extends React.Component<LanguageSettingsScreenProps, {}> {
+class _LanguageSettingsScreen extends React.Component<LanguageSettingsScreenProps, {}> {
   _keyExtractor = lang => lang
 
   render() {
@@ -79,7 +79,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedLanguageSettingsScreen = connect(
+export const LanguageSettingsScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LanguageSettingsScreen)
+)(_LanguageSettingsScreen)

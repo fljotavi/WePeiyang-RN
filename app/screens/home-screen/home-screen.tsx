@@ -39,7 +39,7 @@ import { CourseDailySchedule } from "../../components/course-daily-schedule"
 import { LibraryList } from "../../components/library-list"
 
 import { format } from "date-fns"
-import { connectedEcardBlock as EcardBlock } from "../../components/ecard-block"
+import { EcardBlock } from "../../components/ecard-block"
 import { color } from "../../theme"
 import { Toasti } from "../../components/toasti"
 import { ModuleButtonList } from "../../components/module-button-list"
@@ -58,7 +58,7 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
   pref?
 }
 
-class HomeScreen extends React.Component<HomeScreenProps, {}> {
+class _HomeScreen extends React.Component<HomeScreenProps, {}> {
   state = {
     refreshing: false,
   }
@@ -265,7 +265,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedHomeScreen = connect(
+export const HomeScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(HomeScreen)
+)(_HomeScreen)

@@ -10,7 +10,7 @@ import { Text } from "../../components/text"
 
 export interface LibraryScreenProps extends NavigationScreenProps<{}> {}
 
-export class LibraryScreen extends React.Component<LibraryScreenProps, {}> {
+class _LibraryScreen extends React.Component<LibraryScreenProps, {}> {
   render() {
     return (
       <Screen style={ss.screen}>
@@ -29,16 +29,15 @@ export class LibraryScreen extends React.Component<LibraryScreenProps, {}> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {}
 }
 
-export const connectedLibraryScreen = connect(
+export const LibraryScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LibraryScreen)
-export default connectedLibraryScreen
+)(_LibraryScreen)

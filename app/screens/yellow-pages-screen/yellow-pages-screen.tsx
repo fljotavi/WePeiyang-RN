@@ -42,7 +42,7 @@ export interface YellowPagesScreenProps extends NavigationScreenProps<{}> {
   fetchYellowPagesData?
 }
 
-export class YellowPagesScreen extends React.Component<YellowPagesScreenProps, {}> {
+class _YellowPagesScreen extends React.Component<YellowPagesScreenProps, {}> {
   state = {
     refreshing: false,
     keyword: "",
@@ -219,7 +219,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedYellowPagesScreen = connect(
+export const YellowPagesScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(YellowPagesScreen)
+)(_YellowPagesScreen)

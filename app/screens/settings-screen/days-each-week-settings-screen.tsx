@@ -16,7 +16,7 @@ export interface DaysEachWeekSettingsScreenProps extends NavigationScreenProps<{
   setPreference?
 }
 
-export class DaysEachWeekSettingsScreen extends React.Component<
+class _DaysEachWeekSettingsScreen extends React.Component<
   DaysEachWeekSettingsScreenProps,
   {}
 > {
@@ -78,7 +78,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedDaysEachWeekSettingsScreen = connect(
+export const DaysEachWeekSettingsScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DaysEachWeekSettingsScreen)
+)(_DaysEachWeekSettingsScreen)

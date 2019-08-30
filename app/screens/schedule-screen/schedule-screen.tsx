@@ -63,7 +63,7 @@ export interface ScheduleScreenProps extends NavigationScreenProps<{}> {
   setGeneratedSchedule?
 }
 
-export class ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
+class _ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
   state = {
     refreshing: false,
     isModalVisible: false,
@@ -439,7 +439,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const connectedScheduleScreen = connect(
+export const ScheduleScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ScheduleScreen)
+)(_ScheduleScreen)

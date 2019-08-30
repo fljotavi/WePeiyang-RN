@@ -1,4 +1,4 @@
-import { connectedUserScreen } from "./user-screen"
+import { UserScreen } from "./user-screen"
 
 export * from "./user-screen"
-export default connectedUserScreen
+export default UserScreen

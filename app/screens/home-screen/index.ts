@@ -1,4 +1,4 @@
-import { connectedHomeScreen } from "./home-screen"
+import { HomeScreen } from "./home-screen"
 
 export * from "./home-screen"
-export default connectedHomeScreen
+export default HomeScreen
