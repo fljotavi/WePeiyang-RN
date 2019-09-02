@@ -11,7 +11,7 @@
       "daysLeft": " 天"
     },
     "unknown": "未知",
-    "prepareToLeave": "将要离开微北洋",
+    "prepareToLeave": "将要离开微北洋...",
     "providedInWebHint": "此服务在 Web 上提供，继续操作将在浏览器中打开链接。",
     "saveChanges": "保存变更"
   },
@@ -129,15 +129,15 @@
     "etjuPassword": "你的办公网密码",
     "libPassword": "你的图书馆密码",
     "libPasswordHint": "图书馆密码是用于lib.tju.edu.cn上的登录密码。如果您不知道它是什么，请尝试使用初始密码666666，或身份证号码的第12至17位数字。您也可以咨询天津大学图书馆的咨询台，获取重置密码的相关帮助。",
-    "bindSuccess": "成功绑定。可能需要额外的重新登录。",
+    "bindSuccess": "成功绑定",
     "unbindSuccess": "成功解除绑定。可能需要额外的重新登录。",
     "unbindModal": {
       "heading": "此帐户目前与微北洋相关联。",
       "content": "您可以随时解绑此帐户。解除绑定后，您将无法使用与此帐户相关的服务。"
     },
     "unbindEcardHint": "要解除绑定你的校园卡，只需要退出登录即可。再次登录时，您的校园卡将被自动解绑。",
-    "libLatencyHint": "请注意，你的帐户绑定状态将在下次登录后更新。",
-    "tjuLatencyHint": "请注意，你的帐户绑定状态将在下次登录后更新。",
+    "libLatencyHint": "请注意，你的帐户绑定状态将在下次登录后完全更新。",
+    "tjuLatencyHint": "请注意，你的帐户绑定状态将在下次登录后完全更新。",
     "ecardHint": "出于安全考虑，在设备上退出登录后，您的校园卡将被自动解绑。",
     "networkHint": "出于安全考虑，在设备上退出登录后，您的校园网账户将被自动解绑。"
   },

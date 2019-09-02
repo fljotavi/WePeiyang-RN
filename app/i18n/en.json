@@ -129,15 +129,15 @@
     "etjuPassword": "Your e.tju.edu.cn Password",
     "libPassword": "Your library password",
     "libPasswordHint": "Your library password is the password used on lib.tju.edu.cn. If you didn't know what it is, please try initial password 666666, or the 12th-17th digits of your National ID card. Please consult the information desk in Tianjin University Library for password reset of any further information.",
-    "bindSuccess": "Successfully bound. Additional re-login may be needed.",
+    "bindSuccess": "Successfully bound.",
     "unbindSuccess": "Successfully unbound. Additional re-login may be needed.",
     "unbindModal": {
       "heading": "This account is currently connected to WePeiyang.",
       "content": "You can detach this account anytime. After disconnecting, you wouldn't be able to use services relating to this account."
     },
     "unbindEcardHint": "To unbind your e-card, you just need to log out. Your e-card account would be unconnected when you log in again.",
-    "libLatencyHint": "Please note that your account binding status would be updated after the next login.",
-    "tjuLatencyHint": "Please note that your account binding status would be updated after the next login.",
+    "libLatencyHint": "Please note that your account binding status would be fully updated after the next login.",
+    "tjuLatencyHint": "Please note that your account binding status would be fully updated after the next login.",
     "ecardHint": "For security reasons, the binding action for e-card is only available for the current session. Your e-card account would be immediately detached once you log out.",
     "networkHint": "For security reasons, the binding action for TJU network is only available for the current session. Your network account would be immediately detached once you log out."
   },
