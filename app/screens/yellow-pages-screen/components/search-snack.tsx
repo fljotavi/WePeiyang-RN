@@ -8,8 +8,8 @@
  */
 
 import { TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
-import { color } from "../../theme"
-import { Text } from "../../components/text"
+import { color } from "../../../theme"
+import { Text } from "../../../components/text"
 import * as React from "react"
 
 export interface SearchSnackProps {

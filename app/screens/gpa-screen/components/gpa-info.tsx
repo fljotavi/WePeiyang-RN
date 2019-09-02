@@ -10,8 +10,8 @@
 
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
-import { Text } from "../../components/text"
-import { color } from "../../theme"
+import { Text } from "../../../components/text"
+import { color } from "../../../theme"
 
 export interface GpaInfoProps {
   style?

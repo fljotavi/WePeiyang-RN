@@ -16,8 +16,8 @@ import { color } from "../../theme"
 import { GpaCurve } from "../../components/gpa-curve"
 import { digitsFromScoreType } from "../../utils/common"
 import { GpaRadar } from "../../components/gpa-radar"
-import GpaSnackList from "./gpa-snack-list"
-import GpaStatSemestral from "./gpa-stat-semestral"
+import GpaSnackList from "./components/gpa-snack-list"
+import GpaStatSemestral from "./components/gpa-stat-semestral"
 
 export interface GpaScreenMainProps {
   scoreType?

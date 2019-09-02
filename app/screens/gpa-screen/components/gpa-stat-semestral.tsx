@@ -13,10 +13,10 @@
 import * as React from "react"
 import { connect } from "react-redux"
 
-import { setGpaOrderBy, setScoreType } from "../../actions/preference-actions"
-import { digitsFromScoreType } from "../../utils/common"
-import { GpaStat } from "../../components/gpa-stat/gpa-stat"
-import { color } from "../../theme"
+import { setGpaOrderBy, setScoreType } from "../../../actions/preference-actions"
+import { digitsFromScoreType } from "../../../utils/common"
+import { GpaStat } from "../../../components/gpa-stat/gpa-stat"
+import { color } from "../../../theme"
 
 export interface GpaStatSemestralProps {
   gpa?
@@ -28,7 +28,7 @@ export interface GpaStatSemestralProps {
 class _GpaStatSemestral extends React.Component<GpaStatSemestralProps, {}> {
   render() {
     const { gpa, semesterIndex, setScoreType } = this.props
-    const ss = require("./gpa-screen.style.ts").default
+    const ss = require("../gpa-screen.style.ts").default
     // data for GpaStat component
     let semestralStat = {}
     for (let key in gpa.data.gpaSemestral) {

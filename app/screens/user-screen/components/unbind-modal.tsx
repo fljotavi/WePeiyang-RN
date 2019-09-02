@@ -9,9 +9,9 @@
 
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
-import { Text } from "../../components/text"
-import { color } from "../../theme"
-import { Button } from "../../components/button"
+import { Text } from "../../../components/text"
+import { color } from "../../../theme"
+import { Button } from "../../../components/button"
 
 export interface UnbindModalProps {
   style?

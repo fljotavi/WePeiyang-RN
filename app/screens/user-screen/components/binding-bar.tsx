@@ -9,8 +9,8 @@
 
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
-import { Text } from "../../components/text"
-import { color, layoutParam, shadowPresets } from "../../theme"
+import { Text } from "../../../components/text"
+import { color, layoutParam, shadowPresets } from "../../../theme"
 import Touchable from "react-native-platform-touchable"
 
 export interface BindingBarProps {

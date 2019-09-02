@@ -32,8 +32,8 @@ import { Toasti } from "../../components/toasti"
 import { TextField } from "../../components/text-field"
 
 import FlexSearch from "../../utils/flex-search"
-import { SearchResult } from "./search-result"
-import { FlexSearchLogo } from "./flex-search-logo"
+import { SearchResult } from "./components/search-result"
+import { FlexSearchLogo } from "./components/flex-search-logo"
 import { Text } from "../../components/text"
 
 export interface YellowPagesScreenProps extends NavigationScreenProps<{}> {

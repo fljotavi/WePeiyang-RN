@@ -9,10 +9,10 @@
 
 import * as React from "react"
 import { FlatList, TextStyle, View, ViewStyle } from "react-native"
-import { color } from "../../theme"
-import { Text } from "../../components/text"
+import { color } from "../../../theme"
+import { Text } from "../../../components/text"
 import { SearchSnack } from "./search-snack"
-import { Ian } from "../../components/ian"
+import { Ian } from "../../../components/ian"
 
 export interface SearchResultProps {
   style?: ViewStyle

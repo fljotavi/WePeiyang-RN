@@ -9,8 +9,8 @@
 
 import * as React from "react"
 import { Image, ImageStyle, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
-import { Text } from "../../components/text"
-import { color } from "../../theme"
+import { Text } from "../../../components/text"
+import { color } from "../../../theme"
 
 export interface GradiconProps {
   source

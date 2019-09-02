@@ -14,7 +14,7 @@ import { ScrollView, View } from "react-native"
 import { Image } from "react-native"
 import { Text } from "../../components/text"
 import { kachiIndexOverall, kachiIndexSemester } from "../../utils/kachi"
-import { KachiSnack } from "./kachi-snack"
+import { KachiSnack } from "./components/kachi-snack"
 import { ByTwt } from "../../components/by-twt"
 import { color } from "../../theme"
 export interface GpaScreenExpProps {

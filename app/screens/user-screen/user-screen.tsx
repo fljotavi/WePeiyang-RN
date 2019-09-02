@@ -14,8 +14,8 @@ import { connect } from "react-redux"
 import { Screen } from "../../components/screen"
 import { NavigationEvents, NavigationScreenProps } from "react-navigation"
 import { Text } from "../../components/text"
-import { Gradicon } from "./gradicon"
-import { BindingBar } from "./binding-bar"
+import { Gradicon } from "./components/gradicon"
+import { BindingBar } from "./components/binding-bar"
 import { Button } from "../../components/button"
 import { deleteTokenFromStore } from "../../services/twt-fetch"
 import AsyncStorage from "@react-native-community/async-storage"
@@ -31,7 +31,7 @@ import { TopBar } from "../../components/top-bar"
 import { Toasti } from "../../components/toasti"
 import { color, shadowPresets } from "../../theme"
 import Modal from "react-native-modal"
-import { UnbindModal } from "./unbind-modal"
+import { UnbindModal } from "./components/unbind-modal"
 
 export interface UserScreenProps extends NavigationScreenProps<{}> {
   compData?
@@ -184,12 +184,12 @@ class _UserScreen extends React.Component<UserScreenProps, {}> {
                     this.props.navigation.navigate("tjuBind")
                   }
                 }}
-                source={require("./gradicons/gradicon1.png")}
+                source={require("./assets/gradicon1.png")}
                 tx="modules.gpa"
               />
               <Gradicon
                 onPress={() => this.props.navigation.navigate("home")}
-                source={require("./gradicons/gradicon2.png")}
+                source={require("./assets/gradicon2.png")}
                 tx="modules.library"
               />
               <Gradicon
@@ -200,7 +200,7 @@ class _UserScreen extends React.Component<UserScreenProps, {}> {
                     this.props.navigation.navigate("ecardBind")
                   }
                 }}
-                source={require("./gradicons/gradicon3.png")}
+                source={require("./assets/gradicon3.png")}
                 tx="modules.ecard"
               />
             </View>

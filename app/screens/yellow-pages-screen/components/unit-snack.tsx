@@ -9,8 +9,8 @@
  */
 
 import { TextStyle, View, ViewStyle } from "react-native"
-import { color } from "../../theme"
-import { Text } from "../../components/text"
+import { color } from "../../../theme"
+import { Text } from "../../../components/text"
 import * as React from "react"
 import Touchable from "react-native-platform-touchable"
 

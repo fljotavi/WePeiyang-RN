@@ -11,10 +11,10 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 import { DeviceEventEmitter, FlatList, TouchableOpacity, View } from "react-native"
-import { setGpaOrderBy } from "../../actions/preference-actions"
+import { setGpaOrderBy } from "../../../actions/preference-actions"
 import { GpaSnack } from "./gpa-snack"
-import { Text } from "../../components/text"
-import { Toasti } from "../../components/toasti"
+import { Text } from "../../../components/text"
+import { Toasti } from "../../../components/toasti"
 
 export interface GpaSnackListProps {
   gpa?
@@ -42,7 +42,7 @@ class _GpaSnackList extends React.Component<GpaSnackListProps, {}> {
   _keyExtractor = item => String(item.no)
 
   render() {
-    const ss = require("./gpa-screen.style.ts").default
+    const ss = require("../gpa-screen.style.ts").default
     const { gpa, semesterIndex } = this.props
 
     let sortedScores = [...gpa.data.gpaDetailed[semesterIndex].data].sort((courseA, courseB) => {
