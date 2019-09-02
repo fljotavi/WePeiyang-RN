@@ -46,6 +46,13 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
   closeModal = () => {
     this.setState({ isModalVisible: false, userInformed: false })
   }
+  randomColor = () => {
+    this.setState({
+      colorSelected: `rgb(${Math.floor(Math.random() * 255)},${Math.ceil(
+        Math.random() * 255,
+      )},${Math.ceil(Math.random() * 255)})`,
+    })
+  }
   emitColor = () => {
     this.props.sendColor(this.state.colorSelected)
   }
@@ -73,6 +80,11 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
         backgroundColor: color.transparent,
         padding: 0,
         marginLeft: -1,
+      } as ViewStyle,
+      row: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
       } as ViewStyle,
       input: {
         backgroundColor: color.transparent,
@@ -124,14 +136,18 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
             >
               <View style={ssColorSnack.fillSnack} />
             </ImageBackground>
-            <Text
-              tx="settings.palette.inputColor"
-              preset="lausanne"
-              style={[textColor, { fontWeight: "bold" }]}
-            />
+            <View style={ssColorSnack.row}>
+              <Text
+                tx="settings.palette.inputColor"
+                preset="lausanne"
+                style={[textColor, { fontWeight: "bold" }]}
+              />
+              <Touchable onPress={this.randomColor}>
+                <Text text="shuffle" preset="i" style={textColor} />
+              </Touchable>
+            </View>
             <TextField
               placeholder={this.props.color}
-              placeholderTextColor={color.module().yellowPages[1]}
               style={ssColorSnack.field}
               inputStyle={ssColorSnack.input}
               value={this.state.colorSelected}
