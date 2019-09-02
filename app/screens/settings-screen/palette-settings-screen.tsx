@@ -9,6 +9,7 @@ import {
   View,
   ViewStyle,
   TouchableOpacity as Touchable,
+  ImageBackground,
 } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
@@ -59,7 +60,6 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
       window: {
         width: "100%",
         aspectRatio: 1,
-        backgroundColor: color.background,
         marginBottom: 20,
       } as ViewStyle,
       snack: {
@@ -118,9 +118,12 @@ export class ColorSnack extends React.Component<ColorSnackProps, {}> {
           backdropOpacity={0.8}
         >
           <View style={ssColorSnack.panel}>
-            <View style={ssColorSnack.window}>
+            <ImageBackground
+              source={require("../../assets/transparent-base.png")}
+              style={ssColorSnack.window}
+            >
               <View style={ssColorSnack.fillSnack} />
-            </View>
+            </ImageBackground>
             <Text
               tx="settings.palette.inputColor"
               preset="lausanne"
