@@ -116,10 +116,10 @@ let json = {
     unbind: "解除绑定",
     libraryAccount: "图书馆帐号",
     ecardAccount: "校园一卡通帐号",
-    portalAccount: "办公网帐号",
+    portalAccount: "教务系统（原办公网）帐号",
     yourStudentId: "你的学号或校园身份 ID",
     ecardPassword: "你的 6 位校园卡密码（通常用于 POS 机）",
-    etjuPassword: "你的办公网密码",
+    etjuPassword: "你的教务系统（原办公网）密码",
     libPassword: "你的图书馆密码",
     libPasswordHint:
       "图书馆密码是用于lib.tju.edu.cn上的登录密码。如果您不知道它是什么，请尝试使用初始密码666666，或身份证号码的第12至17位数字。您也可以咨询天津大学图书馆的咨询台，获取重置密码的相关帮助。",

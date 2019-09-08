@@ -120,7 +120,7 @@ let json = {
     portalAccount: "Portal account",
     yourStudentId: "Your Student ID",
     ecardPassword: "E-card password (Used on POS machines)",
-    etjuPassword: "Your e.tju.edu.cn Password",
+    etjuPassword: "Your classes.tju.edu.cn Password",
     libPassword: "Your library password",
     libPasswordHint:
       "Your library password is the password used on lib.tju.edu.cn. If you didn't know what it is, please try initial password 666666, or the 12th-17th digits of your National ID card. Please consult the information desk in Tianjin University Library for password reset of any further information.",

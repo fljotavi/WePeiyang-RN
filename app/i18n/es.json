@@ -114,7 +114,7 @@
     "portalAccount": "Cuenta del portal",
     "yourStudentId": "Su identificación de estudiante",
     "ecardPassword": "Contraseña de tarjeta electrónica (utilizada en máquinas POS)",
-    "etjuPassword": "Su contraseña de e.tju.edu.cn",
+    "etjuPassword": "Su contraseña de classes.tju.edu.cn",
     "libPassword": "La contraseña de tu biblioteca",
     "libPasswordHint": "La contraseña de su biblioteca es la contraseña utilizada en lib.tju.edu.cn. Si no sabía qué es, intente con la contraseña inicial 666666 o los dígitos 12-17 de su tarjeta de identificación nacional. Consulte el mostrador de información en la Biblioteca de la Universidad de Tianjin para restablecer la contraseña de cualquier información adicional.",
     "bindSuccess": "Con éxito atado. Es posible que sea necesario volver a iniciar sesión.",

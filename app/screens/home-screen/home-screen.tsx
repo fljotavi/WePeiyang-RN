@@ -70,7 +70,7 @@ class _HomeScreen extends React.Component<HomeScreenProps, {}> {
       .then(() => {
         let toFetchFollows = []
         if (this.props.compData.userInfo.data.accounts.tju) {
-          // 已绑定办公网，可获取相关数据
+          // 已绑定教务系统（原办公网），可获取相关数据
           toFetchFollows.push(this.props.fetchCourseData())
           toFetchFollows.push(this.props.fetchGpaData())
         }

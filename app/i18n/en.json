@@ -128,7 +128,7 @@
     "portalAccount": "Portal account",
     "yourStudentId": "Your Student ID",
     "ecardPassword": "E-card password (Used on POS machines)",
-    "etjuPassword": "Your e.tju.edu.cn Password",
+    "etjuPassword": "Your classes.tju.edu.cn Password",
     "libPassword": "Your library password",
     "libPasswordHint": "Your library password is the password for lib.tju.edu.cn. Since 2019, the password of classes.tju.edu.cn has been used here. If you didn't know what it is, please try the initial password (the 12th-17th digits of your National ID card).",
     "bindSuccess": "Successfully bound.",
