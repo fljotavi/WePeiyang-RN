@@ -82,7 +82,9 @@
     "daysEachWeek": {
       "title": "每周显示天数",
       "intro": "您可以选择是否要在每周课表中显示非工作日。",
-      "options": "每周显示 %{count} 天"
+      "options": "每周显示 %{count} 天",
+      "auto": "自动",
+      "autoDes": "根据课程情况决定显示天数"
     },
     "displayNotThisWeek": {
       "title": "绘制非本周课程",

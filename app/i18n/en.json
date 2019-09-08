@@ -82,7 +82,9 @@
     "daysEachWeek": {
       "title": "Displayed Days Each Week",
       "intro": "Choose your preferred weekdays interval.",
-      "options": "Display %{count} days each week"
+      "options": "Display %{count} days each week",
+      "auto": "Auto",
+      "autoDes": "Determine displayed days each week according to schedule"
     },
     "displayNotThisWeek": {
       "title": "Display not-this-week courses",

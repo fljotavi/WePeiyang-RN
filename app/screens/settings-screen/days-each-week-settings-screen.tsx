@@ -55,6 +55,17 @@ class _DaysEachWeekSettingsScreen extends React.Component<DaysEachWeekSettingsSc
               }}
             />
           ))}
+
+          <SettingsSnack
+            style={ss.snack}
+            preset={pref.daysEachWeek === "AUTO" ? "selected" : undefined}
+            txTitle="settings.daysEachWeek.auto"
+            txSubtitle="settings.daysEachWeek.autoDes"
+            onPress={() => {
+              setPreference("daysEachWeek", "AUTO")
+              this.props.navigation.goBack()
+            }}
+          />
         </View>
       </Screen>
     )

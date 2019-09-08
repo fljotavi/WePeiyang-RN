@@ -43,6 +43,7 @@ import { Dotmap } from "./dotmap"
 import {
   dayOffActivities,
   deleteTitle,
+  getCalculatedDaysEachWeek,
   getFullSchedule,
   getWeek,
   WEEK_LIMIT,
@@ -134,12 +135,24 @@ class _ScheduleScreen extends React.Component<ScheduleScreenProps, {}> {
 
   render() {
     const { course, pref } = this.props
-    if (!(this.state.chosenWeek && this.state.currentWeek && course.status === "VALID")) {
+    if (
+      !(
+        this.state.chosenWeek &&
+        this.state.currentWeek &&
+        course.status === "VALID" &&
+        course.data &&
+        course.data.courses
+      )
+    ) {
       return <Screen />
     }
 
     const studentId = Number(this.props.userInfo.data.studentid)
-    let daysEachWeek = this.state.daysEachWeek
+    let daysEachWeek =
+      this.state.daysEachWeek === "AUTO"
+        ? getCalculatedDaysEachWeek(course.data.courses)
+        : this.state.daysEachWeek
+
     let weeks
 
     if (course.generated && course.generated[0].days.length === daysEachWeek) {

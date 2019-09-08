@@ -151,6 +151,17 @@ export const getCoursesByDay = (timestamp, data) => {
   return res
 }
 
+export const getCalculatedDaysEachWeek = courses => {
+  let currentMax = 4
+  courses.forEach(course => {
+    course.arrange.forEach(arrange => {
+      const n = Number(arrange.day)
+      if (n > currentMax) currentMax = n
+    })
+  })
+  return currentMax
+}
+
 export const deleteTitle = str => str.replace(/\s*\(.*?\)\s*/g, "").replace(/\s*（.*?）\s*/g, "")
 
 export const dayOffActivities = (timestamp, hashParam) => {

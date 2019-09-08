@@ -37,7 +37,7 @@ export const preferenceReducer = (
     scoreType: "weighted",
     gpaOrderBy: "credits",
     language: "en",
-    daysEachWeek: 6,
+    daysEachWeek: "AUTO",
     showCoursesNotThisWeek: true,
     hideGpaOnHomeScreen: false,
     autoReconnect: true,
