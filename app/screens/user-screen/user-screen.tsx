@@ -230,6 +230,30 @@ class _UserScreen extends React.Component<UserScreenProps, {}> {
 
             <BindingBar
               onPress={() => {
+                if (compData.userInfo.data.accounts.lib) {
+                  this.setState(
+                    {
+                      selectedUnbindAction: this.unbindLib,
+                      origin: "LIB",
+                    },
+                    this.toggleModal,
+                  )
+                } else {
+                  this.props.navigation.navigate("libBind")
+                }
+              }}
+              style={ss.bindingBar}
+              txTitle="accountBinding.libraryAccount"
+              txSubtitle={
+                compData.userInfo.data.accounts.lib
+                  ? "accountBinding.bound"
+                  : "accountBinding.unbound"
+              }
+              icon="book"
+            />
+
+            <BindingBar
+              onPress={() => {
                 if (compData.ecard.auth.status === "BOUND") {
                   this.setState(
                     {
@@ -252,29 +276,6 @@ class _UserScreen extends React.Component<UserScreenProps, {}> {
               icon="credit_card"
             />
 
-            <BindingBar
-              onPress={() => {
-                if (compData.userInfo.data.accounts.lib) {
-                  this.setState(
-                    {
-                      selectedUnbindAction: this.unbindLib,
-                      origin: "LIB",
-                    },
-                    this.toggleModal,
-                  )
-                } else {
-                  this.props.navigation.navigate("libBind")
-                }
-              }}
-              style={ss.bindingBar}
-              txTitle="accountBinding.libraryAccount"
-              txSubtitle={
-                compData.userInfo.data.accounts.lib
-                  ? "accountBinding.bound"
-                  : "accountBinding.unbound"
-              }
-              icon="book"
-            />
             <Button style={ss.logoutButton} preset="primary" onPress={this.logout}>
               <View style={ss.logoutButtonContentWrapper}>
                 <Text style={ss.logoutIcon} preset="i" text="exit_to_app" />
