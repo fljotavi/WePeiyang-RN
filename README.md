@@ -147,9 +147,13 @@ cd ..
 react-native run-ios
 ```
 
-Note that to run the above commands, you need to ensure several prerequisites in your building environment. Please refer to [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for the most up-to-date building indications. React-Native CLI is used here.
+If you don't have CocoaPods installed on your mac, please [install it](https://cocoapods.org/) first before running `pod install`:
 
-请注意，为了使上述命令顺利运行，你的构建环境需要满足一些前提条件。请参考 [React Native: 开始构建](https://facebook.github.io/react-native/docs/getting-started.html) 以获取最新版本的构建要求和步骤。本项目使用的是 React Native CLI 而非 Expo CLI。
+如果你的 Mac 上没有 CocoaPods，你需要在执行 `pod install` 前先[安装它](https://cocoapods.org/)。
+
+You may also need to ensure several other prerequisites in your building environment. Please refer to [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for the most up-to-date building indications. React-Native CLI is used here.
+
+请注意，为了使上述命令顺利运行，你的构建环境还需要满足一些其它前提条件。请参考 [React Native: 开始构建](https://facebook.github.io/react-native/docs/getting-started.html) 以获取最新版本的构建要求和步骤。本项目使用的是 React Native CLI 而非 Expo CLI。
 
 　
 
