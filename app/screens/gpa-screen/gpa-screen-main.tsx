@@ -18,6 +18,7 @@ import { digitsFromScoreType } from "../../utils/common"
 import { GpaRadar } from "../../components/gpa-radar"
 import GpaSnackList from "./components/gpa-snack-list"
 import GpaStatSemestral from "./components/gpa-stat-semestral"
+import { IanBorderless } from "../../components/ian-borderless"
 
 export interface GpaScreenMainProps {
   scoreType?
@@ -27,7 +28,14 @@ export interface GpaScreenMainProps {
 class _GpaScreenMain extends React.Component<GpaScreenMainProps, {}> {
   render() {
     const { gpa, scoreType } = this.props
-    if (gpa.status !== "VALID") return <View />
+    if (gpa.status !== "VALID")
+      return (
+        <IanBorderless
+          tx="data.noAvailableData"
+          icon="accessibility"
+          color={color.module().gpa[2]}
+        />
+      )
     const ss = require("./gpa-screen.style.ts").default
     return (
       <ScrollView showsVerticalScrollIndicator={false}>

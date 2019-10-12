@@ -90,11 +90,15 @@ export function fetchGpaData() {
     return twtGet(path)
       .then(response => response.json())
       .then(responseJson => {
+        console.log(responseJson)
         if (responseJson.error_code === -1) {
-          dispatch({
-            type: "SET_GPA_DATA",
-            payload: responseJson.data,
-          })
+          if (responseJson.data.data.length > 0) {
+            // 如传入 0 个学期的数据，则使用 semesterIndex 的数组索引将总会返回错误，此情况下和 GPA 未收到数据同等对待
+            dispatch({
+              type: "SET_GPA_DATA",
+              payload: responseJson.data,
+            })
+          }
           return responseJson
         } else {
           responseJson.origin = path
