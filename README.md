@@ -157,9 +157,7 @@ You may also need to ensure several other prerequisites in your building environ
 
 ### Encountering Problems? 构建时常见问题
 
-如果你遇到 `Task :app:validateSigningDebug FAILED` 或 `Task :app:validateSigningRelease FAILED`，这通常是因为缺失 debug.keystore 引起的。由于严格来讲，此文件属于验证开发者可靠身份的签名文件，并不应当开源，因此你需要自己创建一个 debug.keystore。如果你是天外天工作室的成员，你应该也可以在工作室内部获取它。获取不到我们的 debug.keystore 不应该影响到你是否能够顺利地 build 此程序，只会让你无法代表天外天工作室发布正式 App 版本。
-
-如果你持续遇到 `Failed to create directory` 或 `Failed to delete directory` 类错误，且这类错误零星、随机地出现在每一次 build 中，这是由于 React Native 本身操作文件 I/O 的问题。它在由 Windows NTFS 系统下可能更加常见。为解决这类问题，我们依次建议：
+如果你持续遇到 `Failed to create directory` 或 `Failed to delete directory` 类错误，且这类错误零星、随机地出现在每一次 build 中，这是由于 NPM & React Native 本身操作文件 I/O 的问题。它在 Windows NTFS 文件系统下可能更加常见。为解决这类问题，我们建议依次：
 
 - 多次尝试。此类问题通常不会连续出现 5 次以上。
 - 尝试更换运行时项目所在的硬盘或文件系统。
