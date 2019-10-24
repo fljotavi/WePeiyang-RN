@@ -256,10 +256,7 @@ Files in this folder define some tool functions or variables, or files that coul
 
 # License 协议
 
-A license would be published after the first release. Before that happens, issues are pull requests are welcomed.
-
-协议会发布在项目第一版开发完成之后。在此之前，欢迎任何问题讨论与合并请求。
-
+MIT
 　
 
 <p align="center">
