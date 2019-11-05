@@ -1,6 +1,6 @@
 
 <p align="center">
-	<img src="assets/heading.png?raw=true" alt="WePeiyang 4.0" width="300">
+	<img src="https://i.loli.net/2019/11/05/IxGXaTAKYC1RtOJ.png" alt="WePeiyang 4.0" width="300">
 </p>
 　
 
@@ -22,7 +22,7 @@ At that time, the previous major version of WePeiyang, functionally mature and t
 在项目提出之前，上一版本的微北洋已经具有事实上完整的功能模块，也通过了数年的时间检验。它本身无需一次迫切的升级。但是，工作室的技术团队近期确实面临着一些问题，如生产力失衡、不一致的平台体验、欠佳的用户体验等。因此，这一新版本的开发将会侧重于平台一致性、架构设计、大胆的功能探索，并注入更多与体验和视觉相关的思考。
 
 
-![Showcase.jpg](assets/showcase.jpg "Showcase")
+![showcase.jpg](https://i.loli.net/2019/11/05/Nx4cwlJHpuhsji8.jpg)
 
 *Runtime Screenshots / 运行时图片*
 
@@ -260,5 +260,5 @@ MIT
 　
 
 <p align="center">
-	<img src="assets/credits.png?raw=true" alt="TWT STUDIO × Tzingtao Chow" width="255">
+	<img src="https://i.loli.net/2019/11/05/fuO61K2mloeTBNh.png" alt="TWT STUDIO × Tzingtao Chow" width="255">
 </p>
