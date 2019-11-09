@@ -249,10 +249,12 @@ Files in this folder define some tool functions or variables, or files that coul
 - [WePeiyang Android 3.0](https://github.com/twtstudio/WePeiYang-Android)
 - [WePeiyang iOS Everest](https://github.com/twtstudio/WePeiYang-iOS-Everest)
 - [WePeiyang API](https://github.com/twtstudio/WePeiYang-Api)
+- [WePeiyang 4.0 on Behance](https://www.behance.net/gallery/87923521/-WePeiyang-40)
 - [WePeiyang 4.0 DevMeeting Slides](https://github.com/Cyphexl/fed-teaching-slides/blob/master/week-elective/wepeiyang.pdf)
 - [关于课程表的思考：微北洋 Schedule Screen 的设计与实现](http://www.tzingtao.com/2019/08/29/Thinking-in-TimeTables-WePeiyang-Schedule-Screen-Design-Implementation/)
 
-　
+![devmeeting.png](https://i.loli.net/2019/11/09/Fg6cJVax8s31eNl.png)
+*WePeiyang 4.0 DevMeeting Slides / 微北洋 4.0 开发者会议演示*
 
 # License 协议
 
