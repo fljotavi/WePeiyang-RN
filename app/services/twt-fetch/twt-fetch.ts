@@ -16,7 +16,7 @@ import { mergeDeepLeft } from "ramda"
 import AsyncStorage from "@react-native-community/async-storage"
 import configureStore from "../../store"
 
-const TWT_BASE_URL = "https://open.twtstudio.com/api/"
+const TWT_BASE_URL = "https://open.twt.edu.cn/api/"
 const TWT_BASE_URL_MOCK = "https://files.fed.ink/openmock/"
 const TWT_APP = { key: "8UuaoZs2TNLFfqnmyllp", secret: "vOl62dPR2k8BeVTPxLrtuyDcx0AQhm" }
 const { store } = configureStore
