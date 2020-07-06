@@ -1,6 +1,6 @@
 
 <p align="center">
-	<img src="https://i.loli.net/2019/11/05/IxGXaTAKYC1RtOJ.png" alt="WePeiyang 4.0" width="300">
+	<img src="assets/heading.png" alt="WePeiyang 4.0" width="300">
 </p>
 　
 
@@ -22,7 +22,7 @@ At that time, the previous major version of WePeiyang, functionally mature and t
 在项目提出之前，上一版本的微北洋已经具有事实上完整的功能模块，也通过了数年的时间检验。它本身无需一次迫切的升级。但是，工作室的技术团队近期确实面临着一些问题，如生产力失衡、不一致的平台体验、欠佳的用户体验等。因此，这一新版本的开发将会侧重于平台一致性、架构设计、大胆的功能探索，并注入更多与体验和视觉相关的思考。
 
 
-![showcase.jpg](https://i.loli.net/2019/11/05/yGmLIFbjQOgEXUw.jpg)
+![Preview](assets/showcase.jpg "Preview")
 
 *Runtime Screenshots / 运行时图片*
 
@@ -48,7 +48,7 @@ Most major modules are developed.
 | Guest login | 体验版账号登入 | ✔                  |
 | ......                                                      |                              |                     |
 
-![theming-brazil.jpg](https://i.loli.net/2019/08/26/tvZz9VjnlIG3qLM.jpg)
+![Theming Preview](assets/theming-brazil.jpg)
 
 *Theming in GPA Module / 对 GPA 模块对主题自定义*
 
@@ -84,7 +84,7 @@ Most major modules are developed.
 | Custom course scheduling & events                           | 自定义课程 / 事件            |                     |
 | Support of scheduling conflicts                             | 冲突课程显示                 | ✔                   |
 
-![Resp-sche.png](https://i.loli.net/2019/08/28/VoCHPqSKJj4bdwN.png)
+![Responsive Interfaces](assets/resp.png)
 
 *Responsive course table layout / 响应式课表布局*
 
@@ -108,7 +108,7 @@ Most major modules are developed.
 
 ### Supported Languages 已支持语言
 
-![i18n](https://i.loli.net/2019/08/10/7qMbpr4WC6Dd2s3.png)
+![i18n Support](assets/multil.jpg)
 
 | Language (Native)                                            | Language | Status              |
 | ------------------------------------------------------------ | -------- | ------------------- |
@@ -253,7 +253,7 @@ Files in this folder define some tool functions or variables, or files that coul
 - [WePeiyang 4.0 DevMeeting Slides](https://github.com/Cyphexl/fed-teaching-slides/blob/master/week-elective/wepeiyang.pdf)
 - [关于课程表的思考：微北洋 Schedule Screen 的设计与实现](http://www.tzingtao.com/2019/08/29/Thinking-in-TimeTables-WePeiyang-Schedule-Screen-Design-Implementation/)
 
-![devmeeting.png](https://i.loli.net/2019/11/09/Fg6cJVax8s31eNl.png)
+![DevMeeting](assets/exrn.png)
 *WePeiyang 4.0 DevMeeting Slides / 微北洋 4.0 开发者会议演示*
 
 # License 协议
@@ -262,5 +262,5 @@ MIT
 　
 
 <p align="center">
-	<img src="https://i.loli.net/2019/11/05/fuO61K2mloeTBNh.png" alt="TWT STUDIO × Tzingtao Chow" width="255">
+	<img src="assets/credits.png" alt="TWT STUDIO × Tzingtao Chow" width="255">
 </p>
