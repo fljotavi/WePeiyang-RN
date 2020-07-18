@@ -26,12 +26,6 @@ At that time, the previous major version of WePeiyang, functionally mature and t
 
 *Runtime Screenshots / 运行时图片*
 
-### Status 状态
-
-Most major modules are developed.
-
-项目各个主要模块已经开发完成。
-
 ### New Features to Expect 功能性改进
 
 ##### Global Features
